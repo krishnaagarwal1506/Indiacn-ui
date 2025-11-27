@@ -21,6 +21,8 @@
 /build
 
 # misc
+.vscode/*
+!.vscode/extensions.json
 .DS_Store
 *.pem
 
@@ -39,3 +41,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.eslintcache

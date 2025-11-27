@@ -1,26 +1,242 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-*: initial;
+  --primary: var(--primary-color);
+  --primary-50: var(--primary-color-50);
+  --primary-100: var(--primary-color-100);
+  --primary-200: var(--primary-color-200);
+  --primary-300: var(--primary-color-300);
+  --primary-400: var(--primary-color-400);
+  --primary-500: var(--primary-color-500);
+  --primary-600: var(--primary-color-600);
+  --primary-700: var(--primary-color-700);
+  --primary-800: var(--primary-color-800);
+  --primary-900: var(--primary-color-900);
+
+  --secondary: var(--secondary-color);
+  --secondary-50: var(--secondary-color-50);
+  --secondary-100: var(--secondary-color-100);
+  --secondary-200: var(--secondary-color-200);
+  --secondary-300: var(--secondary-color-300);
+  --secondary-400: var(--secondary-color-400);
+  --secondary-500: var(--secondary-color-500);
+  --secondary-600: var(--secondary-color-600);
+  --secondary-700: var(--secondary-color-700);
+  --secondary-800: var(--secondary-color-800);
+  --secondary-900: var(--secondary-color-900);
+
+  --neutral: var(--neutral-color);
+  --neutral-0: var(--neutral-color-0);
+  --neutral-50: var(--neutral-color-50);
+  --neutral-100: var(--neutral-color-100);
+  --neutral-200: var(--neutral-color-200);
+  --neutral-300: var(--neutral-color-300);
+  --neutral-400: var(--neutral-color-400);
+  --neutral-500: var(--neutral-color-500);
+  --neutral-600: var(--neutral-color-600);
+  --neutral-700: var(--neutral-color-700);
+  --neutral-800: var(--neutral-color-800);
+  --neutral-900: var(--neutral-color-900);
+
+  --success: var(--success-color);
+  --success-50: var(--success-color-50);
+  --success-100: var(--success-color-100);
+  --success-200: var(--success-color-200);
+  --success-300: var(--success-color-300);
+  --success-400: var(--success-color-400);
+  --success-500: var(--success-color-500);
+  --success-600: var(--success-color-600);
+  --success-700: var(--success-color-700);
+  --success-800: var(--success-color-800);
+  --success-900: var(--success-color-900);
+
+  --error: var(--danger-color);
+  --error-50: var(--danger-color-50);
+  --error-100: var(--danger-color-100);
+  --error-200: var(--danger-color-200);
+  --error-300: var(--danger-color-300);
+  --error-400: var(--danger-color-400);
+  --error-500: var(--danger-color-500);
+  --error-600: var(--danger-color-600);
+  --error-700: var(--danger-color-700);
+  --error-800: var(--danger-color-800);
+  --error-900: var(--danger-color-900);
+
+  --warning: var(--warning-color);
+  --warning-50: var(--warning-color-50);
+  --warning-100: var(--warning-color-100);
+  --warning-200: var(--warning-color-200);
+  --warning-300: var(--warning-color-300);
+  --warning-400: var(--warning-color-400);
+  --warning-500: var(--warning-color-500);
+  --warning-600: var(--warning-color-600);
+  --warning-700: var(--warning-color-700);
+  --warning-800: var(--warning-color-800);
+  --warning-900: var(--warning-color-900);
+
+  --disabled: color-mix(in srgb, var(--neutral-color) 50%, transparent);
+  --hint: var(--neutral-color-600);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --primary-color: #613af5;
+  --primary-color-50: #ece7fe;
+  --primary-color-100: #d8cefd;
+  --primary-color-200: #b19efa;
+  --primary-color-300: #8a6df8;
+  --primary-color-400: #633df5;
+  --primary-color-500: #3c0cf3;
+  --primary-color-600: #300ac2;
+  --primary-color-700: #240792;
+  --primary-color-800: #180561;
+  --primary-color-900: #0c0231;
+
+  --secondary-color: #938bb6;
+  --secondary-color-50: #f0eff5;
+  --secondary-color-100: #e2e0eb;
+  --secondary-color-200: #c5c0d8;
+  --secondary-color-300: #a8a1c4;
+  --secondary-color-400: #8a82b0;
+  --secondary-color-500: #6d629d;
+  --secondary-color-600: #574f7d;
+  --secondary-color-700: #423b5e;
+  --secondary-color-800: #2c273f;
+  --secondary-color-900: #16141f;
+
+  --neutral-color: #212121;
+  --neutral-color-0: #ffffff;
+  --neutral-color-50: #f3f3f3;
+  --neutral-color-100: #dddddd;
+  --neutral-color-200: #c6c6c6;
+  --neutral-color-300: #b0b0b0;
+  --neutral-color-400: #9b9b9b;
+  --neutral-color-500: #868686;
+  --neutral-color-600: #727272;
+  --neutral-color-700: #5e5e5e;
+  --neutral-color-800: #4b4b4b;
+  --neutral-color-900: #393939;
+
+  --success-color: #3c9718;
+  --success-color-50: #edf7e6;
+  --success-color-100: #e3f2d9;
+  --success-color-200: #c6e5b5;
+  --success-color-300: #9bcf80;
+  --success-color-400: #69b349;
+  --success-color-500: #389314;
+  --success-color-600: #107400;
+  --success-color-700: #005a00;
+  --success-color-800: #024900;
+  --success-color-900: #044400;
+
+  --danger-color: #b7131a;
+  --danger-color-50: #ffeeea;
+  --danger-color-100: #ffcdc0;
+  --danger-color-200: #ffac9a;
+  --danger-color-300: #ff8b78;
+  --danger-color-400: #ff6c5a;
+  --danger-color-500: #ec5042;
+  --danger-color-600: #d4362e;
+  --danger-color-700: #b72120;
+  --danger-color-800: #961416;
+  --danger-color-900: #741010;
+
+  --warning-color: #b77224;
+  --warning-color-50: #fef1e7;
+  --warning-color-100: #f9d7b9;
+  --warning-color-200: #f0bd8f;
+  --warning-color-300: #e2a468;
+  --warning-color-400: #d08d47;
+  --warning-color-500: #bb772b;
+  --warning-color-600: #a46212;
+  --warning-color-700: #8b5000;
+  --warning-color-800: #713f00;
+  --warning-color-900: #573000;
+}
+
+.dark {
+  --primary-color: #613af5;
+  --primary-color-50: #0c0231;
+  --primary-color-100: #180561;
+  --primary-color-200: #240792;
+  --primary-color-300: #300ac2;
+  --primary-color-400: #3c0cf3;
+  --primary-color-500: #633df5;
+  --primary-color-600: #8a6df8;
+  --primary-color-700: #b19efa;
+  --primary-color-800: #d8cefd;
+  --primary-color-900: #ece7fe;
+
+  --secondary-color: #938bb6;
+  --secondary-color-50: #16141f;
+  --secondary-color-100: #2c273f;
+  --secondary-color-200: #423b5e;
+  --secondary-color-300: #574f7d;
+  --secondary-color-400: #6d629d;
+  --secondary-color-500: #8a82b0;
+  --secondary-color-600: #a8a1c4;
+  --secondary-color-700: #c5c0d8;
+  --secondary-color-800: #e2e0eb;
+  --secondary-color-900: #f0eff5;
+
+  --neutral-color: #ffffff;
+  --neutral-color-0: #212121;
+  --neutral-color-50: #393939;
+  --neutral-color-100: #4b4b4b;
+  --neutral-color-200: #5e5e5e;
+  --neutral-color-300: #727272;
+  --neutral-color-400: #868686;
+  --neutral-color-500: #9b9b9b;
+  --neutral-color-600: #b0b0b0;
+  --neutral-color-700: #c6c6c6;
+  --neutral-color-800: #dddddd;
+  --neutral-color-900: #f3f3f3;
+
+  --success-color: #3c9718;
+  --success-color-50: #044400;
+  --success-color-100: #024900;
+  --success-color-200: #005a00;
+  --success-color-300: #107400;
+  --success-color-400: #389314;
+  --success-color-500: #69b349;
+  --success-color-600: #9bcf80;
+  --success-color-700: #c6e5b5;
+  --success-color-800: #e3f2d9;
+  --success-color-900: #edf7e6;
+
+  --danger-color: #b7131a;
+  --danger-color-50: #741010;
+  --danger-color-100: #961416;
+  --danger-color-200: #b72120;
+  --danger-color-300: #d4362e;
+  --danger-color-400: #ec5042;
+  --danger-color-500: #ff6c5a;
+  --danger-color-600: #ff8b78;
+  --danger-color-700: #ffac9a;
+  --danger-color-800: #ffcdc0;
+  --danger-color-900: #ffeeea;
+
+  --warning-color: #b77224;
+  --warning-color-50: #573000;
+  --warning-color-100: #713f00;
+  --warning-color-200: #8b5000;
+  --warning-color-300: #a46212;
+  --warning-color-400: #bb772b;
+  --warning-color-500: #d08d47;
+  --warning-color-600: #e2a468;
+  --warning-color-700: #f0bd8f;
+  --warning-color-800: #f9d7b9;
+  --warning-color-900: #fef1e7;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
