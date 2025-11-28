@@ -5,6 +5,20 @@
 
 @theme inline {
   --color-*: initial;
+
+  --radius-none: calc(var(--radius) - 8px);
+  --radius-xxs: calc(var(--radius) - 6px);
+  --radius-xs: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 16px);
+  --radius-4xl: calc(var(--radius) + 24px);
+  --radius-5xl: calc(var(--radius) + 32px);
+  --radius-full: 999px;
+
   --color-primary: var(--primary);
   --color-primary-50: var(--primary-50);
   --color-primary-100: var(--primary-100);
@@ -82,6 +96,8 @@
 }
 
 :root {
+  --radius: 0.5rem;
+
   --primary: #613af5;
   --primary-50: #ece7fe;
   --primary-100: #d8cefd;
