@@ -7,13 +7,19 @@ import importPlugin from 'eslint-plugin-import';
 import { defineConfig } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTs from 'eslint-config-next/typescript';
+import frontendRules from 'eslint-frontend-rules';
 
 export default defineConfig([
   { ignores: ['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'dist'] },
   ...nextVitals,
   ...nextTs,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended, prettier],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+      prettier,
+      frontendRules.configs.recommended,
+    ],
     files: ['**/*.{ts,tsx,js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -22,6 +28,7 @@ export default defineConfig([
     plugins: {
       'react-hooks': reactHooks,
       import: importPlugin,
+      'eslint-frontend-rules': frontendRules,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -61,6 +68,16 @@ export default defineConfig([
             order: 'asc',
             caseInsensitive: true,
           },
+        },
+      ],
+      'eslint-frontend-rules/no-default-export': [
+        'error',
+        {
+          ignore: [
+            '**/app/**/layout.{tsx,ts,js,jsx}',
+            '**/app/**/page.{tsx,ts,js,jsx}',
+            '**/*.config.{js,cjs,mjs,ts,tsx}',
+          ],
         },
       ],
     },
