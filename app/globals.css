@@ -19,11 +19,19 @@
   --shadow-xl: 0px 24px 48px -12px rgb(from var(--neutral) r g b / 0.18);
   --shadow-2xl: 0px 32px 64px -12px rgb(from var(--neutral) r g b / 0.14);
 
+  --shadow-focus-primary: 0px 0px 0px 4px rgb(from var(--primary) r g b / 0.48);
+  --shadow-focus-secondary: 0px 0px 0px 4px rgb(from var(--secondary) r g b / 0.48);
+  --shadow-focus-success: 0px 0px 0px 4px rgb(from var(--success) r g b / 0.48);
+  --shadow-focus-danger: 0px 0px 0px 4px rgb(from var(--danger) r g b / 0.48);
+  --shadow-focus-warning: 0px 0px 0px 4px rgb(from var(--warning) r g b / 0.48);
+  --shadow-focus-neutral: 0px 0px 0px 4px rgb(from var(--neutral) r g b / 0.48);
+
   --radius-none: calc(var(--radius) - 8px);
   --radius-xxs: calc(var(--radius) - 6px);
   --radius-xs: calc(var(--radius) - 4px);
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
+  --radius: var(--radius);
   --radius-lg: calc(var(--radius) + 4px);
   --radius-xl: calc(var(--radius) + 8px);
   --radius-2xl: calc(var(--radius) + 12px);
@@ -81,17 +89,17 @@
   --color-success-800: var(--success-800);
   --color-success-900: var(--success-900);
 
-  --color-error: var(--danger);
-  --color-error-50: var(--danger-50);
-  --color-error-100: var(--danger-100);
-  --color-error-200: var(--danger-200);
-  --color-error-300: var(--danger-300);
-  --color-error-400: var(--danger-400);
-  --color-error-500: var(--danger-500);
-  --color-error-600: var(--danger-600);
-  --color-error-700: var(--danger-700);
-  --color-error-800: var(--danger-800);
-  --color-error-900: var(--danger-900);
+  --color-danger: var(--danger);
+  --color-danger-50: var(--danger-50);
+  --color-danger-100: var(--danger-100);
+  --color-danger-200: var(--danger-200);
+  --color-danger-300: var(--danger-300);
+  --color-danger-400: var(--danger-400);
+  --color-danger-500: var(--danger-500);
+  --color-danger-600: var(--danger-600);
+  --color-danger-700: var(--danger-700);
+  --color-danger-800: var(--danger-800);
+  --color-danger-900: var(--danger-900);
 
   --color-warning: var(--warning);
   --color-warning-50: var(--warning-50);
