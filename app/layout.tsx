@@ -1,3 +1,4 @@
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import { Noto_Sans } from 'next/font/google';
 import { ReactNode } from 'react';
 
@@ -25,8 +26,10 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className={cn(NOTO_SANS.className, 'antialiased')}>{children}</body>
+    <html lang='en' suppressHydrationWarning>
+      <body className={cn(NOTO_SANS.className, 'antialiased')}>
+        <RootProvider>{children}</RootProvider>
+      </body>
     </html>
   );
 }
