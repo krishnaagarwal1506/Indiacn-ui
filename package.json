@@ -13,8 +13,12 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "fumadocs-core": "^16.2.3",
+    "fumadocs-mdx": "^14.1.0",
+    "fumadocs-ui": "^16.2.3",
     "lucide-react": "^0.555.0",
     "next": "16.0.5",
     "react": "19.2.0",

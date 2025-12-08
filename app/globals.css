@@ -1,11 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-*: initial;
-
   --shadow-xs: 0px 2px 3px 1px rgb(from var(--neutral) r g b / 0.12);
   --shadow-sm:
     0px 4px 4px rgb(from var(--neutral) r g b / 0.12),
@@ -114,6 +114,24 @@
   --color-warning-900: var(--warning-900);
   --color-disabled: color-mix(in srgb, var(--neutral) 50%, transparent);
   --color-hint: var(--neutral-600);
+
+  --color-fd-background: var(--fd-background);
+  --color-fd-foreground: var(--fd-foreground);
+  --color-fd-card: var(--fd-card);
+  --color-fd-card-foreground: var(--fd-card-foreground);
+  --color-fd-popover: var(--fd-popover);
+  --color-fd-popover-foreground: var(--fd-popover-foreground);
+  --color-fd-primary: var(--fd-primary);
+  --color-fd-primary-foreground: var(--fd-primary-foreground);
+  --color-fd-secondary: var(--fd-secondary);
+  --color-fd-secondary-foreground: var(--fd-secondary-foreground);
+  --color-fd-muted: var(--fd-muted);
+  --color-fd-muted-foreground: var(--fd-muted-foreground);
+  --color-fd-accent: var(--fd-accent);
+  --color-fd-accent-foreground: var(--fd-accent-foreground);
+  --color-fd-border: var(--fd-border);
+  --color-fd-input: var(--fd-input);
+  --color-fd-ring: var(--fd-ring);
 }
 
 :root {
@@ -191,6 +209,22 @@
   --warning-700: #8b5000;
   --warning-800: #713f00;
   --warning-900: #573000;
+
+  --fd-background: var(--neutral-0);
+  --fd-foreground: var(--neutral);
+  --fd-card: var(--neutral-0);
+  --fd-card-foreground: var(--neutral);
+  --fd-popover: var(--neutral-0);
+  --fd-popover-foreground: var(--neutral);
+  --fd-primary: var(--primary);
+  --fd-primary-foreground: var(--neutral);
+  --fd-muted: var(--neutral-50);
+  --fd-muted-foreground: var(--neutral-900);
+  --fd-accent: var(--neutral-50);
+  --fd-accent-foreground: var(--primary);
+  --fd-border: var(--neutral-900);
+  --fd-input: var(--neutral-900);
+  --fd-ring: var(--primary);
 }
 
 .dark {

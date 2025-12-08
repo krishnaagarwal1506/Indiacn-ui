@@ -1,0 +1,316 @@
+---
+title: Typography
+description: Styles for headings, paragraphs, lists...etc
+---
+
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyP,
+  TypographyBlockquote,
+  TypographyTable,
+  TypographyList,
+  TypographyInlineCode,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+} from '@/components/examples/typography-demo';
+
+## Introduction
+
+The Typography component library provides a complete set of text components following a systematic design scale. It includes display text, headlines, titles, labels, and body text components with predefined sizes and weights.
+
+## Installation
+
+<ComponentSource>
+  {`import { Display1, Headline1, Title1, Label1, Body1 } from '@/components/ui/typography';`}
+</ComponentSource>
+
+## Examples
+
+### H1
+
+<ComponentPreview code={`import { Headline1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Headline1>Taxing Laughter: The Joke Tax Chronicles</Headline1>;
+}`}>
+  <TypographyH1 />
+</ComponentPreview>
+
+### H2
+
+<ComponentPreview code={`import { Headline2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Headline2>The People of the Kingdom</Headline2>;
+}`}>
+  <TypographyH2 />
+</ComponentPreview>
+
+### H3
+
+<ComponentPreview code={`import { Headline3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Headline3>The Joke Tax</Headline3>;
+}`}>
+  <TypographyH3 />
+</ComponentPreview>
+
+### Paragraph
+
+<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <Body1>
+      The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.
+    </Body1>
+  );
+}`}>
+  <TypographyP />
+</ComponentPreview>
+
+### Blockquote
+
+<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <blockquote className="border-l-4 border-zinc-300 pl-4 italic dark:border-zinc-700">
+      <Body1>
+        "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
+      </Body1>
+    </blockquote>
+  );
+}`}>
+  <TypographyBlockquote />
+</ComponentPreview>
+
+### Table
+
+<ComponentPreview code={`import { Title2, Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className="w-full overflow-auto">
+      <table className="w-full">
+        <thead>
+          <tr className="border-b">
+            <th className="h-12 px-4 text-left align-middle font-medium">
+              <Title2>King's Treasury</Title2>
+            </th>
+            <th className="h-12 px-4 text-left align-middle font-medium">
+              <Title2>People's happiness</Title2>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b">
+            <td className="p-4 align-middle">
+              <Body2>Empty</Body2>
+            </td>
+            <td className="p-4 align-middle">
+              <Body2>Overflowing</Body2>
+            </td>
+          </tr>
+          <tr className="border-b">
+            <td className="p-4 align-middle">
+              <Body2>Modest</Body2>
+            </td>
+            <td className="p-4 align-middle">
+              <Body2>Satisfied</Body2>
+            </td>
+          </tr>
+          <tr>
+            <td className="p-4 align-middle">
+              <Body2>Full</Body2>
+            </td>
+            <td className="p-4 align-middle">
+              <Body2>Ecstatic</Body2>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}`}>
+  <TypographyTable />
+</ComponentPreview>
+
+### List
+
+<ComponentPreview code={`import { Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <ul className="ml-6 list-disc [&>li]:mt-2">
+      <li>
+        <Body2>1st level of puns: 5 gold coins</Body2>
+      </li>
+      <li>
+        <Body2>2nd level of jokes: 10 gold coins</Body2>
+      </li>
+      <li>
+        <Body2>3rd level of one-liners : 20 gold coins</Body2>
+      </li>
+    </ul>
+  );
+}`}>
+  <TypographyList />
+</ComponentPreview>
+
+### Inline Code
+
+<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <Body1>
+      Run the following command: <code className="relative rounded bg-zinc-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold dark:bg-zinc-800">npm install</code>
+    </Body1>
+  );
+}`}>
+  <TypographyInlineCode />
+</ComponentPreview>
+
+### Lead
+
+<ComponentPreview code={`import { Display3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <Display3 className="text-muted-foreground">
+      A modal dialog that interrupts the user with important content and expects a response.
+    </Display3>
+  );
+}`}>
+  <TypographyLead />
+</ComponentPreview>
+
+### Large
+
+<ComponentPreview code={`import { Title1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Title1>Are you absolutely sure?</Title1>;
+}`}>
+  <TypographyLarge />
+</ComponentPreview>
+
+### Small
+
+<ComponentPreview code={`import { Label1 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Label1>Email address</Label1>;
+}`}>
+  <TypographySmall />
+</ComponentPreview>
+
+### Muted
+
+<ComponentPreview code={`import { Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <Body2 className="text-muted-foreground">Enter your email address.</Body2>;
+}`}>
+  <TypographyMuted />
+</ComponentPreview>
+
+## Component Reference
+
+### Display Components
+
+Large text for hero sections and prominent titles (80px - 40px).
+
+```tsx
+<Display1>80px Hero Title</Display1>
+<Display2>72px Large Heading</Display2>
+<Display3>64px Medium Heading</Display3>
+<Display4>56px Feature Title</Display4>
+<Display5>48px Section Heading</Display5>
+<Display6>40px Card Title</Display6>
+```
+
+### Headline Components
+
+Semibold text for page and section headings (40px - 16px).
+
+```tsx
+<Headline1>40px Main Heading</Headline1>
+<Headline2>32px Section Heading</Headline2>
+<Headline3>28px Subsection</Headline3>
+<Headline4>24px Card Heading</Headline4>
+<Headline5>20px Component Header</Headline5>
+<Headline6>16px Small Heading</Headline6>
+```
+
+### Title Components
+
+Medium weight text for UI elements (22px - 14px).
+
+```tsx
+<Title1>22px List Item Title</Title1>
+<Title2>16px Button Text</Title2>
+<Title3>14px Compact Title</Title3>
+```
+
+### Label Components
+
+Medium weight text for buttons and form labels (14px - 11px).
+
+```tsx
+<Label1>14px Button Label</Label1>
+<Label2>12px Small Button</Label2>
+<Label3>11px Tiny Label</Label3>
+```
+
+### Body Components
+
+Normal weight text for content (16px - 12px).
+
+```tsx
+<Body1>16px Main content text</Body1>
+<Body2>14px Secondary content</Body2>
+<Body3>12px Caption text</Body3>
+```
+
+## Typography Scale
+
+| Component | Size             | Weight   | Line Height | Use Case          |
+| --------- | ---------------- | -------- | ----------- | ----------------- |
+| Display1  | 80px (5rem)      | Medium   | 100px       | Hero sections     |
+| Display2  | 72px (4.5rem)    | Medium   | 100px       | Large headings    |
+| Display3  | 64px (4rem)      | Medium   | 80px        | Medium headings   |
+| Display4  | 56px (3.5rem)    | Medium   | 72px        | Feature titles    |
+| Display5  | 48px (3rem)      | Medium   | 56px        | Section headings  |
+| Display6  | 40px (2.5rem)    | Medium   | 48px        | Card titles       |
+| Headline1 | 40px (2.5rem)    | Semibold | 48px        | Main headings     |
+| Headline2 | 32px (2rem)      | Semibold | 40px        | Section headings  |
+| Headline3 | 28px (1.75rem)   | Semibold | 32px        | Subsections       |
+| Headline4 | 24px (1.5rem)    | Semibold | 28px        | Card headings     |
+| Headline5 | 20px (1.25rem)   | Semibold | 24px        | Component headers |
+| Headline6 | 16px (1rem)      | Semibold | 20px        | Small headings    |
+| Title1    | 22px (1.375rem)  | Medium   | 28px        | List items        |
+| Title2    | 16px (1rem)      | Medium   | 24px        | Buttons, labels   |
+| Title3    | 14px (0.875rem)  | Medium   | 20px        | Compact titles    |
+| Label1    | 14px (0.875rem)  | Medium   | 20px        | Button text       |
+| Label2    | 12px (0.75rem)   | Medium   | 16px        | Small buttons     |
+| Label3    | 11px (0.6875rem) | Medium   | 16px        | Tiny labels       |
+| Body1     | 16px (1rem)      | Normal   | 24px        | Main content      |
+| Body2     | 14px (0.875rem)  | Normal   | 20px        | Secondary content |
+| Body3     | 12px (0.75rem)   | Normal   | 16px        | Captions          |
+
+## Customization
+
+All typography components accept standard HTML attributes and can be customized with className:
+
+```tsx
+<Headline1 className="text-center text-primary mb-4">Centered Primary Heading</Headline1>
+
+<Body1 className="italic text-gray-600">Italic gray text</Body1>
+```
