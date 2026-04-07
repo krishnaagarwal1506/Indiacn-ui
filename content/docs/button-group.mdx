@@ -1,0 +1,59 @@
+---
+title: Button Group
+description: Group a series of buttons together on a single line or stack them vertically.
+---
+
+## Introduction
+
+Button groups combine related buttons into a single unit. They support horizontal and vertical orientations, and can be combined into toolbars.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { ButtonGroup, ButtonToolbar } from '@/components/ui/button-group';`}
+/>
+
+## Usage
+
+```tsx
+<ButtonGroup>
+  <Button variant="outlined">Left</Button>
+  <Button variant="outlined">Middle</Button>
+  <Button variant="outlined">Right</Button>
+</ButtonGroup>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ButtonGroupDefault' />
+
+### Themes
+
+<ComponentPreview name='ButtonGroupThemes' />
+
+### Vertical
+
+Use `orientation="vertical"` to stack buttons vertically.
+
+<ComponentPreview name='ButtonGroupVertical' />
+
+### Toolbar
+
+Combine multiple button groups with `ButtonToolbar`.
+
+<ComponentPreview name='ButtonGroupToolbar' />
+
+## API Reference
+
+### ButtonGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `horizontal \| vertical` | `horizontal` | Layout direction |
+
+### ButtonToolbar
+
+Wraps multiple `ButtonGroup` components with `role="toolbar"` and flex layout.

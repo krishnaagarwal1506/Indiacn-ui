@@ -1,0 +1,62 @@
+---
+title: Dropdown
+description: A menu that appears on trigger interaction, displaying a list of actions or options.
+---
+
+## Introduction
+
+Dropdowns display a list of actions or options when triggered. Built on Radix UI for accessibility with keyboard navigation, checkbox items, radio groups, and sub-menus.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Dropdown, DropdownTrigger, DropdownContent, DropdownItem,
+  DropdownLabel, DropdownSeparator, DropdownShortcut,
+} from '@/components/ui/dropdown';`}
+/>
+
+## Usage
+
+```tsx
+<Dropdown>
+  <DropdownTrigger asChild>
+    <Button variant="outlined">Open</Button>
+  </DropdownTrigger>
+  <DropdownContent>
+    <DropdownItem>Action</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='DropdownDefault' />
+
+### With Shortcuts
+
+<ComponentPreview name='DropdownWithShortcuts' />
+
+### Disabled Items
+
+<ComponentPreview name='DropdownDisabledItems' />
+
+## API Reference
+
+### DropdownContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `sideOffset` | `number` | `4` | Distance from trigger |
+| `align` | `start \| center \| end` | `start` | Alignment relative to trigger |
+| `side` | `top \| bottom \| left \| right` | `bottom` | Preferred side |
+
+### DropdownItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `inset` | `boolean` | `false` | Add left padding for alignment |
+| `disabled` | `boolean` | — | Disable the item |

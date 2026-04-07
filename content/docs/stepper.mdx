@@ -1,0 +1,54 @@
+---
+title: Stepper
+description: Displays content as a process with defined milestones and steps.
+---
+
+## Introduction
+
+The Stepper component displays progress through a sequence of steps. Useful for multi-step forms, registration flows, and order tracking.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Stepper, Step } from '@/components/ui/stepper';`}
+/>
+
+## Usage
+
+```tsx
+<Stepper activeStep={1}>
+  <Step step={0} title="First" />
+  <Step step={1} title="Second" />
+  <Step step={2} title="Third" />
+</Stepper>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='StepperDefault' />
+
+### Vertical
+
+Use `orientation="vertical"` for a vertical stepper layout.
+
+<ComponentPreview name='StepperVertical' />
+
+## API Reference
+
+### Stepper
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `activeStep` | `number` | `0` | Current active step (zero-indexed) |
+| `orientation` | `horizontal \| vertical` | `horizontal` | Layout direction |
+
+### Step
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `step` | `number` | — | Step index (zero-indexed) |
+| `title` | `string` | — | Step title |
+| `description` | `string` | — | Step description |

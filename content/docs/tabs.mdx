@@ -1,0 +1,55 @@
+---
+title: Tabs
+description: A set of layered sections of content displayed one at a time.
+---
+
+## Introduction
+
+Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy. Built on Radix UI for full keyboard navigation and accessibility.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';`}
+/>
+
+## Usage
+
+```tsx
+<Tabs defaultValue="tab1">
+  <TabsList>
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+    <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+  </TabsList>
+  <TabsContent value="tab1">Content 1</TabsContent>
+  <TabsContent value="tab2">Content 2</TabsContent>
+</Tabs>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='TabsDefault' />
+
+### Disabled Tab
+
+<ComponentPreview name='TabsDisabled' />
+
+## API Reference
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `defaultValue` | `string` | — | Initially active tab |
+| `value` | `string` | — | Controlled active tab |
+| `onValueChange` | `(value: string) => void` | — | Change handler |
+
+### TabsTrigger
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Tab identifier |
+| `disabled` | `boolean` | `false` | Disable the tab |

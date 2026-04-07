@@ -1,0 +1,77 @@
+---
+title: Introduction
+description: An open-source design system for building accessible Indian government and public-service applications.
+---
+
+## What is IndiaCN?
+
+IndiaCN is an open-source component library built for India's digital ecosystem. It provides production-ready React components based on the **UX4G 2.0 Design System** — the official design guidelines for Indian government and public-service applications.
+
+Think of it as [shadcn/ui](https://ui.shadcn.com) but themed and tailored for Indian government digital services.
+
+## Why IndiaCN?
+
+- **UX4G 2.0 Compliant** — Components follow the official design system used across Indian government websites.
+- **Copy & Paste** — No npm package. Copy the component source directly into your project and own it.
+- **Accessible** — Built on [Radix UI](https://www.radix-ui.com) primitives with proper ARIA attributes, keyboard navigation, and screen reader support.
+- **Tailwind CSS** — Styled with Tailwind CSS 4 using CSS custom properties for easy theming.
+- **Dark Mode** — All components support light and dark modes out of the box.
+
+## Tech Stack
+
+- **Next.js 16** — React framework with App Router
+- **React 19** — Latest React with server components
+- **Tailwind CSS 4** — Utility-first CSS with `@theme` inline
+- **Radix UI** — Accessible headless primitives
+- **CVA** — Class Variance Authority for component variants
+- **TypeScript** — Full type safety
+
+## Getting Started
+
+### 1. Set up your project
+
+IndiaCN components are designed for Next.js projects with Tailwind CSS. Make sure you have both set up.
+
+### 2. Configure theming
+
+Copy the CSS variables from our [globals.css](https://github.com/krishnaagarwal1506/Indiacn-ui/blob/main/app/globals.css) into your project's global stylesheet. This includes the UX4G 2.0 color palette:
+
+- **Primary** — `#613AF5` (Purple)
+- **Secondary** — `#938BB6` (Lavender)
+- **Success** — `#3C9718` (Green)
+- **Danger** — `#B7131A` (Red)
+- **Warning** — `#B77224` (Orange)
+
+### 3. Install dependencies
+
+```bash
+npm install @radix-ui/react-slot class-variance-authority tailwind-merge clsx lucide-react
+```
+
+### 4. Add the `cn` utility
+
+```tsx title="utils/index.ts"
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+### 5. Start using components
+
+Browse the sidebar, pick a component, and copy it into your project.
+
+## Components
+
+IndiaCN includes 23+ components covering all common UI patterns:
+
+| Category | Components |
+|----------|-----------|
+| **Data Display** | Badge, Card, List Group, Typography |
+| **Feedback** | Alert, Progress, Spinner, Skeleton, Toast |
+| **Navigation** | Breadcrumb, Pagination, Tabs, Stepper |
+| **Inputs** | Button, Button Group, Chip, Search |
+| **Overlays** | Modal, Dropdown, Tooltip, Popover, Offcanvas |
+| **Layout** | Accordion, Collapse, Separator |

@@ -1,0 +1,74 @@
+---
+title: Alert
+description: Displays a contextual feedback message for user actions.
+---
+
+## Introduction
+
+Alerts provide contextual feedback messages for typical user actions. They support multiple themes, icons, links, and can be made dismissible.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Alert, AlertTitle, AlertDescription, AlertLink } from '@/components/ui/alert';`}
+/>
+
+## Usage
+
+```tsx
+<Alert theme='primary'>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>You can add components using the cli.</AlertDescription>
+</Alert>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='AlertDefault' />
+
+### Themes
+
+<ComponentPreview name='AlertThemes' />
+
+### Dismissible
+
+Add the `dismissible` prop to allow users to close the alert.
+
+<ComponentPreview name='AlertDismissible' />
+
+### With Link
+
+Use `AlertLink` for styled links inside alerts.
+
+<ComponentPreview name='AlertWithLink' />
+
+### Simple
+
+An alert without a title.
+
+<ComponentPreview name='AlertSimple' />
+
+## API Reference
+
+### Alert
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
+| `dismissible` | `boolean` | `false` | Show close button |
+| `onDismiss` | `() => void` | — | Callback when dismissed |
+
+### AlertTitle
+
+Renders an `<h5>` element with appropriate styling.
+
+### AlertDescription
+
+Renders a `<div>` for alert body content.
+
+### AlertLink
+
+Renders a styled `<a>` element that matches the alert theme.

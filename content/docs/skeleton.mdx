@@ -1,0 +1,45 @@
+---
+title: Skeleton
+description: A placeholder animation for content that is loading.
+---
+
+## Introduction
+
+Skeleton components act as visual placeholders while content is loading. They reduce perceived load time and prevent layout shifts.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Skeleton } from '@/components/ui/skeleton';`}
+/>
+
+## Usage
+
+```tsx
+<Skeleton className="h-4 w-[200px]" />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='SkeletonDefault' />
+
+### Card Skeleton
+
+<ComponentPreview name='SkeletonCard' />
+
+### List Skeleton
+
+<ComponentPreview name='SkeletonList' />
+
+## API Reference
+
+### Skeleton
+
+Renders a `<div>` with pulse animation. Use `className` to control width, height, and border-radius.
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `className` | `string` | — | Size and shape via Tailwind classes |

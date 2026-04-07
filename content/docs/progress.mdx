@@ -1,0 +1,77 @@
+---
+title: Progress
+description: Displays a progress indicator showing completion status of a task.
+---
+
+## Introduction
+
+Progress bars communicate the status of ongoing processes such as loading, uploading, or form completion. They support multiple colors, heights, labels, striped patterns, and stacked bars.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Progress, ProgressBar } from '@/components/ui/progress';`}
+/>
+
+## Usage
+
+```tsx
+<Progress value={60} />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ProgressDefault' />
+
+### With Label
+
+Set `showLabel` and increase `height` to display the percentage inside the bar.
+
+<ComponentPreview name='ProgressWithLabel' />
+
+### Themes
+
+Use `ProgressBar` children with the `theme` prop for different colors.
+
+<ComponentPreview name='ProgressThemes' />
+
+### Striped & Animated
+
+Add `striped` and `animated` props to `ProgressBar` for visual patterns.
+
+<ComponentPreview name='ProgressStriped' />
+
+### Multiple Bars
+
+Stack multiple `ProgressBar` components inside a single `Progress`.
+
+<ComponentPreview name='ProgressMultiple' />
+
+### Sizes
+
+Customize the height via the `height` prop.
+
+<ComponentPreview name='ProgressSizes' />
+
+## API Reference
+
+### Progress
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `number` | `0` | Current progress value |
+| `max` | `number` | `100` | Maximum value |
+| `height` | `string` | `0.5rem` | Bar height |
+| `showLabel` | `boolean` | `false` | Show percentage label |
+
+### ProgressBar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
+| `value` | `number` | `0` | Width percentage |
+| `striped` | `boolean` | `false` | Striped pattern |
+| `animated` | `boolean` | `false` | Animated stripes |

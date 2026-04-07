@@ -1,0 +1,64 @@
+---
+title: Badge
+description: Small count and labeling component for displaying status, counts, or categories.
+---
+
+## Introduction
+
+Badges are compact elements used to display status indicators, counts, or category labels. They scale relative to their parent and support multiple visual styles.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Badge } from '@/components/ui/badge';`}
+/>
+
+## Usage
+
+```tsx
+<Badge>Badge</Badge>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='BadgeDefault' />
+
+### Variants
+
+Use the `variant` prop to change the visual style.
+
+<ComponentPreview name='BadgeVariants' />
+
+### Themes
+
+Use the `theme` prop to change the color.
+
+<ComponentPreview name='BadgeThemes' />
+
+### Outlined
+
+<ComponentPreview name='BadgeOutlined' />
+
+### Pill
+
+Use `shape="pill"` for fully rounded badges.
+
+<ComponentPreview name='BadgePill' />
+
+### Sizes
+
+<ComponentPreview name='BadgeSizes' />
+
+## API Reference
+
+### Badge
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
+| `variant` | `filled \| outlined \| tonal` | `filled` | Visual style |
+| `size` | `sm \| md \| lg` | `md` | Badge size |
+| `shape` | `default \| pill` | `default` | Border radius style |

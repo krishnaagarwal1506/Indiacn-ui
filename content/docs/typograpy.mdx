@@ -1,0 +1,159 @@
+---
+title: Typography
+description: Styles for headings, paragraphs, lists...etc
+---
+
+## Introduction
+
+The Typography component library provides a complete set of text components following a systematic design scale. It includes display text, headlines, titles, labels, and body text components with predefined sizes and weights.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Display1, Headline1, Title1, Label1, Body1 } from '@/components/ui/typography';`}
+/>
+
+## Examples
+
+### H1
+
+<ComponentPreview name='H1' />
+
+### H2
+
+<ComponentPreview name='H2' />
+
+### H3
+
+<ComponentPreview name='H3' />
+
+### Paragraph
+
+<ComponentPreview name='Paragraph' />
+
+### Blockquote
+
+<ComponentPreview name='Blockquote' />
+
+### Table
+
+<ComponentPreview name='Table' />
+
+### List
+
+<ComponentPreview name='List' />
+
+### Inline Code
+
+<ComponentPreview name='Inline Code' />
+
+### Lead
+
+<ComponentPreview name='Lead' />
+
+### Large
+
+<ComponentPreview name='Large' />
+
+### Small
+
+<ComponentPreview name='Small' />
+
+### Muted
+
+<ComponentPreview name='Muted' />
+
+## Component Reference
+
+### Display Components
+
+Large text for hero sections and prominent titles (80px - 40px).
+
+```tsx
+<Display1>80px Hero Title</Display1>
+<Display2>72px Large Heading</Display2>
+<Display3>64px Medium Heading</Display3>
+<Display4>56px Feature Title</Display4>
+<Display5>48px Section Heading</Display5>
+<Display6>40px Card Title</Display6>
+```
+
+### Headline Components
+
+Semibold text for page and section headings (40px - 16px).
+
+```tsx
+<Headline1>40px Main Heading</Headline1>
+<Headline2>32px Section Heading</Headline2>
+<Headline3>28px Subsection</Headline3>
+<Headline4>24px Card Heading</Headline4>
+<Headline5>20px Component Header</Headline5>
+<Headline6>16px Small Heading</Headline6>
+```
+
+### Title Components
+
+Medium weight text for UI elements (22px - 14px).
+
+```tsx
+<Title1>22px List Item Title</Title1>
+<Title2>16px Button Text</Title2>
+<Title3>14px Compact Title</Title3>
+```
+
+### Label Components
+
+Medium weight text for buttons and form labels (14px - 11px).
+
+```tsx
+<Label1>14px Button Label</Label1>
+<Label2>12px Small Button</Label2>
+<Label3>11px Tiny Label</Label3>
+```
+
+### Body Components
+
+Normal weight text for content (16px - 12px).
+
+```tsx
+<Body1>16px Main content text</Body1>
+<Body2>14px Secondary content</Body2>
+<Body3>12px Caption text</Body3>
+```
+
+## Typography Scale
+
+| Component | Size             | Weight   | Line Height | Use Case          |
+| --------- | ---------------- | -------- | ----------- | ----------------- |
+| Display1  | 80px (5rem)      | Medium   | 100px       | Hero sections     |
+| Display2  | 72px (4.5rem)    | Medium   | 100px       | Large headings    |
+| Display3  | 64px (4rem)      | Medium   | 80px        | Medium headings   |
+| Display4  | 56px (3.5rem)    | Medium   | 72px        | Feature titles    |
+| Display5  | 48px (3rem)      | Medium   | 56px        | Section headings  |
+| Display6  | 40px (2.5rem)    | Medium   | 48px        | Card titles       |
+| Headline1 | 40px (2.5rem)    | Semibold | 48px        | Main headings     |
+| Headline2 | 32px (2rem)      | Semibold | 40px        | Section headings  |
+| Headline3 | 28px (1.75rem)   | Semibold | 32px        | Subsections       |
+| Headline4 | 24px (1.5rem)    | Semibold | 28px        | Card headings     |
+| Headline5 | 20px (1.25rem)   | Semibold | 24px        | Component headers |
+| Headline6 | 16px (1rem)      | Semibold | 20px        | Small headings    |
+| Title1    | 22px (1.375rem)  | Medium   | 28px        | List items        |
+| Title2    | 16px (1rem)      | Medium   | 24px        | Buttons, labels   |
+| Title3    | 14px (0.875rem)  | Medium   | 20px        | Compact titles    |
+| Label1    | 14px (0.875rem)  | Medium   | 20px        | Button text       |
+| Label2    | 12px (0.75rem)   | Medium   | 16px        | Small buttons     |
+| Label3    | 11px (0.6875rem) | Medium   | 16px        | Tiny labels       |
+| Body1     | 16px (1rem)      | Normal   | 24px        | Main content      |
+| Body2     | 14px (0.875rem)  | Normal   | 20px        | Secondary content |
+| Body3     | 12px (0.75rem)   | Normal   | 16px        | Captions          |
+
+## Customization
+
+All typography components accept standard HTML attributes and can be customized with className:
+
+```tsx
+<Headline1 className="text-center text-primary mb-4">Centered Primary Heading</Headline1>
+
+<Body1 className="italic text-gray-600">Italic gray text</Body1>
+```

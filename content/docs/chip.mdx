@@ -1,0 +1,70 @@
+---
+title: Chip
+description: Small interactive elements for displaying tags, filters, or selections.
+---
+
+## Introduction
+
+Chips are compact elements used to represent inputs, attributes, or actions. They support icons, avatars, dismissible behavior, and multiple visual styles.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Chip } from '@/components/ui/chip';`}
+/>
+
+## Usage
+
+```tsx
+<Chip>Label</Chip>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ChipDefault' />
+
+### Variants
+
+<ComponentPreview name='ChipVariants' />
+
+### Themes
+
+<ComponentPreview name='ChipThemes' />
+
+### Sizes
+
+<ComponentPreview name='ChipSizes' />
+
+### With Icon
+
+Use the `icon` prop to add a leading icon.
+
+<ComponentPreview name='ChipWithIcon' />
+
+### Dismissible
+
+Pass an `onDismiss` callback to show a close button.
+
+<ComponentPreview name='ChipDismissible' />
+
+### Disabled
+
+<ComponentPreview name='ChipDisabled' />
+
+## API Reference
+
+### Chip
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
+| `variant` | `filled \| outlined \| tonal` | `outlined` | Visual style |
+| `size` | `sm \| md \| lg` | `md` | Chip size |
+| `icon` | `ReactNode` | — | Leading icon |
+| `avatar` | `ReactNode` | — | Avatar element |
+| `onDismiss` | `() => void` | — | Dismiss callback, shows close button |
+| `selected` | `boolean` | — | Selected state |
+| `disabled` | `boolean` | — | Disabled state |
