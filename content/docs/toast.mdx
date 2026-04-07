@@ -1,0 +1,59 @@
+---
+title: Toast
+description: A brief, non-intrusive notification that appears temporarily.
+---
+
+## Introduction
+
+Toasts deliver brief notifications to users without interrupting their workflow. They support multiple themes, auto-dismiss, and can be positioned anywhere on screen.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Toast, ToastTitle, ToastDescription, ToastContainer, ToastProvider, useToast } from '@/components/ui/toast';`}
+/>
+
+## Usage
+
+```tsx
+<Toast onDismiss={() => {}}>
+  <ToastTitle>Notification</ToastTitle>
+  <ToastDescription>Your changes have been saved.</ToastDescription>
+</Toast>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ToastDefault' />
+
+### Themes
+
+<ComponentPreview name='ToastThemes' />
+
+### Simple
+
+A toast without a title.
+
+<ComponentPreview name='ToastSimple' />
+
+## API Reference
+
+### Toast
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `default \| primary \| success \| danger \| warning` | `default` | Color theme |
+| `onDismiss` | `() => void` | — | Dismiss callback, shows close button |
+
+### ToastContainer
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `position` | `top-left \| top-right \| top-center \| bottom-left \| bottom-right \| bottom-center` | `bottom-right` | Screen position |
+
+### useToast
+
+Hook for programmatic toast management. Returns `{ toast, dismiss, toasts }`.

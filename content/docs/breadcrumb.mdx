@@ -1,0 +1,87 @@
+---
+title: Breadcrumb
+description: Displays the current page location within a navigational hierarchy.
+---
+
+## Introduction
+
+Breadcrumbs indicate the current page's location within a navigational hierarchy. They automatically add separators between items using CSS and support custom separator elements.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from '@/components/ui/breadcrumb';`}
+/>
+
+## Usage
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Current Page</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='BreadcrumbDefault' />
+
+### Custom Separator
+
+Use the `children` prop on `BreadcrumbSeparator` to customize the divider.
+
+<ComponentPreview name='BreadcrumbCustomSeparator' />
+
+### With Ellipsis
+
+Use `BreadcrumbEllipsis` to indicate collapsed breadcrumb items.
+
+<ComponentPreview name='BreadcrumbWithEllipsis' />
+
+## API Reference
+
+### Breadcrumb
+
+Wraps the breadcrumb navigation in a `<nav>` element with `aria-label="breadcrumb"`.
+
+### BreadcrumbList
+
+An ordered list (`<ol>`) container for breadcrumb items.
+
+### BreadcrumbItem
+
+A list item (`<li>`) wrapper for each breadcrumb entry.
+
+### BreadcrumbLink
+
+A styled anchor (`<a>`) for navigable breadcrumb items.
+
+### BreadcrumbPage
+
+A `<span>` for the current/active page with `aria-current="page"`.
+
+### BreadcrumbSeparator
+
+Renders a separator between items. Defaults to a chevron icon but accepts custom children.
+
+### BreadcrumbEllipsis
+
+Displays a "..." indicator for collapsed navigation levels.

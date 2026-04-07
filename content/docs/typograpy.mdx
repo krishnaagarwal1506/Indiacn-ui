@@ -3,223 +3,66 @@ title: Typography
 description: Styles for headings, paragraphs, lists...etc
 ---
 
-import {
-  TypographyH1,
-  TypographyH2,
-  TypographyH3,
-  TypographyP,
-  TypographyBlockquote,
-  TypographyTable,
-  TypographyList,
-  TypographyInlineCode,
-  TypographyLead,
-  TypographyLarge,
-  TypographySmall,
-  TypographyMuted,
-} from '@/components/examples/typography-demo';
-
 ## Introduction
 
 The Typography component library provides a complete set of text components following a systematic design scale. It includes display text, headlines, titles, labels, and body text components with predefined sizes and weights.
 
 ## Installation
 
-<ComponentSource>
-  {`import { Display1, Headline1, Title1, Label1, Body1 } from '@/components/ui/typography';`}
-</ComponentSource>
+<ComponentSource
+  collapsible={false}
+  code={`import { Display1, Headline1, Title1, Label1, Body1 } from '@/components/ui/typography';`}
+/>
 
 ## Examples
 
 ### H1
 
-<ComponentPreview code={`import { Headline1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Headline1>Taxing Laughter: The Joke Tax Chronicles</Headline1>;
-}`}>
-  <TypographyH1 />
-</ComponentPreview>
+<ComponentPreview name='H1' />
 
 ### H2
 
-<ComponentPreview code={`import { Headline2 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Headline2>The People of the Kingdom</Headline2>;
-}`}>
-  <TypographyH2 />
-</ComponentPreview>
+<ComponentPreview name='H2' />
 
 ### H3
 
-<ComponentPreview code={`import { Headline3 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Headline3>The Joke Tax</Headline3>;
-}`}>
-  <TypographyH3 />
-</ComponentPreview>
+<ComponentPreview name='H3' />
 
 ### Paragraph
 
-<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <Body1>
-      The king, seeing how much happier his subjects were, realized the error of his ways and repealed the joke tax.
-    </Body1>
-  );
-}`}>
-  <TypographyP />
-</ComponentPreview>
+<ComponentPreview name='Paragraph' />
 
 ### Blockquote
 
-<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <blockquote className="border-l-4 border-zinc-300 pl-4 italic dark:border-zinc-700">
-      <Body1>
-        "After all," he said, "everyone enjoys a good joke, so it's only fair that they should pay for the privilege."
-      </Body1>
-    </blockquote>
-  );
-}`}>
-  <TypographyBlockquote />
-</ComponentPreview>
+<ComponentPreview name='Blockquote' />
 
 ### Table
 
-<ComponentPreview code={`import { Title2, Body2 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <div className="w-full overflow-auto">
-      <table className="w-full">
-        <thead>
-          <tr className="border-b">
-            <th className="h-12 px-4 text-left align-middle font-medium">
-              <Title2>King's Treasury</Title2>
-            </th>
-            <th className="h-12 px-4 text-left align-middle font-medium">
-              <Title2>People's happiness</Title2>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b">
-            <td className="p-4 align-middle">
-              <Body2>Empty</Body2>
-            </td>
-            <td className="p-4 align-middle">
-              <Body2>Overflowing</Body2>
-            </td>
-          </tr>
-          <tr className="border-b">
-            <td className="p-4 align-middle">
-              <Body2>Modest</Body2>
-            </td>
-            <td className="p-4 align-middle">
-              <Body2>Satisfied</Body2>
-            </td>
-          </tr>
-          <tr>
-            <td className="p-4 align-middle">
-              <Body2>Full</Body2>
-            </td>
-            <td className="p-4 align-middle">
-              <Body2>Ecstatic</Body2>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
-}`}>
-  <TypographyTable />
-</ComponentPreview>
+<ComponentPreview name='Table' />
 
 ### List
 
-<ComponentPreview code={`import { Body2 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <ul className="ml-6 list-disc [&>li]:mt-2">
-      <li>
-        <Body2>1st level of puns: 5 gold coins</Body2>
-      </li>
-      <li>
-        <Body2>2nd level of jokes: 10 gold coins</Body2>
-      </li>
-      <li>
-        <Body2>3rd level of one-liners : 20 gold coins</Body2>
-      </li>
-    </ul>
-  );
-}`}>
-  <TypographyList />
-</ComponentPreview>
+<ComponentPreview name='List' />
 
 ### Inline Code
 
-<ComponentPreview code={`import { Body1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <Body1>
-      Run the following command: <code className="relative rounded bg-zinc-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold dark:bg-zinc-800">npm install</code>
-    </Body1>
-  );
-}`}>
-  <TypographyInlineCode />
-</ComponentPreview>
+<ComponentPreview name='Inline Code' />
 
 ### Lead
 
-<ComponentPreview code={`import { Display3 } from '@/components/ui/typography';
-
-export default function Component() {
-  return (
-    <Display3 className="text-muted-foreground">
-      A modal dialog that interrupts the user with important content and expects a response.
-    </Display3>
-  );
-}`}>
-  <TypographyLead />
-</ComponentPreview>
+<ComponentPreview name='Lead' />
 
 ### Large
 
-<ComponentPreview code={`import { Title1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Title1>Are you absolutely sure?</Title1>;
-}`}>
-  <TypographyLarge />
-</ComponentPreview>
+<ComponentPreview name='Large' />
 
 ### Small
 
-<ComponentPreview code={`import { Label1 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Label1>Email address</Label1>;
-}`}>
-  <TypographySmall />
-</ComponentPreview>
+<ComponentPreview name='Small' />
 
 ### Muted
 
-<ComponentPreview code={`import { Body2 } from '@/components/ui/typography';
-
-export default function Component() {
-  return <Body2 className="text-muted-foreground">Enter your email address.</Body2>;
-}`}>
-  <TypographyMuted />
-</ComponentPreview>
+<ComponentPreview name='Muted' />
 
 ## Component Reference
 

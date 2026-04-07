@@ -1,0 +1,54 @@
+---
+title: Spinner
+description: Indicates a loading state with animated spinning or growing indicators.
+---
+
+## Introduction
+
+Spinners provide a visual cue that an action is being processed. They are built with HTML and CSS only, support multiple color themes, and include proper accessibility attributes.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Spinner } from '@/components/ui/spinner';`}
+/>
+
+## Usage
+
+```tsx
+<Spinner />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='SpinnerDefault' />
+
+### Themes
+
+Use the `theme` prop to change the spinner color.
+
+<ComponentPreview name='SpinnerThemes' />
+
+### Growing Spinner
+
+Use `variant="grow"` for a pulsing grow animation instead of spinning.
+
+<ComponentPreview name='SpinnerGrow' />
+
+### Sizes
+
+<ComponentPreview name='SpinnerSizes' />
+
+## API Reference
+
+### Spinner
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `primary \| secondary \| success \| danger \| warning \| neutral` | `primary` | Color theme |
+| `variant` | `border \| grow` | `border` | Animation style |
+| `size` | `sm \| md \| lg` | `md` | Spinner size |
+| `label` | `string` | `Loading...` | Screen reader text |

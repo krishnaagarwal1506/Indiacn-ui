@@ -1,0 +1,41 @@
+---
+title: Search
+description: An input component with search icon and clear functionality.
+---
+
+## Introduction
+
+The Search component provides a styled search input with a leading search icon, clear button, and multiple size variants.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Search } from '@/components/ui/search';`}
+/>
+
+## Usage
+
+```tsx
+<Search placeholder="Search..." value={value} onChange={handleChange} onClear={handleClear} />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='SearchDefault' />
+
+### Sizes
+
+<ComponentPreview name='SearchSizes' />
+
+## API Reference
+
+### Search
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `sm \| md \| lg` | `md` | Input size |
+| `onClear` | `() => void` | — | Clear button callback |
+| `containerClassName` | `string` | — | Class for the outer wrapper |

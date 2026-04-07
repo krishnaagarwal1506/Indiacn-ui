@@ -1,0 +1,52 @@
+---
+title: Offcanvas
+description: A sliding panel that appears from any edge of the screen.
+---
+
+## Introduction
+
+Offcanvas components slide in from the edges of the viewport, useful for navigation menus, filters, or supplementary content. Built on Radix UI Dialog for accessibility.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Offcanvas, OffcanvasTrigger, OffcanvasContent,
+  OffcanvasHeader, OffcanvasTitle, OffcanvasBody,
+} from '@/components/ui/offcanvas';`}
+/>
+
+## Usage
+
+```tsx
+<Offcanvas>
+  <OffcanvasTrigger asChild>
+    <Button>Open</Button>
+  </OffcanvasTrigger>
+  <OffcanvasContent>
+    <OffcanvasHeader><OffcanvasTitle>Title</OffcanvasTitle></OffcanvasHeader>
+    <OffcanvasBody>Content here</OffcanvasBody>
+  </OffcanvasContent>
+</Offcanvas>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='OffcanvasDefault' />
+
+### Sides
+
+Use the `side` prop to control which edge the panel slides from.
+
+<ComponentPreview name='OffcanvasSides' />
+
+## API Reference
+
+### OffcanvasContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `left \| right \| top \| bottom` | `right` | Slide direction |

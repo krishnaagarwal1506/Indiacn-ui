@@ -1,0 +1,55 @@
+---
+title: Pagination
+description: Navigation component for paginated content with previous, next, and page links.
+---
+
+## Introduction
+
+Pagination helps users navigate through large sets of data split across multiple pages. It includes support for active states, disabled states, ellipsis, and size variants.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Pagination, PaginationContent, PaginationItem,
+  PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,
+} from '@/components/ui/pagination';`}
+/>
+
+## Usage
+
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='PaginationDefault' />
+
+### With Ellipsis
+
+<ComponentPreview name='PaginationWithEllipsis' />
+
+### Sizes
+
+<ComponentPreview name='PaginationSizes' />
+
+## API Reference
+
+### PaginationLink
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `isActive` | `boolean` | `false` | Highlights as current page |
+| `disabled` | `boolean` | `false` | Disables the link |
+| `size` | `sm \| md \| lg` | `md` | Link size |

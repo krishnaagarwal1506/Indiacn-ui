@@ -1,0 +1,48 @@
+---
+title: Popover
+description: A floating panel with rich content that appears on trigger interaction.
+---
+
+## Introduction
+
+Popovers display rich content in a floating panel anchored to a trigger element. Unlike tooltips, they support complex content including forms, buttons, and structured layouts.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';`}
+/>
+
+## Usage
+
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outlined">Open</Button>
+  </PopoverTrigger>
+  <PopoverContent>
+    <p>Popover content here.</p>
+  </PopoverContent>
+</Popover>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='PopoverDefault' />
+
+### Placements
+
+<ComponentPreview name='PopoverPlacements' />
+
+## API Reference
+
+### PopoverContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `top \| bottom \| left \| right` | `bottom` | Preferred placement |
+| `align` | `start \| center \| end` | `center` | Alignment |
+| `sideOffset` | `number` | `4` | Distance from trigger |

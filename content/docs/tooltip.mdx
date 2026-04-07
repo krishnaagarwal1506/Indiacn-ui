@@ -1,0 +1,50 @@
+---
+title: Tooltip
+description: A small popup that displays information when hovering or focusing an element.
+---
+
+## Introduction
+
+Tooltips display supplementary information on hover or focus. Built on Radix UI for positioning, accessibility, and smooth animations.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';`}
+/>
+
+## Usage
+
+```tsx
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Hover me</TooltipTrigger>
+    <TooltipContent>
+      <p>Tooltip text</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='TooltipDefault' />
+
+### Placements
+
+Use the `side` prop on `TooltipContent` to control placement.
+
+<ComponentPreview name='TooltipPlacements' />
+
+## API Reference
+
+### TooltipContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `side` | `top \| bottom \| left \| right` | `top` | Preferred placement |
+| `sideOffset` | `number` | `4` | Distance from trigger |
+| `align` | `start \| center \| end` | `center` | Alignment |

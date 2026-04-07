@@ -1,0 +1,82 @@
+---
+title: List Group
+description: A versatile component for displaying collections of content in a list format.
+---
+
+## Introduction
+
+List groups display a series of content items. They support active/disabled states, actionable links, flush layouts, contextual colors, and badge integration.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { ListGroup, ListGroupItem, ListGroupAction } from '@/components/ui/list-group';`}
+/>
+
+## Usage
+
+```tsx
+<ListGroup>
+  <ListGroupItem>An item</ListGroupItem>
+  <ListGroupItem>A second item</ListGroupItem>
+  <ListGroupItem>A third item</ListGroupItem>
+</ListGroup>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ListGroupDefault' />
+
+### Active State
+
+<ComponentPreview name='ListGroupActive' />
+
+### Disabled
+
+<ComponentPreview name='ListGroupDisabled' />
+
+### Actionable Links
+
+Use `ListGroupAction` for clickable items.
+
+<ComponentPreview name='ListGroupActionable' />
+
+### Flush
+
+Remove borders and rounded corners with the `flush` prop.
+
+<ComponentPreview name='ListGroupFlush' />
+
+### Contextual Colors
+
+<ComponentPreview name='ListGroupContextual' />
+
+### With Badges
+
+<ComponentPreview name='ListGroupWithBadges' />
+
+## API Reference
+
+### ListGroup
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `flush` | `boolean` | `false` | Remove borders and rounded corners |
+| `horizontal` | `boolean` | `false` | Horizontal layout |
+| `numbered` | `boolean` | `false` | Numbered list |
+
+### ListGroupItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `theme` | `default \| primary \| secondary \| success \| danger \| warning` | `default` | Contextual color |
+| `active` | `boolean` | `false` | Active state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `action` | `boolean` | `false` | Enable hover/active states |
+
+### ListGroupAction
+
+Same props as `ListGroupItem` but renders as an `<a>` element for clickable items.

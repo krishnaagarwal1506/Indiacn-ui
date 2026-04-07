@@ -1,0 +1,64 @@
+---
+title: Accordion
+description: A vertically stacked set of interactive headings that reveal or hide content.
+---
+
+## Introduction
+
+The Accordion component lets users show and hide sections of related content on a page. Built on Radix UI for accessibility and smooth animations.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';`}
+/>
+
+## Usage
+
+```tsx
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+## Examples
+
+### Default
+
+A single-mode accordion where only one item can be open at a time.
+
+<ComponentPreview name='AccordionDefault' />
+
+### Multiple
+
+Set `type="multiple"` to allow multiple items open simultaneously.
+
+<ComponentPreview name='AccordionMultiple' />
+
+## API Reference
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `single \| multiple` | — | Whether one or multiple items can be open |
+| `collapsible` | `boolean` | `false` | When `type="single"`, allows closing all items |
+| `defaultValue` | `string \| string[]` | — | Initially open item(s) |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `value` | `string` | — | Unique identifier for the item |
+
+### AccordionTrigger
+
+The clickable header that toggles content visibility. Includes a chevron icon that rotates on open.
+
+### AccordionContent
+
+The collapsible content area with smooth height animation.

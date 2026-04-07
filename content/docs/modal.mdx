@@ -1,0 +1,56 @@
+---
+title: Modal
+description: A dialog window overlaid on the primary content for critical information or actions.
+---
+
+## Introduction
+
+Modals display focused content that requires user attention or interaction. Built on Radix UI Dialog for accessibility, they support multiple sizes and include header, body, and footer sections.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Modal, ModalTrigger, ModalContent, ModalHeader,
+  ModalTitle, ModalBody, ModalFooter, ModalClose,
+} from '@/components/ui/modal';`}
+/>
+
+## Usage
+
+```tsx
+<Modal>
+  <ModalTrigger asChild>
+    <Button>Open Modal</Button>
+  </ModalTrigger>
+  <ModalContent>
+    <ModalHeader><ModalTitle>Title</ModalTitle></ModalHeader>
+    <ModalBody>Content here</ModalBody>
+    <ModalFooter>
+      <ModalClose asChild><Button variant="outlined">Cancel</Button></ModalClose>
+      <Button>Confirm</Button>
+    </ModalFooter>
+  </ModalContent>
+</Modal>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ModalDefault' />
+
+### Sizes
+
+Use the `size` prop on `ModalContent` to change the dialog width.
+
+<ComponentPreview name='ModalSizes' />
+
+## API Reference
+
+### ModalContent
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `sm \| md \| lg \| xl \| fullscreen` | `md` | Dialog width |
