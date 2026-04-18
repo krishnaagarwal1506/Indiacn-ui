@@ -2,9 +2,12 @@
 
 import { Toast, ToastDescription, ToastTitle } from '@/components/ui/toast';
 
+/** No-op callback for demo purposes. */
+const noop = () => {};
+
 export function ToastDefault() {
   return (
-    <Toast onDismiss={() => {}}>
+    <Toast onDismiss={noop}>
       <ToastTitle>Notification</ToastTitle>
       <ToastDescription>This is a default toast message.</ToastDescription>
     </Toast>
@@ -14,23 +17,23 @@ export function ToastDefault() {
 export function ToastThemes() {
   return (
     <div className='flex w-full flex-col gap-3'>
-      <Toast theme='default' onDismiss={() => {}}>
+      <Toast theme='default' onDismiss={noop}>
         <ToastTitle>Default</ToastTitle>
         <ToastDescription>A default styled toast message.</ToastDescription>
       </Toast>
-      <Toast theme='primary' onDismiss={() => {}}>
+      <Toast theme='primary' onDismiss={noop}>
         <ToastTitle>Primary</ToastTitle>
         <ToastDescription>A primary themed toast.</ToastDescription>
       </Toast>
-      <Toast theme='success' onDismiss={() => {}}>
+      <Toast theme='success' onDismiss={noop}>
         <ToastTitle>Success</ToastTitle>
         <ToastDescription>Action completed successfully.</ToastDescription>
       </Toast>
-      <Toast theme='danger' onDismiss={() => {}}>
+      <Toast theme='danger' onDismiss={noop}>
         <ToastTitle>Error</ToastTitle>
         <ToastDescription>Something went wrong.</ToastDescription>
       </Toast>
-      <Toast theme='warning' onDismiss={() => {}}>
+      <Toast theme='warning' onDismiss={noop}>
         <ToastTitle>Warning</ToastTitle>
         <ToastDescription>Please review before proceeding.</ToastDescription>
       </Toast>

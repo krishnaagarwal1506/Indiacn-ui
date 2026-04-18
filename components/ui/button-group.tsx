@@ -6,6 +6,7 @@ interface IButtonGroupProps extends ComponentProps<'div'> {
   orientation?: 'horizontal' | 'vertical';
 }
 
+/** Group of related buttons displayed together. */
 function ButtonGroup({ className, orientation = 'horizontal', ...props }: IButtonGroupProps) {
   return (
     <div
@@ -22,6 +23,7 @@ function ButtonGroup({ className, orientation = 'horizontal', ...props }: IButto
   );
 }
 
+/** Toolbar container for button groups. */
 function ButtonToolbar({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div role='toolbar' className={cn('flex flex-wrap items-center gap-2', className)} {...props} />

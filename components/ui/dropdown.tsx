@@ -1,19 +1,49 @@
 'use client';
-/* eslint-disable eslint-frontend-rules/enforce-typography-components, eslint-frontend-rules/top-level-const-snake */
 
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Check, ChevronRight, Circle } from 'lucide-react';
 import { ComponentProps } from 'react';
 
+import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/utils';
 
-const Dropdown = DropdownMenuPrimitive.Root;
-const DropdownTrigger = DropdownMenuPrimitive.Trigger;
-const DropdownGroup = DropdownMenuPrimitive.Group;
-const DropdownPortal = DropdownMenuPrimitive.Portal;
-const DropdownSub = DropdownMenuPrimitive.Sub;
-const DropdownRadioGroup = DropdownMenuPrimitive.RadioGroup;
+/*
+ * UX4G dropdown: min-width 10rem, border-radius 0.5rem, padding-y 0.5rem, padding-x 0,
+ * border 1px solid rgba(0,0,0,0.175), item padding 0.25rem 1rem,
+ * item hover bg #FAEFFF, active bg #613AF5, header color #938BB6
+ */
 
+/** Dropdown menu root component. */
+function Dropdown(props: ComponentProps<typeof DropdownMenuPrimitive.Root>) {
+  return <DropdownMenuPrimitive.Root {...props} />;
+}
+
+/** Dropdown menu trigger button. */
+function DropdownTrigger(props: ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+  return <DropdownMenuPrimitive.Trigger {...props} />;
+}
+
+/** Dropdown menu item group. */
+function DropdownGroup(props: ComponentProps<typeof DropdownMenuPrimitive.Group>) {
+  return <DropdownMenuPrimitive.Group {...props} />;
+}
+
+/** Dropdown menu portal container. */
+function DropdownPortal(props: ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
+  return <DropdownMenuPrimitive.Portal {...props} />;
+}
+
+/** Dropdown submenu root. */
+function DropdownSub(props: ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
+  return <DropdownMenuPrimitive.Sub {...props} />;
+}
+
+/** Dropdown radio item group. */
+function DropdownRadioGroup(props: ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
+  return <DropdownMenuPrimitive.RadioGroup {...props} />;
+}
+
+/** Dropdown submenu trigger item. */
 function DropdownSubTrigger({
   className,
   inset,
@@ -23,18 +53,19 @@ function DropdownSubTrigger({
   return (
     <DropdownMenuPrimitive.SubTrigger
       className={cn(
-        'flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-none select-none focus:bg-neutral-100 data-[state=open]:bg-neutral-100 dark:focus:bg-neutral-800 dark:data-[state=open]:bg-neutral-800',
+        'flex cursor-default items-center px-4 py-1 outline-none select-none focus:bg-[#FAEFFF] data-[state=open]:bg-[#FAEFFF]',
         inset && 'pl-8',
         className,
       )}
       {...props}
     >
-      {children}
+      <Label2 className='text-sm'>{children}</Label2>
       <ChevronRight className='ml-auto size-4' />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }
 
+/** Dropdown submenu content panel. */
 function DropdownSubContent({
   className,
   ...props
@@ -42,7 +73,7 @@ function DropdownSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       className={cn(
-        'bg-neutral-0 text-neutral z-50 min-w-[8rem] overflow-hidden rounded-md border border-neutral-200 p-1 shadow-lg dark:border-neutral-700 dark:bg-neutral-900',
+        'z-50 min-w-40 overflow-hidden rounded-lg border border-black/17.5 bg-white py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] dark:border-neutral-700 dark:bg-neutral-900',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className,
       )}
@@ -51,18 +82,27 @@ function DropdownSubContent({
   );
 }
 
+interface IDropdownContentProps extends ComponentProps<typeof DropdownMenuPrimitive.Content> {
+  variant?: 'default' | 'dark';
+}
+
+/** Dropdown menu content container. */
 function DropdownContent({
   className,
-  sideOffset = 4,
+  sideOffset = 2,
+  variant = 'default',
   ...props
-}: ComponentProps<typeof DropdownMenuPrimitive.Content>) {
+}: IDropdownContentProps) {
   return (
     <DropdownPortal>
       <DropdownMenuPrimitive.Content
         sideOffset={sideOffset}
         className={cn(
-          'bg-neutral-0 text-neutral z-50 min-w-[8rem] overflow-hidden rounded-md border border-neutral-200 p-1 shadow-md dark:border-neutral-700 dark:bg-neutral-900',
+          'z-50 min-w-40 overflow-hidden rounded-lg border py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)]',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
+          variant === 'dark'
+            ? 'border-black/17.5 bg-[#343a40] text-[#dee2e6]'
+            : 'text-neutral border-black/17.5 bg-white dark:border-neutral-700 dark:bg-neutral-900',
           className,
         )}
         {...props}
@@ -71,23 +111,28 @@ function DropdownContent({
   );
 }
 
+/** Single selectable dropdown menu item. */
 function DropdownItem({
   className,
   inset,
+  children,
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Item> & { inset?: boolean }) {
   return (
     <DropdownMenuPrimitive.Item
       className={cn(
-        'focus:text-neutral relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm transition-colors outline-none select-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-800',
+        'relative flex w-full cursor-default items-center px-4 py-1 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-[disabled]:pointer-events-none data-[disabled]:text-[#adb5bd]',
         inset && 'pl-8',
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+    </DropdownMenuPrimitive.Item>
   );
 }
 
+/** Dropdown menu item with a checkbox indicator. */
 function DropdownCheckboxItem({
   className,
   children,
@@ -97,22 +142,23 @@ function DropdownCheckboxItem({
   return (
     <DropdownMenuPrimitive.CheckboxItem
       className={cn(
-        'relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-800',
+        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-[disabled]:pointer-events-none data-[disabled]:text-[#adb5bd]',
         className,
       )}
       checked={checked}
       {...props}
     >
-      <span className='absolute left-2 flex size-3.5 items-center justify-center'>
+      <div className='absolute left-2 flex size-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
           <Check className='size-4' />
         </DropdownMenuPrimitive.ItemIndicator>
-      </span>
+      </div>
       {children}
     </DropdownMenuPrimitive.CheckboxItem>
   );
 }
 
+/** Dropdown menu item with a radio indicator. */
 function DropdownRadioItem({
   className,
   children,
@@ -121,49 +167,61 @@ function DropdownRadioItem({
   return (
     <DropdownMenuPrimitive.RadioItem
       className={cn(
-        'relative flex cursor-default items-center rounded-sm py-1.5 pr-2 pl-8 text-sm transition-colors outline-none select-none focus:bg-neutral-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-neutral-800',
+        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-[disabled]:pointer-events-none data-[disabled]:text-[#adb5bd]',
         className,
       )}
       {...props}
     >
-      <span className='absolute left-2 flex size-3.5 items-center justify-center'>
+      <div className='absolute left-2 flex size-3.5 items-center justify-center'>
         <DropdownMenuPrimitive.ItemIndicator>
           <Circle className='size-2 fill-current' />
         </DropdownMenuPrimitive.ItemIndicator>
-      </span>
+      </div>
       {children}
     </DropdownMenuPrimitive.RadioItem>
   );
 }
 
+/**
+ * UX4G dropdown header: font-size 0.875rem, color #938BB6, padding 0.5rem 1rem
+ */
 function DropdownLabel({
   className,
   inset,
+  children,
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }) {
   return (
     <DropdownMenuPrimitive.Label
-      className={cn('px-2 py-1.5 text-sm font-semibold', inset && 'pl-8', className)}
+      className={cn('text-secondary px-4 py-2 text-sm', inset && 'pl-8', className)}
       {...props}
-    />
+    >
+      {children}
+    </DropdownMenuPrimitive.Label>
   );
 }
 
+/**
+ * UX4G dropdown divider: margin 0.5rem 0, border-top 1px solid rgba(0,0,0,0.175)
+ */
 function DropdownSeparator({
   className,
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
   return (
     <DropdownMenuPrimitive.Separator
-      className={cn('-mx-1 my-1 h-px bg-neutral-200 dark:bg-neutral-700', className)}
+      className={cn('my-2 h-px bg-black/[0.175] dark:bg-neutral-700', className)}
       {...props}
     />
   );
 }
 
-function DropdownShortcut({ className, ...props }: ComponentProps<'span'>) {
+/** Keyboard shortcut hint displayed in a dropdown item. */
+function DropdownShortcut({ className, children, ...props }: ComponentProps<'div'>) {
   return (
-    <span className={cn('ml-auto text-xs tracking-widest opacity-60', className)} {...props} />
+    <Label2 className={cn('ml-auto tracking-widest opacity-60', className)} {...props}>
+      {children}
+    </Label2>
   );
 }
 

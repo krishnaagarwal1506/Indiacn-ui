@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 // Registry of UI components for documentation
 import * as React from 'react';
 
@@ -21,14 +19,17 @@ export interface IRegistryEntry {
 
 import { AccordionDefault, AccordionMultiple } from '@/components/examples/accordion-demo';
 import {
+  AlertAdditionalContent,
   AlertDefault,
   AlertDismissible,
   AlertSimple,
   AlertThemes,
+  AlertWithIcon,
   AlertWithLink,
 } from '@/components/examples/alert-demo';
 import {
   BadgeDefault,
+  BadgeHeadings,
   BadgeOutlined,
   BadgePill,
   BadgeSizes,
@@ -51,6 +52,7 @@ import {
   ChipDefault,
   ChipDismissible,
   ChipDisabled,
+  ChipSelectable,
   ChipSizes,
   ChipThemes,
   ChipVariants,
@@ -58,6 +60,7 @@ import {
 } from '@/components/examples/chip-demo';
 import { CollapseDefault } from '@/components/examples/collapse-demo';
 import {
+  DropdownDark,
   DropdownDefault,
   DropdownDisabledItems,
   DropdownWithShortcuts,
@@ -71,10 +74,15 @@ import {
   ListGroupFlush,
   ListGroupWithBadges,
 } from '@/components/examples/list-group-demo';
-import { ModalDefault, ModalSizes } from '@/components/examples/modal-demo';
-import { OffcanvasDefault, OffcanvasSides } from '@/components/examples/offcanvas-demo';
+import { ModalDefault, ModalScrollable, ModalSizes } from '@/components/examples/modal-demo';
+import {
+  OffcanvasBodyScroll,
+  OffcanvasDefault,
+  OffcanvasSides,
+} from '@/components/examples/offcanvas-demo';
 import {
   PaginationDefault,
+  PaginationFlat,
   PaginationSizes,
   PaginationWithEllipsis,
 } from '@/components/examples/pagination-demo';
@@ -95,7 +103,11 @@ import {
   SpinnerSizes,
   SpinnerThemes,
 } from '@/components/examples/spinner-demo';
-import { StepperDefault, StepperVertical } from '@/components/examples/stepper-demo';
+import {
+  StepperDefault,
+  StepperVertical,
+  StepperWarning,
+} from '@/components/examples/stepper-demo';
 import { TabsDefault, TabsDisabled } from '@/components/examples/tabs-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
 import { TooltipDefault, TooltipPlacements } from '@/components/examples/tooltip-demo';
@@ -844,6 +856,13 @@ export default function Component() {
 }`,
     files: [{ path: 'components/examples/badge-demo.tsx', type: 'registry:example', target: '' }],
   },
+  BadgeHeadings: {
+    name: 'BadgeHeadings',
+    description: 'Badges inside heading elements',
+    type: 'registry:example',
+    component: BadgeHeadings,
+    files: [{ path: 'components/examples/badge-demo.tsx', type: 'registry:example', target: '' }],
+  },
 
   // ── Alert examples ────────────────────────────────────────────
   AlertDefault: {
@@ -957,6 +976,20 @@ export default function Component() {
     </Alert>
   );
 }`,
+    files: [{ path: 'components/examples/alert-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AlertAdditionalContent: {
+    name: 'AlertAdditionalContent',
+    description: 'Alert with additional content and horizontal rule',
+    type: 'registry:example',
+    component: AlertAdditionalContent,
+    files: [{ path: 'components/examples/alert-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AlertWithIcon: {
+    name: 'AlertWithIcon',
+    description: 'Alert with inline icon layout',
+    type: 'registry:example',
+    component: AlertWithIcon,
     files: [{ path: 'components/examples/alert-demo.tsx', type: 'registry:example', target: '' }],
   },
 
@@ -1355,6 +1388,13 @@ export default function Component() {
 }`,
     files: [{ path: 'components/examples/chip-demo.tsx', type: 'registry:example', target: '' }],
   },
+  ChipSelectable: {
+    name: 'ChipSelectable',
+    description: 'Selectable chip toggle example',
+    type: 'registry:example',
+    component: ChipSelectable,
+    files: [{ path: 'components/examples/chip-demo.tsx', type: 'registry:example', target: '' }],
+  },
 
   // ── Accordion examples ────────────────────────────────────────
   AccordionDefault: {
@@ -1579,6 +1619,15 @@ export default function Component() {
     </div>
   );
 }`,
+    files: [
+      { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  PaginationFlat: {
+    name: 'PaginationFlat',
+    description: 'Flat pagination variant without borders',
+    type: 'registry:example',
+    component: PaginationFlat,
     files: [
       { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
     ],
@@ -1869,6 +1918,13 @@ export default function Component() {
 }`,
     files: [{ path: 'components/examples/modal-demo.tsx', type: 'registry:example', target: '' }],
   },
+  ModalScrollable: {
+    name: 'ModalScrollable',
+    description: 'Scrollable modal example',
+    type: 'registry:example',
+    component: ModalScrollable,
+    files: [{ path: 'components/examples/modal-demo.tsx', type: 'registry:example', target: '' }],
+  },
 
   // ── Dropdown examples ─────────────────────────────────────────
   DropdownDefault: {
@@ -1941,6 +1997,15 @@ export default function Component() {
     </Dropdown>
   );
 }`,
+    files: [
+      { path: 'components/examples/dropdown-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  DropdownDark: {
+    name: 'DropdownDark',
+    description: 'Dark themed dropdown menu',
+    type: 'registry:example',
+    component: DropdownDark,
     files: [
       { path: 'components/examples/dropdown-demo.tsx', type: 'registry:example', target: '' },
     ],
@@ -2205,6 +2270,15 @@ export default function Component() {
       { path: 'components/examples/offcanvas-demo.tsx', type: 'registry:example', target: '' },
     ],
   },
+  OffcanvasBodyScroll: {
+    name: 'OffcanvasBodyScroll',
+    description: 'Offcanvas with body scroll enabled',
+    type: 'registry:example',
+    component: OffcanvasBodyScroll,
+    files: [
+      { path: 'components/examples/offcanvas-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
 
   // ── Search examples ───────────────────────────────────────────
   SearchDefault: {
@@ -2276,6 +2350,13 @@ export default function Component() {
     </Stepper>
   );
 }`,
+    files: [{ path: 'components/examples/stepper-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  StepperWarning: {
+    name: 'StepperWarning',
+    description: 'Stepper with warning state',
+    type: 'registry:example',
+    component: StepperWarning,
     files: [{ path: 'components/examples/stepper-demo.tsx', type: 'registry:example', target: '' }],
   },
 

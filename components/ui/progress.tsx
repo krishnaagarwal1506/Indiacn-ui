@@ -3,7 +3,8 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/utils';
 
-const PROGRESS_BAR_VARIANTS = cva('h-full rounded-full transition-all duration-500 ease-in-out', {
+/* UX4G progress: height 0.5rem, border-radius 5rem, bar bg #613AF5, transition width 0.6s ease */
+const PROGRESS_BAR_VARIANTS = cva('h-full rounded-[5rem] transition-all duration-600 ease-in-out', {
   variants: {
     theme: {
       primary: 'bg-primary',
@@ -41,6 +42,7 @@ interface IProgressBarProps
   value?: number;
 }
 
+/** Progress bar track container. */
 function Progress({
   className,
   value = 0,
@@ -59,7 +61,7 @@ function Progress({
       aria-valuemin={0}
       aria-valuemax={max}
       className={cn(
-        'w-full overflow-hidden rounded-full bg-neutral-100 dark:bg-neutral-800',
+        'w-full overflow-hidden rounded-[5rem] bg-[#e9ecef] dark:bg-neutral-800',
         className,
       )}
       style={{ height: height ?? '0.5rem' }}
@@ -68,7 +70,7 @@ function Progress({
       {children ?? (
         <div
           className={cn(
-            'bg-primary h-full rounded-full transition-all duration-500 ease-in-out',
+            'bg-primary h-full rounded-[5rem] transition-all duration-600 ease-in-out',
             showLabel &&
               'text-neutral-0 flex items-center justify-center text-[0.625rem] font-medium',
           )}
@@ -81,6 +83,7 @@ function Progress({
   );
 }
 
+/** Individual progress bar segment with theme and animation support. */
 function ProgressBar({
   className,
   theme,

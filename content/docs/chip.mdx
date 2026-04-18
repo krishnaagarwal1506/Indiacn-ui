@@ -54,14 +54,19 @@ Pass an `onDismiss` callback to show a close button.
 
 <ComponentPreview name='ChipDisabled' />
 
+### Selectable
+
+Chips can be toggled into a selected state for use in filter or choice scenarios.
+
+<ComponentPreview name='ChipSelectable' />
+
 ## API Reference
 
 ### Chip
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
-| `variant` | `filled \| outlined \| tonal` | `outlined` | Visual style |
+| `variant` | `filled \| outlined \| tonal` | `outlined` | Visual style (neutral border by default, matching UX4G) |
 | `size` | `sm \| md \| lg` | `md` | Chip size |
 | `icon` | `ReactNode` | — | Leading icon |
 | `avatar` | `ReactNode` | — | Avatar element |

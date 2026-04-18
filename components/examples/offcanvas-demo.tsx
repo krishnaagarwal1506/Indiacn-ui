@@ -54,3 +54,24 @@ export function OffcanvasSides() {
     </div>
   );
 }
+
+export function OffcanvasBodyScroll() {
+  return (
+    <Offcanvas>
+      <OffcanvasTrigger asChild>
+        <Button variant='outlined'>Enable Body Scroll</Button>
+      </OffcanvasTrigger>
+      <OffcanvasContent bodyScroll>
+        <OffcanvasHeader>
+          <OffcanvasTitle>Body Scrolling</OffcanvasTitle>
+        </OffcanvasHeader>
+        <OffcanvasBody>
+          <p className='text-sm'>
+            Try scrolling the rest of the page while this offcanvas is open. The backdrop is hidden
+            and body scroll is enabled.
+          </p>
+        </OffcanvasBody>
+      </OffcanvasContent>
+    </Offcanvas>
+  );
+}

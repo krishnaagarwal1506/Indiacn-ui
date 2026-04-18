@@ -1,13 +1,24 @@
-/* eslint-disable eslint-frontend-rules/enforce-typography-components */
+import Image from 'next/image';
 import { ComponentProps } from 'react';
 
+import { Body2, Headline3 } from '@/components/ui/typography';
 import { cn } from '@/utils';
 
+/*
+ * UX4G card: border-radius 0.5rem, border 1px solid rgba(0,0,0,0.175),
+ * card-body padding 1rem, card-header/footer padding 1rem, bg rgba(255,255,255,1),
+ * card-header border-bottom 1px solid rgba(0,0,0,0.175)
+ * card-footer border-top 1px solid rgba(0,0,0,0.175)
+ * card-title margin-bottom 1rem
+ * card-img-top border-radius calc(0.5rem - 1px)
+ */
+
+/** Card container component. */
 function Card({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'bg-neutral-0 text-neutral rounded-lg border border-neutral-200 shadow-sm dark:border-neutral-700 dark:bg-neutral-900',
+        'text-neutral rounded-lg border border-black/17.5 bg-white dark:border-neutral-700 dark:bg-neutral-900',
         className,
       )}
       {...props}
@@ -15,32 +26,61 @@ function Card({ className, ...props }: ComponentProps<'div'>) {
   );
 }
 
+/** Card header section. */
 function CardHeader({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />;
+  return (
+    <div
+      className={cn(
+        'text-neutral border-b border-black/17.5 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900',
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
+/** Card title heading. */
 function CardTitle({ className, ...props }: ComponentProps<'h3'>) {
   return (
-    <h3 className={cn('text-lg leading-none font-semibold tracking-tight', className)} {...props} />
+    <Headline3
+      className={cn('mb-4 text-lg leading-none font-semibold tracking-tight', className)}
+      {...props}
+    />
   );
 }
 
+/** Card description text. */
 function CardDescription({ className, ...props }: ComponentProps<'p'>) {
+  return <Body2 className={cn('text-neutral-500 dark:text-neutral-400', className)} {...props} />;
+}
+
+/** Card body content area. */
+function CardContent({ className, ...props }: ComponentProps<'div'>) {
+  return <div className={cn('p-4', className)} {...props} />;
+}
+
+/** Card footer section. */
+function CardFooter({ className, ...props }: ComponentProps<'div'>) {
   return (
-    <p className={cn('text-sm text-neutral-500 dark:text-neutral-400', className)} {...props} />
+    <div
+      className={cn(
+        'text-neutral flex items-center border-t border-black/17.5 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900',
+        className,
+      )}
+      {...props}
+    />
   );
 }
 
-function CardContent({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('p-6 pt-0', className)} {...props} />;
-}
-
-function CardFooter({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('flex items-center p-6 pt-0', className)} {...props} />;
-}
-
-function CardImage({ className, alt = '', ...props }: ComponentProps<'img'>) {
-  return <img className={cn('w-full rounded-t-lg object-cover', className)} alt={alt} {...props} />;
+/** Card top image. */
+function CardImage({ className, alt = '', ...props }: ComponentProps<typeof Image>) {
+  return (
+    <Image
+      className={cn('w-full rounded-t-[calc(0.5rem-1px)] object-cover', className)}
+      alt={alt}
+      {...props}
+    />
+  );
 }
 
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardImage };

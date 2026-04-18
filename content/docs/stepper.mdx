@@ -5,7 +5,7 @@ description: Displays content as a process with defined milestones and steps.
 
 ## Introduction
 
-The Stepper component displays progress through a sequence of steps. Useful for multi-step forms, registration flows, and order tracking.
+The Stepper component displays progress through a sequence of steps using `<ul>/<li>` semantic elements. Useful for multi-step forms, registration flows, and order tracking.
 
 ## Installation
 
@@ -36,6 +36,12 @@ Use `orientation="vertical"` for a vertical stepper layout.
 
 <ComponentPreview name='StepperVertical' />
 
+### Warning State
+
+Steps can display a warning status to indicate issues that need attention.
+
+<ComponentPreview name='StepperWarning' />
+
 ## API Reference
 
 ### Stepper
@@ -52,3 +58,5 @@ Use `orientation="vertical"` for a vertical stepper layout.
 | `step` | `number` | — | Step index (zero-indexed) |
 | `title` | `string` | — | Step title |
 | `description` | `string` | — | Step description |
+| `status` | `completed \| active \| warning \| pending` | — | Step status |
+| `isLast` | `boolean` | `false` | Whether this is the last step (hides connector) |

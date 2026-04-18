@@ -1,11 +1,17 @@
- 
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
 import { cn } from '@/utils';
 
+/*
+ * UX4G list-group: border-width 0, border-color transparent, border-radius 0
+ * item: padding 0.5rem 1rem, border 0 solid transparent
+ * hover bg: #F4F5F5, active bg: #DFE0E2 color #fff
+ * disabled: opacity 0.5 (color/bg NOT changed, just opacity)
+ */
+
 const LIST_GROUP_ITEM_VARIANTS = cva(
-  'relative flex items-center px-4 py-3 text-sm transition-colors',
+  'relative flex items-center px-4 py-2 text-sm text-neutral transition-colors',
   {
     variants: {
       theme: {
@@ -27,19 +33,14 @@ const LIST_GROUP_ITEM_VARIANTS = cva(
 interface IListGroupProps extends ComponentProps<'div'> {
   flush?: boolean;
   horizontal?: boolean;
-  numbered?: boolean;
 }
 
+/** List group container component. */
 function ListGroup({ className, flush, horizontal, ...props }: IListGroupProps) {
   return (
     <div
       role='list'
-      className={cn(
-        'flex flex-col',
-        !flush && 'rounded-lg border border-neutral-200 dark:border-neutral-700',
-        horizontal && 'flex-row',
-        className,
-      )}
+      className={cn('flex flex-col', !flush && 'rounded-none', horizontal && 'flex-row', className)}
       {...props}
     />
   );
@@ -53,6 +54,7 @@ interface IListGroupItemProps
   action?: boolean;
 }
 
+/** Individual item within a list group. */
 function ListGroupItem({
   className,
   theme,
@@ -64,13 +66,11 @@ function ListGroupItem({
   return (
     <li
       aria-current={active ? 'true' : undefined}
-      aria-disabled={disabled || undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        'border-b border-neutral-200 last:border-b-0 dark:border-neutral-700',
-        active && 'bg-primary text-neutral-0 border-primary',
-        disabled && 'pointer-events-none opacity-50',
-        action && 'cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800',
+        active && 'bg-[#DFE0E2] text-white',
+        disabled && 'pointer-events-none opacity-50 select-none',
+        action && 'cursor-pointer hover:bg-[#F4F5F5] active:bg-[#DFE0E2]',
       )}
       {...props}
     />
@@ -84,6 +84,7 @@ interface IListGroupActionProps
   disabled?: boolean;
 }
 
+/** Actionable anchor item within a list group. */
 function ListGroupAction({ className, theme, active, disabled, ...props }: IListGroupActionProps) {
   return (
     <a
@@ -92,10 +93,9 @@ function ListGroupAction({ className, theme, active, disabled, ...props }: IList
       tabIndex={disabled ? -1 : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        'border-b border-neutral-200 last:border-b-0 dark:border-neutral-700',
-        'cursor-pointer hover:bg-neutral-50 dark:hover:bg-neutral-800',
-        active && 'bg-primary text-neutral-0 border-primary',
-        disabled && 'pointer-events-none opacity-50',
+        'cursor-pointer no-underline hover:bg-[#F4F5F5] active:bg-[#DFE0E2]',
+        active && 'bg-[#DFE0E2] text-white',
+        disabled && 'pointer-events-none opacity-50 select-none',
       )}
       {...props}
     />

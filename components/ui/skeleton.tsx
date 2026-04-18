@@ -2,6 +2,7 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/utils';
 
+/** Placeholder loading skeleton with pulse animation. */
 function Skeleton({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div

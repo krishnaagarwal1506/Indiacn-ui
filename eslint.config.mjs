@@ -10,7 +10,17 @@ import nextTs from 'eslint-config-next/typescript';
 import frontendRules from 'eslint-frontend-rules';
 
 export default defineConfig([
-  { ignores: ['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'dist'] },
+  {
+    ignores: [
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+      'dist',
+      '_resource_UX4G@2.0.8/**',
+      '.source/**',
+    ],
+  },
   ...nextVitals,
   ...nextTs,
   {

@@ -3,12 +3,12 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import { SearchIcon, X } from 'lucide-react';
-import { ComponentProps, useRef } from 'react';
+import { ComponentProps, useCallback, useRef } from 'react';
 
 import { cn } from '@/utils';
 
 const SEARCH_VARIANTS = cva(
-  'flex items-center gap-2 rounded-lg border transition-colors focus-within:ring-2 focus-within:ring-primary/50',
+  'flex items-center gap-2 rounded-lg border border-[#C6C6C6] bg-white transition-all focus-within:border-primary focus-within:shadow-[0px_0px_0px_4px_rgba(97,58,245,0.50)] dark:border-neutral-700 dark:bg-neutral-900',
   {
     variants: {
       size: {
@@ -30,16 +30,15 @@ interface ISearchProps
   containerClassName?: string;
 }
 
+/** Search input field with icon and clear button. */
 function Search({ className, size, onClear, containerClassName, value, ...props }: ISearchProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const handleContainerClick = useCallback(() => inputRef.current?.focus(), []);
 
   return (
     <div
-      className={cn(
-        SEARCH_VARIANTS({ size, className: containerClassName }),
-        'bg-neutral-0 border-neutral-200 dark:border-neutral-700 dark:bg-neutral-900',
-      )}
-      onClick={() => inputRef.current?.focus()}
+      className={cn(SEARCH_VARIANTS({ size, className: containerClassName }), '')}
+      onClick={handleContainerClick}
     >
       <SearchIcon className='size-4 shrink-0 text-neutral-400' />
       <input

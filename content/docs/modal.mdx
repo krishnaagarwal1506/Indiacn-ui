@@ -43,9 +43,17 @@ Modals display focused content that requires user attention or interaction. Buil
 
 ### Sizes
 
-Use the `size` prop on `ModalContent` to change the dialog width.
+Use the `size` prop on `ModalContent` to change the dialog width. Available sizes: `sm` (300px), `md` (500px), `lg` (800px), `xl` (1140px), `fullscreen`.
 
 <ComponentPreview name='ModalSizes' />
+
+### Scrollable
+
+Use the `scrollable` prop on `ModalContent` to make the modal body scrollable when content overflows, keeping the header and footer fixed.
+
+<ComponentPreview name='ModalScrollable' />
+
+> **Note:** UX4G removes header and footer borders from the modal for a cleaner appearance.
 
 ## API Reference
 
@@ -53,4 +61,5 @@ Use the `size` prop on `ModalContent` to change the dialog width.
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `size` | `sm \| md \| lg \| xl \| fullscreen` | `md` | Dialog width |
+| `size` | `sm \| md \| lg \| xl \| fullscreen` | `md` | Dialog width (sm=300px, md=500px, lg=800px, xl=1140px) |
+| `scrollable` | `boolean` | `false` | Enable scrollable modal body |

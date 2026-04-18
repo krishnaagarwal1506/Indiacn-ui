@@ -7,13 +7,18 @@ import { ComponentProps, createContext, useCallback, useContext, useState } from
 
 import { cn } from '@/utils';
 
+/*
+ * UX4G toast: max-width 350px, font-size 0.875rem, border-radius 0.5rem,
+ * border 1px solid #ddd, shadow: 0px 4px 6px -2px rgba(33,33,33,0.03), 0px 12px 16px -4px rgba(33,33,33,0.08)
+ * header: padding 0.75rem, color #1C1D1F, NO border-bottom
+ * body: padding 0.75rem
+ */
 const TOAST_VARIANTS = cva(
-  'pointer-events-auto relative flex w-full items-center justify-between overflow-hidden rounded-lg border p-4 shadow-lg transition-all',
+  'pointer-events-auto relative flex w-[350px] max-w-full items-center justify-between overflow-hidden rounded-lg border border-[#ddd] p-3 text-sm shadow-[0px_4px_6px_-2px_rgba(33,33,33,0.03),0px_12px_16px_-4px_rgba(33,33,33,0.08)] transition-all',
   {
     variants: {
       theme: {
-        default:
-          'border-neutral-200 bg-neutral-0 text-neutral dark:border-neutral-700 dark:bg-neutral-900',
+        default: 'bg-white text-neutral dark:border-neutral-700 dark:bg-neutral-900',
         primary: 'border-primary/30 bg-primary text-neutral-0',
         success: 'border-success/30 bg-success text-neutral-0',
         danger: 'border-danger/30 bg-danger text-neutral-0',
@@ -46,6 +51,7 @@ const ToastContext = createContext<IToastContext>({
   removeToast: () => {},
 });
 
+/** Context provider that manages toast state. */
 function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<IToast[]>([]);
 
@@ -71,6 +77,7 @@ function ToastProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Hook to create and dismiss toast notifications. */
 function useToast() {
   const context = useContext(ToastContext);
   return { toast: context.addToast, dismiss: context.removeToast, toasts: context.toasts };
@@ -80,6 +87,7 @@ interface IToastProps extends ComponentProps<'div'>, VariantProps<typeof TOAST_V
   onDismiss?: () => void;
 }
 
+/** Dismissable toast notification component. */
 function Toast({ className, theme, onDismiss, children, ...props }: IToastProps) {
   return (
     <div
@@ -103,14 +111,22 @@ function Toast({ className, theme, onDismiss, children, ...props }: IToastProps)
   );
 }
 
+/** Title heading for a toast notification. */
 function ToastTitle({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('text-sm font-semibold', className)} {...props} />;
+  return (
+    <div
+      className={cn('text-sm font-semibold text-[#1C1D1F] dark:text-neutral-100', className)}
+      {...props}
+    />
+  );
 }
 
+/** Description body text for a toast notification. */
 function ToastDescription({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('text-sm opacity-90', className)} {...props} />;
+  return <div className={cn('text-sm', className)} {...props} />;
 }
 
+/** Fixed-position container for stacking toast notifications. */
 function ToastContainer({
   className,
   position = 'bottom-right',

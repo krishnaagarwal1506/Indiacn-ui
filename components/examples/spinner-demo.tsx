@@ -12,6 +12,8 @@ export function SpinnerThemes() {
       <Spinner theme='success' />
       <Spinner theme='danger' />
       <Spinner theme='warning' />
+      <Spinner theme='info' />
+      <Spinner theme='dark' />
       <Spinner theme='neutral' />
     </div>
   );
@@ -25,6 +27,8 @@ export function SpinnerGrow() {
       <Spinner variant='grow' theme='success' />
       <Spinner variant='grow' theme='danger' />
       <Spinner variant='grow' theme='warning' />
+      <Spinner variant='grow' theme='info' />
+      <Spinner variant='grow' theme='dark' />
     </div>
   );
 }

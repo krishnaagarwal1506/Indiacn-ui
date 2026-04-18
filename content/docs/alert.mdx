@@ -5,13 +5,13 @@ description: Displays a contextual feedback message for user actions.
 
 ## Introduction
 
-Alerts provide contextual feedback messages for typical user actions. They support multiple themes, icons, links, and can be made dismissible.
+Alerts provide contextual feedback messages for typical user actions. They support 8 themes matching UX4G 2.0, inline icons, links, and can be made dismissible.
 
 ## Installation
 
 <ComponentSource
   collapsible={false}
-  code={`import { Alert, AlertTitle, AlertDescription, AlertLink } from '@/components/ui/alert';`}
+  code={`import { Alert, AlertTitle, AlertDescription, AlertLink, AlertIcon } from '@/components/ui/alert';`}
 />
 
 ## Usage
@@ -27,11 +27,21 @@ Alerts provide contextual feedback messages for typical user actions. They suppo
 
 ### Default
 
+A simple alert with title and description, no icon.
+
 <ComponentPreview name='AlertDefault' />
 
 ### Themes
 
+All 8 UX4G theme variants: primary, secondary, success, danger, warning, info, light, dark.
+
 <ComponentPreview name='AlertThemes' />
+
+### With Icon
+
+Use `AlertIcon` to place an icon inline adjacent to the text (UX4G `d-flex align-items-center` pattern).
+
+<ComponentPreview name='AlertWithIcon' />
 
 ### Dismissible
 
@@ -41,7 +51,7 @@ Add the `dismissible` prop to allow users to close the alert.
 
 ### With Link
 
-Use `AlertLink` for styled links inside alerts.
+Use `AlertLink` for styled bold links inside alerts (UX4G font-weight: 700).
 
 <ComponentPreview name='AlertWithLink' />
 
@@ -51,24 +61,34 @@ An alert without a title.
 
 <ComponentPreview name='AlertSimple' />
 
+### Additional Content
+
+Alerts with extended content such as headings, horizontal rules, and paragraphs.
+
+<ComponentPreview name='AlertAdditionalContent' />
+
 ## API Reference
 
 ### Alert
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `theme` | `primary \| secondary \| success \| danger \| warning` | `primary` | Color theme |
+| `theme` | `primary \| secondary \| success \| danger \| warning \| info \| light \| dark` | `primary` | Color theme (UX4G 2.0 exact colors) |
 | `dismissible` | `boolean` | `false` | Show close button |
 | `onDismiss` | `() => void` | — | Callback when dismissed |
 
 ### AlertTitle
 
-Renders an `<h5>` element with appropriate styling.
+Renders an `<h6>` element with `color: inherit` per UX4G `.alert-heading`.
 
 ### AlertDescription
 
 Renders a `<div>` for alert body content.
 
+### AlertIcon
+
+Flex wrapper for inline icon + text layout. Place icon and text as children.
+
 ### AlertLink
 
-Renders a styled `<a>` element that matches the alert theme.
+Renders a styled `<a>` with `font-weight: bold` matching UX4G's `font-weight: 700`.

@@ -1,26 +1,44 @@
 'use client';
-/* eslint-disable eslint-frontend-rules/enforce-typography-components, eslint-frontend-rules/top-level-const-snake */
 
-import { Check } from 'lucide-react';
+import { AlertTriangle, Check } from 'lucide-react';
 import { ComponentProps, createContext, useContext } from 'react';
 
+import { Label1, Label2 } from '@/components/ui/typography';
 import { cn } from '@/utils';
+
+/*
+ * UX4G stepper:
+ * icon size: 1.938rem (~31px), font-size 0.875rem, font-weight 500
+ * completed icon: color #9E9E9E, border 1px solid #E0E0E0
+ * done icon: bg #3C9718 with checkmark SVG
+ * connector line: 1px solid #C6C6C6, done: #3C9718
+ * head-text color: #212121
+ * vertical connector: left 2.45rem, width 1px
+ * horizontal padding: 1.5rem
+ */
 
 interface IStepperContext {
   activeStep: number;
   orientation: 'horizontal' | 'vertical';
 }
 
-const StepperContext = createContext<IStepperContext>({
+const STEPPER_CONTEXT = createContext<IStepperContext>({
   activeStep: 0,
   orientation: 'horizontal',
 });
 
-interface IStepperProps extends ComponentProps<'div'> {
+interface IStepperProps extends ComponentProps<'ul'> {
   activeStep?: number;
   orientation?: 'horizontal' | 'vertical';
 }
 
+/**
+ * A stepper component for displaying progress through a multi-step process.
+ * Matches the UX4G 2.0 Stepper specification.
+ *
+ * Uses semantic `<ul>/<li>` elements per UX4G.
+ * Supports horizontal/vertical, completed/done/warning/active/pending states.
+ */
 function Stepper({
   className,
   activeStep = 0,
@@ -29,74 +47,114 @@ function Stepper({
   ...props
 }: IStepperProps) {
   return (
-    <StepperContext.Provider value={{ activeStep, orientation }}>
-      <div
+    <STEPPER_CONTEXT.Provider value={{ activeStep, orientation }}>
+      <ul
         className={cn(
-          'flex gap-2',
-          orientation === 'horizontal' ? 'flex-row items-center' : 'flex-col',
+          'relative m-0 flex w-full gap-0 overflow-hidden p-0',
+          orientation === 'horizontal' ? 'flex-row justify-between' : 'flex-col',
           className,
         )}
+        style={{ listStyle: 'none' }}
         {...props}
       >
         {children}
-      </div>
-    </StepperContext.Provider>
+      </ul>
+    </STEPPER_CONTEXT.Provider>
   );
 }
 
-interface IStepProps extends ComponentProps<'div'> {
+interface IStepProps extends ComponentProps<'li'> {
   step: number;
   title?: string;
   description?: string;
+  status?: 'completed' | 'active' | 'warning' | 'pending';
+  isLast?: boolean;
 }
 
-function Step({ className, step, title, description, ...props }: IStepProps) {
-  const { activeStep, orientation } = useContext(StepperContext);
-  const isCompleted = step < activeStep;
-  const isActive = step === activeStep;
+/**
+ * Individual step within a Stepper.
+ * UX4G icon: 1.938rem, connector: 1px #C6C6C6, done connector: #3C9718.
+ */
+function Step({ className, step, title, description, status, isLast, ...props }: IStepProps) {
+  const { activeStep, orientation } = useContext(STEPPER_CONTEXT);
+
+  const resolvedStatus =
+    status ?? (step < activeStep ? 'completed' : step === activeStep ? 'active' : 'pending');
+
+  const isCompleted = resolvedStatus === 'completed';
+  const isActive = resolvedStatus === 'active';
+  const isWarning = resolvedStatus === 'warning';
 
   return (
-    <div
-      className={cn('flex items-center gap-3', orientation === 'horizontal' && 'flex-1', className)}
+    <li
+      className={cn(
+        'relative flex h-fit',
+        orientation === 'horizontal' ? 'h-[4.5rem] flex-auto items-center' : 'flex-col',
+        className,
+      )}
       {...props}
     >
-      <div className='flex items-center gap-3'>
+      <div
+        className={cn(
+          'flex items-center text-inherit no-underline',
+          orientation === 'horizontal' ? 'px-6' : 'px-6 py-6',
+        )}
+      >
+        {/* Step icon - UX4G: 1.938rem = ~31px */}
         <div
           className={cn(
-            'flex size-8 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-colors',
-            isCompleted && 'bg-primary text-neutral-0',
-            isActive && 'border-primary bg-neutral-0 text-primary border-2 dark:bg-neutral-900',
-            !isCompleted && !isActive && 'border border-neutral-300 text-neutral-400',
+            'flex size-[1.938rem] shrink-0 items-center justify-center rounded-full text-[0.875rem] font-medium transition-colors',
+            orientation === 'horizontal' && 'my-6 mr-2',
+            orientation === 'vertical' && 'mr-3',
+            isCompleted && 'border-success bg-success border text-white',
+            isActive && 'border-primary text-primary border-2 bg-transparent',
+            isWarning && 'border border-[#d4362e] bg-transparent text-[#d4362e]',
+            !isCompleted && !isActive && !isWarning && 'border border-[#E0E0E0] text-[#9E9E9E]',
           )}
         >
-          {isCompleted ? <Check className='size-4' /> : step + 1}
+          {isCompleted ? (
+            <Check className='size-3.5' strokeWidth={3} />
+          ) : isWarning ? (
+            <AlertTriangle className='size-3.5' />
+          ) : (
+            <Label2>{step + 1}</Label2>
+          )}
         </div>
+        {/* Step text */}
         {(title || description) && (
           <div className='flex flex-col'>
             {title && (
-              <span
+              <Label1
                 className={cn(
-                  'text-sm font-medium',
-                  isActive && 'text-primary',
-                  !isCompleted && !isActive && 'text-neutral-400',
+                  'text-sm leading-[1.3]',
+                  isCompleted && 'text-neutral font-medium',
+                  isActive && 'text-primary font-medium',
+                  isWarning && 'text-[#d4362e]',
+                  !isCompleted && !isActive && !isWarning && 'text-neutral',
                 )}
               >
                 {title}
-              </span>
+              </Label1>
             )}
-            {description && <span className='text-xs text-neutral-400'>{description}</span>}
+            {description && <Label2 className='text-xs text-neutral-500'>{description}</Label2>}
           </div>
         )}
+        {/* Horizontal connector line after icon+text */}
+        {orientation === 'horizontal' && !isLast && (
+          <div className={cn('ml-2 h-px flex-1', isCompleted ? 'bg-success' : 'bg-[#C6C6C6]')} />
+        )}
       </div>
-      {orientation === 'horizontal' && (
+      {/* Vertical connector line */}
+      {orientation === 'vertical' && !isLast && (
         <div
           className={cn(
-            'ml-2 h-px flex-1',
-            isCompleted ? 'bg-primary' : 'bg-neutral-200 dark:bg-neutral-700',
+            'absolute left-[2.45rem] w-px',
+            isCompleted ? 'bg-success' : 'bg-[#C6C6C6]',
           )}
+          style={{ top: '3.25rem', height: 'calc(100% - 2.45rem)' }}
         />
       )}
-    </div>
+    </li>
   );
 }
 

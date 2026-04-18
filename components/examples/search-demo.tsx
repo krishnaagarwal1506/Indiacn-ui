@@ -1,18 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { Search } from '@/components/ui/search';
 
 export function SearchDefault() {
   const [value, setValue] = useState('');
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value),
+    [],
+  );
+  const handleClear = useCallback(() => setValue(''), []);
   return (
-    <Search
-      placeholder='Search...'
-      value={value}
-      onChange={e => setValue(e.target.value)}
-      onClear={() => setValue('')}
-    />
+    <Search placeholder='Search...' value={value} onChange={handleChange} onClear={handleClear} />
   );
 }
 

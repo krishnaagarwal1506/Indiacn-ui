@@ -34,6 +34,36 @@ export function PaginationDefault() {
   );
 }
 
+export function PaginationFlat() {
+  return (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href='#' variant='flat' />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#' variant='flat'>
+            1
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#' variant='flat' isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#' variant='flat'>
+            3
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href='#' variant='flat' />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+
 export function PaginationWithEllipsis() {
   return (
     <Pagination>

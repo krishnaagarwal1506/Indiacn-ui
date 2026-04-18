@@ -43,6 +43,14 @@ Use the `side` prop to control which edge the panel slides from.
 
 <ComponentPreview name='OffcanvasSides' />
 
+### Body Scroll
+
+Use the `bodyScroll` prop to allow the page body to remain scrollable while the offcanvas is open.
+
+<ComponentPreview name='OffcanvasBodyScroll' />
+
+> **Note:** The offcanvas panel width is 400px for left/right sides, and height is 30vh for top/bottom sides.
+
 ## API Reference
 
 ### OffcanvasContent
@@ -50,3 +58,4 @@ Use the `side` prop to control which edge the panel slides from.
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `side` | `left \| right \| top \| bottom` | `right` | Slide direction |
+| `bodyScroll` | `boolean` | `false` | Allow body scrolling while open |

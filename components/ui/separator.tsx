@@ -5,6 +5,7 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/utils';
 
+/** Visual divider line, horizontal or vertical. */
 function Separator({
   className,
   orientation = 'horizontal',

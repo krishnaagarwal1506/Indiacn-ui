@@ -76,3 +76,22 @@ export function DropdownDisabledItems() {
     </Dropdown>
   );
 }
+
+export function DropdownDark() {
+  return (
+    <Dropdown>
+      <DropdownTrigger asChild>
+        <Button variant='outlined'>Dark Menu</Button>
+      </DropdownTrigger>
+      <DropdownContent variant='dark'>
+        <DropdownLabel>Actions</DropdownLabel>
+        <DropdownSeparator />
+        <DropdownItem>Action</DropdownItem>
+        <DropdownItem>Another action</DropdownItem>
+        <DropdownItem>Something else here</DropdownItem>
+        <DropdownSeparator />
+        <DropdownItem>Separated link</DropdownItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
