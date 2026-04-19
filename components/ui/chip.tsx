@@ -9,17 +9,16 @@ import { cn } from '@/utils';
 
 /*
  * UX4G chip: border-radius 8px, padding 6px 12px, font-size 14px, font-weight 400,
- * border: 1px solid #C6C6C6, bg: #fff, hover bg: #FAEFFF, hover shadow: 0px 2px 3px 1px rgba(33,33,33,0.12)
  */
 const CHIP_VARIANTS = cva(
-  'inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-neutral-200 bg-neutral-0 px-3 py-1.5 text-sm font-normal text-neutral transition-all hover:bg-[#FAEFFF] hover:shadow-xs active:shadow-none',
+  'inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-neutral-200 bg-neutral-0 px-3 py-1.5 text-sm font-normal text-neutral transition-all hover:bg-primary-50 hover:shadow-xs active:shadow-none',
   {
     variants: {
       variant: {
         outlined: '',
         filled:
           'border-primary bg-primary text-neutral-0 hover:bg-primary-600 hover:text-neutral-0',
-        tonal: 'border-transparent bg-primary-100 text-primary hover:bg-[#FAEFFF]',
+        tonal: 'border-transparent bg-primary-100 text-primary hover:bg-primary-900',
       },
       size: {
         sm: 'px-2 py-1 text-xs rounded-md',
@@ -69,7 +68,7 @@ function Chip({
       data-disabled={disabled || undefined}
       className={cn(
         CHIP_VARIANTS({ variant, size, className }),
-        selected && 'border-primary text-primary bg-[#FAEFFF]',
+        selected && 'border-primary text-primary bg-primary-50',
         disabled && 'pointer-events-none opacity-50',
       )}
       {...props}
