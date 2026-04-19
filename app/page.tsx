@@ -1,38 +1,26 @@
 'use client';
 
 import {
-  Accessibility,
   ArrowRight,
-  Bell,
-  Check,
-  CheckCircle2,
   Code2,
-  Copy,
   Github,
-  Heart,
   Layers,
   Palette,
-  Shield,
   Sparkles,
-  Star,
   Zap,
+  Accessibility,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Chip } from '@/components/ui/chip';
-import { Spinner } from '@/components/ui/spinner';
-import { Step, Stepper } from '@/components/ui/stepper';
 import {
   Body1,
   Body2,
-  Display5,
   Display6,
+  Headline1,
   Headline2,
-  Headline3,
   Headline5,
   Label1,
 } from '@/components/ui/typography';
@@ -66,68 +54,6 @@ const COMPONENTS = [
   'Typography',
 ];
 
-/** Decorative animated background grid. */
-function AnimatedGrid() {
-  return (
-    <div className='pointer-events-none absolute inset-0 overflow-hidden'>
-      <div className='absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,var(--color-neutral))]'>
-        <div className='absolute inset-0 bg-[linear-gradient(var(--color-primary)_1px,transparent_1px),linear-gradient(to_right,var(--color-primary)_1px,transparent_1px)] bg-[size:60px_60px] opacity-[0.03] dark:opacity-[0.06]' />
-      </div>
-      <div className='from-primary/5 via-primary/0 absolute top-0 left-1/2 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-radial to-transparent blur-3xl' />
-    </div>
-  );
-}
-
-/** Copyable CLI install command with feedback. */
-function CopyCommand() {
-  const [copied, setCopied] = useState(false);
-  const command = 'npx indiacn-ui init';
-
-  const handleCopy = useCallback(() => {
-    void navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, [command]);
-
-  return (
-    <button
-      onClick={handleCopy}
-      className='group hover:border-primary/30 dark:hover:border-primary/30 flex items-center gap-3 rounded-lg border border-neutral-200 bg-neutral-50 px-5 py-3 font-mono text-sm transition-all hover:shadow-sm dark:border-neutral-700 dark:bg-neutral-800'
-    >
-      <Body2 className='text-neutral-400'>$</Body2>
-      <Body2 className='text-neutral-700 dark:text-neutral-300'>{command}</Body2>
-      {copied ? (
-        <Label1 className='text-success text-xs'>Copied!</Label1>
-      ) : (
-        <Copy className='group-hover:text-primary size-3.5 text-neutral-400 transition-colors' />
-      )}
-    </button>
-  );
-}
-
-/** Live component showcase card. */
-function ShowcaseCard({
-  title,
-  children,
-  className,
-}: {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        'bg-neutral-0 group hover:border-primary/20 dark:hover:border-primary/20 relative overflow-hidden rounded-xl border border-neutral-200 p-6 transition-all hover:shadow-lg dark:border-neutral-700 dark:bg-neutral-900',
-        className,
-      )}
-    >
-      <Label1 className='mb-4 text-xs tracking-wider text-neutral-400 uppercase'>{title}</Label1>
-      <div className='flex flex-wrap items-center gap-2'>{children}</div>
-    </div>
-  );
-}
-
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -135,161 +61,54 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='relative min-h-screen overflow-hidden'>
-      <AnimatedGrid />
-
+    <div className='relative min-h-screen'>
       {/* Hero */}
-      <section className='relative flex min-h-[90vh] flex-col items-center justify-center px-6 text-center'>
+      <section className='relative flex min-h-[80vh] flex-col items-center justify-center px-6 pt-16 text-center'>
+        {/* Subtle grid bg */}
+        <div className='pointer-events-none absolute inset-0 overflow-hidden'>
+          <div className='absolute inset-0 mask-[radial-gradient(ellipse_at_center,transparent_20%,var(--color-neutral-0))]'>
+            <div className='absolute inset-0 bg-[linear-gradient(var(--color-primary-200)_1px,transparent_1px),linear-gradient(to_right,var(--color-primary-200)_1px,transparent_1px)] bg-size-[60px_60px] opacity-[0.15] dark:opacity-[0.06]' />
+          </div>
+        </div>
+
         <div
           className={cn(
-            'mx-auto max-w-5xl transition-all duration-700',
+            'relative mx-auto max-w-3xl transition-all duration-700',
             mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0',
           )}
         >
           <Badge variant='tonal' theme='primary' shape='pill' size='lg' className='mb-8'>
-            <Sparkles className='mr-1 size-3.5' />
-            UX4G 2.0 Design System for React
+            <Sparkles className='mr-1.5 size-3.5' />
+            Open Source Design System for India
           </Badge>
 
-          <Display5 className='mb-6 leading-[1.1] tracking-tight text-neutral-900 dark:text-neutral-100'>
-            Build Indian Digital
-            <br />
-            Services{' '}
-            <Label1 className='from-primary to-primary-300 inline bg-linear-to-r bg-clip-text text-transparent'>
-              beautifully
-            </Label1>
-          </Display5>
+          <Headline1 className='mb-6 text-4xl leading-[1.15] font-bold tracking-tight text-neutral-900 sm:text-5xl lg:text-6xl dark:text-neutral-100'>
+            Beautiful components for{' '}
+            {/* eslint-disable-next-line eslint-frontend-rules/enforce-typography-components */}
+            <span className='from-primary to-primary-400 bg-linear-to-r bg-clip-text text-transparent'>
+              Indian Digital
+            </span>{' '}
+            Services
+          </Headline1>
 
-          <Body1 className='mx-auto mb-10 max-w-2xl text-lg text-neutral-500 sm:text-xl dark:text-neutral-400'>
-            Production-ready React components following the official UX4G 2.0 Design System. Built
-            with Tailwind CSS and Radix UI for accessible, government-grade applications.
+          <Body1 className='mx-auto mb-10 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400'>
+            Copy-paste ready React components built with Tailwind CSS and Radix UI.
+            <br className='hidden sm:block' /> Based on the UX4G 2.0 Design System for government
+            and public-service applications.
           </Body1>
 
-          <div className='flex flex-col items-center gap-4 sm:flex-row sm:justify-center'>
+          <div className='flex flex-wrap items-center justify-center gap-4'>
             <Link href='/docs'>
-              <Button size='lg'>
+              <Button size='lg' suffixIcon={<ArrowRight className='size-4' />}>
                 Get Started
-                <ArrowRight className='ml-1 size-4' />
               </Button>
             </Link>
             <a href={GITHUB_URL} target='_blank' rel='noopener noreferrer'>
-              <Button size='lg' variant='outlined'>
-                <Github className='mr-1 size-4' />
+              <Button size='lg' variant='outlined' prefixIcon={<Github className='size-4' />}>
                 GitHub
               </Button>
             </a>
           </div>
-
-          <div className='mt-8 flex justify-center'>
-            <CopyCommand />
-          </div>
-        </div>
-      </section>
-
-      {/* Live Component Showcase */}
-      <section className='relative mx-auto max-w-6xl px-6 py-16'>
-        <div className='mb-12 text-center'>
-          <Headline2 className='mb-4 text-3xl tracking-tight sm:text-4xl'>
-            Components in action
-          </Headline2>
-          <Body1 className='mx-auto max-w-2xl text-neutral-500 dark:text-neutral-400'>
-            Every component is pixel-perfect to the UX4G 2.0 specification. Here are some
-            highlights.
-          </Body1>
-        </div>
-
-        <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-          {/* Buttons showcase */}
-          <ShowcaseCard title='Buttons'>
-            <Button size='sm'>Primary</Button>
-            <Button size='sm' variant='outlined'>
-              Outlined
-            </Button>
-            <Button size='sm' variant='tonal'>
-              Tonal
-            </Button>
-            <Button size='sm' theme='success'>
-              Success
-            </Button>
-            <Button size='sm' variant='text'>
-              Text
-            </Button>
-          </ShowcaseCard>
-
-          {/* Badges showcase */}
-          <ShowcaseCard title='Badges'>
-            <Badge theme='primary'>Primary</Badge>
-            <Badge theme='success'>Success</Badge>
-            <Badge theme='danger'>Danger</Badge>
-            <Badge theme='warning'>Warning</Badge>
-            <Badge theme='info'>Info</Badge>
-            <Badge shape='pill' theme='primary'>
-              Pill
-            </Badge>
-            <Badge variant='outlined' theme='danger'>
-              Outlined
-            </Badge>
-            <Badge theme='dark'>Dark</Badge>
-          </ShowcaseCard>
-
-          {/* Alert showcase */}
-          <ShowcaseCard title='Alerts' className='md:col-span-2 lg:col-span-1'>
-            <div className='w-full space-y-2'>
-              <Alert theme='success'>
-                <AlertIcon>
-                  <CheckCircle2 className='size-5 shrink-0' />
-                  <div>
-                    <AlertTitle>Success</AlertTitle>
-                    <AlertDescription>Changes saved.</AlertDescription>
-                  </div>
-                </AlertIcon>
-              </Alert>
-              <Alert theme='info'>
-                <AlertIcon>
-                  <Bell className='size-5 shrink-0' />
-                  <div>
-                    <AlertTitle>Info</AlertTitle>
-                    <AlertDescription>New update available.</AlertDescription>
-                  </div>
-                </AlertIcon>
-              </Alert>
-            </div>
-          </ShowcaseCard>
-
-          {/* Chips showcase */}
-          <ShowcaseCard title='Chips'>
-            <Chip>Default</Chip>
-            <Chip icon={<Star />}>Favourite</Chip>
-            <Chip icon={<Check />} selected>
-              Selected
-            </Chip>
-            <Chip variant='filled'>Filled</Chip>
-            <Chip variant='tonal'>Tonal</Chip>
-          </ShowcaseCard>
-
-          {/* Spinners showcase */}
-          <ShowcaseCard title='Spinners'>
-            <Spinner size='sm' theme='primary' />
-            <Spinner size='sm' theme='success' />
-            <Spinner size='sm' theme='danger' />
-            <Spinner size='sm' theme='warning' />
-            <Spinner size='sm' theme='info' />
-            <Spinner size='sm' variant='grow' theme='primary' />
-            <Spinner size='sm' variant='grow' theme='success' />
-            <Spinner size='sm' variant='grow' theme='danger' />
-          </ShowcaseCard>
-
-          {/* Stepper showcase */}
-          <ShowcaseCard title='Stepper'>
-            <div className='w-full'>
-              <Stepper activeStep={2}>
-                <Step step={0} title='Details' />
-                <Step step={1} title='Review' />
-                <Step step={2} title='Payment' />
-                <Step step={3} title='Done' isLast />
-              </Stepper>
-            </div>
-          </ShowcaseCard>
         </div>
       </section>
 
@@ -320,28 +139,22 @@ export default function Home() {
         <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {[
             {
-              icon: <Shield className='size-6' />,
-              title: 'UX4G 2.0 Compliant',
-              description:
-                'Every component matches the official UX4G 2.0 spec — exact colors, spacing, radii, and animations from the source CSS.',
-            },
-            {
               icon: <Code2 className='size-6' />,
               title: 'Copy & Paste',
               description:
                 'No heavy dependency. Copy the component code into your project and own it. Customize freely.',
             },
             {
+              icon: <Palette className='size-6' />,
+              title: 'UX4G 2.0 Themed',
+              description:
+                'Pre-configured with the official UX4G 2.0 color palette, typography, and spacing tokens.',
+            },
+            {
               icon: <Layers className='size-6' />,
               title: 'Radix UI Primitives',
               description:
-                'Built on accessible Radix UI primitives with WAI-ARIA patterns, keyboard navigation, and focus management.',
-            },
-            {
-              icon: <Palette className='size-6' />,
-              title: '8 Color Themes',
-              description:
-                'Primary, secondary, success, danger, warning, info, light, and dark — all matching UX4G specification.',
+                'Built on accessible Radix UI primitives with proper ARIA attributes and keyboard navigation.',
             },
             {
               icon: <Zap className='size-6' />,
@@ -354,6 +167,12 @@ export default function Home() {
               title: '100% Accessible',
               description:
                 'Every component follows WCAG 2.1 AA standards with proper ARIA attributes, roles, and keyboard support.',
+            },
+            {
+              icon: <Sparkles className='size-6' />,
+              title: '8 Color Themes',
+              description:
+                'Primary, secondary, success, danger, warning, info, light, and dark — all matching UX4G specification.',
             },
           ].map(feature => (
             <div
@@ -390,72 +209,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* UX4G Compliance */}
-      <section className='mx-auto max-w-4xl px-6 py-24'>
-        <div className='bg-neutral-0 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-700 dark:bg-neutral-900'>
-          <div className='from-primary/5 to-primary/0 bg-linear-to-r px-8 py-6'>
-            <Headline3 className='tracking-tight'>Built on UX4G 2.0</Headline3>
-            <Body1 className='mt-2 text-neutral-500 dark:text-neutral-400'>
-              Every value comes directly from the official UX4G 2.0.8 CSS source.
-            </Body1>
-          </div>
-          <div className='grid gap-0 divide-y divide-neutral-200 px-8 dark:divide-neutral-700'>
-            {[
-              { spec: 'Alert border-radius', value: '0.25rem', source: '.alert' },
-              { spec: 'Modal default width', value: '500px', source: '.modal-dialog' },
-              { spec: 'Offcanvas width', value: '400px', source: '.offcanvas' },
-              { spec: 'Dropdown hover bg', value: '#FAEFFF', source: '.dropdown-item:hover' },
-              { spec: 'Pagination active bg', value: '#613AF5', source: '.page-link.active' },
-              { spec: 'Spinner border-width', value: '0.3em', source: '.spinner-border' },
-            ].map(item => (
-              <div key={item.spec} className='flex items-center justify-between py-4'>
-                <div>
-                  <Body2 className='font-medium'>{item.spec}</Body2>
-                  <Body2 className='text-xs text-neutral-400'>{item.source}</Body2>
-                </div>
-                <code className='text-primary rounded bg-neutral-100 px-2 py-1 font-mono text-sm dark:bg-neutral-800'>
-                  {item.value}
-                </code>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className='mx-auto max-w-4xl px-6 pb-24 text-center'>
-        <div className='from-primary/5 via-primary/2 rounded-2xl bg-linear-to-br to-transparent px-8 py-16'>
-          <Headline2 className='mb-4 text-3xl tracking-tight sm:text-4xl'>
-            Start building today
-          </Headline2>
-          <Body1 className='mx-auto mb-8 max-w-xl text-lg text-neutral-500 dark:text-neutral-400'>
-            Browse the documentation, pick a component, and paste it into your project. No npm
-            install required.
-          </Body1>
-          <div className='flex flex-col items-center gap-4 sm:flex-row sm:justify-center'>
-            <Link href='/docs'>
-              <Button size='lg'>
-                Browse Components
-                <ArrowRight className='ml-1 size-4' />
-              </Button>
-            </Link>
-            <a href={GITHUB_URL} target='_blank' rel='noopener noreferrer'>
-              <Button size='lg' variant='outlined'>
-                <Heart className='mr-1 size-4' />
-                Star on GitHub
-              </Button>
-            </a>
-          </div>
-        </div>
+      <section className='mx-auto max-w-3xl px-6 py-24 text-center'>
+        <Headline2 className='mb-4 text-3xl tracking-tight sm:text-4xl'>
+          Start building today
+        </Headline2>
+        <Body1 className='mx-auto mb-8 max-w-xl text-lg text-neutral-500 dark:text-neutral-400'>
+          Browse the docs, pick a component, and paste it into your project.
+        </Body1>
+        <Link href='/docs'>
+          <Button size='lg' suffixIcon={<ArrowRight className='size-4' />}>
+            Browse Components
+          </Button>
+        </Link>
       </section>
 
       {/* Footer */}
       <footer className='border-t border-neutral-200 px-6 py-8 dark:border-neutral-800'>
         <div className='mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row'>
           <Body2 className='text-neutral-500 dark:text-neutral-400'>
-            IndiaCN UI — Open Source Design System for India
+            IndiaCN — Open Source Design System for India
           </Body2>
-          <div className='flex items-center gap-6'>
+          <div className='flex items-center gap-4'>
             <a
               href={GITHUB_URL}
               target='_blank'

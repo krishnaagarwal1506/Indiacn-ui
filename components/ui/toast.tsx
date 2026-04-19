@@ -18,7 +18,8 @@ const TOAST_VARIANTS = cva(
   {
     variants: {
       theme: {
-        default: 'bg-white text-neutral dark:border-neutral-700 dark:bg-neutral-900',
+        default:
+          'bg-white text-neutral dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100',
         primary: 'border-primary/30 bg-primary text-neutral-0',
         success: 'border-success/30 bg-success text-neutral-0',
         danger: 'border-danger/30 bg-danger text-neutral-0',
@@ -123,7 +124,9 @@ function ToastTitle({ className, ...props }: ComponentProps<'div'>) {
 
 /** Description body text for a toast notification. */
 function ToastDescription({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('text-sm', className)} {...props} />;
+  return (
+    <div className={cn('text-sm text-neutral-600 dark:text-neutral-300', className)} {...props} />
+  );
 }
 
 /** Fixed-position container for stacking toast notifications. */

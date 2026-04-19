@@ -45,7 +45,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         className={cn(
           'text-neutral flex flex-1 items-center justify-between px-5 py-4 text-base transition-all',
-          'focus:z-3 focus:border-[#9161FF] focus:shadow-[0_0_0_0.25rem_rgba(13,110,253,0.25)] focus:outline-none',
+          'focus:border-primary focus:shadow-focus-primary focus:z-3 focus:outline-none',
           'data-[state=open]:border-primary data-[state=open]:rounded-lg data-[state=open]:border data-[state=open]:shadow-[0px_0px_0px_4px_rgba(97,58,245,0.50)]',
           '[&[data-state=open]>svg]:rotate-180',
           className,

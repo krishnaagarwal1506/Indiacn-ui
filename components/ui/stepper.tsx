@@ -89,7 +89,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
     <li
       className={cn(
         'relative flex h-fit',
-        orientation === 'horizontal' ? 'h-[4.5rem] flex-auto items-center' : 'flex-col',
+        orientation === 'horizontal' ? 'h-18 flex-auto items-center' : 'flex-col',
         className,
       )}
       {...props}
@@ -108,8 +108,11 @@ function Step({ className, step, title, description, status, isLast, ...props }:
             orientation === 'vertical' && 'mr-3',
             isCompleted && 'border-success bg-success border text-white',
             isActive && 'border-primary text-primary border-2 bg-transparent',
-            isWarning && 'border border-[#d4362e] bg-transparent text-[#d4362e]',
-            !isCompleted && !isActive && !isWarning && 'border border-[#E0E0E0] text-[#9E9E9E]',
+            isWarning && 'border-danger text-danger border bg-transparent',
+            !isCompleted &&
+              !isActive &&
+              !isWarning &&
+              'border border-neutral-200 text-neutral-400 dark:border-neutral-600 dark:text-neutral-500',
           )}
         >
           {isCompleted ? (
@@ -129,7 +132,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
                   'text-sm leading-[1.3]',
                   isCompleted && 'text-neutral font-medium',
                   isActive && 'text-primary font-medium',
-                  isWarning && 'text-[#d4362e]',
+                  isWarning && 'text-danger',
                   !isCompleted && !isActive && !isWarning && 'text-neutral',
                 )}
               >
@@ -141,7 +144,12 @@ function Step({ className, step, title, description, status, isLast, ...props }:
         )}
         {/* Horizontal connector line after icon+text */}
         {orientation === 'horizontal' && !isLast && (
-          <div className={cn('ml-2 h-px flex-1', isCompleted ? 'bg-success' : 'bg-[#C6C6C6]')} />
+          <div
+            className={cn(
+              'ml-2 h-px flex-1',
+              isCompleted ? 'bg-success' : 'bg-neutral-200 dark:bg-neutral-600',
+            )}
+          />
         )}
       </div>
       {/* Vertical connector line */}
@@ -149,7 +157,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
         <div
           className={cn(
             'absolute left-[2.45rem] w-px',
-            isCompleted ? 'bg-success' : 'bg-[#C6C6C6]',
+            isCompleted ? 'bg-success' : 'bg-neutral-200 dark:bg-neutral-600',
           )}
           style={{ top: '3.25rem', height: 'calc(100% - 2.45rem)' }}
         />

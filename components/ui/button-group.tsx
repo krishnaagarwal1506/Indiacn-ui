@@ -14,8 +14,8 @@ function ButtonGroup({ className, orientation = 'horizontal', ...props }: IButto
       className={cn(
         'inline-flex',
         orientation === 'horizontal'
-          ? '[&>*]:rounded-none [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md [&>*:not(:first-child)]:-ml-px'
-          : 'flex-col [&>*]:rounded-none [&>*:first-child]:rounded-t-md [&>*:last-child]:rounded-b-md [&>*:not(:first-child)]:-mt-px',
+          ? '*:rounded-none [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md [&>*:not(:first-child)]:-ml-px'
+          : 'flex-col *:rounded-none [&>*:first-child]:rounded-t-md [&>*:last-child]:rounded-b-md [&>*:not(:first-child)]:-mt-px',
         className,
       )}
       {...props}

@@ -14,10 +14,55 @@ const NOTO_SANS = Noto_Sans({
   style: ['normal', 'italic'],
 });
 
+const SITE_URL = 'https://indiacn.in';
+
 export const metadata: Metadata = {
-  title: 'IndiaCN UI — Community Design System for India',
+  title: {
+    default: 'IndiaCN — Open Source Design System for India',
+    template: '%s | IndiaCN',
+  },
   description:
-    'IndiaCN is an upcoming **open-source design system** created to help build better digital experiences for India — especially government and public-service applications. Based on UX4G 2.0 theme',
+    'Copy-paste ready React components built with Tailwind CSS and Radix UI. Based on the UX4G 2.0 Design System for Indian government and public-service applications.',
+  metadataBase: new URL(SITE_URL),
+  keywords: [
+    'IndiaCN',
+    'India design system',
+    'UX4G',
+    'UX4G 2.0',
+    'React components',
+    'Tailwind CSS',
+    'Radix UI',
+    'government UI',
+    'Indian government design',
+    'shadcn India',
+    'accessible components',
+    'open source',
+  ],
+  authors: [{ name: 'IndiaCN' }],
+  creator: 'IndiaCN',
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: SITE_URL,
+    siteName: 'IndiaCN',
+    title: 'IndiaCN — Open Source Design System for India',
+    description:
+      'Copy-paste ready React components built with Tailwind CSS and Radix UI. Based on the UX4G 2.0 Design System for Indian government and public-service applications.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'IndiaCN — Open Source Design System for India',
+    description:
+      'Copy-paste ready React components built with Tailwind CSS and Radix UI. Based on the UX4G 2.0 Design System for Indian government and public-service applications.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({

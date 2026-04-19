@@ -68,9 +68,10 @@ function ListGroupItem({
       aria-current={active ? 'true' : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        active && 'bg-[#DFE0E2] text-white',
+        active && 'bg-primary text-white',
         disabled && 'pointer-events-none opacity-50 select-none',
-        action && 'cursor-pointer hover:bg-[#F4F5F5] active:bg-[#DFE0E2]',
+        action &&
+          'cursor-pointer hover:bg-neutral-50 active:bg-neutral-100 dark:hover:bg-neutral-800 dark:active:bg-neutral-700',
       )}
       {...props}
     />
@@ -93,8 +94,8 @@ function ListGroupAction({ className, theme, active, disabled, ...props }: IList
       tabIndex={disabled ? -1 : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        'cursor-pointer no-underline hover:bg-[#F4F5F5] active:bg-[#DFE0E2]',
-        active && 'bg-[#DFE0E2] text-white',
+        'cursor-pointer no-underline hover:bg-neutral-50 active:bg-neutral-100 dark:hover:bg-neutral-800 dark:active:bg-neutral-700',
+        active && 'bg-primary text-white',
         disabled && 'pointer-events-none opacity-50 select-none',
       )}
       {...props}

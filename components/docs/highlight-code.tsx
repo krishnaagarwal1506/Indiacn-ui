@@ -54,14 +54,20 @@ export const transformers = [
 export async function highlightCode(code: string, language: string = 'tsx') {
   const html = await codeToHtml(code, {
     lang: language,
-    theme: 'ayu-dark',
+    themes: {
+      light: 'github-light',
+      dark: 'ayu-dark',
+    },
     transformers: [
       {
         pre(node) {
+          // Append our layout classes — preserve Shiki's "shiki" class so
+          // the CSS dual-theme selectors (.dark .shiki) still match, and keep
+          // the inline style so --shiki-dark-bg / --shiki-dark CSS variables
+          // are available for the dark-mode overrides in globals.css.
+          const existing = (node.properties['class'] as string) ?? '';
           node.properties['class'] =
-            'no-scrollbar min-w-0 overflow-x-auto px-4 py-4 outline-none text-[13px] leading-relaxed';
-          // Remove Shiki's inline background so the figure wrapper controls it
-          node.properties['style'] = '';
+            `${existing} no-scrollbar min-w-0 overflow-x-auto px-4 py-4 outline-none text-[13px] leading-relaxed`.trim();
         },
       },
     ],

@@ -433,4 +433,54 @@
   body {
     @apply bg-neutral-0 text-neutral;
   }
+  /* Use primary purple focus ring globally instead of browser default blue */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Fix fumadocs code block styling */
+.prose pre,
+[data-rehype-pretty-code-figure] pre,
+figure[data-rehype-pretty-code-figure] pre {
+  border: 1px solid var(--neutral-200);
+  border-radius: 0.5rem;
+}
+
+.dark .prose pre,
+.dark [data-rehype-pretty-code-figure] pre,
+.dark figure[data-rehype-pretty-code-figure] pre {
+  border-color: var(--neutral-200);
+}
+
+.prose pre code,
+[data-rehype-pretty-code-figure] pre code {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.prose code:not(pre code) {
+  background-color: var(--neutral-100);
+  border-radius: 0.25rem;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.875em;
+}
+
+.dark .prose code:not(pre code) {
+  background-color: var(--neutral-50);
+}
+
+/* Fix Shiki code block text selection */
+.prose pre code span,
+[data-rehype-pretty-code-figure] code span {
+  background: transparent !important;
+}
+
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }

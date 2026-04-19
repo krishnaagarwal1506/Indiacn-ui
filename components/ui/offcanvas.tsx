@@ -63,12 +63,12 @@ function OffcanvasContent({
   ...props
 }: IOffcanvasContentProps) {
   const sideClasses = {
-    left: 'inset-y-0 left-0 h-full w-[400px] max-w-full border-r border-black/17.5 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
+    left: 'inset-y-0 left-0 h-full w-[400px] max-w-full border-r border-neutral-200 dark:border-neutral-700 data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
     right:
-      'inset-y-0 right-0 h-full w-[400px] max-w-full border-l border-black/17.5 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
-    top: 'inset-x-0 top-0 w-full h-[30vh] max-h-full border-b border-black/17.5 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
+      'inset-y-0 right-0 h-full w-[400px] max-w-full border-l border-neutral-200 dark:border-neutral-700 data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+    top: 'inset-x-0 top-0 w-full h-[30vh] max-h-full border-b border-neutral-200 dark:border-neutral-700 data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
     bottom:
-      'inset-x-0 bottom-0 w-full h-[30vh] max-h-full border-t border-black/17.5 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
+      'inset-x-0 bottom-0 w-full h-[30vh] max-h-full border-t border-neutral-200 dark:border-neutral-700 data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
   };
 
   return (

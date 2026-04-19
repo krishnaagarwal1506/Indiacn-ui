@@ -105,14 +105,14 @@ function ComponentCode({
   title: string | undefined;
 }) {
   return (
-    <figure className='relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 font-mono'>
+    <figure className='not-fumadocs-codeblock relative my-0! overflow-hidden rounded-lg border border-neutral-200 font-mono dark:border-neutral-700'>
       {title && (
-        <figcaption className='flex items-center gap-2 border-b border-zinc-700/60 bg-zinc-800/80 px-4 py-2 text-xs text-zinc-400'>
+        <figcaption className='mt-0! flex items-center gap-2 px-4 py-2 text-xs text-neutral-900'>
           {getIconForLanguageExtension(language)}
           {title}
         </figcaption>
       )}
-      <CopyButton value={code} />
+      <CopyButton value={code} className='top-0!' />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   );

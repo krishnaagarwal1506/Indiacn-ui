@@ -72,7 +72,7 @@ function PaginationLink({
         aria-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : undefined}
         className={cn(
-          'mx-0.5 flex size-8 items-center justify-center rounded-lg text-sm text-neutral-600 transition-[color,background-color,border-color,box-shadow] duration-150',
+          'mx-0.5 flex size-8 items-center justify-center rounded-lg text-sm text-neutral-600 transition-[color,background-color,border-color,box-shadow] duration-150 dark:text-neutral-400',
           isActive && 'border-primary text-neutral border font-bold',
           disabled && 'pointer-events-none text-neutral-600',
           !isActive && !disabled && 'hover:bg-neutral-100 dark:hover:bg-neutral-800',
@@ -91,12 +91,12 @@ function PaginationLink({
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       className={cn(
-        'text-primary relative -ml-px inline-flex items-center justify-center border border-[#dee2e6] no-underline transition-[color,background-color,border-color,box-shadow] duration-150 first:ml-0 first:rounded-l-[0.375rem] last:rounded-r-[0.375rem]',
+        'text-primary relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 first:ml-0 first:rounded-l-[0.375rem] last:rounded-r-[0.375rem] dark:border-neutral-700',
         sizeClasses[size],
         isActive
           ? 'border-primary bg-primary z-3 text-white'
-          : 'bg-white hover:z-2 hover:border-[#dee2e6] hover:bg-[#e9ecef] hover:text-[#774BFF] dark:bg-neutral-900 dark:hover:bg-neutral-800',
-        disabled && 'text-secondary pointer-events-none border-[#dee2e6] bg-white',
+          : 'hover:text-primary-400 bg-white hover:z-2 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800',
+        disabled && 'text-secondary pointer-events-none bg-white dark:bg-neutral-900',
         className,
       )}
       {...props}
