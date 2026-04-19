@@ -112,7 +112,12 @@ function ComponentCode({
           {title}
         </figcaption>
       )}
-      <CopyButton value={code} className='top-0!' />
+      <CopyButton
+        value={code}
+        className={cn({
+          'top-0!': title,
+        })}
+      />
       <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
     </figure>
   );
