@@ -87,6 +87,8 @@ export default defineConfig([
             '**/app/**/layout.{tsx,ts,js,jsx}',
             '**/app/**/page.{tsx,ts,js,jsx}',
             '**/*.config.{js,cjs,mjs,ts,tsx}',
+            '**/app/**/sitemap.{tsx,ts,js,jsx}',
+            '**/app/**/robots.{tsx,ts,js,jsx}',
           ],
         },
       ],

@@ -1,9 +1,9 @@
-//TODO: to be discussed: whether to use docs or notebook layout
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/layouts/docs/page';
 // import { DocsPage, DocsDescription, DocsTitle, DocsBody } from 'fumadocs-ui/layouts/notebook/page';
 import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { notFound } from 'next/navigation';
 
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/constants';
 import { getMDXComponents } from '@/utils/mdx-components';
 import { source } from '@/utils/source';
 
@@ -42,8 +42,36 @@ export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): P
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
+  const slug = params.slug?.join('/');
+  const url = slug ? `${SITE_URL}/docs/${slug}` : `${SITE_URL}/docs`;
+  const description = page.data.description || SITE_DESCRIPTION;
+
   return {
     title: page.data.title,
-    description: page.data.description,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: page.data.title,
+      description,
+      url,
+      siteName: SITE_NAME,
+      type: 'article',
+      images: [
+        {
+          url: '/opengraph-image',
+          width: 1200,
+          height: 630,
+          alt: page.data.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: page.data.title,
+      description,
+      images: ['/twitter-image'],
+    },
   };
 }

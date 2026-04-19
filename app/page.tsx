@@ -97,6 +97,11 @@ export default function Home() {
             and public-service applications.
           </Body1>
 
+          <Body1 className='mx-auto mb-8 max-w-2xl text-sm text-neutral-500'>
+            A community initiative inspired by public-service design principles and not affiliated
+            with the Government of India.
+          </Body1>
+
           <div className='flex flex-wrap items-center justify-center gap-4'>
             <Link href='/docs'>
               <Button size='lg' suffixIcon={<ArrowRight className='size-4' />}>
