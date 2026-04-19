@@ -1,4 +1,3 @@
-/* eslint-disable eslint-frontend-rules/enforce-typography-components */
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -8,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Body2 } from '@/components/ui/typography';
 
 export function CardDefault() {
   return (
@@ -17,10 +17,10 @@ export function CardDefault() {
         <CardDescription>Card description goes here.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className='text-sm'>
+        <Body2 className='text-sm'>
           Cards are flexible content containers. They include options for headers, footers, content,
           and images.
-        </p>
+        </Body2>
       </CardContent>
       <CardFooter>
         <Button size='sm'>Action</Button>
@@ -40,10 +40,10 @@ export function CardWithImage() {
         <CardDescription>Supporting text below the title.</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className='text-sm'>
+        <Body2 className='text-sm'>
           Some quick example text to build on the card title and make up the bulk of the card
           content.
-        </p>
+        </Body2>
       </CardContent>
       <CardFooter className='gap-2'>
         <Button size='sm'>Primary</Button>
@@ -59,9 +59,9 @@ export function CardSimple() {
   return (
     <Card className='w-[350px]'>
       <CardContent className='pt-6'>
-        <p className='text-sm'>
+        <Body2 className='text-sm'>
           This is a simple card with only body content. No header or footer needed.
-        </p>
+        </Body2>
       </CardContent>
     </Card>
   );
@@ -77,7 +77,7 @@ export function CardGrid() {
             <CardDescription>Card description</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className='text-sm'>Content for the {title.toLowerCase()} card.</p>
+            <Body2 className='text-sm'>Content for the {title.toLowerCase()} card.</Body2>
           </CardContent>
         </Card>
       ))}
