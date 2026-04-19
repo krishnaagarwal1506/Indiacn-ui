@@ -9,16 +9,14 @@ Chips are compact elements used to represent inputs, attributes, or actions. The
 
 ## Installation
 
-<ComponentSource
-  collapsible={false}
-  code={`import { Chip } from '@/components/ui/chip';`}
-/>
+<ComponentSource collapsible={false} code={`import { Chip } from '@/components/ui/chip';`} />
 
 ## Usage
 
-```tsx
-<Chip>Label</Chip>
-```
+<ComponentSource
+  collapsible={false}
+  code={`<Chip>Label</Chip>`}
+/>
 
 ## Examples
 
@@ -64,12 +62,12 @@ Chips can be toggled into a selected state for use in filter or choice scenarios
 
 ### Chip
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `filled \| outlined \| tonal` | `outlined` | Visual style (neutral border by default, matching UX4G) |
-| `size` | `sm \| md \| lg` | `md` | Chip size |
-| `icon` | `ReactNode` | — | Leading icon |
-| `avatar` | `ReactNode` | — | Avatar element |
-| `onDismiss` | `() => void` | — | Dismiss callback, shows close button |
-| `selected` | `boolean` | — | Selected state |
-| `disabled` | `boolean` | — | Disabled state |
+| Prop        | Type                          | Default    | Description                                             |
+| ----------- | ----------------------------- | ---------- | ------------------------------------------------------- |
+| `variant`   | `filled \| outlined \| tonal` | `outlined` | Visual style (neutral border by default, matching UX4G) |
+| `size`      | `sm \| md \| lg`              | `md`       | Chip size                                               |
+| `icon`      | `ReactNode`                   | —          | Leading icon                                            |
+| `avatar`    | `ReactNode`                   | —          | Avatar element                                          |
+| `onDismiss` | `() => void`                  | —          | Dismiss callback, shows close button                    |
+| `selected`  | `boolean`                     | —          | Selected state                                          |
+| `disabled`  | `boolean`                     | —          | Disabled state                                          |

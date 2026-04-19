@@ -16,16 +16,17 @@ Collapse toggles the visibility of content sections with a smooth height animati
 
 ## Usage
 
-```tsx
-<Collapse>
+<ComponentSource
+  collapsible={false}
+  code={`<Collapse>
   <CollapseTrigger asChild>
     <Button>Toggle</Button>
   </CollapseTrigger>
   <CollapseContent>
     <p>Collapsible content here.</p>
   </CollapseContent>
-</Collapse>
-```
+</Collapse>`}
+/>
 
 ## Examples
 

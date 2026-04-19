@@ -19,16 +19,17 @@ Dropdowns display a list of actions or options when triggered. Built on Radix UI
 
 ## Usage
 
-```tsx
-<Dropdown>
+<ComponentSource
+  collapsible={false}
+  code={`<Dropdown>
   <DropdownTrigger asChild>
     <Button variant="outlined">Open</Button>
   </DropdownTrigger>
   <DropdownContent>
     <DropdownItem>Action</DropdownItem>
   </DropdownContent>
-</Dropdown>
-```
+</Dropdown>`}
+/>
 
 ## Examples
 

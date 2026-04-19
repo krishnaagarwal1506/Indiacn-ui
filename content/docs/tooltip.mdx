@@ -16,16 +16,17 @@ Tooltips display supplementary information on hover or focus. Built on Radix UI 
 
 ## Usage
 
-```tsx
-<TooltipProvider>
+<ComponentSource
+  collapsible={false}
+  code={`<TooltipProvider>
   <Tooltip>
     <TooltipTrigger>Hover me</TooltipTrigger>
     <TooltipContent>
       <p>Tooltip text</p>
     </TooltipContent>
   </Tooltip>
-</TooltipProvider>
-```
+</TooltipProvider>`}
+/>
 
 ## Examples
 

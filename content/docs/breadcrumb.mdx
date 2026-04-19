@@ -24,8 +24,9 @@ Breadcrumbs indicate the current page's location within a navigational hierarchy
 
 ## Usage
 
-```tsx
-<Breadcrumb>
+<ComponentSource
+  collapsible={false}
+  code={`<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
       <BreadcrumbLink href="/">Home</BreadcrumbLink>
@@ -35,8 +36,8 @@ Breadcrumbs indicate the current page's location within a navigational hierarchy
       <BreadcrumbPage>Current Page</BreadcrumbPage>
     </BreadcrumbItem>
   </BreadcrumbList>
-</Breadcrumb>
-```
+</Breadcrumb>`}
+/>
 
 ## Examples
 

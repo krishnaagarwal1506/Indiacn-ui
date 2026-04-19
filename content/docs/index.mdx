@@ -50,14 +50,15 @@ npm install @radix-ui/react-slot class-variance-authority tailwind-merge clsx lu
 
 ### 4. Add the `cn` utility
 
-```tsx title="utils/index.ts"
-import { clsx, type ClassValue } from 'clsx';
+<ComponentSource
+  collapsible={false}
+  code={`import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
-}
-```
+}`}
+/>
 
 ### 5. Start using components
 

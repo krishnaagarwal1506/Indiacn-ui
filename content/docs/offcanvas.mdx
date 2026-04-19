@@ -19,8 +19,9 @@ Offcanvas components slide in from the edges of the viewport, useful for navigat
 
 ## Usage
 
-```tsx
-<Offcanvas>
+<ComponentSource
+  collapsible={false}
+  code={`<Offcanvas>
   <OffcanvasTrigger asChild>
     <Button>Open</Button>
   </OffcanvasTrigger>
@@ -28,8 +29,8 @@ Offcanvas components slide in from the edges of the viewport, useful for navigat
     <OffcanvasHeader><OffcanvasTitle>Title</OffcanvasTitle></OffcanvasHeader>
     <OffcanvasBody>Content here</OffcanvasBody>
   </OffcanvasContent>
-</Offcanvas>
-```
+</Offcanvas>`}
+/>
 
 ## Examples
 

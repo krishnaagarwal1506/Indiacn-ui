@@ -19,16 +19,17 @@ Pagination helps users navigate through large sets of data split across multiple
 
 ## Usage
 
-```tsx
-<Pagination>
+<ComponentSource
+  collapsible={false}
+  code={`<Pagination>
   <PaginationContent>
     <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
     <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
     <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
     <PaginationItem><PaginationNext href="#" /></PaginationItem>
   </PaginationContent>
-</Pagination>
-```
+</Pagination>`}
+/>
 
 ## Examples
 

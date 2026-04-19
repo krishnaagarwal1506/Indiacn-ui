@@ -16,12 +16,13 @@ Toasts deliver brief notifications to users without interrupting their workflow.
 
 ## Usage
 
-```tsx
-<Toast onDismiss={() => {}}>
+<ComponentSource
+  collapsible={false}
+  code={`<Toast onDismiss={() => {}}>
   <ToastTitle>Notification</ToastTitle>
   <ToastDescription>Your changes have been saved.</ToastDescription>
-</Toast>
-```
+</Toast>`}
+/>
 
 ## Examples
 
