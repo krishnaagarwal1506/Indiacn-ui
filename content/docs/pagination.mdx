@@ -55,14 +55,16 @@ Use `variant="flat"` on `Pagination` for a borderless pagination style.
 
 ### Pagination
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `default \| flat` | `default` | `default` shows bordered links, `flat` removes borders |
+| Prop      | Type              | Default   | Description                                       |
+| --------- | ----------------- | --------- | ------------------------------------------------- |
+| `variant` | `default \| flat` | `default` | Controls whether links are bordered or borderless |
+| `size`    | `sm \| md \| lg`  | `md`      | Applies a shared size to all pagination links     |
 
 ### PaginationLink
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `isActive` | `boolean` | `false` | Highlights as current page |
-| `disabled` | `boolean` | `false` | Disables the link |
-| `size` | `sm \| md \| lg` | `md` | Link size |
+| Prop       | Type              | Default  | Description                                       |
+| ---------- | ----------------- | -------- | ------------------------------------------------- |
+| `isActive` | `boolean`         | `false`  | Highlights as the current page                    |
+| `disabled` | `boolean`         | `false`  | Disables the link                                 |
+| `size`     | `sm \| md \| lg`  | inherits | Overrides the container size for a single item    |
+| `variant`  | `default \| flat` | inherits | Overrides the container variant for a single item |

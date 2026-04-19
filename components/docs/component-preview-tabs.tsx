@@ -24,7 +24,7 @@ export function ComponentPreviewTabs({
   }[align];
 
   return (
-    <div className={cn('my-6', className)} {...props}>
+    <div className={cn('not-prose my-6', className)} {...props}>
       <Tabs defaultValue='preview'>
         <TabsList>
           <TabsTrigger value='preview'>Preview</TabsTrigger>

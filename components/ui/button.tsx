@@ -2,7 +2,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps, ReactNode } from 'react';
 
-import { Label1, Label2, Title2 } from '@/components/ui/typography';
+import { Body1, Label1, Label2 } from '@/components/ui/typography';
 import { cn } from '@/utils';
 
 interface IButtonProps extends ComponentProps<'button'>, VariantProps<typeof BUTTON_VARIANTS> {
@@ -137,7 +137,7 @@ function Button({
   const TextComponent = (() => {
     if (size === 'sm') return Label2;
     if (size === 'md') return Label1;
-    if (size === 'lg') return Title2;
+    if (size === 'lg') return Body1;
     else return Label1;
   })();
 

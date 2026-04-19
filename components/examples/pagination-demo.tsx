@@ -7,6 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import { Label1 } from '@/components/ui/typography';
 
 export function PaginationDefault() {
   return (
@@ -36,28 +37,24 @@ export function PaginationDefault() {
 
 export function PaginationFlat() {
   return (
-    <Pagination>
+    <Pagination variant='flat'>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious href='#' variant='flat' />
+          <PaginationPrevious href='#' aria-label='Previous page'>
+            <Label1 className='sr-only'>Previous</Label1>
+          </PaginationPrevious>
         </PaginationItem>
+        {['1', '2', '3', '4', '5', '6', '7', '8'].map(page => (
+          <PaginationItem key={page}>
+            <PaginationLink href='#' isActive={page === '4'}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
         <PaginationItem>
-          <PaginationLink href='#' variant='flat'>
-            1
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href='#' variant='flat' isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href='#' variant='flat'>
-            3
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext href='#' variant='flat' />
+          <PaginationNext href='#' aria-label='Next page'>
+            <Label1 className='sr-only'>Next</Label1>
+          </PaginationNext>
         </PaginationItem>
       </PaginationContent>
     </Pagination>
@@ -75,18 +72,18 @@ export function PaginationWithEllipsis() {
           <PaginationLink href='#'>1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href='#' isActive>
-            2
-          </PaginationLink>
+          <PaginationLink href='#'>2</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href='#'>3</PaginationLink>
+          <PaginationLink href='#' isActive>
+            3
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href='#'>10</PaginationLink>
+          <PaginationLink href='#'>8</PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationNext href='#' />
@@ -99,41 +96,33 @@ export function PaginationWithEllipsis() {
 export function PaginationSizes() {
   return (
     <div className='flex flex-col gap-4'>
-      <Pagination>
+      <Pagination size='sm'>
         <PaginationContent>
           <PaginationItem>
-            <PaginationLink href='#' size='sm'>
-              1
-            </PaginationLink>
+            <PaginationLink href='#'>1</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href='#' size='sm' isActive>
+            <PaginationLink href='#' isActive>
               2
             </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href='#' size='sm'>
-              3
-            </PaginationLink>
+            <PaginationLink href='#'>3</PaginationLink>
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-      <Pagination>
+      <Pagination size='lg'>
         <PaginationContent>
           <PaginationItem>
-            <PaginationLink href='#' size='lg'>
-              1
-            </PaginationLink>
+            <PaginationLink href='#'>1</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href='#' size='lg' isActive>
+            <PaginationLink href='#' isActive>
               2
             </PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href='#' size='lg'>
-              3
-            </PaginationLink>
+            <PaginationLink href='#'>3</PaginationLink>
           </PaginationItem>
         </PaginationContent>
       </Pagination>

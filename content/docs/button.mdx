@@ -1,0 +1,59 @@
+---
+title: Button
+description: Trigger actions with flexible styles, themes, sizes, and icon support.
+---
+
+## Introduction
+
+Buttons help users perform actions such as submitting forms, confirming choices, or navigating flows. The component supports multiple variants, semantic themes, icon placement, loading states, and icon-only buttons.
+
+## Installation
+
+<ComponentSource collapsible={false} code={`import { Button } from '@/components/ui/button';`} />
+
+## Usage
+
+<ComponentSource collapsible={false} code={`<Button>Primary Action</Button>`} />
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ButtonDefault' />
+
+### Variants
+
+<ComponentPreview name='ButtonVariants' />
+
+### Themes
+
+<ComponentPreview name='ButtonThemes' />
+
+### Sizes
+
+<ComponentPreview name='ButtonSizes' />
+
+### With Icons
+
+<ComponentPreview name='ButtonWithIcons' />
+
+### Loading
+
+<ComponentPreview name='ButtonLoading' />
+
+## API Reference
+
+### Button
+
+| Prop                        | Type                                  | Default   | Description                                    |
+| --------------------------- | ------------------------------------- | --------- | ---------------------------------------------- |
+| `variant`                   | `filled \| outlined \| tonal \| text` | `filled`  | Visual style of the button                     |
+| `theme`                     | `primary \| success \| destructive`   | `primary` | Color theme                                    |
+| `size`                      | `sm \| md \| lg`                      | `md`      | Button size                                    |
+| `loading`                   | `boolean`                             | `false`   | Shows a spinner and disables interaction       |
+| `disabled`                  | `boolean`                             | `false`   | Disables the button                            |
+| `prefixIcon`                | `ReactNode`                           | —         | Leading icon                                   |
+| `suffixIcon`                | `ReactNode`                           | —         | Trailing icon                                  |
+| `iconButton`                | `boolean`                             | `false`   | Renders as icon-only button                    |
+| `asChild`                   | `boolean`                             | `false`   | Renders the button styles onto a child element |
+| `contentContainerClassName` | `string`                              | —         | Extra classes for the label wrapper            |
