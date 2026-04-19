@@ -53,7 +53,7 @@ function DropdownSubTrigger({
   return (
     <DropdownMenuPrimitive.SubTrigger
       className={cn(
-        'dark:focus:bg-primary-100 dark:data-[state=open]:bg-primary-100 flex cursor-default items-center px-4 py-1 outline-none select-none focus:bg-[#FAEFFF] data-[state=open]:bg-[#FAEFFF]',
+        'flex cursor-default items-center px-4 py-1 outline-none select-none focus:bg-[#FAEFFF] data-[state=open]:bg-[#FAEFFF]',
         inset && 'pl-8',
         className,
       )}
@@ -73,7 +73,7 @@ function DropdownSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       className={cn(
-        'z-50 min-w-40 overflow-hidden rounded-lg border border-black/17.5 bg-white py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] dark:border-neutral-700 dark:bg-neutral-900',
+        'bg-neutral-0 z-50 min-w-40 overflow-hidden rounded-lg border border-black/17.5 py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)]',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className,
       )}
@@ -102,7 +102,7 @@ function DropdownContent({
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           variant === 'dark'
             ? 'border-black/17.5 bg-[#343a40] text-[#dee2e6]'
-            : 'text-neutral border-black/17.5 bg-white dark:border-neutral-700 dark:bg-neutral-900',
+            : 'text-neutral bg-neutral-0 border-black/17.5',
           className,
         )}
         {...props}
@@ -121,7 +121,7 @@ function DropdownItem({
   return (
     <DropdownMenuPrimitive.Item
       className={cn(
-        'dark:focus:bg-primary-100 relative flex w-full cursor-default items-center px-4 py-1 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'relative flex w-full cursor-default items-center px-4 py-1 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
         inset && 'pl-8',
         className,
       )}
@@ -142,7 +142,7 @@ function DropdownCheckboxItem({
   return (
     <DropdownMenuPrimitive.CheckboxItem
       className={cn(
-        'dark:focus:bg-primary-100 relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
         className,
       )}
       checked={checked}
@@ -167,7 +167,7 @@ function DropdownRadioItem({
   return (
     <DropdownMenuPrimitive.RadioItem
       className={cn(
-        'dark:focus:bg-primary-100 relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
         className,
       )}
       {...props}
@@ -210,7 +210,7 @@ function DropdownSeparator({
 }: ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
   return (
     <DropdownMenuPrimitive.Separator
-      className={cn('my-2 h-px bg-black/17.5 dark:bg-neutral-700', className)}
+      className={cn('my-2 h-px bg-black/17.5', className)}
       {...props}
     />
   );

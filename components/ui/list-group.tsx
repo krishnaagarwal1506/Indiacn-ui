@@ -16,12 +16,11 @@ const LIST_GROUP_ITEM_VARIANTS = cva(
     variants: {
       theme: {
         default: '',
-        primary: 'bg-primary-50 text-primary-900 dark:bg-primary-900/20 dark:text-primary-100',
-        secondary:
-          'bg-secondary-50 text-secondary-900 dark:bg-secondary-900/20 dark:text-secondary-100',
-        success: 'bg-success-50 text-success-900 dark:bg-success-900/20 dark:text-success-100',
-        danger: 'bg-danger-50 text-danger-900 dark:bg-danger-900/20 dark:text-danger-100',
-        warning: 'bg-warning-50 text-warning-900 dark:bg-warning-900/20 dark:text-warning-100',
+        primary: 'bg-primary-50 text-primary-900',
+        secondary: 'bg-secondary-50 text-secondary-900',
+        success: 'bg-success-50 text-success-900',
+        danger: 'bg-danger-50 text-danger-900',
+        warning: 'bg-warning-50 text-warning-900',
       },
     },
     defaultVariants: {
@@ -70,8 +69,7 @@ function ListGroupItem({
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
         active && 'bg-primary text-white',
         disabled && 'pointer-events-none opacity-50 select-none',
-        action &&
-          'cursor-pointer hover:bg-neutral-50 active:bg-neutral-100 dark:hover:bg-neutral-800 dark:active:bg-neutral-700',
+        action && 'cursor-pointer hover:bg-neutral-50 active:bg-neutral-100',
       )}
       {...props}
     />
@@ -94,7 +92,7 @@ function ListGroupAction({ className, theme, active, disabled, ...props }: IList
       tabIndex={disabled ? -1 : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        'cursor-pointer no-underline hover:bg-neutral-50 active:bg-neutral-100 dark:hover:bg-neutral-800 dark:active:bg-neutral-700',
+        'cursor-pointer no-underline hover:bg-neutral-50 active:bg-neutral-100',
         active && 'bg-primary text-white',
         disabled && 'pointer-events-none opacity-50 select-none',
       )}

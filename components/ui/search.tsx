@@ -8,7 +8,7 @@ import { ComponentProps, useCallback, useRef } from 'react';
 import { cn } from '@/utils';
 
 const SEARCH_VARIANTS = cva(
-  'flex items-center gap-2 rounded-lg border border-[#C6C6C6] bg-white transition-all focus-within:border-primary focus-within:shadow-[0px_0px_0px_4px_rgba(97,58,245,0.50)] dark:border-neutral-700 dark:bg-neutral-900',
+  'flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-0 transition-all focus-within:border-primary focus-within:shadow-[0px_0px_0px_4px_rgba(97,58,245,0.50)]',
   {
     variants: {
       size: {

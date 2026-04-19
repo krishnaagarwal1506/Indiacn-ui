@@ -60,10 +60,7 @@ function Progress({
       aria-valuenow={value}
       aria-valuemin={0}
       aria-valuemax={max}
-      className={cn(
-        'w-full overflow-hidden rounded-[5rem] bg-[#e9ecef] dark:bg-neutral-800',
-        className,
-      )}
+      className={cn('w-full overflow-hidden rounded-[5rem] bg-neutral-100', className)}
       style={{ height: height ?? '0.5rem' }}
       {...props}
     >

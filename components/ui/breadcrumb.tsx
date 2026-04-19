@@ -42,7 +42,7 @@ function BreadcrumbLink({ className, children, ...props }: ComponentProps<'a'>) 
   return (
     <a
       className={cn(
-        'text-neutral-500 no-underline transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100',
+        'text-neutral-500 no-underline transition-colors hover:text-neutral-900',
         className,
       )}
       {...props}
@@ -58,11 +58,7 @@ function BreadcrumbLink({ className, children, ...props }: ComponentProps<'a'>) 
  */
 function BreadcrumbPage({ className, children, ...props }: ComponentProps<'span'>) {
   return (
-    <Label2
-      aria-current='page'
-      className={cn('text-[#1C1D1F] dark:text-neutral-100', className)}
-      {...props}
-    >
+    <Label2 aria-current='page' className={cn('text-neutral', className)} {...props}>
       <Body2 className='font-medium'>{children}</Body2>
     </Label2>
   );
@@ -77,7 +73,7 @@ function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<'
     <li
       role='presentation'
       aria-hidden='true'
-      className={cn('text-neutral-500 dark:text-neutral-400 [&>svg]:size-3.5', className)}
+      className={cn('text-neutral-500 [&>svg]:size-3.5', className)}
       {...props}
     >
       {children ?? <Body2>/</Body2>}

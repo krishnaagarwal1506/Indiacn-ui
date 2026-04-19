@@ -29,9 +29,9 @@ function TabsList({ className, variant = 'tabs', ...props }: ITabsListProps) {
     <TabsPrimitive.List
       className={cn(
         'inline-flex items-center gap-0',
-        variant === 'tabs' && 'border-b border-neutral-200 dark:border-neutral-700',
+        variant === 'tabs' && 'border-b border-neutral-200',
         variant === 'pills' && 'gap-1',
-        variant === 'underline' && 'gap-0 border-b border-neutral-200 dark:border-neutral-700',
+        variant === 'underline' && 'gap-0 border-b border-neutral-200',
         className,
       )}
       {...props}
@@ -51,8 +51,8 @@ function TabsTrigger({ className, variant = 'tabs', ...props }: ITabsTriggerProp
         'disabled:text-secondary inline-flex items-center justify-center px-4 py-2 text-sm transition-all disabled:pointer-events-none disabled:opacity-50',
         variant === 'tabs' && [
           'relative -mb-px rounded-t-[0.375rem] border border-transparent',
-          'hover:border-neutral-100 hover:border-b-neutral-200 dark:hover:border-neutral-700 dark:hover:border-b-neutral-600',
-          'data-[state=active]:border-neutral-200 data-[state=active]:border-b-white data-[state=active]:bg-white data-[state=active]:text-neutral-700 dark:data-[state=active]:border-neutral-700 dark:data-[state=active]:border-b-neutral-900 dark:data-[state=active]:bg-neutral-900 dark:data-[state=active]:text-neutral-100',
+          'hover:border-neutral-100 hover:border-b-neutral-200',
+          'data-[state=active]:border-b-neutral-0 data-[state=active]:bg-neutral-0 data-[state=active]:border-neutral-200 data-[state=active]:text-neutral-700',
         ],
         variant === 'pills' && [
           'rounded-[0.375rem]',

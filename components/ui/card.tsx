@@ -17,10 +17,7 @@ import { cn } from '@/utils';
 function Card({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn(
-        'text-neutral rounded-lg border border-black/17.5 bg-white dark:border-neutral-700 dark:bg-neutral-900',
-        className,
-      )}
+      className={cn('text-neutral bg-neutral-0 rounded-lg border border-black/17.5', className)}
       {...props}
     />
   );
@@ -30,10 +27,7 @@ function Card({ className, ...props }: ComponentProps<'div'>) {
 function CardHeader({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn(
-        'text-neutral border-b border-black/17.5 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900',
-        className,
-      )}
+      className={cn('text-neutral bg-neutral-0 border-b border-black/17.5 p-4', className)}
       {...props}
     />
   );
@@ -51,7 +45,7 @@ function CardTitle({ className, ...props }: ComponentProps<'h3'>) {
 
 /** Card description text. */
 function CardDescription({ className, ...props }: ComponentProps<'p'>) {
-  return <Body2 className={cn('text-neutral-500 dark:text-neutral-400', className)} {...props} />;
+  return <Body2 className={cn('text-neutral-500', className)} {...props} />;
 }
 
 /** Card body content area. */
@@ -64,7 +58,7 @@ function CardFooter({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'text-neutral flex items-center border-t border-black/17.5 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900',
+        'text-neutral bg-neutral-0 flex items-center border-t border-black/17.5 p-4',
         className,
       )}
       {...props}

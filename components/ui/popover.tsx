@@ -24,7 +24,7 @@ function PopoverContent({
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          'text-neutral z-50 w-72 rounded-lg border border-black/17.5 bg-white p-4 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] outline-none dark:border-neutral-700 dark:bg-neutral-900',
+          'text-neutral bg-neutral-0 z-50 w-72 rounded-lg border border-black/17.5 p-4 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] outline-none',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',
           className,

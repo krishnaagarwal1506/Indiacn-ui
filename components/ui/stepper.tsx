@@ -109,10 +109,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
             isCompleted && 'border-success bg-success border text-white',
             isActive && 'border-primary text-primary border-2 bg-transparent',
             isWarning && 'border-danger text-danger border bg-transparent',
-            !isCompleted &&
-              !isActive &&
-              !isWarning &&
-              'border border-neutral-200 text-neutral-400 dark:border-neutral-600 dark:text-neutral-500',
+            !isCompleted && !isActive && !isWarning && 'border border-neutral-200 text-neutral-400',
           )}
         >
           {isCompleted ? (
@@ -144,12 +141,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
         )}
         {/* Horizontal connector line after icon+text */}
         {orientation === 'horizontal' && !isLast && (
-          <div
-            className={cn(
-              'ml-2 h-px flex-1',
-              isCompleted ? 'bg-success' : 'bg-neutral-200 dark:bg-neutral-600',
-            )}
-          />
+          <div className={cn('ml-2 h-px flex-1', isCompleted ? 'bg-success' : 'bg-neutral-200')} />
         )}
       </div>
       {/* Vertical connector line */}
@@ -157,7 +149,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
         <div
           className={cn(
             'absolute left-[2.45rem] w-px',
-            isCompleted ? 'bg-success' : 'bg-neutral-200 dark:bg-neutral-600',
+            isCompleted ? 'bg-success' : 'bg-neutral-200',
           )}
           style={{ top: '3.25rem', height: 'calc(100% - 2.45rem)' }}
         />

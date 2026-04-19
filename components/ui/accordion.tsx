@@ -26,7 +26,7 @@ function AccordionItem({ className, ...props }: ComponentProps<typeof AccordionP
   return (
     <AccordionPrimitive.Item
       className={cn(
-        'border-t border-b border-neutral-200 first:border-t-0 last:border-b-0 dark:border-neutral-700',
+        'border-t border-b border-neutral-200 first:border-t-0 last:border-b-0',
         className,
       )}
       {...props}
