@@ -15,16 +15,8 @@ import { useEffect, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Body1,
-  Body2,
-  Display6,
-  Headline1,
-  Headline2,
-  Headline5,
-  Label1,
-} from '@/components/ui/typography';
-import { GITHUB_URL } from '@/constants';
+import { Body1, Body2, Headline1, Headline2, Headline5, Label1 } from '@/components/ui/typography';
+import { GITHUB_URL, UX_4G_URL } from '@/constants';
 import { cn } from '@/utils';
 
 const COMPONENTS = [
@@ -113,6 +105,11 @@ export default function Home() {
                 GitHub
               </Button>
             </a>
+            <a href={UX_4G_URL} target='_blank' rel='noopener noreferrer'>
+              <Button size='lg' variant='outlined'>
+                Inspiration
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -173,12 +170,6 @@ export default function Home() {
               description:
                 'Every component follows WCAG 2.1 AA standards with proper ARIA attributes, roles, and keyboard support.',
             },
-            {
-              icon: <Sparkles className='size-6' />,
-              title: '8 Color Themes',
-              description:
-                'Primary, secondary, success, danger, warning, info, light, and dark — all matching UX4G specification.',
-            },
           ].map(feature => (
             <div
               key={feature.title}
@@ -189,24 +180,6 @@ export default function Home() {
               </div>
               <Headline5 className='mb-2'>{feature.title}</Headline5>
               <Body2 className='leading-relaxed text-neutral-500'>{feature.description}</Body2>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className='border-y border-neutral-200 bg-neutral-50/50 py-20'>
-        <div className='mx-auto flex max-w-5xl flex-col items-center gap-12 px-6 sm:flex-row sm:justify-between'>
-          {[
-            { value: '25+', label: 'Components' },
-            { value: '70+', label: 'Examples' },
-            { value: '8', label: 'Color Themes' },
-            { value: '100%', label: 'Accessible' },
-            { value: '0', label: 'Dependencies' },
-          ].map(stat => (
-            <div key={stat.label} className='text-center'>
-              <Display6 className='text-primary'>{stat.value}</Display6>
-              <Body2 className='mt-1 text-neutral-500'>{stat.label}</Body2>
             </div>
           ))}
         </div>
