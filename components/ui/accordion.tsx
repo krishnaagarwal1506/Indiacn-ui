@@ -8,12 +8,12 @@ import { cn } from '@/utils';
 
 /*
  * UX4G accordion:
- * - item: border-top/bottom only (no left/right), first-child no top, last-child no bottom
- * - button padding: 1rem 1.25rem, font-size 1rem
- * - active (not collapsed): box-shadow: 0px 0px 0px 4px rgba(97,58,245,0.50), border-radius: 8px, border: 1px solid primary
- * - focus: border-color #9161FF, box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25)
- * - body padding: 1rem 1.25rem
- * - icon: 1.25rem, rotates -180deg
+ * - item: border-top/bottom neutral-200, first no top, last no bottom
+ * - trigger padding: 1rem 1.25rem, font-size 1rem
+ * - open: border primary + shadow-focus-primary, rounded
+ * - focus: same as open (primary border + focus shadow)
+ * - body padding: 0 1.25rem 1rem
+ * - chevron: 1.25rem, rotates 180deg when open
  */
 
 /** Accordion root component. */
@@ -45,8 +45,8 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         className={cn(
           'text-neutral flex flex-1 items-center justify-between px-5 py-4 text-base transition-all',
-          'focus:border-primary focus:shadow-focus-primary focus:z-3 focus:outline-none',
-          'data-[state=open]:border-primary data-[state=open]:rounded-lg data-[state=open]:border data-[state=open]:shadow-[0px_0px_0px_4px_rgba(97,58,245,0.50)]',
+          'focus-visible:border-primary focus-visible:shadow-focus-primary focus-visible:z-3 focus-visible:rounded-lg focus-visible:border focus-visible:outline-none',
+          'data-[state=open]:border-primary data-[state=open]:shadow-focus-primary data-[state=open]:rounded-lg data-[state=open]:border',
           '[&[data-state=open]>svg]:rotate-180',
           className,
         )}

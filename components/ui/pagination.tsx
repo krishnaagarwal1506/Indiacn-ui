@@ -40,11 +40,10 @@ function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
   return (
     <ul
       className={cn(
-        'flex flex-row items-center pl-0',
+        'flex list-none flex-row items-center pl-0',
         variant === 'flat' ? 'gap-1.5' : 'gap-0',
         className,
       )}
-      style={{ listStyle: 'none' }}
       {...props}
     />
   );
@@ -62,6 +61,19 @@ interface IPaginationLinkProps extends ComponentProps<'a'> {
   variant?: TPaginationVariant;
 }
 
+const PAGINATION_SIZE_CLASSES: Record<TPaginationVariant, Record<TPaginationSize, string>> = {
+  default: {
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-3 py-1.5 text-base',
+    lg: 'px-6 py-3 text-lg',
+  },
+  flat: {
+    sm: 'size-7 text-sm',
+    md: 'size-8 text-base',
+    lg: 'size-10 text-lg',
+  },
+};
+
 /** UX4G-style page link with default and flat variants. */
 function PaginationLink({
   className,
@@ -76,18 +88,6 @@ function PaginationLink({
   const resolvedSize = size ?? pagination.size;
   const resolvedVariant = variant ?? pagination.variant;
 
-  const defaultSizeClasses = {
-    sm: 'px-2 py-1 text-sm',
-    md: 'px-3 py-1.5 text-base',
-    lg: 'px-6 py-3 text-lg',
-  };
-
-  const flatSizeClasses = {
-    sm: 'size-7 text-sm',
-    md: 'size-8 text-base',
-    lg: 'size-10 text-lg',
-  };
-
   if (resolvedVariant === 'flat') {
     return (
       <a
@@ -95,11 +95,11 @@ function PaginationLink({
         aria-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : undefined}
         className={cn(
-          'focus-visible:ring-primary/25 inline-flex items-center justify-center rounded-lg border border-transparent bg-transparent no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:ring-4 focus-visible:outline-none',
-          flatSizeClasses[resolvedSize],
+          'focus-visible:shadow-focus-primary inline-flex items-center justify-center rounded-lg border border-transparent bg-transparent no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:outline-none',
+          PAGINATION_SIZE_CLASSES.flat[resolvedSize],
           isActive
-            ? 'border-primary bg-transparent font-bold text-neutral-900'
-            : 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
+            ? 'border-primary text-neutral bg-transparent font-bold'
+            : 'hover:text-neutral text-neutral-600 hover:bg-neutral-100',
           disabled && 'pointer-events-none text-neutral-400',
           className,
         )}
@@ -116,12 +116,12 @@ function PaginationLink({
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       className={cn(
-        'text-primary focus-visible:ring-primary/25 relative -ml-px inline-flex items-center justify-center border border-[#dee2e6] bg-white no-underline transition-[color,background-color,border-color,box-shadow] duration-150 first:ml-0 first:rounded-l-md last:rounded-r-md focus-visible:z-10 focus-visible:ring-4 focus-visible:outline-none',
-        defaultSizeClasses[resolvedSize],
+        'text-primary focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 first:ml-0 first:rounded-l-md last:rounded-r-md focus-visible:z-10 focus-visible:outline-none',
+        PAGINATION_SIZE_CLASSES.default[resolvedSize],
         isActive
-          ? 'border-primary bg-primary z-3 text-white'
+          ? 'border-primary bg-primary text-neutral-0 z-3'
           : 'hover:text-primary hover:z-2 hover:bg-neutral-100',
-        disabled && 'text-secondary pointer-events-none border-[#dee2e6]',
+        disabled && 'pointer-events-none text-neutral-400',
         className,
       )}
       {...props}
@@ -163,27 +163,14 @@ function PaginationNext({ className, children, ...props }: ComponentProps<typeof
 function PaginationEllipsis({ className, ...props }: ComponentProps<'div'>) {
   const { size, variant } = useContext(PAGINATION_CONTEXT);
 
-  const ellipsisSizeClasses =
-    variant === 'flat'
-      ? {
-          sm: 'size-7 text-sm',
-          md: 'size-8 text-base',
-          lg: 'size-10 text-lg',
-        }
-      : {
-          sm: 'px-2 py-1 text-sm',
-          md: 'px-3 py-1.5 text-base',
-          lg: 'px-6 py-3 text-lg',
-        };
-
   return (
     <div
       aria-hidden
       className={cn(
         variant === 'flat'
           ? 'inline-flex items-center justify-center rounded-lg text-neutral-600'
-          : 'relative -ml-px inline-flex items-center justify-center border border-[#dee2e6] bg-white text-neutral-600',
-        ellipsisSizeClasses[size],
+          : 'bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600',
+        PAGINATION_SIZE_CLASSES[variant][size],
         className,
       )}
       {...props}

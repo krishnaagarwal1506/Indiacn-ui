@@ -10,19 +10,27 @@ const BADGE_VARIANTS = cva(
   {
     variants: {
       theme: {
-        primary: '[--badge-bg:#613AF5] [--badge-text:#fff]',
-        secondary: '[--badge-bg:#938BB6] [--badge-text:#fff]',
-        success: '[--badge-bg:#3C9718] [--badge-text:#fff]',
-        danger: '[--badge-bg:#B7131A] [--badge-text:#fff]',
-        warning: '[--badge-bg:#B77224] [--badge-text:#fff]',
-        info: '[--badge-bg:#00AAFF] [--badge-text:#fff]',
-        light: '[--badge-bg:#f8f9fa] [--badge-text:#000]',
-        dark: '[--badge-bg:#212121] [--badge-text:#fff]',
+        primary:
+          'text-primary [--badge-bg:var(--color-primary)] [--badge-bg-tonal:var(--color-primary-100)] [--badge-border-color:var(--color-primary)] [--badge-text-color:var(--color-primary)]',
+        secondary:
+          'text-secondary [--badge-bg:var(--color-secondary)] [--badge-bg-tonal:var(--color-secondary-100)] [--badge-border-color:var(--color-secondary)] [--badge-text-color:var(--color-secondary)]',
+        success:
+          'text-success [--badge-bg:var(--color-success)] [--badge-bg-tonal:var(--color-success-100)] [--badge-border-color:var(--color-success)] [--badge-text-color:var(--color-success)]',
+        danger:
+          'text-danger [--badge-bg:var(--color-danger)] [--badge-bg-tonal:var(--color-danger-100)] [--badge-border-color:var(--color-danger)] [--badge-text-color:var(--color-danger)]',
+        warning:
+          'text-warning [--badge-bg:var(--color-warning)] [--badge-bg-tonal:var(--color-warning-100)] [--badge-border-color:var(--color-warning)] [--badge-text-color:var(--color-warning)]',
+        info: 'text-info [--badge-bg:var(--color-info)] [--badge-bg-tonal:var(--color-info-100)] [--badge-border-color:var(--color-info)] [--badge-text-color:var(--color-info)]',
+        neutral:
+          'text-neutral [--badge-bg:var(--color-neutral)] [--badge-bg-tonal:var(--color-neutral-100)] [--badge-border-color:var(--color-neutral)] [--badge-text-color:var(--color-neutral)]',
+        light:
+          'text-neutral [--badge-bg:var(--color-neutral-50)] [--badge-bg-tonal:var(--color-neutral-50)] [--badge-border-color:var(--color-neutral-200)] [--badge-text-color:var(--color-neutral)]',
+        dark: 'text-neutral-0 [--badge-bg:var(--color-neutral)] [--badge-bg-tonal:var(--color-neutral-900)] [--badge-border-color:var(--color-neutral)] [--badge-text-color:var(--color-neutral-0)]',
       },
       variant: {
-        filled: 'bg-(--badge-bg) text-(--badge-text) border border-transparent',
-        outlined: 'bg-transparent border border-(--badge-bg) text-(--badge-bg)',
-        tonal: 'bg-(--badge-bg)/15 text-(--badge-bg) border border-transparent',
+        filled: 'bg-(--badge-bg) text-neutral-0 border border-transparent',
+        outlined: 'bg-transparent border border-(--badge-border-color) text-(--badge-text-color)',
+        tonal: 'bg-(--badge-bg-tonal) text-(--badge-text-color) border border-transparent',
       },
       size: {
         sm: 'px-[0.4em] py-[0.2em]',
@@ -31,9 +39,13 @@ const BADGE_VARIANTS = cva(
       },
       shape: {
         default: 'rounded-[0.375rem]',
-        pill: 'rounded-[6.25rem]',
+        pill: 'rounded-full',
       },
     },
+    compoundVariants: [
+      { theme: 'light', variant: 'filled', className: 'text-neutral' },
+      { theme: 'dark', variant: 'filled', className: 'text-neutral-0' },
+    ],
     defaultVariants: {
       theme: 'primary',
       variant: 'filled',
@@ -52,10 +64,10 @@ interface IBadgeProps
  * Matches the UX4G 2.0 Badge specification.
  *
  * Supports:
- * - Multiple visual variants: filled, outlined, tonal
- * - Theme colors: primary, secondary, success, danger, warning, info, light, dark
- * - Three sizes: sm, md, lg
- * - Shape options: default (rounded) or pill (fully rounded)
+ * - Visual variants: filled, outlined, tonal
+ * - Theme colors: primary, secondary, success, danger, warning, info, neutral, light, dark
+ * - Sizes: sm, md, lg
+ * - Shapes: default (rounded), pill (fully rounded)
  */
 function Badge({ className, variant, theme, size, children, shape, ...props }: IBadgeProps) {
   return (

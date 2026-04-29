@@ -1,23 +1,23 @@
 import Image from 'next/image';
 import { ComponentProps } from 'react';
 
-import { Body2, Headline3 } from '@/components/ui/typography';
+import { Body2, Headline5 } from '@/components/ui/typography';
 import { cn } from '@/utils';
 
 /*
- * UX4G card: border-radius 0.5rem, border 1px solid rgba(0,0,0,0.175),
- * card-body padding 1rem, card-header/footer padding 1rem, bg rgba(255,255,255,1),
- * card-header border-bottom 1px solid rgba(0,0,0,0.175)
- * card-footer border-top 1px solid rgba(0,0,0,0.175)
- * card-title margin-bottom 1rem
- * card-img-top border-radius calc(0.5rem - 1px)
+ * UX4G card: border-radius 0.5rem, border 1px solid neutral-200, bg neutral-0,
+ * card-body / card-header / card-footer padding 1rem, card-header border-bottom 1px,
+ * card-footer border-top 1px, card-img-top border-radius calc(0.5rem - 1px)
  */
 
 /** Card container component. */
 function Card({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn('text-neutral bg-neutral-0 rounded-lg border border-black/17.5', className)}
+      className={cn(
+        'bg-neutral-0 text-neutral flex flex-col rounded-lg border border-neutral-200',
+        className,
+      )}
       {...props}
     />
   );
@@ -26,21 +26,13 @@ function Card({ className, ...props }: ComponentProps<'div'>) {
 /** Card header section. */
 function CardHeader({ className, ...props }: ComponentProps<'div'>) {
   return (
-    <div
-      className={cn('text-neutral bg-neutral-0 border-b border-black/17.5 p-4', className)}
-      {...props}
-    />
+    <div className={cn('text-neutral border-b border-neutral-200 p-4', className)} {...props} />
   );
 }
 
 /** Card title heading. */
 function CardTitle({ className, ...props }: ComponentProps<'h3'>) {
-  return (
-    <Headline3
-      className={cn('mb-4 text-lg leading-none font-semibold tracking-tight', className)}
-      {...props}
-    />
-  );
+  return <Headline5 className={cn('mb-2 tracking-tight', className)} {...props} />;
 }
 
 /** Card description text. */
@@ -57,10 +49,7 @@ function CardContent({ className, ...props }: ComponentProps<'div'>) {
 function CardFooter({ className, ...props }: ComponentProps<'div'>) {
   return (
     <div
-      className={cn(
-        'text-neutral bg-neutral-0 flex items-center border-t border-black/17.5 p-4',
-        className,
-      )}
+      className={cn('text-neutral flex items-center border-t border-neutral-200 p-4', className)}
       {...props}
     />
   );
@@ -70,7 +59,7 @@ function CardFooter({ className, ...props }: ComponentProps<'div'>) {
 function CardImage({ className, alt = '', ...props }: ComponentProps<typeof Image>) {
   return (
     <Image
-      className={cn('w-full rounded-t-[calc(0.5rem-1px)] object-cover', className)}
+      className={cn('w-full rounded-t-[calc(var(--radius)-1px)] object-cover', className)}
       alt={alt}
       {...props}
     />

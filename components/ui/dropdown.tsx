@@ -8,9 +8,10 @@ import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/utils';
 
 /*
- * UX4G dropdown: min-width 10rem, border-radius 0.5rem, padding-y 0.5rem, padding-x 0,
- * border 1px solid rgba(0,0,0,0.175), item padding 0.25rem 1rem,
- * item hover bg #FAEFFF, active bg #613AF5, header color #938BB6
+ * UX4G dropdown: min-width 10rem, border-radius 0.5rem, padding-y 0.5rem,
+ * border 1px solid neutral-200, item padding 0.25rem 1rem,
+ * item hover bg primary-50, active bg primary, header color secondary (neutral-500),
+ * divider: border-top 1px neutral-200, margin-y 0.5rem.
  */
 
 /** Dropdown menu root component. */
@@ -53,7 +54,7 @@ function DropdownSubTrigger({
   return (
     <DropdownMenuPrimitive.SubTrigger
       className={cn(
-        'flex cursor-default items-center px-4 py-1 outline-none select-none focus:bg-[#FAEFFF] data-[state=open]:bg-[#FAEFFF]',
+        'hover:bg-primary-50 focus:bg-primary-50 data-[state=open]:bg-primary-50 flex cursor-default items-center px-4 py-1 outline-none select-none',
         inset && 'pl-8',
         className,
       )}
@@ -73,7 +74,7 @@ function DropdownSubContent({
   return (
     <DropdownMenuPrimitive.SubContent
       className={cn(
-        'bg-neutral-0 z-50 min-w-40 overflow-hidden rounded-lg border border-black/17.5 py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)]',
+        'bg-neutral-0 text-neutral z-50 min-w-40 overflow-hidden rounded-lg border border-neutral-200 py-2 shadow-lg',
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
         className,
       )}
@@ -98,11 +99,11 @@ function DropdownContent({
       <DropdownMenuPrimitive.Content
         sideOffset={sideOffset}
         className={cn(
-          'z-50 min-w-40 overflow-hidden rounded-lg border py-2 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)]',
+          'z-50 min-w-40 overflow-hidden rounded-lg border py-2 shadow-lg',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
           variant === 'dark'
-            ? 'border-black/17.5 bg-[#343a40] text-[#dee2e6]'
-            : 'text-neutral bg-neutral-0 border-black/17.5',
+            ? 'text-neutral-0 border-neutral-800 bg-neutral-900'
+            : 'bg-neutral-0 text-neutral border-neutral-200',
           className,
         )}
         {...props}
@@ -121,7 +122,7 @@ function DropdownItem({
   return (
     <DropdownMenuPrimitive.Item
       className={cn(
-        'relative flex w-full cursor-default items-center px-4 py-1 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'focus:bg-primary-50 relative flex w-full cursor-default items-center px-4 py-1.5 text-sm transition-colors outline-none select-none data-disabled:pointer-events-none data-disabled:text-neutral-400',
         inset && 'pl-8',
         className,
       )}
@@ -142,7 +143,7 @@ function DropdownCheckboxItem({
   return (
     <DropdownMenuPrimitive.CheckboxItem
       className={cn(
-        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'focus:bg-primary-50 relative flex cursor-default items-center py-1.5 pr-4 pl-8 text-sm transition-colors outline-none select-none data-disabled:pointer-events-none data-disabled:text-neutral-400',
         className,
       )}
       checked={checked}
@@ -167,7 +168,7 @@ function DropdownRadioItem({
   return (
     <DropdownMenuPrimitive.RadioItem
       className={cn(
-        'relative flex cursor-default items-center py-1 pr-4 pl-8 text-sm transition-colors outline-none select-none focus:bg-[#FAEFFF] data-disabled:pointer-events-none data-disabled:text-neutral-400',
+        'focus:bg-primary-50 relative flex cursor-default items-center py-1.5 pr-4 pl-8 text-sm transition-colors outline-none select-none data-disabled:pointer-events-none data-disabled:text-neutral-400',
         className,
       )}
       {...props}
@@ -182,9 +183,7 @@ function DropdownRadioItem({
   );
 }
 
-/**
- * UX4G dropdown header: font-size 0.875rem, color #938BB6, padding 0.5rem 1rem
- */
+/** Section label inside a dropdown. UX4G: neutral-500, padding 0.5rem 1rem. */
 function DropdownLabel({
   className,
   inset,
@@ -193,7 +192,7 @@ function DropdownLabel({
 }: ComponentProps<typeof DropdownMenuPrimitive.Label> & { inset?: boolean }) {
   return (
     <DropdownMenuPrimitive.Label
-      className={cn('text-secondary px-4 py-2 text-sm', inset && 'pl-8', className)}
+      className={cn('px-4 py-2 text-sm text-neutral-500', inset && 'pl-8', className)}
       {...props}
     >
       {children}
@@ -201,16 +200,14 @@ function DropdownLabel({
   );
 }
 
-/**
- * UX4G dropdown divider: margin 0.5rem 0, border-top 1px solid rgba(0,0,0,0.175)
- */
+/** Divider inside a dropdown. UX4G: margin 0.5rem 0, border-top 1px neutral-200. */
 function DropdownSeparator({
   className,
   ...props
 }: ComponentProps<typeof DropdownMenuPrimitive.Separator>) {
   return (
     <DropdownMenuPrimitive.Separator
-      className={cn('my-2 h-px bg-black/17.5', className)}
+      className={cn('my-2 h-px bg-neutral-200', className)}
       {...props}
     />
   );
