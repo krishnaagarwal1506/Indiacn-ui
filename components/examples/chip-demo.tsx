@@ -25,9 +25,27 @@ export function ChipVariants() {
 export function ChipThemes() {
   return (
     <div className='flex flex-wrap gap-2'>
-      <Chip>Default</Chip>
-      <Chip variant='filled'>Filled</Chip>
-      <Chip variant='tonal'>Tonal</Chip>
+      <Chip theme='primary' variant='filled'>
+        Primary
+      </Chip>
+      <Chip theme='secondary' variant='filled'>
+        Secondary
+      </Chip>
+      <Chip theme='success' variant='filled'>
+        Success
+      </Chip>
+      <Chip theme='danger' variant='filled'>
+        Danger
+      </Chip>
+      <Chip theme='warning' variant='filled'>
+        Warning
+      </Chip>
+      <Chip theme='info' variant='filled'>
+        Info
+      </Chip>
+      <Chip theme='neutral' variant='filled'>
+        Neutral
+      </Chip>
     </div>
   );
 }

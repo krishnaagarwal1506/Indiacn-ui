@@ -79,7 +79,7 @@ function ModalContent({
       <ModalOverlay />
       <DialogPrimitive.Content
         className={cn(
-          'bg-neutral-0 fixed top-1/2 left-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg border border-black/17.5 shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] duration-300 ease-out',
+          'bg-neutral-0 fixed top-1/2 left-1/2 z-50 flex w-full -translate-x-1/2 -translate-y-1/2 flex-col rounded-lg border border-neutral-200 shadow-lg duration-300 ease-out',
           'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-top-[50px] data-[state=open]:slide-in-from-top-[50px]',
           scrollable && 'max-h-[calc(100vh-3.5rem)]',
           sizeClasses[size],

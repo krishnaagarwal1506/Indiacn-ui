@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Accessibility,
   ArrowRight,
   Code2,
   Github,
@@ -8,23 +9,14 @@ import {
   Palette,
   Sparkles,
   Zap,
-  Accessibility,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import {
-  Body1,
-  Body2,
-  Display6,
-  Headline1,
-  Headline2,
-  Headline5,
-  Label1,
-} from '@/components/ui/typography';
-import { GITHUB_URL } from '@/constants';
+import { Body1, Body2, Headline1, Headline2, Headline5, Label1 } from '@/components/ui/typography';
+import { GITHUB_URL, UX_4G_URL } from '@/constants';
 import { cn } from '@/utils';
 
 const COMPONENTS = [
@@ -33,6 +25,7 @@ const COMPONENTS = [
   'Badge',
   'Breadcrumb',
   'Button',
+  'Button Group',
   'Card',
   'Chip',
   'Collapse',
@@ -52,6 +45,52 @@ const COMPONENTS = [
   'Toast',
   'Tooltip',
   'Typography',
+];
+
+const STATS = [
+  { value: `${COMPONENTS.length}+`, label: 'Components' },
+  { value: '8', label: 'Theme colors' },
+  { value: '21', label: 'Typography styles' },
+  { value: '100%', label: 'Accessible' },
+];
+
+const FEATURES = [
+  {
+    icon: <Code2 className='size-6' />,
+    title: 'Copy & Paste',
+    description:
+      'No heavy dependency. Copy the component code into your project and own it. Customize freely.',
+  },
+  {
+    icon: <Palette className='size-6' />,
+    title: 'UX4G 2.0 Themed',
+    description:
+      '8 semantic theme colors (primary, secondary, success, danger, warning, info, light, dark) with full 50–900 shade scales.',
+  },
+  {
+    icon: <Layers className='size-6' />,
+    title: 'Radix UI Primitives',
+    description:
+      'Built on accessible Radix UI primitives with proper ARIA attributes and keyboard navigation.',
+  },
+  {
+    icon: <Zap className='size-6' />,
+    title: 'Tailwind CSS v4',
+    description:
+      'Powered by Tailwind CSS v4 and CSS variables for instant theming. No SASS compilation needed.',
+  },
+  {
+    icon: <Accessibility className='size-6' />,
+    title: 'WCAG 2.1 AA',
+    description:
+      'Every component follows WCAG 2.1 AA standards with proper ARIA attributes, roles, and keyboard support.',
+  },
+  {
+    icon: <Sparkles className='size-6' />,
+    title: 'Dark Mode Ready',
+    description:
+      'Every theme color ships with a matching dark-mode variant. Flip a class and the whole system adapts.',
+  },
 ];
 
 export default function Home() {
@@ -92,7 +131,8 @@ export default function Home() {
           </Headline1>
 
           <Body1 className='mx-auto mb-10 max-w-2xl text-lg text-neutral-600'>
-            Copy-paste ready React components built with Tailwind CSS and Radix UI.
+            {COMPONENTS.length} copy-paste ready React components built with Tailwind CSS and Radix
+            UI.
             <br className='hidden sm:block' /> Based on the UX4G 2.0 Design System for government
             and public-service applications.
           </Body1>
@@ -113,6 +153,11 @@ export default function Home() {
                 GitHub
               </Button>
             </a>
+            <a href={UX_4G_URL} target='_blank' rel='noopener noreferrer'>
+              <Button size='lg' variant='outlined'>
+                Inspiration
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -131,6 +176,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Stats */}
+      <section className='mx-auto max-w-6xl px-6 py-16'>
+        <div className='grid grid-cols-2 gap-6 sm:grid-cols-4'>
+          {STATS.map(stat => (
+            <div
+              key={stat.label}
+              className='bg-neutral-0 flex flex-col items-center rounded-xl border border-neutral-200 p-6 text-center'
+            >
+              <Headline2 className='text-primary mb-1 text-3xl font-bold tracking-tight sm:text-4xl'>
+                {stat.value}
+              </Headline2>
+              <Body2 className='text-neutral-500'>{stat.label}</Body2>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Features */}
       <section className='relative mx-auto max-w-6xl px-6 py-24'>
         <div className='mb-16 text-center'>
@@ -142,44 +204,7 @@ export default function Home() {
         </div>
 
         <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
-          {[
-            {
-              icon: <Code2 className='size-6' />,
-              title: 'Copy & Paste',
-              description:
-                'No heavy dependency. Copy the component code into your project and own it. Customize freely.',
-            },
-            {
-              icon: <Palette className='size-6' />,
-              title: 'UX4G 2.0 Themed',
-              description:
-                'Pre-configured with the official UX4G 2.0 color palette, typography, and spacing tokens.',
-            },
-            {
-              icon: <Layers className='size-6' />,
-              title: 'Radix UI Primitives',
-              description:
-                'Built on accessible Radix UI primitives with proper ARIA attributes and keyboard navigation.',
-            },
-            {
-              icon: <Zap className='size-6' />,
-              title: 'Tailwind CSS v4',
-              description:
-                'Built with Tailwind CSS v4 and CSS variables for instant theming. No SASS compilation needed.',
-            },
-            {
-              icon: <Accessibility className='size-6' />,
-              title: '100% Accessible',
-              description:
-                'Every component follows WCAG 2.1 AA standards with proper ARIA attributes, roles, and keyboard support.',
-            },
-            {
-              icon: <Sparkles className='size-6' />,
-              title: '8 Color Themes',
-              description:
-                'Primary, secondary, success, danger, warning, info, light, and dark — all matching UX4G specification.',
-            },
-          ].map(feature => (
+          {FEATURES.map(feature => (
             <div
               key={feature.title}
               className='group bg-neutral-0 hover:border-primary/25 rounded-xl border border-neutral-200 p-7 transition-all hover:shadow-md'
@@ -189,24 +214,6 @@ export default function Home() {
               </div>
               <Headline5 className='mb-2'>{feature.title}</Headline5>
               <Body2 className='leading-relaxed text-neutral-500'>{feature.description}</Body2>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className='border-y border-neutral-200 bg-neutral-50/50 py-20'>
-        <div className='mx-auto flex max-w-5xl flex-col items-center gap-12 px-6 sm:flex-row sm:justify-between'>
-          {[
-            { value: '25+', label: 'Components' },
-            { value: '70+', label: 'Examples' },
-            { value: '8', label: 'Color Themes' },
-            { value: '100%', label: 'Accessible' },
-            { value: '0', label: 'Dependencies' },
-          ].map(stat => (
-            <div key={stat.label} className='text-center'>
-              <Display6 className='text-primary'>{stat.value}</Display6>
-              <Body2 className='mt-1 text-neutral-500'>{stat.label}</Body2>
             </div>
           ))}
         </div>
