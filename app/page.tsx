@@ -17,7 +17,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Body1, Body2, Headline1, Headline2, Headline5, Label1 } from '@/components/ui/typography';
 import { GITHUB_URL, UX_4G_URL } from '@/constants';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 const COMPONENTS = [
   'Accordion',

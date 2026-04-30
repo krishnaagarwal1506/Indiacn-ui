@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { ComponentProps } from 'react';
 
 import { Headline5, Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G offcanvas: width 400px (left/right), height 30vh (top/bottom),

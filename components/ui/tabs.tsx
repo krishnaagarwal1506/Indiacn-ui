@@ -3,7 +3,7 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { ComponentProps, createContext, useContext } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G nav variants:

@@ -3,7 +3,7 @@
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import { ComponentProps } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /** Visual divider line, horizontal or vertical. */
 function Separator({

@@ -5,7 +5,7 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G tooltip: max-width 200px, padding 0.25rem 0.5rem, border-radius 0.25rem,

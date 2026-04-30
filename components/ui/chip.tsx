@@ -5,7 +5,7 @@ import { CheckCircle, X } from 'lucide-react';
 import { ComponentProps, ReactNode } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /**
  * Creates an onClick handler for a chip's dismiss button that stops event

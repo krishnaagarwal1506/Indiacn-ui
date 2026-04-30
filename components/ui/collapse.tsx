@@ -3,7 +3,7 @@
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { ComponentProps } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /** Collapsible root component. */
 function Collapse(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {

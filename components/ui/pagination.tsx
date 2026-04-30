@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import { ComponentProps, createContext, useContext } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 type TPaginationSize = 'sm' | 'md' | 'lg';
 type TPaginationVariant = 'default' | 'flat';

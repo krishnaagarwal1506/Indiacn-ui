@@ -4,7 +4,7 @@
 import { ChevronsDownUp, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 export function CodeCollapsibleWrapper({ children, className }: React.ComponentProps<'div'>) {
   const [isExpanded, setIsExpanded] = React.useState(false);

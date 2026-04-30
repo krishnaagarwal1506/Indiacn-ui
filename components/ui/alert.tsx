@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { ComponentProps, useState } from 'react';
 
 import { Body2, Headline6 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G alert: border-radius 0.25rem, padding 1rem, border 1px solid.

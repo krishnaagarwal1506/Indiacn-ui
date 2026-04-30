@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
 import { ComponentProps, createContext, useCallback, useContext, useState } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G toast: max-width 350px, font-size 0.875rem, border-radius 0.5rem,

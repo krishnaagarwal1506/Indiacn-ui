@@ -4,7 +4,7 @@ import { AlertTriangle, Check } from 'lucide-react';
 import { ComponentProps, createContext, useContext } from 'react';
 
 import { Label1, Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G stepper:
