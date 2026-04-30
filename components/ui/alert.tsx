@@ -68,7 +68,7 @@ function Alert({ className, theme, dismissible, onDismiss, children, ...props }:
         <button
           type='button'
           onClick={handleDismiss}
-          className='focus:shadow-focus-primary absolute top-0 right-0 rounded-lg p-[1.25rem_1rem] opacity-70 transition-opacity hover:opacity-100 focus:outline-none'
+          className='focus:shadow-focus-primary absolute top-0 right-0 rounded-lg px-4 py-5 opacity-70 transition-opacity hover:opacity-100 focus:outline-none'
           aria-label='Close'
         >
           <X className='size-4' />

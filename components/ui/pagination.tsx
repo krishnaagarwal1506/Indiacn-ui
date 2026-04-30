@@ -41,7 +41,13 @@ function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
     <ul
       className={cn(
         'flex list-none flex-row items-center pl-0',
-        variant === 'flat' ? 'gap-1.5' : 'gap-0',
+        variant === 'flat'
+          ? 'gap-1.5'
+          : // The `first:`/`last:` Tailwind selectors compile to :first-child/:last-child.
+            // Each <a> is the only child of its <li>, so applying them on the link
+            // matches every link. Apply them at the <ul> level via descendant
+            // selectors so only the actual edge items get rounded corners.
+            'gap-0 [&>li:first-child>*]:rounded-l-md [&>li:last-child>*]:rounded-r-md',
         className,
       )}
       {...props}
@@ -116,7 +122,7 @@ function PaginationLink({
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       className={cn(
-        'text-primary focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 first:ml-0 first:rounded-l-md last:rounded-r-md focus-visible:z-10 focus-visible:outline-none',
+        'text-primary focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
         PAGINATION_SIZE_CLASSES.default[resolvedSize],
         isActive
           ? 'border-primary bg-primary text-neutral-0 z-3'

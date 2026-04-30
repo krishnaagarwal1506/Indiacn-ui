@@ -17,6 +17,29 @@ export function TooltipDefault() {
   );
 }
 
+export function TooltipThemes() {
+  const themes = ['neutral', 'primary', 'success', 'danger', 'warning', 'info', 'light'] as const;
+
+  return (
+    <TooltipProvider>
+      <div className='flex flex-wrap gap-3'>
+        {themes.map(theme => (
+          <Tooltip key={theme}>
+            <TooltipTrigger asChild>
+              <Button variant='outlined' size='sm'>
+                {theme}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent theme={theme}>
+              <p>{theme} tooltip</p>
+            </TooltipContent>
+          </Tooltip>
+        ))}
+      </div>
+    </TooltipProvider>
+  );
+}
+
 export function TooltipPlacements() {
   return (
     <TooltipProvider>

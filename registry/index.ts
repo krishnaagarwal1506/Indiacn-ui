@@ -104,6 +104,11 @@ import {
   ProgressWithLabel,
 } from '@/components/examples/progress-demo';
 import { SearchDefault, SearchSizes } from '@/components/examples/search-demo';
+import {
+  SeparatorDefault,
+  SeparatorInList,
+  SeparatorVertical,
+} from '@/components/examples/separator-demo';
 import { SkeletonCard, SkeletonDefault, SkeletonList } from '@/components/examples/skeleton-demo';
 import {
   SpinnerDefault,
@@ -116,9 +121,18 @@ import {
   StepperVertical,
   StepperWarning,
 } from '@/components/examples/stepper-demo';
-import { TabsDefault, TabsDisabled } from '@/components/examples/tabs-demo';
+import {
+  TabsDefault,
+  TabsDisabled,
+  TabsPills,
+  TabsUnderline,
+} from '@/components/examples/tabs-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
-import { TooltipDefault, TooltipPlacements } from '@/components/examples/tooltip-demo';
+import {
+  TooltipDefault,
+  TooltipPlacements,
+  TooltipThemes,
+} from '@/components/examples/tooltip-demo';
 import {
   TypographyBlockquote,
   TypographyH1,
@@ -2175,6 +2189,52 @@ export default function Component() {
 }`,
     files: [{ path: 'components/examples/tabs-demo.tsx', type: 'registry:example', target: '' }],
   },
+  TabsPills: {
+    name: 'TabsPills',
+    description: 'Pills tabs variant — active tab fills with primary',
+    type: 'registry:example',
+    component: TabsPills,
+    code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+
+export default function Component() {
+  return (
+    <Tabs variant="pills" defaultValue="overview" className="w-full max-w-md">
+      <TabsList>
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        <TabsTrigger value="reports">Reports</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview"><p className="text-sm">Overview content.</p></TabsContent>
+      <TabsContent value="analytics"><p className="text-sm">Analytics content.</p></TabsContent>
+      <TabsContent value="reports"><p className="text-sm">Reports content.</p></TabsContent>
+    </Tabs>
+  );
+}`,
+    files: [{ path: 'components/examples/tabs-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TabsUnderline: {
+    name: 'TabsUnderline',
+    description: 'Underline tabs variant — active tab gets a primary underline',
+    type: 'registry:example',
+    component: TabsUnderline,
+    code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+
+export default function Component() {
+  return (
+    <Tabs variant="underline" defaultValue="general" className="w-full max-w-md">
+      <TabsList>
+        <TabsTrigger value="general">General</TabsTrigger>
+        <TabsTrigger value="security">Security</TabsTrigger>
+        <TabsTrigger value="billing">Billing</TabsTrigger>
+      </TabsList>
+      <TabsContent value="general"><p className="text-sm">General settings.</p></TabsContent>
+      <TabsContent value="security"><p className="text-sm">Security settings.</p></TabsContent>
+      <TabsContent value="billing"><p className="text-sm">Billing settings.</p></TabsContent>
+    </Tabs>
+  );
+}`,
+    files: [{ path: 'components/examples/tabs-demo.tsx', type: 'registry:example', target: '' }],
+  },
 
   // ── Toast examples ────────────────────────────────────────────
   ToastDefault: {
@@ -2269,6 +2329,32 @@ export default function Component() {
 }`,
     files: [{ path: 'components/examples/tooltip-demo.tsx', type: 'registry:example', target: '' }],
   },
+  TooltipThemes: {
+    name: 'TooltipThemes',
+    description: 'Tooltip with theme variants',
+    type: 'registry:example',
+    component: TooltipThemes,
+    code: `import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+const themes = ['neutral', 'primary', 'success', 'danger', 'warning', 'info', 'light'] as const;
+
+export default function Component() {
+  return (
+    <TooltipProvider>
+      <div className="flex flex-wrap gap-3">
+        {themes.map((theme) => (
+          <Tooltip key={theme}>
+            <TooltipTrigger asChild><Button variant="outlined" size="sm">{theme}</Button></TooltipTrigger>
+            <TooltipContent theme={theme}><p>{theme} tooltip</p></TooltipContent>
+          </Tooltip>
+        ))}
+      </div>
+    </TooltipProvider>
+  );
+}`,
+    files: [{ path: 'components/examples/tooltip-demo.tsx', type: 'registry:example', target: '' }],
+  },
 
   // ── Popover examples ──────────────────────────────────────────
   PopoverDefault: {
@@ -2326,10 +2412,10 @@ import { Collapse, CollapseTrigger, CollapseContent } from '@/components/ui/coll
 
 export default function Component() {
   return (
-    <Collapse>
+    <Collapse className="flex flex-col gap-2">
       <CollapseTrigger asChild><Button variant="outlined">Toggle Content</Button></CollapseTrigger>
       <CollapseContent>
-        <div className="mt-2 rounded-md border p-4"><p className="text-sm">Collapsible content.</p></div>
+        <div className="rounded-md border p-4"><p className="text-sm">Collapsible content.</p></div>
       </CollapseContent>
     </Collapse>
   );
@@ -2478,6 +2564,82 @@ export default function Component() {
     type: 'registry:example',
     component: StepperWarning,
     files: [{ path: 'components/examples/stepper-demo.tsx', type: 'registry:example', target: '' }],
+  },
+
+  // ── Separator examples ────────────────────────────────────────
+  SeparatorDefault: {
+    name: 'SeparatorDefault',
+    description: 'Default separator example with horizontal and vertical lines',
+    type: 'registry:example',
+    component: SeparatorDefault,
+    code: `import { Separator } from '@/components/ui/separator';
+import { Body2, Headline5, Label2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className="w-full max-w-sm">
+      <Headline5>IndiaCN</Headline5>
+      <Body2 className="text-neutral-500">An open source design system.</Body2>
+      <Separator className="my-4" />
+      <div className="flex h-5 items-center gap-4 text-sm">
+        <Label2>Docs</Label2>
+        <Separator orientation="vertical" />
+        <Label2>Source</Label2>
+        <Separator orientation="vertical" />
+        <Label2>License</Label2>
+      </div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/separator-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  SeparatorVertical: {
+    name: 'SeparatorVertical',
+    description: 'Vertical separator example',
+    type: 'registry:example',
+    component: SeparatorVertical,
+    code: `import { Separator } from '@/components/ui/separator';
+import { Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className="flex h-10 items-center gap-4">
+      <Body2>Left</Body2>
+      <Separator orientation="vertical" />
+      <Body2>Middle</Body2>
+      <Separator orientation="vertical" />
+      <Body2>Right</Body2>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/separator-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  SeparatorInList: {
+    name: 'SeparatorInList',
+    description: 'Separator used between list items',
+    type: 'registry:example',
+    component: SeparatorInList,
+    code: `import { Separator } from '@/components/ui/separator';
+import { Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className="bg-neutral-0 w-full max-w-sm rounded-lg border border-neutral-200">
+      <div className="p-3"><Body2>Account settings</Body2></div>
+      <Separator />
+      <div className="p-3"><Body2>Notifications</Body2></div>
+      <Separator />
+      <div className="p-3"><Body2>Privacy</Body2></div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/separator-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 
   // ── Skeleton examples ─────────────────────────────────────────

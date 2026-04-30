@@ -44,7 +44,13 @@ function Search({ className, size, onClear, containerClassName, value, ...props 
       <input
         ref={inputRef}
         type='search'
-        className={cn('flex-1 bg-transparent outline-none placeholder:text-neutral-500', className)}
+        className={cn(
+          'flex-1 bg-transparent outline-none placeholder:text-neutral-500',
+          // Hide the browser's native "x" clear control on type=search inputs.
+          // We render our own button so we don't want two of them.
+          '[&::-ms-clear]:hidden [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none',
+          className,
+        )}
         value={value}
         {...props}
       />
