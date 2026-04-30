@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { SearchIcon, X } from 'lucide-react';
 import { ComponentProps, useCallback, useRef } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 const SEARCH_VARIANTS = cva(
   'flex items-center gap-2 rounded-lg border border-neutral-200 bg-neutral-0 transition-[color,background-color,border-color,box-shadow] duration-150 focus-within:border-primary focus-within:shadow-focus-primary',

@@ -2,7 +2,7 @@ import { MoreHorizontal } from 'lucide-react';
 import { ComponentProps } from 'react';
 
 import { Body2, Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /* UX4G breadcrumb: divider "/", divider-color neutral-500, active-color neutral, link-color neutral-500 */
 

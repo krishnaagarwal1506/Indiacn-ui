@@ -5,7 +5,7 @@ import { Check, ChevronRight, Circle } from 'lucide-react';
 import { ComponentProps } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G dropdown: min-width 10rem, border-radius 0.5rem, padding-y 0.5rem,

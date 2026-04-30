@@ -7,8 +7,8 @@ import * as React from 'react';
 import { CodeCollapsibleWrapper } from '@/components/docs/code-collapsible-wrapper';
 import { CopyButton } from '@/components/docs/copy-button';
 import { highlightCode } from '@/components/docs/highlight-code';
+import { cn } from '@/lib/utils';
 import { Index } from '@/registry/index';
-import { cn } from '@/utils';
 
 /** Maps a language/file extension string to a Lucide file icon. */
 function getIconForLanguageExtension(lang: string) {

@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from 'react';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /**
  * Display1 Component - 80px display text for prominent titles and hero sections.

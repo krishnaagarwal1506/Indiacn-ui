@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps, ReactNode } from 'react';
 
 import { Body1, Label1, Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 interface IButtonProps extends ComponentProps<'button'>, VariantProps<typeof BUTTON_VARIANTS> {
   asChild?: boolean;

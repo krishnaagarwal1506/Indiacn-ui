@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { ComponentProps } from 'react';
 
 import { Body2, Headline5 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G card: border-radius 0.5rem, border 1px solid neutral-200, bg neutral-0,

@@ -2,7 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /* UX4G badge: padding 0.35em 0.61em, font-size 0.75em, font-weight 400, border-radius 0.375rem */
 const BADGE_VARIANTS = cva(

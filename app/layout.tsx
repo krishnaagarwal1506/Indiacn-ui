@@ -10,7 +10,7 @@ import {
   SITE_TITLE,
   SITE_URL,
 } from '@/constants';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 import type { Metadata, Viewport } from 'next';
 

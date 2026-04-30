@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'fumadocs-ui/components/tabs';
 
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 export function ComponentPreviewTabs({
   className,

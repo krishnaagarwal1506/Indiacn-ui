@@ -2,7 +2,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { ComponentProps } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /* UX4G spinner: border-width 0.3em, size 2rem, animation 0.75s, sm size 1rem, sm border 0.2em */
 const SPINNER_VARIANTS = cva('inline-block rounded-full align-[-0.125em]', {

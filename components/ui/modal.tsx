@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 import { ComponentProps } from 'react';
 
 import { Body2, Headline5, Label2 } from '@/components/ui/typography';
-import { cn } from '@/utils';
+import { cn } from '@/lib/utils';
 
 /*
  * UX4G modal: border-radius 0.5rem, padding 1rem, border 1px solid rgba(0,0,0,0.175),
