@@ -1,0 +1,757 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "indiacn",
+  "homepage": "https://indiacn.dev",
+  "items": [
+    {
+      "name": "theme",
+      "type": "registry:theme",
+      "title": "IndiaCN UX4G theme",
+      "description": "UX4G 2.0 design tokens \u2014 8 semantic colors with 50\u2013900 scales, focus-shadow utilities, radius ladder, and accordion/collapsible keyframes. Required by every IndiaCN component.",
+      "cssVars": {
+        "theme": {
+          "color-primary": "var(--primary)",
+          "color-primary-50": "var(--primary-50)",
+          "color-primary-100": "var(--primary-100)",
+          "color-primary-200": "var(--primary-200)",
+          "color-primary-300": "var(--primary-300)",
+          "color-primary-400": "var(--primary-400)",
+          "color-primary-500": "var(--primary-500)",
+          "color-primary-600": "var(--primary-600)",
+          "color-primary-700": "var(--primary-700)",
+          "color-primary-800": "var(--primary-800)",
+          "color-primary-900": "var(--primary-900)",
+          "color-secondary": "var(--secondary)",
+          "color-secondary-50": "var(--secondary-50)",
+          "color-secondary-100": "var(--secondary-100)",
+          "color-secondary-200": "var(--secondary-200)",
+          "color-secondary-300": "var(--secondary-300)",
+          "color-secondary-400": "var(--secondary-400)",
+          "color-secondary-500": "var(--secondary-500)",
+          "color-secondary-600": "var(--secondary-600)",
+          "color-secondary-700": "var(--secondary-700)",
+          "color-secondary-800": "var(--secondary-800)",
+          "color-secondary-900": "var(--secondary-900)",
+          "color-neutral": "var(--neutral)",
+          "color-neutral-0": "var(--neutral-0)",
+          "color-neutral-50": "var(--neutral-50)",
+          "color-neutral-100": "var(--neutral-100)",
+          "color-neutral-200": "var(--neutral-200)",
+          "color-neutral-300": "var(--neutral-300)",
+          "color-neutral-400": "var(--neutral-400)",
+          "color-neutral-500": "var(--neutral-500)",
+          "color-neutral-600": "var(--neutral-600)",
+          "color-neutral-700": "var(--neutral-700)",
+          "color-neutral-800": "var(--neutral-800)",
+          "color-neutral-900": "var(--neutral-900)",
+          "color-success": "var(--success)",
+          "color-success-50": "var(--success-50)",
+          "color-success-100": "var(--success-100)",
+          "color-success-200": "var(--success-200)",
+          "color-success-300": "var(--success-300)",
+          "color-success-400": "var(--success-400)",
+          "color-success-500": "var(--success-500)",
+          "color-success-600": "var(--success-600)",
+          "color-success-700": "var(--success-700)",
+          "color-success-800": "var(--success-800)",
+          "color-success-900": "var(--success-900)",
+          "color-danger": "var(--danger)",
+          "color-danger-50": "var(--danger-50)",
+          "color-danger-100": "var(--danger-100)",
+          "color-danger-200": "var(--danger-200)",
+          "color-danger-300": "var(--danger-300)",
+          "color-danger-400": "var(--danger-400)",
+          "color-danger-500": "var(--danger-500)",
+          "color-danger-600": "var(--danger-600)",
+          "color-danger-700": "var(--danger-700)",
+          "color-danger-800": "var(--danger-800)",
+          "color-danger-900": "var(--danger-900)",
+          "color-warning": "var(--warning)",
+          "color-warning-50": "var(--warning-50)",
+          "color-warning-100": "var(--warning-100)",
+          "color-warning-200": "var(--warning-200)",
+          "color-warning-300": "var(--warning-300)",
+          "color-warning-400": "var(--warning-400)",
+          "color-warning-500": "var(--warning-500)",
+          "color-warning-600": "var(--warning-600)",
+          "color-warning-700": "var(--warning-700)",
+          "color-warning-800": "var(--warning-800)",
+          "color-warning-900": "var(--warning-900)",
+          "color-info": "var(--info)",
+          "color-info-50": "var(--info-50)",
+          "color-info-100": "var(--info-100)",
+          "color-info-200": "var(--info-200)",
+          "color-info-300": "var(--info-300)",
+          "color-info-400": "var(--info-400)",
+          "color-info-500": "var(--info-500)",
+          "color-info-600": "var(--info-600)",
+          "color-info-700": "var(--info-700)",
+          "color-info-800": "var(--info-800)",
+          "color-info-900": "var(--info-900)",
+          "color-disabled": "color-mix(in srgb, var(--neutral) 50%, transparent)",
+          "color-hint": "var(--neutral-600)",
+          "shadow-xs": "0px 2px 3px 1px rgb(from var(--neutral) r g b / 0.12)",
+          "shadow-sm": "0px 4px 4px rgb(from var(--neutral) r g b / 0.12), 0px 1px 3px 1px rgb(from var(--neutral) r g b / 0.1)",
+          "shadow-md": "0px 6px 8px -2px rgb(from var(--neutral) r g b / 0.2), 0px 2px 8px -2px rgb(from var(--neutral) r g b / 0.04)",
+          "shadow-lg": "0px 4px 6px -2px rgb(from var(--neutral) r g b / 0.03), 0px 12px 16px -4px rgb(from var(--neutral) r g b / 0.08)",
+          "shadow-xl": "0px 24px 48px -12px rgb(from var(--neutral) r g b / 0.18)",
+          "shadow-2xl": "0px 32px 64px -12px rgb(from var(--neutral) r g b / 0.14)",
+          "shadow-focus-primary": "0px 0px 0px 4px rgb(from var(--primary) r g b / 0.48)",
+          "shadow-focus-secondary": "0px 0px 0px 4px rgb(from var(--secondary) r g b / 0.48)",
+          "shadow-focus-success": "0px 0px 0px 4px rgb(from var(--success) r g b / 0.48)",
+          "shadow-focus-danger": "0px 0px 0px 4px rgb(from var(--danger) r g b / 0.48)",
+          "shadow-focus-warning": "0px 0px 0px 4px rgb(from var(--warning) r g b / 0.48)",
+          "shadow-focus-neutral": "0px 0px 0px 4px rgb(from var(--neutral) r g b / 0.48)",
+          "radius-none": "calc(var(--radius) - 8px)",
+          "radius-xxs": "calc(var(--radius) - 6px)",
+          "radius-xs": "calc(var(--radius) - 4px)",
+          "radius-sm": "calc(var(--radius) - 2px)",
+          "radius-md": "var(--radius)",
+          "radius-lg": "calc(var(--radius) + 4px)",
+          "radius-xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "calc(var(--radius) + 12px)",
+          "radius-3xl": "calc(var(--radius) + 16px)",
+          "radius-4xl": "calc(var(--radius) + 24px)",
+          "radius-5xl": "calc(var(--radius) + 32px)",
+          "radius-full": "999px",
+          "animate-accordion-down": "accordion-down 0.2s ease-out",
+          "animate-accordion-up": "accordion-up 0.2s ease-out",
+          "animate-collapsible-down": "collapsible-down 0.2s ease-out",
+          "animate-collapsible-up": "collapsible-up 0.2s ease-out"
+        },
+        "light": {
+          "radius": "0.5rem",
+          "primary": "#613af5",
+          "primary-50": "#ece7fe",
+          "primary-100": "#d8cefd",
+          "primary-200": "#b19efa",
+          "primary-300": "#8a6df8",
+          "primary-400": "#633df5",
+          "primary-500": "#3c0cf3",
+          "primary-600": "#300ac2",
+          "primary-700": "#240792",
+          "primary-800": "#180561",
+          "primary-900": "#0c0231",
+          "secondary": "#938bb6",
+          "secondary-50": "#f0eff5",
+          "secondary-100": "#e2e0eb",
+          "secondary-200": "#c5c0d8",
+          "secondary-300": "#a8a1c4",
+          "secondary-400": "#8a82b0",
+          "secondary-500": "#6d629d",
+          "secondary-600": "#574f7d",
+          "secondary-700": "#423b5e",
+          "secondary-800": "#2c273f",
+          "secondary-900": "#16141f",
+          "neutral": "#212121",
+          "neutral-0": "#ffffff",
+          "neutral-50": "#f3f3f3",
+          "neutral-100": "#dddddd",
+          "neutral-200": "#c6c6c6",
+          "neutral-300": "#b0b0b0",
+          "neutral-400": "#9b9b9b",
+          "neutral-500": "#868686",
+          "neutral-600": "#727272",
+          "neutral-700": "#5e5e5e",
+          "neutral-800": "#4b4b4b",
+          "neutral-900": "#393939",
+          "success": "#3c9718",
+          "success-50": "#edf7e6",
+          "success-100": "#e3f2d9",
+          "success-200": "#c6e5b5",
+          "success-300": "#9bcf80",
+          "success-400": "#69b349",
+          "success-500": "#389314",
+          "success-600": "#107400",
+          "success-700": "#005a00",
+          "success-800": "#024900",
+          "success-900": "#044400",
+          "danger": "#b7131a",
+          "danger-50": "#ffeeea",
+          "danger-100": "#ffcdc0",
+          "danger-200": "#ffac9a",
+          "danger-300": "#ff8b78",
+          "danger-400": "#ff6c5a",
+          "danger-500": "#ec5042",
+          "danger-600": "#d4362e",
+          "danger-700": "#b72120",
+          "danger-800": "#961416",
+          "danger-900": "#741010",
+          "warning": "#b77224",
+          "warning-50": "#fef1e7",
+          "warning-100": "#f9d7b9",
+          "warning-200": "#f0bd8f",
+          "warning-300": "#e2a468",
+          "warning-400": "#d08d47",
+          "warning-500": "#bb772b",
+          "warning-600": "#a46212",
+          "warning-700": "#8b5000",
+          "warning-800": "#713f00",
+          "warning-900": "#573000",
+          "info": "#00aaff",
+          "info-50": "#e5f6ff",
+          "info-100": "#cbf0ff",
+          "info-200": "#99dfff",
+          "info-300": "#66ceff",
+          "info-400": "#33beff",
+          "info-500": "#00aaff",
+          "info-600": "#0088cc",
+          "info-700": "#006699",
+          "info-800": "#004466",
+          "info-900": "#002233",
+          "alert-primary-color": "#0d43a7",
+          "alert-primary-bg": "#d1ecfd",
+          "alert-primary-border": "#d1ecfd",
+          "alert-secondary-color": "#5a6370",
+          "alert-secondary-bg": "#f0f0f0",
+          "alert-secondary-border": "#d8dbdf",
+          "alert-success-color": "#1a7844",
+          "alert-success-bg": "#dcfad8",
+          "alert-success-border": "#b3f6b1",
+          "alert-info-color": "#0063b8",
+          "alert-info-bg": "#cbfbff",
+          "alert-info-border": "#99f1ff",
+          "alert-warning-color": "#b76d00",
+          "alert-warning-bg": "#fff3cd",
+          "alert-warning-border": "#ffecb5",
+          "alert-danger-color": "#7f0f1b",
+          "alert-danger-bg": "#fbe1d2",
+          "alert-danger-border": "#f7bda5",
+          "alert-light-color": "#1c1d1f",
+          "alert-light-bg": "#ffffff",
+          "alert-light-border": "#ffffff",
+          "alert-dark-color": "#ffffff",
+          "alert-dark-bg": "#1c1d1f",
+          "alert-dark-border": "#313033"
+        },
+        "dark": {
+          "primary": "#613af5",
+          "primary-50": "#0c0231",
+          "primary-100": "#180561",
+          "primary-200": "#240792",
+          "primary-300": "#300ac2",
+          "primary-400": "#3c0cf3",
+          "primary-500": "#633df5",
+          "primary-600": "#8a6df8",
+          "primary-700": "#b19efa",
+          "primary-800": "#d8cefd",
+          "primary-900": "#ece7fe",
+          "secondary": "#938bb6",
+          "secondary-50": "#16141f",
+          "secondary-100": "#2c273f",
+          "secondary-200": "#423b5e",
+          "secondary-300": "#574f7d",
+          "secondary-400": "#6d629d",
+          "secondary-500": "#8a82b0",
+          "secondary-600": "#a8a1c4",
+          "secondary-700": "#c5c0d8",
+          "secondary-800": "#e2e0eb",
+          "secondary-900": "#f0eff5",
+          "neutral": "#ffffff",
+          "neutral-0": "#212121",
+          "neutral-50": "#393939",
+          "neutral-100": "#4b4b4b",
+          "neutral-200": "#5e5e5e",
+          "neutral-300": "#727272",
+          "neutral-400": "#868686",
+          "neutral-500": "#9b9b9b",
+          "neutral-600": "#b0b0b0",
+          "neutral-700": "#c6c6c6",
+          "neutral-800": "#dddddd",
+          "neutral-900": "#f3f3f3",
+          "success": "#3c9718",
+          "success-50": "#044400",
+          "success-100": "#024900",
+          "success-200": "#005a00",
+          "success-300": "#107400",
+          "success-400": "#389314",
+          "success-500": "#69b349",
+          "success-600": "#9bcf80",
+          "success-700": "#c6e5b5",
+          "success-800": "#e3f2d9",
+          "success-900": "#edf7e6",
+          "danger": "#b7131a",
+          "danger-50": "#741010",
+          "danger-100": "#961416",
+          "danger-200": "#b72120",
+          "danger-300": "#d4362e",
+          "danger-400": "#ec5042",
+          "danger-500": "#ff6c5a",
+          "danger-600": "#ff8b78",
+          "danger-700": "#ffac9a",
+          "danger-800": "#ffcdc0",
+          "danger-900": "#ffeeea",
+          "warning": "#b77224",
+          "warning-50": "#573000",
+          "warning-100": "#713f00",
+          "warning-200": "#8b5000",
+          "warning-300": "#a46212",
+          "warning-400": "#bb772b",
+          "warning-500": "#d08d47",
+          "warning-600": "#e2a468",
+          "warning-700": "#f0bd8f",
+          "warning-800": "#f9d7b9",
+          "warning-900": "#fef1e7",
+          "info": "#00aaff",
+          "info-50": "#002233",
+          "info-100": "#004466",
+          "info-200": "#006699",
+          "info-300": "#0088cc",
+          "info-400": "#00aaff",
+          "info-500": "#33beff",
+          "info-600": "#66ceff",
+          "info-700": "#99dfff",
+          "info-800": "#cbf0ff",
+          "info-900": "#e5f6ff"
+        }
+      },
+      "css": {
+        "@keyframes accordion-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
+        },
+        "@keyframes accordion-up": {
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        },
+        "@keyframes collapsible-down": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-collapsible-content-height)"
+          }
+        },
+        "@keyframes collapsible-up": {
+          "from": {
+            "height": "var(--radix-collapsible-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        },
+        "@keyframes spinner-grow": {
+          "0%": {
+            "transform": "scale(0)",
+            "opacity": "0"
+          },
+          "50%": {
+            "opacity": "1"
+          },
+          "100%": {
+            "transform": "scale(1)",
+            "opacity": "0"
+          }
+        },
+        "@keyframes progress-bar-stripes": {
+          "0%": {
+            "background-position": "1rem 0"
+          },
+          "100%": {
+            "background-position": "0 0"
+          }
+        },
+        "@keyframes shimmer": {
+          "100%": {
+            "transform": "translateX(100%)"
+          }
+        }
+      }
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "21 typography components: 6 Display, 6 Headline, 3 Title, 3 Label, 3 Body. Required by every other IndiaCN component.",
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/typography.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Versatile button with filled/outlined/tonal/text variants, primary/success/destructive themes, sm/md/lg sizes, icon support, and loading state.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Groups related buttons horizontally or vertically with shared borders.",
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact label for status, counts, or categories. 9 themes \u00d7 3 variants \u00d7 3 sizes \u00d7 2 shapes.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Contextual feedback message. 8 themes (primary, secondary, success, danger, warning, info, light, dark) with optional dismiss button.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Vertically-stacked collapsible sections. Built on Radix Accordion primitive.",
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Navigation trail showing the current page's hierarchy.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Composable container with header, content, footer, image, title, and description sub-parts.",
+      "dependencies": ["next"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "Chip",
+      "description": "Tags, filters, or selections. 7 themes \u00d7 3 variants \u00d7 3 sizes; supports icons, avatars, dismiss, and selected state.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/chip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapse",
+      "type": "registry:ui",
+      "title": "Collapse",
+      "description": "Single collapsible region powered by Radix Collapsible.",
+      "dependencies": ["@radix-ui/react-collapsible"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/collapse.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown",
+      "type": "registry:ui",
+      "title": "Dropdown",
+      "description": "Dropdown menu with items, checkbox/radio items, sub-menus, separators, and shortcuts.",
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dropdown.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "list-group",
+      "type": "registry:ui",
+      "title": "List Group",
+      "description": "Vertical list with optional flush, horizontal, and contextual-color variants.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/list-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "Dialog with sm/md/lg/xl/fullscreen sizes and optional scrollable body.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/modal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "offcanvas",
+      "type": "registry:ui",
+      "title": "Offcanvas",
+      "description": "Slide-in panel from any side with optional body-scroll mode.",
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/offcanvas.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Page navigation with default and flat variants in 3 sizes.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Anchored floating panel powered by Radix Popover.",
+      "dependencies": ["@radix-ui/react-popover"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Linear progress bar with theme colors, sizes, striped + animated stripes.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search",
+      "type": "registry:ui",
+      "title": "Search",
+      "description": "Search input with icon, sizes, and optional clear button.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/search.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Horizontal or vertical divider built on Radix Separator.",
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Loading placeholder with rect/circle/pill/text shapes and pulse/wave animations.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "Loading indicator with border/grow variants, theme colors, and sm/md/lg sizes.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "Step indicator for multi-step flows with horizontal/vertical orientation and completed/active/warning/pending states.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.dev/r/theme.json",
+        "https://indiacn.dev/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/stepper.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tab list with tabs, pills, and underline variants. Built on Radix Tabs.",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Notification toast with provider, hook, container, and theme variants.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Hover/focus tooltip with 8 theme variants. Built on Radix Tooltip.",
+      "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
+      "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

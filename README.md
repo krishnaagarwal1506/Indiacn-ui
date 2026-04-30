@@ -114,3 +114,98 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+---
+
+## 📦 Using IndiaCN in your own project
+
+IndiaCN ships as a **shadcn-compatible registry**. Install components into any
+Tailwind v4 + Next.js project with `npx shadcn add`.
+
+> **Requires Tailwind CSS v4.** The theme preset uses `@theme inline` and
+> `rgb(from var(--color) r g b / α)` — neither works on Tailwind v3.
+
+### One-time setup
+
+If you don't already have shadcn configured:
+
+```bash
+npx shadcn@latest init
+```
+
+Then add the IndiaCN theme (it carries every brand token, focus shadow,
+radius, and animation):
+
+```bash
+npx shadcn@latest add https://indiacn.dev/r/theme.json
+```
+
+### Adding components
+
+```bash
+# Foundation
+npx shadcn@latest add https://indiacn.dev/r/typography.json
+npx shadcn@latest add https://indiacn.dev/r/button.json
+
+# Anything else — dependencies (theme, typography, button, …) auto-resolve
+npx shadcn@latest add https://indiacn.dev/r/badge.json
+npx shadcn@latest add https://indiacn.dev/r/card.json
+npx shadcn@latest add https://indiacn.dev/r/dropdown.json
+```
+
+### Namespaced installs
+
+Add the registry to your project's `components.json`:
+
+```json
+{
+  "registries": {
+    "@indiacn": "https://indiacn.dev/r/{name}.json"
+  }
+}
+```
+
+Then:
+
+```bash
+npx shadcn@latest add @indiacn/button
+npx shadcn@latest add @indiacn/badge @indiacn/card @indiacn/dropdown
+```
+
+### What ships in `theme`
+
+The `theme` item is a `registry:theme` preset and lands in your `globals.css`:
+
+- **8 semantic color scales** (50–900): `primary`, `secondary`, `neutral`,
+  `success`, `danger`, `warning`, `info`, plus alert tokens
+- **Light + dark variants** of every scale
+- `--shadow-focus-{primary,secondary,success,danger,warning,neutral}` ring
+  utilities (4 px primary-tinted focus halo)
+- `--radius-{none,xxs,xs,sm,md,lg,xl,2xl,3xl,4xl,5xl,full}` ladder derived
+  from a single `--radius`
+- Keyframes: `accordion-{up,down}`, `collapsible-{up,down}`,
+  `progress-bar-stripes`, `spinner-grow`, `shimmer`
+- Global `:focus-visible` outline using `var(--primary)`
+
+### What ships in each component
+
+Each `registry:ui` item carries the **exact source file** from this repo,
+plus its npm `dependencies` and registry `registryDependencies`. The shadcn
+CLI walks the dependency graph and pulls everything required (e.g. `card`
+pulls `theme` + `typography` automatically).
+
+---
+
+## 🛠 Maintainer notes — building the registry
+
+The single source of truth is `registry.json` at the repo root. To
+regenerate the per-item JSON files in `public/r/` after editing it:
+
+```bash
+npm run registry:build
+```
+
+This runs `npx shadcn build`, which inlines source from each `files[].path`,
+validates against the shadcn schema, and writes `public/r/*.json`. The
+output is committed and served as static assets by Next.js with permissive
+CORS (see `next.config.mjs`).

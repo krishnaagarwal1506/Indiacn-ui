@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "popover",
+  "title": "Popover",
+  "description": "Anchored floating panel powered by Radix Popover.",
+  "dependencies": ["@radix-ui/react-popover"],
+  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/popover.tsx",
+      "content": "'use client';\n/* eslint-disable eslint-frontend-rules/top-level-const-snake */\n\nimport * as PopoverPrimitive from '@radix-ui/react-popover';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\nconst Popover = PopoverPrimitive.Root;\nconst PopoverTrigger = PopoverPrimitive.Trigger;\nconst PopoverAnchor = PopoverPrimitive.Anchor;\nconst PopoverClose = PopoverPrimitive.Close;\n\n/**\n * Popover content panel.\n * UX4G: max-width 276px, border 1px neutral-200, border-radius 0.5rem,\n * box-shadow 0 0.5rem 1rem rgba(0,0,0,0.15), header/body padding 1rem.\n */\nfunction PopoverContent({\n  className,\n  align = 'center',\n  sideOffset = 4,\n  ...props\n}: ComponentProps<typeof PopoverPrimitive.Content>) {\n  return (\n    <PopoverPrimitive.Portal>\n      <PopoverPrimitive.Content\n        align={align}\n        sideOffset={sideOffset}\n        className={cn(\n          'bg-neutral-0 text-neutral z-50 w-72 rounded-lg border border-neutral-200 p-4 shadow-lg outline-none',\n          'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',\n          'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n          className,\n        )}\n        {...props}\n      />\n    </PopoverPrimitive.Portal>\n  );\n}\n\nexport { Popover, PopoverTrigger, PopoverContent, PopoverAnchor, PopoverClose };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

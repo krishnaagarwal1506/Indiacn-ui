@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skeleton",
+  "title": "Skeleton",
+  "description": "Loading placeholder with rect/circle/pill/text shapes and pulse/wave animations.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/skeleton.tsx",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G skeleton: background-color neutral-100, pulse/wave animation.\n * Shape variants cover typical loading states (line, avatar, thumbnail, rectangle).\n */\nconst SKELETON_VARIANTS = cva('bg-neutral-100', {\n  variants: {\n    shape: {\n      rect: 'rounded-md',\n      circle: 'rounded-full',\n      pill: 'rounded-full',\n      text: 'rounded w-full h-4',\n    },\n    animation: {\n      pulse: 'animate-pulse',\n      wave: 'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent)]',\n      none: '',\n    },\n  },\n  defaultVariants: {\n    shape: 'rect',\n    animation: 'pulse',\n  },\n});\n\ninterface ISkeletonProps extends ComponentProps<'div'>, VariantProps<typeof SKELETON_VARIANTS> {}\n\n/** Placeholder loading skeleton. */\nfunction Skeleton({ className, shape, animation, ...props }: ISkeletonProps) {\n  return <div className={cn(SKELETON_VARIANTS({ shape, animation, className }))} {...props} />;\n}\n\nexport { Skeleton, SKELETON_VARIANTS };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
