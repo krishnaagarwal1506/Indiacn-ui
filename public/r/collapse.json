@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapse",
+  "title": "Collapse",
+  "description": "Single collapsible region powered by Radix Collapsible.",
+  "dependencies": ["@radix-ui/react-collapsible"],
+  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/collapse.tsx",
+      "content": "'use client';\n\nimport * as CollapsiblePrimitive from '@radix-ui/react-collapsible';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/** Collapsible root component. */\nfunction Collapse(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {\n  return <CollapsiblePrimitive.Root {...props} />;\n}\n\n/** Collapsible trigger button. */\nfunction CollapseTrigger(props: ComponentProps<typeof CollapsiblePrimitive.Trigger>) {\n  return <CollapsiblePrimitive.Trigger {...props} />;\n}\n\n/**\n * Collapsible content panel.\n * Uses radix-collapsible-content-height (not the accordion height var) so the\n * animated height matches the actual content; mismatched vars caused the\n * trigger to jump on toggle.\n */\nfunction CollapseContent({\n  className,\n  ...props\n}: ComponentProps<typeof CollapsiblePrimitive.Content>) {\n  return (\n    <CollapsiblePrimitive.Content\n      className={cn(\n        'data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Collapse, CollapseTrigger, CollapseContent };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

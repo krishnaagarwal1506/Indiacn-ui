@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "description": "Hover/focus tooltip with 8 theme variants. Built on Radix Tooltip.",
+  "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
+  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/tooltip.tsx",
+      "content": "'use client';\n/* eslint-disable eslint-frontend-rules/top-level-const-snake */\n\nimport * as TooltipPrimitive from '@radix-ui/react-tooltip';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G tooltip: max-width 200px, padding 0.25rem 0.5rem, border-radius 0.25rem,\n * bg neutral (#212121), text neutral-0, font-size 0.875rem.\n */\nconst TOOLTIP_VARIANTS = cva('z-50 overflow-hidden rounded px-2 py-1 text-sm shadow-md', {\n  variants: {\n    theme: {\n      neutral: 'bg-neutral text-neutral-0',\n      primary: 'bg-primary text-neutral-0',\n      secondary: 'bg-secondary text-neutral-0',\n      success: 'bg-success text-neutral-0',\n      danger: 'bg-danger text-neutral-0',\n      warning: 'bg-warning text-neutral-0',\n      info: 'bg-info text-neutral-0',\n      light: 'bg-neutral-0 text-neutral border border-neutral-200',\n    },\n  },\n  defaultVariants: {\n    theme: 'neutral',\n  },\n});\n\nconst TooltipProvider = TooltipPrimitive.Provider;\nconst Tooltip = TooltipPrimitive.Root;\nconst TooltipTrigger = TooltipPrimitive.Trigger;\n\ninterface ITooltipContentProps\n  extends ComponentProps<typeof TooltipPrimitive.Content>,\n    VariantProps<typeof TOOLTIP_VARIANTS> {}\n\n/** Tooltip popup content with positioning. */\nfunction TooltipContent({ className, sideOffset = 4, theme, ...props }: ITooltipContentProps) {\n  return (\n    <TooltipPrimitive.Portal>\n      <TooltipPrimitive.Content\n        sideOffset={sideOffset}\n        className={cn(\n          TOOLTIP_VARIANTS({ theme }),\n          'animate-in fade-in-0 zoom-in-95',\n          'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',\n          'data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2',\n          className,\n        )}\n        {...props}\n      />\n    </TooltipPrimitive.Portal>\n  );\n}\n\nexport { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, TOOLTIP_VARIANTS };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

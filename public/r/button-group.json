@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "Groups related buttons horizontally or vertically with shared borders.",
+  "registryDependencies": ["https://indiacn.dev/r/theme.json", "https://indiacn.dev/r/button.json"],
+  "files": [
+    {
+      "path": "components/ui/button-group.tsx",
+      "content": "import { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\ninterface IButtonGroupProps extends ComponentProps<'div'> {\n  orientation?: 'horizontal' | 'vertical';\n}\n\n/** Group of related buttons displayed together. */\nfunction ButtonGroup({ className, orientation = 'horizontal', ...props }: IButtonGroupProps) {\n  return (\n    <div\n      role='group'\n      className={cn(\n        'inline-flex',\n        orientation === 'horizontal'\n          ? '*:rounded-none [&>*:first-child]:rounded-l-md [&>*:last-child]:rounded-r-md [&>*:not(:first-child)]:-ml-px'\n          : 'flex-col *:rounded-none [&>*:first-child]:rounded-t-md [&>*:last-child]:rounded-b-md [&>*:not(:first-child)]:-mt-px',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Toolbar container for button groups. */\nfunction ButtonToolbar({ className, ...props }: ComponentProps<'div'>) {\n  return (\n    <div role='toolbar' className={cn('flex flex-wrap items-center gap-2', className)} {...props} />\n  );\n}\n\nexport { ButtonGroup, ButtonToolbar };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

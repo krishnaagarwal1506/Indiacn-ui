@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "description": "Horizontal or vertical divider built on Radix Separator.",
+  "dependencies": ["@radix-ui/react-separator"],
+  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/separator.tsx",
+      "content": "'use client';\n\nimport * as SeparatorPrimitive from '@radix-ui/react-separator';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/** Visual divider line, horizontal or vertical. */\nfunction Separator({\n  className,\n  orientation = 'horizontal',\n  decorative = true,\n  ...props\n}: ComponentProps<typeof SeparatorPrimitive.Root>) {\n  return (\n    <SeparatorPrimitive.Root\n      decorative={decorative}\n      orientation={orientation}\n      className={cn(\n        'shrink-0 bg-neutral-200',\n        orientation === 'horizontal' ? 'h-px w-full' : 'h-full w-px',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Separator };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

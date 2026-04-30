@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "description": "Composable container with header, content, footer, image, title, and description sub-parts.",
+  "dependencies": ["next"],
+  "registryDependencies": [
+    "https://indiacn.dev/r/theme.json",
+    "https://indiacn.dev/r/typography.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/card.tsx",
+      "content": "import Image from 'next/image';\nimport { ComponentProps } from 'react';\n\nimport { Body2, Headline5 } from '@/components/ui/typography';\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G card: border-radius 0.5rem, border 1px solid neutral-200, bg neutral-0,\n * card-body / card-header / card-footer padding 1rem, card-header border-bottom 1px,\n * card-footer border-top 1px, card-img-top border-radius calc(0.5rem - 1px)\n */\n\n/** Card container component. */\nfunction Card({ className, ...props }: ComponentProps<'div'>) {\n  return (\n    <div\n      className={cn(\n        'bg-neutral-0 text-neutral flex flex-col rounded-lg border border-neutral-200',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\n/** Card header section. */\nfunction CardHeader({ className, ...props }: ComponentProps<'div'>) {\n  return (\n    <div className={cn('text-neutral border-b border-neutral-200 p-4', className)} {...props} />\n  );\n}\n\n/** Card title heading. */\nfunction CardTitle({ className, ...props }: ComponentProps<'h3'>) {\n  return <Headline5 className={cn('mb-2 tracking-tight', className)} {...props} />;\n}\n\n/** Card description text. */\nfunction CardDescription({ className, ...props }: ComponentProps<'p'>) {\n  return <Body2 className={cn('text-neutral-500', className)} {...props} />;\n}\n\n/** Card body content area. */\nfunction CardContent({ className, ...props }: ComponentProps<'div'>) {\n  return <div className={cn('p-4', className)} {...props} />;\n}\n\n/** Card footer section. */\nfunction CardFooter({ className, ...props }: ComponentProps<'div'>) {\n  return (\n    <div\n      className={cn('text-neutral flex items-center border-t border-neutral-200 p-4', className)}\n      {...props}\n    />\n  );\n}\n\n/** Card top image. */\nfunction CardImage({ className, alt = '', ...props }: ComponentProps<typeof Image>) {\n  return (\n    <Image\n      className={cn('w-full rounded-t-[calc(var(--radius)-1px)] object-cover', className)}\n      alt={alt}\n      {...props}\n    />\n  );\n}\n\nexport { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardImage };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
