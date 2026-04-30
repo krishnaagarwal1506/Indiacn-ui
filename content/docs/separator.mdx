@@ -5,7 +5,7 @@ description: A visual divider between content sections.
 
 ## Introduction
 
-Separators visually divide content into clear sections. They support horizontal and vertical orientations.
+Separators visually divide content into clear sections. They support horizontal and vertical orientations and are accessible by default (built on Radix UI's Separator primitive).
 
 ## Installation
 
@@ -21,3 +21,27 @@ Separators visually divide content into clear sections. They support horizontal 
   code={`<Separator />
 <Separator orientation="vertical" className="h-6" />`}
 />
+
+## Examples
+
+### Default
+
+<ComponentPreview name='SeparatorDefault' />
+
+### Vertical
+
+<ComponentPreview name='SeparatorVertical' />
+
+### Inside a List
+
+<ComponentPreview name='SeparatorInList' />
+
+## API Reference
+
+### Separator
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the separator line |
+| `decorative` | `boolean` | `true` | When `true`, the element is hidden from assistive tech |
+| `className` | `string` | — | Extra Tailwind classes |

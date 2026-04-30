@@ -15,7 +15,12 @@ function CollapseTrigger(props: ComponentProps<typeof CollapsiblePrimitive.Trigg
   return <CollapsiblePrimitive.Trigger {...props} />;
 }
 
-/** Collapsible content panel. */
+/**
+ * Collapsible content panel.
+ * Uses radix-collapsible-content-height (not the accordion height var) so the
+ * animated height matches the actual content; mismatched vars caused the
+ * trigger to jump on toggle.
+ */
 function CollapseContent({
   className,
   ...props
@@ -23,7 +28,7 @@ function CollapseContent({
   return (
     <CollapsiblePrimitive.Content
       className={cn(
-        'data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden',
+        'data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden',
         className,
       )}
       {...props}

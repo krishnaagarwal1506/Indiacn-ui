@@ -74,7 +74,7 @@ function ListGroupItem({
 }: IListGroupItemProps) {
   return (
     <li
-      aria-current={active ? 'true' : undefined}
+      aria-current={active ? 'page' : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
         action && 'cursor-pointer hover:bg-neutral-50 active:bg-neutral-100',
