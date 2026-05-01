@@ -46,8 +46,8 @@ export const FooterSection = () => (
   <div className='dark'>
     <footer className='bg-neutral-0 pt-20 pb-10 text-neutral-600'>
       <div className='mx-auto max-w-6xl px-6'>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr 1fr', gap: 48 }}>
-          <div>
+        <div className='grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr] lg:gap-12'>
+          <div className='col-span-2 sm:col-span-3 lg:col-span-1'>
             <div className='mb-4 flex items-center gap-2.5'>
               <ChakraMark size={24} />
               <BrandName className='text-neutral' />

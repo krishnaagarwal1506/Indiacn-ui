@@ -37,10 +37,7 @@ export const InstallSection = () => {
   return (
     <section id='install' className='py-28'>
       <div className='mx-auto max-w-6xl px-6'>
-        <div
-          className='grid items-center gap-20'
-          style={{ gridTemplateColumns: 'minmax(0, 0.9fr) minmax(0, 1.1fr)' }}
-        >
+        <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20'>
           <div>
             <Label2 className='text-primary mb-4 block font-semibold tracking-widest uppercase'>
               Install

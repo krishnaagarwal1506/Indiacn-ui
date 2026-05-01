@@ -128,53 +128,55 @@ export const ThemeBand = () => (
         </div>
       </div>
 
-      <div className='bg-neutral-0 overflow-hidden rounded-xl border border-neutral-200'>
-        {COLOR_SCALES.map((s, i) => (
-          <div
-            key={s.name}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '160px 1fr',
-              borderTop: i === 0 ? 'none' : '1px solid var(--color-neutral-200)',
-            }}
-          >
-            <div className='flex items-center gap-3 border-r border-neutral-200 px-5 py-4'>
-              <div
-                aria-hidden='true'
-                style={{
-                  width: 12,
-                  height: 12,
-                  borderRadius: 3,
-                  background: s.base,
-                  flexShrink: 0,
-                }}
-              />
-              <div>
-                <Label1 className='text-neutral font-semibold'>{s.name}</Label1>
-                <Label3 className='font-mono text-neutral-500'>{s.base}</Label3>
+      <div className='overflow-x-auto rounded-xl border border-neutral-200'>
+        <div className='bg-neutral-0 min-w-[640px]'>
+          {COLOR_SCALES.map((s, i) => (
+            <div
+              key={s.name}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '160px 1fr',
+                borderTop: i === 0 ? 'none' : '1px solid var(--color-neutral-200)',
+              }}
+            >
+              <div className='flex items-center gap-3 border-r border-neutral-200 px-5 py-4'>
+                <div
+                  aria-hidden='true'
+                  style={{
+                    width: 12,
+                    height: 12,
+                    borderRadius: 3,
+                    background: s.base,
+                    flexShrink: 0,
+                  }}
+                />
+                <div>
+                  <Label1 className='text-neutral font-semibold'>{s.name}</Label1>
+                  <Label3 className='font-mono text-neutral-500'>{s.base}</Label3>
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)' }}>
+                {s.swatches.map((c, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      background: c,
+                      height: 48,
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      padding: '0 6px 5px',
+                      fontSize: 9,
+                      fontFamily: 'monospace',
+                      color: idx >= 5 ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,0.4)',
+                    }}
+                  >
+                    {[50, 100, 200, 300, 400, 500, 600, 700, 800][idx]}
+                  </div>
+                ))}
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)' }}>
-              {s.swatches.map((c, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    background: c,
-                    height: 48,
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    padding: '0 6px 5px',
-                    fontSize: 9,
-                    fontFamily: 'monospace',
-                    color: idx >= 5 ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,0.4)',
-                  }}
-                >
-                  {[50, 100, 200, 300, 400, 500, 600, 700, 800][idx]}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
