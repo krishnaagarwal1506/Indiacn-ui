@@ -4,7 +4,7 @@
   "title": "Toast",
   "description": "Notification toast with provider, hook, container, and theme variants.",
   "dependencies": ["class-variance-authority", "lucide-react"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/toast.tsx",

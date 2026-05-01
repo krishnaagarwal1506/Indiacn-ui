@@ -4,7 +4,7 @@
   "title": "Separator",
   "description": "Horizontal or vertical divider built on Radix Separator.",
   "dependencies": ["@radix-ui/react-separator"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/separator.tsx",

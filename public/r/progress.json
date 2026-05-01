@@ -4,7 +4,7 @@
   "title": "Progress",
   "description": "Linear progress bar with theme colors, sizes, striped + animated stripes.",
   "dependencies": ["class-variance-authority"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/progress.tsx",

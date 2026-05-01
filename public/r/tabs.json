@@ -4,7 +4,7 @@
   "title": "Tabs",
   "description": "Tab list with tabs, pills, and underline variants. Built on Radix Tabs.",
   "dependencies": ["@radix-ui/react-tabs"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/tabs.tsx",

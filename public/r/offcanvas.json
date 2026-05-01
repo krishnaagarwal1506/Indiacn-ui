@@ -5,8 +5,8 @@
   "description": "Slide-in panel from any side with optional body-scroll mode.",
   "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

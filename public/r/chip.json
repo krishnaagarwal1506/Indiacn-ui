@@ -5,8 +5,8 @@
   "description": "Tags, filters, or selections. 7 themes × 3 variants × 3 sizes; supports icons, avatars, dismiss, and selected state.",
   "dependencies": ["class-variance-authority", "lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

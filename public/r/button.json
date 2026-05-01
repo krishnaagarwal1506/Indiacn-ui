@@ -5,8 +5,8 @@
   "description": "Versatile button with filled/outlined/tonal/text variants, primary/success/destructive themes, sm/md/lg sizes, icon support, and loading state.",
   "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

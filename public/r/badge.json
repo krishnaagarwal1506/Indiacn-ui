@@ -5,8 +5,8 @@
   "description": "Compact label for status, counts, or categories. 9 themes × 3 variants × 3 sizes × 2 shapes.",
   "dependencies": ["class-variance-authority"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

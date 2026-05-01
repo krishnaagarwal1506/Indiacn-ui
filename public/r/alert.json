@@ -5,8 +5,8 @@
   "description": "Contextual feedback message. 8 themes (primary, secondary, success, danger, warning, info, light, dark) with optional dismiss button.",
   "dependencies": ["class-variance-authority", "lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

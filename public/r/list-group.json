@@ -4,7 +4,7 @@
   "title": "List Group",
   "description": "Vertical list with optional flush, horizontal, and contextual-color variants.",
   "dependencies": ["class-variance-authority"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/list-group.tsx",

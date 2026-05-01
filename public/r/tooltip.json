@@ -4,7 +4,7 @@
   "title": "Tooltip",
   "description": "Hover/focus tooltip with 8 theme variants. Built on Radix Tooltip.",
   "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/tooltip.tsx",

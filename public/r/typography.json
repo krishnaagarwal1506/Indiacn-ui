@@ -3,7 +3,7 @@
   "name": "typography",
   "title": "Typography",
   "description": "21 typography components: 6 Display, 6 Headline, 3 Title, 3 Label, 3 Body. Required by every other IndiaCN component.",
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/typography.tsx",
