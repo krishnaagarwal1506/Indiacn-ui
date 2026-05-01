@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <circle cx="12" cy="12" r="9" stroke="var(--color-primary)" stroke-width="1.1"/>
+  <circle cx="12" cy="12" r="2.2" stroke="var(--color-primary)" stroke-width="1.1"/>
+  <line x1="14.600" y1="12.000" x2="20.500" y2="12.000" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="14.511" y1="12.673" x2="20.210" y2="14.200" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="14.252" y1="13.300" x2="19.361" y2="16.250" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="13.838" y1="13.838" x2="18.010" y2="18.010" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="13.300" y1="14.252" x2="16.250" y2="19.361" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="12.673" y1="14.511" x2="14.200" y2="20.210" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="12.000" y1="14.600" x2="12.000" y2="20.500" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="11.327" y1="14.511" x2="9.800" y2="20.210" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="10.700" y1="14.252" x2="7.750" y2="19.361" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="10.162" y1="13.838" x2="5.990" y2="18.010" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="9.748" y1="13.300" x2="4.639" y2="16.250" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="9.489" y1="12.673" x2="3.790" y2="14.200" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="9.400" y1="12.000" x2="3.500" y2="12.000" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="9.489" y1="11.327" x2="3.790" y2="9.800" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="9.748" y1="10.700" x2="4.639" y2="7.750" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="10.162" y1="10.162" x2="5.990" y2="5.990" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="10.700" y1="9.748" x2="7.750" y2="4.639" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="11.327" y1="9.489" x2="9.800" y2="3.790" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="12.000" y1="9.400" x2="12.000" y2="3.500" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="12.673" y1="9.489" x2="14.200" y2="3.790" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="13.300" y1="9.748" x2="16.250" y2="4.639" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="13.838" y1="10.162" x2="18.010" y2="5.990" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="14.252" y1="10.700" x2="19.361" y2="7.750" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+  <line x1="14.511" y1="11.327" x2="20.210" y2="9.800" stroke="var(--color-primary)" stroke-width="0.6" stroke-linecap="round"/>
+</svg>

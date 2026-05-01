@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
     "format": "prettier --write --no-error-on-unmatched-pattern **/*.{ts,tsx,js,jsx,cjs,css,md,json,scss,html} --config ./.prettierrc.json",
     "lint:format": "npm run lint && npm run format",
+    "lint:fix": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
     "prepare": "husky",
     "registry:build": "shadcn build"
   },
