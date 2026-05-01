@@ -8,7 +8,7 @@ import { Body1, Body2, Headline2, Label2, Label3, Label1 } from '@/components/ui
 
 export const InstallSection = () => {
   const [copied, setCopied] = useState(false);
-  const cmd = 'npx shadcn@latest add https://indiacn.dev/r/button.json';
+  const cmd = 'npx shadcn@latest add https://indiacn.in/r/button.json';
 
   const handleCopy = () => {
     navigator.clipboard?.writeText(cmd);
@@ -104,7 +104,7 @@ export const InstallSection = () => {
                   {' npx shadcn@latest add '}
                   <br />
                   {'  '}
-                  <mark className='text-info bg-transparent'>https://indiacn.dev/r/theme.json</mark>
+                  <mark className='text-info bg-transparent'>https://indiacn.in/r/theme.json</mark>
                 </div>
                 <br />
                 <div>

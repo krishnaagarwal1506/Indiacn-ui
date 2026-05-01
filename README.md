@@ -137,20 +137,20 @@ Then add the IndiaCN theme (it carries every brand token, focus shadow,
 radius, and animation):
 
 ```bash
-npx shadcn@latest add https://indiacn.dev/r/theme.json
+npx shadcn@latest add https://indiacn.in/r/theme.json
 ```
 
 ### Adding components
 
 ```bash
 # Foundation
-npx shadcn@latest add https://indiacn.dev/r/typography.json
-npx shadcn@latest add https://indiacn.dev/r/button.json
+npx shadcn@latest add https://indiacn.in/r/typography.json
+npx shadcn@latest add https://indiacn.in/r/button.json
 
 # Anything else — dependencies (theme, typography, button, …) auto-resolve
-npx shadcn@latest add https://indiacn.dev/r/badge.json
-npx shadcn@latest add https://indiacn.dev/r/card.json
-npx shadcn@latest add https://indiacn.dev/r/dropdown.json
+npx shadcn@latest add https://indiacn.in/r/badge.json
+npx shadcn@latest add https://indiacn.in/r/card.json
+npx shadcn@latest add https://indiacn.in/r/dropdown.json
 ```
 
 ### Namespaced installs
@@ -160,7 +160,7 @@ Add the registry to your project's `components.json`:
 ```json
 {
   "registries": {
-    "@indiacn": "https://indiacn.dev/r/{name}.json"
+    "@indiacn": "https://indiacn.in/r/{name}.json"
   }
 }
 ```

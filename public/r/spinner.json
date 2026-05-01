@@ -5,8 +5,8 @@
   "description": "Loading indicator with border/grow variants, theme colors, and sm/md/lg sizes.",
   "dependencies": ["class-variance-authority"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

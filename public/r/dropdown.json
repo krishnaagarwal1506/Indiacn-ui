@@ -5,8 +5,8 @@
   "description": "Dropdown menu with items, checkbox/radio items, sub-menus, separators, and shortcuts.",
   "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

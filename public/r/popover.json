@@ -4,7 +4,7 @@
   "title": "Popover",
   "description": "Anchored floating panel powered by Radix Popover.",
   "dependencies": ["@radix-ui/react-popover"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/popover.tsx",

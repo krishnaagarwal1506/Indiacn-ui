@@ -3,7 +3,7 @@
   "name": "button-group",
   "title": "Button Group",
   "description": "Groups related buttons horizontally or vertically with shared borders.",
-  "registryDependencies": ["https://indiacn.dev/r/theme.json", "https://indiacn.dev/r/button.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json", "https://indiacn.in/r/button.json"],
   "files": [
     {
       "path": "components/ui/button-group.tsx",

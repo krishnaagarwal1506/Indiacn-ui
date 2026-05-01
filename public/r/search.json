@@ -4,7 +4,7 @@
   "title": "Search",
   "description": "Search input with icon, sizes, and optional clear button.",
   "dependencies": ["class-variance-authority", "lucide-react"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/search.tsx",

@@ -5,8 +5,8 @@
   "description": "Step indicator for multi-step flows with horizontal/vertical orientation and completed/active/warning/pending states.",
   "dependencies": ["lucide-react"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

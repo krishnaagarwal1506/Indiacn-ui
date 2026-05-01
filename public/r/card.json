@@ -5,8 +5,8 @@
   "description": "Composable container with header, content, footer, image, title, and description sub-parts.",
   "dependencies": ["next"],
   "registryDependencies": [
-    "https://indiacn.dev/r/theme.json",
-    "https://indiacn.dev/r/typography.json"
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
   ],
   "files": [
     {

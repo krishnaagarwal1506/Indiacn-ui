@@ -4,7 +4,7 @@
   "title": "Collapse",
   "description": "Single collapsible region powered by Radix Collapsible.",
   "dependencies": ["@radix-ui/react-collapsible"],
-  "registryDependencies": ["https://indiacn.dev/r/theme.json"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
   "files": [
     {
       "path": "components/ui/collapse.tsx",
