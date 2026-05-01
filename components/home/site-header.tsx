@@ -49,8 +49,13 @@ export const SiteHeader = () => {
             ))}
           </nav>
         </div>
-        <div className='flex items-center gap-3'>
-          <a href={GITHUB_URL} target='_blank' rel='noopener noreferrer'>
+        <div className='flex items-center gap-2 sm:gap-3'>
+          <a
+            href={GITHUB_URL}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='hidden sm:block'
+          >
             <Button variant='outlined' size='sm' prefixIcon={<Github className='size-3.5' />}>
               Star on GitHub
             </Button>

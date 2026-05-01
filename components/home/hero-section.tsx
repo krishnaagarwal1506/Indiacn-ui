@@ -99,10 +99,7 @@ export const HeroSection = () => (
     </div>
 
     <div className='relative mx-auto max-w-6xl px-6'>
-      <div
-        className='grid items-center gap-16'
-        style={{ gridTemplateColumns: 'minmax(0, 1.05fr) minmax(0, 0.95fr)' }}
-      >
+      <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
         {/* Left — text content */}
         <div>
           <Badge variant='tonal' theme='primary' shape='pill' className='mb-6'>

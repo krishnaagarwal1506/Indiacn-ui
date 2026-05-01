@@ -12,10 +12,7 @@ export const CommunityCtaSection = () => (
     <section className='bg-neutral-0 relative overflow-hidden py-28'>
       <ChakraBgDark />
       <div className='relative mx-auto max-w-6xl px-6'>
-        <div
-          className='grid items-center gap-16'
-          style={{ gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 1fr)' }}
-        >
+        <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-16'>
           <div>
             <Label2 className='text-primary mb-4 block font-semibold tracking-widest uppercase'>
               Community

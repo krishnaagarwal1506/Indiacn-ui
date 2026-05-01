@@ -39,10 +39,7 @@ const USE_CASES = [
 export const UseCasesSection = () => (
   <section className='py-28'>
     <div className='mx-auto max-w-6xl px-6'>
-      <div
-        className='grid gap-16'
-        style={{ gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.4fr)' }}
-      >
+      <div className='grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16'>
         <div>
           <Label2 className='text-primary mb-4 block font-semibold tracking-widest uppercase'>
             Use cases
