@@ -28,42 +28,72 @@ Think of it as [shadcn/ui](https://ui.shadcn.com) but themed and tailored for In
 
 ## Getting Started
 
-### 1. Set up your project
+IndiaCN ships as a **shadcn-compatible registry** — no npm package to install. Components land as source code directly in your project, with npm dependencies and registry dependencies auto-resolved by the CLI.
 
-IndiaCN components are designed for Next.js projects with Tailwind CSS. Make sure you have both set up.
+> **Requires Tailwind CSS v4.** The theme uses `@theme inline` syntax which does not work on Tailwind v3.
 
-### 2. Configure theming
+### 1. Initialize shadcn in your project
 
-Copy the CSS variables from our [globals.css](https://github.com/krishnaagarwal1506/Indiacn-ui/blob/main/app/globals.css) into your project's global stylesheet. This includes the UX4G 2.0 color palette:
+If you don't have shadcn set up yet:
 
-- **Primary** — `#613AF5` (Purple)
-- **Secondary** — `#938BB6` (Lavender)
-- **Success** — `#3C9718` (Green)
-- **Danger** — `#B7131A` (Red)
-- **Warning** — `#B77224` (Orange)
+<ComponentSource collapsible={false} code={`npx shadcn@latest init`} />
 
-### 3. Install dependencies
+### 2. Add the IndiaCN theme
+
+The theme preset brings every design token: 8 semantic color scales, focus rings, dark mode variables, radius ladder, and keyframe animations.
 
 <ComponentSource
   collapsible={false}
-  code={`npm install @radix-ui/react-slot class-variance-authority tailwind-merge clsx lucide-react`}
+  code={`npx shadcn@latest add https://indiacn.in/r/theme.json`}
 />
 
-### 4. Add the `cn` utility
+### 3. Add components
+
+Pick any component — its dependencies (theme, typography, etc.) are pulled in automatically.
 
 <ComponentSource
   collapsible={false}
-  code={`import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+  code={`# Foundation
+npx shadcn@latest add https://indiacn.in/r/typography.json
+npx shadcn@latest add https://indiacn.in/r/button.json
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+# Any component — deps auto-resolve
+
+npx shadcn@latest add https://indiacn.in/r/badge.json
+npx shadcn@latest add https://indiacn.in/r/card.json
+npx shadcn@latest add https://indiacn.in/r/modal.json`}
+/>
+
+### Shorthand with `@indiacn` namespace
+
+Add the IndiaCN registry to your `components.json` for a cleaner install syntax:
+
+<ComponentSource
+  collapsible={false}
+  code={`{
+  "registries": {
+    "@indiacn": "https://indiacn.in/r/{name}.json"
+    }
 }`}
 />
 
-### 5. Start using components
+Then install components with the `@indiacn/` prefix:
 
-Browse the sidebar, pick a component, and copy it into your project.
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add @indiacn/button
+npx shadcn@latest add @indiacn/badge @indiacn/card @indiacn/dropdown`}
+/>
+
+### What ships with `theme`
+
+The `theme` item is a `registry:theme` preset that writes into your `globals.css`:
+
+- 8 semantic color scales (50–900): `primary`, `secondary`, `neutral`, `success`, `danger`, `warning`, `info`
+- Light and dark variants of every scale
+- `--shadow-focus-*` ring utilities (4 px primary-tinted focus halo)
+- `--radius-*` ladder derived from a single `--radius` variable
+- Keyframes: `accordion-up/down`, `collapsible-up/down`, `spinner-grow`, `shimmer`
 
 ## Components
 
