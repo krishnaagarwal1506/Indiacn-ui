@@ -2,7 +2,7 @@ import { CommunityCtaSection } from '@/components/home/community-cta-section';
 import { ComponentsSection, ComponentTicker } from '@/components/home/components-section';
 import { FooterSection } from '@/components/home/footer-section';
 import { HeroSection } from '@/components/home/hero-section';
-// import { InstallSection } from '@/components/home/install-section';
+import { InstallSection } from '@/components/home/install-section';
 import { PillarsSection } from '@/components/home/pillars-section';
 import { SiteHeader } from '@/components/home/site-header';
 import { ThemeBand } from '@/components/home/theme-band';
@@ -17,7 +17,7 @@ export default function Home() {
         <HeroSection />
         <ComponentTicker />
         <ComponentsSection />
-        {/* <InstallSection /> */}
+        <InstallSection />
         <PillarsSection />
         <ThemeBand />
         <UseCasesSection />
