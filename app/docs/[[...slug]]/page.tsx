@@ -17,19 +17,38 @@ export default async function Page(props: PageProps<'/docs/[[...slug]]'>) {
   const MDX = page.data.body;
   const { toc, full, title, description } = page.data;
 
+  const slug = params.slug?.join('/');
+  const url = slug ? `${SITE_URL}/docs/${slug}` : `${SITE_URL}/docs`;
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Docs', item: `${SITE_URL}/docs` },
+      ...(slug ? [{ '@type': 'ListItem', position: 3, name: title, item: url }] : []),
+    ],
+  };
+
   return (
-    <DocsPage toc={toc} full={full}>
-      <DocsTitle>{title}</DocsTitle>
-      <DocsDescription>{description}</DocsDescription>
-      <DocsBody>
-        <MDX
-          components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
-          })}
-        />
-      </DocsBody>
-    </DocsPage>
+    <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <DocsPage toc={toc} full={full}>
+        <DocsTitle>{title}</DocsTitle>
+        <DocsDescription>{description}</DocsDescription>
+        <DocsBody>
+          <MDX
+            components={getMDXComponents({
+              // this allows you to link to other pages with relative file paths
+              a: createRelativeLink(source, page),
+            })}
+          />
+        </DocsBody>
+      </DocsPage>
+    </>
   );
 }
 
@@ -45,6 +64,7 @@ export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): P
   const slug = params.slug?.join('/');
   const url = slug ? `${SITE_URL}/docs/${slug}` : `${SITE_URL}/docs`;
   const description = page.data.description || SITE_DESCRIPTION;
+  const modifiedTime = new Date().toISOString();
 
   return {
     title: page.data.title,
@@ -58,6 +78,9 @@ export async function generateMetadata(props: PageProps<'/docs/[[...slug]]'>): P
       url,
       siteName: SITE_NAME,
       type: 'article',
+      publishedTime: '2025-01-01T00:00:00.000Z',
+      modifiedTime,
+      authors: ['IndiaCN Community'],
       images: [
         {
           url: '/opengraph-image',

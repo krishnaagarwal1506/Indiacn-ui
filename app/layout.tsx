@@ -81,12 +81,16 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     shortcut: ['/icon.svg'],
+    apple: [{ url: '/icon.png', sizes: '180x180', type: 'image/png' }],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0f172a',
-  colorScheme: 'light',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+  ],
+  colorScheme: 'light dark',
 };
 
 export default function RootLayout({
@@ -127,10 +131,26 @@ export default function RootLayout({
       url: SITE_URL,
       description: SITE_DESCRIPTION,
     },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareSourceCode',
+      name: SITE_NAME,
+      description: SITE_DESCRIPTION,
+      url: SITE_URL,
+      codeRepository: GITHUB_URL,
+      programmingLanguage: [
+        { '@type': 'ComputerLanguage', name: 'TypeScript' },
+        { '@type': 'ComputerLanguage', name: 'React' },
+        { '@type': 'ComputerLanguage', name: 'CSS' },
+      ],
+      license: 'https://opensource.org/licenses/MIT',
+      isAccessibleForFree: true,
+      runtimePlatform: 'Node.js',
+    },
   ];
 
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en-IN' suppressHydrationWarning>
       <body className={cn(NOTO_SANS.className, 'antialiased')}>
         <script
           type='application/ld+json'
