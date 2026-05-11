@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
  * - trigger padding: 1rem 1.25rem, font-size 1rem
  * - open: border primary + shadow-focus-primary, rounded
  * - focus: same as open (primary border + focus shadow)
- * - body padding: 0 1.25rem 1rem
+ * - body padding: 0 1.25rem 1rem, with a compact gap after the trigger
  * - chevron: 1.25rem, rotates 180deg when open
  */
 
@@ -70,7 +70,7 @@ function AccordionContent({
       className='data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm'
       {...props}
     >
-      <div className={cn('px-5 pt-0 pb-4', className)}>{children}</div>
+      <div className={cn('px-5 pt-2 pb-4', className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
 }
