@@ -30,7 +30,15 @@ Toasts deliver brief notifications to users without interrupting their workflow.
 
 <ComponentPreview name='ToastDefault' />
 
+### Statuses
+
+Figma leads every toast with a 24px status glyph. Status colours use semantic tokens, so a status reads correctly on the default (white) toast — not on a solid themed one.
+
+<ComponentPreview name='ToastStatuses' />
+
 ### Themes
+
+Solid themed toasts are an IndiaCN addition; UX4G's toast is always a white card distinguished by its status icon.
 
 <ComponentPreview name='ToastThemes' />
 
@@ -44,15 +52,16 @@ A toast without a title.
 
 ### Toast
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `theme` | `default \| primary \| success \| danger \| warning` | `default` | Color theme |
-| `onDismiss` | `() => void` | — | Dismiss callback, shows close button |
+| Prop        | Type                                                                                    | Default     | Description                                                             |
+| ----------- | --------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------- |
+| `status`    | `'success' \| 'warning' \| 'info' \| 'error' \| 'loading'`                              | —           | Leading 24px status glyph, per UX4G                                     |
+| `theme`     | `'default' \| 'primary' \| 'secondary' \| 'success' \| 'danger' \| 'warning' \| 'info'` | `'default'` | Solid surface colour. An IndiaCN addition; UX4G's toast is always white |
+| `onDismiss` | `() => void`                                                                            | —           | Dismiss callback; shows the close button                                |
 
 ### ToastContainer
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
+| Prop       | Type                                                                                  | Default        | Description     |
+| ---------- | ------------------------------------------------------------------------------------- | -------------- | --------------- |
 | `position` | `top-left \| top-right \| top-center \| bottom-left \| bottom-right \| bottom-center` | `bottom-right` | Screen position |
 
 ### useToast

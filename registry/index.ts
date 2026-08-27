@@ -152,6 +152,7 @@ import {
   TabsUnderline,
 } from '@/components/examples/tabs-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
+import { ToastStatuses } from '@/components/examples/toast-demo';
 import {
   TooltipDefault,
   TooltipPlacements,
@@ -3348,5 +3349,41 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  // ── Toast statuses ──────────────────────────────
+  ToastStatuses: {
+    name: 'ToastStatuses',
+    description: 'Toast status glyphs per UX4G',
+    type: 'registry:example',
+    component: ToastStatuses,
+    code: `import { Toast, ToastDescription, ToastTitle } from '@/components/ui/toast';
+
+export default function Component() {
+  return (
+    <div className='flex flex-col gap-3'>
+      <Toast status='success'>
+        <ToastTitle>Application submitted</ToastTitle>
+        <ToastDescription>Reference number MH-2026-44815.</ToastDescription>
+      </Toast>
+      <Toast status='warning'>
+        <ToastTitle>Session expiring</ToastTitle>
+        <ToastDescription>You will be signed out in two minutes.</ToastDescription>
+      </Toast>
+      <Toast status='error'>
+        <ToastTitle>Upload failed</ToastTitle>
+        <ToastDescription>The file exceeds the 5 MB limit.</ToastDescription>
+      </Toast>
+      <Toast status='info'>
+        <ToastTitle>Aadhaar verification pending</ToastTitle>
+        <ToastDescription>This usually takes under a minute.</ToastDescription>
+      </Toast>
+      <Toast status='loading'>
+        <ToastTitle>Uploading documents</ToastTitle>
+        <ToastDescription>Please keep this tab open.</ToastDescription>
+      </Toast>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/toast-demo.tsx', type: 'registry:example', target: '' }],
   },
 };
