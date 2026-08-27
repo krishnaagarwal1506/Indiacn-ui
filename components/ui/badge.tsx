@@ -4,9 +4,9 @@ import { ComponentProps } from 'react';
 import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
-/* UX4G badge: padding 0.35em 0.61em, font-size 0.75em, font-weight 400, border-radius 0.375rem */
+/* UX4G label-3 type scale: 11px/16px, 0.5px tracking. Padding stays em-based so badges scale with context. */
 const BADGE_VARIANTS = cva(
-  'inline-flex items-center justify-center whitespace-nowrap align-baseline text-center text-[0.75em] leading-none transition-colors focus:outline-none',
+  'inline-flex items-center justify-center whitespace-nowrap align-baseline text-center transition-colors focus:outline-none',
   {
     variants: {
       theme: {
@@ -34,9 +34,9 @@ const BADGE_VARIANTS = cva(
         tonal: 'bg-(--badge-bg-tonal) text-(--badge-text-color) border border-transparent',
       },
       size: {
-        sm: 'px-[0.4em] py-[0.2em]',
-        md: 'px-[0.61em] py-[0.35em]',
-        lg: 'px-[0.8em] py-[0.45em]',
+        sm: 'px-[0.4em] py-[0.2em] text-[10px] leading-[14px]',
+        md: 'px-[0.61em] py-[0.35em] text-[11px] leading-4',
+        lg: 'px-[0.8em] py-[0.45em] text-xs leading-4',
       },
       shape: {
         default: 'rounded-[0.375rem]',
