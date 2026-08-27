@@ -1,10 +1,10 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { CheckCircle, X } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 import { ComponentProps, ReactNode } from 'react';
 
-import { Label2 } from '@/components/ui/typography';
+import { Body2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 /**
@@ -19,11 +19,11 @@ function createDismissHandler(onDismiss: () => void, disabled?: boolean) {
 }
 
 /*
- * UX4G chip: border-radius 8px, padding 6px 12px, font-size 14px, font-weight 400,
- * hover bg #FAEFFF (light purple tint), selected behaves like filled.
+ * UX4G chip: 32px tall, radius 8px, padding 6px 12px, body-2 type. Selected is
+ * a tonal fill with a leading check, not a solid fill.
  */
 const CHIP_VARIANTS = cva(
-  'inline-flex cursor-pointer items-center gap-1.5 whitespace-nowrap transition-[color,background-color,border-color,box-shadow] duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-0',
+  'inline-flex cursor-pointer items-center gap-[5px] whitespace-nowrap transition-[color,background-color,border-color,box-shadow] duration-150 ease-in-out focus-visible:outline-none focus-visible:ring-0',
   {
     variants: {
       theme: {
@@ -50,9 +50,9 @@ const CHIP_VARIANTS = cva(
           'border border-transparent bg-(--chip-bg-tonal) text-(--chip-text-color) hover:shadow-xs active:opacity-90',
       },
       size: {
-        sm: 'px-2 py-1 rounded-md',
-        md: 'px-3 py-1.5 rounded-lg',
-        lg: 'px-4 py-2.5 rounded-xl',
+        sm: 'h-7 px-2 rounded-md',
+        md: 'h-8 px-3 rounded-md',
+        lg: 'h-10 px-4 rounded-md',
       },
     },
     defaultVariants: {
@@ -109,17 +109,17 @@ function Chip({
       className={cn(
         CHIP_VARIANTS({ variant, theme, size, className }),
         selected && [
-          'border-transparent bg-(--chip-bg) text-[var(--chip-fg,var(--color-neutral-0))]',
-          'hover:bg-(--chip-bg) hover:shadow-xs',
+          'gap-1 border-transparent bg-(--chip-bg-tonal) pr-3 pl-2 text-(--chip-text-color)',
+          'hover:bg-(--chip-bg-tonal) hover:shadow-xs',
         ],
         disabled && 'pointer-events-none opacity-50',
       )}
       {...props}
     >
       {avatar && <div className='-ml-0.5 [&>img]:size-6 [&>img]:rounded-full'>{avatar}</div>}
-      {selected && !icon && <CheckCircle className='size-3.5' />}
+      {selected && !icon && <Check className='size-[18px]' />}
       {icon && <div className='[&>svg]:size-3.5'>{icon}</div>}
-      <Label2 className='mx-0.5'>{children}</Label2>
+      <Body2>{children}</Body2>
       {onDismiss && (
         <button
           type='button'
