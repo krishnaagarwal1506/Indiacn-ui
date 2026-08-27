@@ -74,6 +74,12 @@ import {
   DropdownWithShortcuts,
 } from '@/components/examples/dropdown-demo';
 import {
+  IndicatorAttached,
+  IndicatorCounts,
+  IndicatorDefault,
+  IndicatorThemes,
+} from '@/components/examples/indicator-demo';
+import {
   ListGroupActionable,
   ListGroupActive,
   ListGroupContextual,
@@ -157,6 +163,7 @@ import { Card } from '@/components/ui/card';
 import { Chip } from '@/components/ui/chip';
 import { Collapse } from '@/components/ui/collapse';
 import { Dropdown } from '@/components/ui/dropdown';
+import { Indicator } from '@/components/ui/indicator';
 import { ListGroup } from '@/components/ui/list-group';
 import { Modal } from '@/components/ui/modal';
 import { Offcanvas } from '@/components/ui/offcanvas';
@@ -2711,6 +2718,155 @@ export default function Component() {
 }`,
     files: [
       { path: 'components/examples/skeleton-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  // ── Indicator ──────────────────────────────
+  indicator: {
+    name: 'indicator',
+    description: 'Notification dot, count, or status label',
+    type: 'registry:ui',
+    component: Indicator,
+    files: [{ path: 'components/ui/indicator.tsx', type: 'registry:ui', target: '' }],
+  },
+  IndicatorDefault: {
+    name: 'IndicatorDefault',
+    description: 'All three indicator variants',
+    type: 'registry:example',
+    component: IndicatorDefault,
+    code: `import { Bell, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3, Label2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-6'>
+      <Indicator variant='dot' />
+      <Indicator variant='count'>3</Indicator>
+      <Indicator variant='count'>32</Indicator>
+      <Indicator variant='text'>Primary</Indicator>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/indicator-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  IndicatorThemes: {
+    name: 'IndicatorThemes',
+    description: 'Indicator in primary, success and danger',
+    type: 'registry:example',
+    component: IndicatorThemes,
+    code: `import { Bell, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3, Label2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='grid gap-4'>
+      <div className='flex items-center gap-4'>
+        <Indicator theme='primary' variant='dot' />
+        <Indicator theme='primary' variant='count'>
+          3
+        </Indicator>
+        <Indicator theme='primary' variant='text'>
+          Primary
+        </Indicator>
+      </div>
+      <div className='flex items-center gap-4'>
+        <Indicator theme='success' variant='dot' />
+        <Indicator theme='success' variant='count'>
+          3
+        </Indicator>
+        <Indicator theme='success' variant='text'>
+          Success
+        </Indicator>
+      </div>
+      <div className='flex items-center gap-4'>
+        <Indicator theme='danger' variant='dot' />
+        <Indicator theme='danger' variant='count'>
+          3
+        </Indicator>
+        <Indicator theme='danger' variant='text'>
+          Danger
+        </Indicator>
+      </div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/indicator-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  IndicatorAttached: {
+    name: 'IndicatorAttached',
+    description: 'Indicators attached to buttons and labels',
+    type: 'registry:example',
+    component: IndicatorAttached,
+    code: `import { Bell, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3, Label2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-8'>
+      <div className='relative inline-flex'>
+        <Button theme='primary' variant='outlined' size='md' iconButton aria-label='Notifications'>
+          <Bell />
+        </Button>
+        <Indicator theme='danger' variant='count' className='absolute -top-1 -right-1'>
+          5
+        </Indicator>
+      </div>
+
+      <div className='relative inline-flex'>
+        <Button theme='primary' variant='outlined' size='md' iconButton aria-label='Inbox'>
+          <Mail />
+        </Button>
+        <Indicator theme='danger' variant='dot' className='absolute top-0 right-0' />
+      </div>
+
+      <div className='flex items-center gap-2'>
+        <Label2>Grievance status</Label2>
+        <Indicator theme='success' variant='text'>
+          Resolved
+        </Indicator>
+      </div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/indicator-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  IndicatorCounts: {
+    name: 'IndicatorCounts',
+    description: 'How count width grows with the value',
+    type: 'registry:example',
+    component: IndicatorCounts,
+    code: `import { Bell, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3, Label2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='grid gap-3'>
+      <div className='flex items-center gap-4'>
+        <Indicator variant='count'>1</Indicator>
+        <Indicator variant='count'>12</Indicator>
+        <Indicator variant='count'>99+</Indicator>
+      </div>
+      <Body3 className='text-neutral-500'>
+        A single digit renders a 16px circle; longer values grow into a pill.
+      </Body3>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/indicator-demo.tsx', type: 'registry:example', target: '' },
     ],
   },
 };
