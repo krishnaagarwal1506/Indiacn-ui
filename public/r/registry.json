@@ -860,6 +860,23 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "indicator",
+      "type": "registry:ui",
+      "title": "Indicator",
+      "description": "Notification dot, count, or short status label. UX4G's Badge component.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/indicator.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
