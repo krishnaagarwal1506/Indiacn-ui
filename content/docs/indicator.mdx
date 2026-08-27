@@ -1,0 +1,76 @@
+---
+title: Indicator
+description: A dot, count, or short label for drawing attention to state.
+---
+
+## Introduction
+
+Indicators mark something as needing attention — unread messages, pending items, a status. They attach to another element rather than standing alone.
+
+This is UX4G's **Badge** component. IndiaCN's [Badge](/docs/badge) is a label/tag, which is a different thing, so the notification form lives here under its own name to keep both usable.
+
+| Variant | Size                         | Use                                 |
+| ------- | ---------------------------- | ----------------------------------- |
+| `dot`   | 6px                          | Something changed; no number needed |
+| `count` | 16px circle, grows to a pill | A number of pending items           |
+| `text`  | pill, 20px tall              | A one-word status                   |
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/indicator.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Indicator } from '@/components/ui/indicator';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Indicator variant="dot" />
+<Indicator variant="count">3</Indicator>
+<Indicator theme="success" variant="text">Resolved</Indicator>`}
+/>
+
+## Examples
+
+### Variants
+
+<ComponentPreview name='IndicatorDefault' />
+
+### Themes
+
+UX4G defines three states for this component: primary, success and danger.
+
+<ComponentPreview name='IndicatorThemes' />
+
+### Attached to an Element
+
+Position it with `absolute` on the indicator and `relative` on the wrapper.
+
+<ComponentPreview name='IndicatorAttached' />
+
+### Counts
+
+<ComponentPreview name='IndicatorCounts' />
+
+## Accessibility
+
+- A `dot` carries no text, so it is `role="presentation"` and invisible to screen readers. The meaning must come from its context — give the element it marks an accessible name that includes the state, e.g. `aria-label="Inbox, unread messages"`.
+- A `count` announces its number, but not what the number means. Label the container: `aria-label="5 unread notifications"`.
+- Do not rely on colour alone. `danger` and `success` look different but read identically to a screen reader, so the surrounding text must carry the distinction.
+
+## API Reference
+
+### Indicator
+
+| Prop        | Type                                 | Default     | Description                                          |
+| ----------- | ------------------------------------ | ----------- | ---------------------------------------------------- |
+| `variant`   | `'dot' \| 'count' \| 'text'`         | `'count'`   | Which form to render. `dot` ignores children         |
+| `theme`     | `'primary' \| 'success' \| 'danger'` | `'primary'` | Colour, from UX4G's three states                     |
+| `children`  | `ReactNode`                          | —           | The number or label. Ignored when `variant` is `dot` |
+| `className` | `string`                             | —           | Extra Tailwind classes, typically for positioning    |
