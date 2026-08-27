@@ -217,6 +217,8 @@ import {
   Title3,
 } from '@/components/ui/typography';
 
+import { CardElevated } from '@/components/examples/card-demo';
+
 export const Index: Record<string, IRegistryEntry> = {
   // ── UI components ──────────────────────────────────────────────
   badge: {
@@ -3183,5 +3185,39 @@ export default function Component() {
     files: [
       { path: 'components/examples/indicator-demo.tsx', type: 'registry:example', target: '' },
     ],
+  },
+  // ── Card variants ──────────────────────────────
+  CardElevated: {
+    name: 'CardElevated',
+    description: 'Outlined and elevated card variants',
+    type: 'registry:example',
+    component: CardElevated,
+    code: `import { Button } from '@/components/ui/button';
+import {
+import { Body2 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='grid w-full max-w-2xl gap-6 sm:grid-cols-2'>
+      <Card variant='outlined'>
+        <CardHeader>
+          <CardTitle>Outlined</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>The default. A 1px neutral-100 border, no shadow.</CardDescription>
+        </CardContent>
+      </Card>
+      <Card variant='elevated'>
+        <CardHeader>
+          <CardTitle>Elevated</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>Same border, plus the UX4G card shadow.</CardDescription>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/card-demo.tsx', type: 'registry:example', target: '' }],
   },
 };

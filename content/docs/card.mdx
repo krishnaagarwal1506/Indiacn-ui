@@ -48,6 +48,12 @@ A card with only body content, no header or footer.
 
 <ComponentPreview name='CardSimple' />
 
+### Variants
+
+`outlined` is the default. `elevated` keeps the border and adds the UX4G card shadow.
+
+<ComponentPreview name='CardElevated' />
+
 ### Grid Layout
 
 Cards arranged in a responsive grid.
@@ -58,11 +64,16 @@ Cards arranged in a responsive grid.
 
 ### Card
 
-The root container with border, rounded corners, and shadow.
+The root container: 8px radius, a 1px `neutral-100` border, and `overflow-hidden` so a top image clips to the corners.
+
+| Prop        | Type                       | Default      | Description                                               |
+| ----------- | -------------------------- | ------------ | --------------------------------------------------------- |
+| `variant`   | `'outlined' \| 'elevated'` | `'outlined'` | `elevated` keeps the border and adds the UX4G card shadow |
+| `className` | `string`                   | —            | Extra Tailwind classes                                    |
 
 ### CardHeader
 
-Top section with vertical spacing for title and description.
+Top section, 16px padding. No divider — UX4G cards separate sections by spacing, not rules.
 
 ### CardTitle
 
