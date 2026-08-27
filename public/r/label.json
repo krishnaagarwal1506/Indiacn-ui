@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "title": "Label",
+  "description": "Accessible caption for a form control. Built on Radix Label.",
+  "dependencies": ["@radix-ui/react-label"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/label.tsx",
+      "content": "'use client';\n\nimport * as LabelPrimitive from '@radix-ui/react-label';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/** Accessible caption for a form control. Dims when the control it labels is disabled. */\nfunction Label({ className, ...props }: ComponentProps<typeof LabelPrimitive.Root>) {\n  return (\n    <LabelPrimitive.Root\n      className={cn(\n        'text-neutral flex items-center gap-2 text-sm leading-5 font-medium select-none',\n        'peer-disabled:pointer-events-none peer-disabled:opacity-[0.38]',\n        'group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-[0.38]',\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Label };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

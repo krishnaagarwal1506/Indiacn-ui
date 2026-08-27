@@ -44,4 +44,4 @@ next-env.d.ts
 .eslintcache
 
 .source
-.claude
+.claude.playwright-mcp/

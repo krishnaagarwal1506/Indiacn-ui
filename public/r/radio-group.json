@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "title": "Radio Group",
+  "description": "Mutually exclusive options with a 40px state layer and AA focus ring. Built on Radix Radio Group.",
+  "dependencies": ["@radix-ui/react-radio-group"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json", "https://indiacn.in/r/label.json"],
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "content": "'use client';\n\nimport * as RadioGroupPrimitive from '@radix-ui/react-radio-group';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/** Container for a set of mutually exclusive radio options. */\nfunction RadioGroup({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Root>) {\n  return <RadioGroupPrimitive.Root className={cn('grid gap-3', className)} {...props} />;\n}\n\n/**\n * Single radio option. UX4G: 20px ring, 10px dot, 40px state layer at radius-md\n * tinted primary/8% hover and primary/16% focused; focus ring 4px primary/48%.\n */\nfunction RadioGroupItem({ className, ...props }: ComponentProps<typeof RadioGroupPrimitive.Item>) {\n  return (\n    <RadioGroupPrimitive.Item\n      className={cn(\n        'group peer relative size-5 shrink-0 cursor-pointer rounded-full border-2 transition-[color,border-color,box-shadow] duration-150 ease-in-out',\n        'data-[state=checked]:border-primary border-neutral-500',\n        'focus-visible:shadow-focus-primary focus-visible:outline-none',\n        'disabled:data-[state=checked]:border-neutral disabled:pointer-events-none disabled:opacity-50',\n        'before:absolute before:-inset-[10px] before:rounded-md before:transition-colors before:duration-150 before:content-[\"\"]',\n        'hover:before:bg-primary/8 active:before:bg-primary/16',\n        className,\n      )}\n      {...props}\n    >\n      <RadioGroupPrimitive.Indicator className='flex size-full items-center justify-center'>\n        <div className='bg-primary group-disabled:bg-neutral size-2.5 rounded-full' />\n      </RadioGroupPrimitive.Indicator>\n    </RadioGroupPrimitive.Item>\n  );\n}\n\nexport { RadioGroup, RadioGroupItem };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

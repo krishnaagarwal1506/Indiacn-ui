@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "description": "On/off toggle in default and small sizes; the handle grows on check per UX4G. Built on Radix Switch.",
+  "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json", "https://indiacn.in/r/label.json"],
+  "files": [
+    {
+      "path": "components/ui/switch.tsx",
+      "content": "'use client';\n\nimport * as SwitchPrimitive from '@radix-ui/react-switch';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/* UX4G toggle: track 52x32 (small 39x24). The handle grows on check. */\nconst SWITCH_VARIANTS = cva(\n  'peer relative inline-flex shrink-0 cursor-pointer rounded-full transition-[background-color,box-shadow] duration-150 ease-in-out bg-neutral-200 data-[state=checked]:bg-primary focus-visible:shadow-focus-primary focus-visible:outline-none disabled:pointer-events-none disabled:opacity-[0.38]',\n  {\n    variants: {\n      size: {\n        default: 'h-8 w-[52px]',\n        sm: 'h-6 w-[39px]',\n      },\n    },\n    defaultVariants: {\n      size: 'default',\n    },\n  },\n);\n\nconst SWITCH_THUMB_VARIANTS = cva(\n  'bg-neutral-0 pointer-events-none absolute top-1/2 block -translate-x-1/2 -translate-y-1/2 rounded-full transition-[left,width,height] duration-150 ease-in-out',\n  {\n    variants: {\n      size: {\n        default:\n          'size-4 left-[calc(50%-10px)] data-[state=checked]:size-6 data-[state=checked]:left-[calc(50%+10px)]',\n        sm: 'size-3 left-[calc(50%-7.5px)] data-[state=checked]:size-[18px] data-[state=checked]:left-[calc(50%+7.5px)]',\n      },\n    },\n    defaultVariants: {\n      size: 'default',\n    },\n  },\n);\n\ninterface ISwitchProps\n  extends ComponentProps<typeof SwitchPrimitive.Root>,\n    VariantProps<typeof SWITCH_VARIANTS> {}\n\n/** On/off control for a single setting. Built on Radix Switch primitive. */\nfunction Switch({ className, size, ...props }: ISwitchProps) {\n  return (\n    <SwitchPrimitive.Root className={cn(SWITCH_VARIANTS({ size }), className)} {...props}>\n      <SwitchPrimitive.Thumb className={SWITCH_THUMB_VARIANTS({ size })} />\n    </SwitchPrimitive.Root>\n  );\n}\n\nexport { Switch };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
