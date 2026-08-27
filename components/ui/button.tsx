@@ -20,23 +20,23 @@ const BUTTON_VARIANTS = cva(
     variants: {
       theme: {
         primary:
-          'text-primary [--btn-bg:var(--color-primary)] [--btn-bg-tonal:var(--color-primary-100)] [--btn-border-color:var(--color-primary)] [--btn-text-color:var(--color-primary)] focus:shadow-focus-primary',
+          'text-primary [--btn-bg:var(--color-primary)] [--btn-fg:var(--color-primary-foreground)] [--btn-bg-tonal:var(--color-primary-100)] [--btn-border-color:var(--color-primary)] [--btn-text-color:var(--color-primary)] focus:shadow-focus-primary',
         success:
-          'text-success [--btn-bg:var(--color-success)] [--btn-bg-tonal:var(--color-success-100)] [--btn-border-color:var(--color-success-300)] [--btn-text-color:var(--color-success)] focus:shadow-focus-success',
+          'text-success [--btn-bg:var(--color-success)] [--btn-fg:var(--color-success-foreground)] [--btn-bg-tonal:var(--color-success-100)] [--btn-border-color:var(--color-success-300)] [--btn-text-color:var(--color-success)] focus:shadow-focus-success',
         destructive:
-          'text-danger [--btn-bg:var(--color-danger)] [--btn-bg-tonal:var(--color-danger-100)] [--btn-border-color:var(--color-danger-300)] [--btn-text-color:var(--color-danger)] focus:shadow-focus-danger',
+          'text-danger [--btn-bg:var(--color-danger)] [--btn-fg:var(--color-danger-foreground)] [--btn-bg-tonal:var(--color-danger-100)] [--btn-border-color:var(--color-danger-300)] [--btn-text-color:var(--color-danger)] focus:shadow-focus-danger',
       },
       variant: {
-        filled: 'bg-(--btn-bg) text-neutral-0 hover:shadow-xs active:opacity-90',
+        filled: 'bg-(--btn-bg) text-(--btn-fg) hover:shadow-xs active:opacity-90',
         outlined:
           'border border-(--btn-border-color) bg-transparent hover:bg-(--btn-bg)/8 active:bg-(--btn-bg)/16 text-(--btn-text-color)',
         tonal: 'bg-(--btn-bg-tonal) text-neutral active:opacity-90 hover:shadow-xs',
         text: 'bg-transparent hover:bg-(--btn-bg)/8 active:bg-(--btn-bg)/16 text-(--btn-text-color)',
       },
       size: {
-        sm: 'py-2 px-4 text-sm',
-        md: 'py-2.5 px-6 text-base',
-        lg: 'py-3 px-6 text-base',
+        sm: 'h-8 px-4 text-xs tracking-[0.5px]',
+        md: 'h-10 px-6 text-sm tracking-[0.1px]',
+        lg: 'h-12 px-6 text-base tracking-[0.15px]',
       },
       iconButton: {
         true: '',
@@ -49,23 +49,23 @@ const BUTTON_VARIANTS = cva(
       {
         iconButton: false,
         size: 'sm',
-        className: 'py-2 px-4 has-[>svg:first-child]:pl-3 has-[>svg:last-child]:pr-3',
+        className: 'px-4 has-[>svg:first-child]:pl-3 has-[>svg:last-child]:pr-3',
       },
       {
         iconButton: false,
         size: 'md',
-        className: 'py-2.5 px-6 has-[>svg:first-child]:pl-4 has-[>svg:last-child]:pr-4',
+        className: 'px-6 has-[>svg:first-child]:pl-4 has-[>svg:last-child]:pr-4',
       },
       {
         iconButton: false,
         size: 'lg',
-        className: 'py-3 px-6 has-[>svg:first-child]:pl-4 has-[>svg:last-child]:pr-4',
+        className: 'px-6 has-[>svg:first-child]:pl-4 has-[>svg:last-child]:pr-4',
       },
 
       // Icon button padding (when iconButton is true)
-      { iconButton: true, size: 'sm', className: 'p-1.5 [&>svg]:size-5' },
-      { iconButton: true, size: 'md', className: 'p-2 [&>svg]:size-6' },
-      { iconButton: true, size: 'lg', className: 'p-2 [&>svg]:size-8' },
+      { iconButton: true, size: 'sm', className: 'w-8 px-0 [&>svg]:size-5' },
+      { iconButton: true, size: 'md', className: 'w-10 px-0 [&>svg]:size-6' },
+      { iconButton: true, size: 'lg', className: 'w-12 px-0 [&>svg]:size-8' },
     ],
 
     defaultVariants: {

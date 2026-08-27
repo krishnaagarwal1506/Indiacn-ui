@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "title": "Checkbox",
+  "description": "Tri-state checkbox with checked, indeterminate, and unchecked types across five states. Built on Radix Checkbox.",
+  "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json", "https://indiacn.in/r/label.json"],
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "content": "'use client';\n\nimport * as CheckboxPrimitive from '@radix-ui/react-checkbox';\nimport { Check, Minus } from 'lucide-react';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/**\n * Tri-state checkbox. UX4G: 18px box at radius-xs, 40px state layer at radius-md\n * tinted primary/8% hover and primary/16% pressed; focus ring 4px primary/48%.\n */\nfunction Checkbox({ className, ...props }: ComponentProps<typeof CheckboxPrimitive.Root>) {\n  return (\n    <CheckboxPrimitive.Root\n      className={cn(\n        'group peer relative size-[18px] shrink-0 cursor-pointer rounded-xs border transition-[color,background-color,border-color,box-shadow] duration-150 ease-in-out',\n        'border-neutral-500 bg-transparent',\n        'data-[state=checked]:bg-primary data-[state=indeterminate]:bg-primary data-[state=checked]:border-transparent data-[state=indeterminate]:border-transparent',\n        'focus-visible:shadow-focus-primary focus-visible:outline-none',\n        'disabled:pointer-events-none disabled:opacity-[0.38]',\n        'disabled:data-[state=checked]:bg-neutral disabled:data-[state=indeterminate]:bg-neutral',\n        'before:absolute before:-inset-[11px] before:rounded-md before:transition-colors before:duration-150 before:content-[\"\"]',\n        'hover:before:bg-primary/8 active:before:bg-primary/16',\n        className,\n      )}\n      {...props}\n    >\n      <CheckboxPrimitive.Indicator className='text-primary-foreground flex items-center justify-center'>\n        <Check\n          className='size-3.5 group-data-[state=indeterminate]:hidden'\n          strokeWidth={3}\n          aria-hidden\n        />\n        <Minus className='size-3.5 group-data-[state=checked]:hidden' strokeWidth={3} aria-hidden />\n      </CheckboxPrimitive.Indicator>\n    </CheckboxPrimitive.Root>\n  );\n}\n\nexport { Checkbox };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

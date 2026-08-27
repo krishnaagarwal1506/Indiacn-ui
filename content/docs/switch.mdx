@@ -1,0 +1,65 @@
+---
+title: Switch
+description: An on/off control that applies immediately.
+---
+
+## Introduction
+
+Switches turn a single setting on or off and take effect straight away — no save step. If the change only applies once a form is submitted, use a [Checkbox](/docs/checkbox) instead. Built on Radix UI's Switch primitive.
+
+Following the UX4G spec, the handle grows when the switch is turned on: 16px to 24px at the default size, 12px to 18px at small.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/switch.json`}
+/>
+
+<ComponentSource collapsible={false} code={`import { Switch } from '@/components/ui/switch';`} />
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<div className="flex items-center gap-3">
+  <Switch id="notifications" defaultChecked />
+  <Label htmlFor="notifications">SMS notifications</Label>
+</div>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='SwitchDefault' />
+
+### Sizes
+
+<ComponentPreview name='SwitchSizes' />
+
+### Disabled
+
+<ComponentPreview name='SwitchDisabled' />
+
+## Accessibility
+
+- Toggles with <kbd>Space</kbd> or <kbd>Enter</kbd> and is reachable with <kbd>Tab</kbd>.
+- Label the switch with what it controls, not its current state — "SMS notifications", not "Notifications on".
+- Because a switch applies immediately, avoid pairing it with a save button for the same setting.
+
+## API Reference
+
+### Switch
+
+| Prop              | Type                         | Default     | Description                           |
+| ----------------- | ---------------------------- | ----------- | ------------------------------------- |
+| `size`            | `'default' \| 'sm'`          | `'default'` | Track size: 52×32 or 39×24            |
+| `checked`         | `boolean`                    | —           | Controlled state                      |
+| `defaultChecked`  | `boolean`                    | `false`     | Initial state when uncontrolled       |
+| `onCheckedChange` | `(checked: boolean) => void` | —           | Fires when the state changes          |
+| `disabled`        | `boolean`                    | `false`     | Prevents interaction and dims to 38%  |
+| `required`        | `boolean`                    | `false`     | Marks the field as required in a form |
+| `name`            | `string`                     | —           | Name submitted with the parent form   |
+| `value`           | `string`                     | `'on'`      | Value submitted when checked          |
+| `className`       | `string`                     | —           | Extra Tailwind classes                |

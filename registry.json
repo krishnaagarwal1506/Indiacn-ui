@@ -7,9 +7,38 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "IndiaCN UX4G theme",
-      "description": "UX4G 2.0 design tokens \u2014 8 semantic colors with 50\u2013900 scales, focus-shadow utilities, radius ladder, and accordion/collapsible keyframes. Required by every IndiaCN component.",
+      "description": "UX4G 2.0 design tokens — 8 semantic colors with 50–900 scales, focus-shadow utilities, radius ladder, and accordion/collapsible keyframes. Required by every IndiaCN component.",
       "cssVars": {
         "theme": {
+          "shadow-xs": "0px 2px 3px 1px rgb(from var(--neutral) r g b / 0.12)",
+          "shadow-sm": "0px 4px 4px rgb(from var(--neutral) r g b / 0.12), 0px 1px 3px 1px rgb(from var(--neutral) r g b / 0.1)",
+          "shadow-md": "0px 6px 8px -2px rgb(from var(--neutral) r g b / 0.2), 0px 2px 8px -2px rgb(from var(--neutral) r g b / 0.04)",
+          "shadow-lg": "0px 4px 6px -2px rgb(from var(--neutral) r g b / 0.03), 0px 12px 16px -4px rgb(from var(--neutral) r g b / 0.08)",
+          "shadow-xl": "0px 24px 48px -12px rgb(from var(--neutral) r g b / 0.18)",
+          "shadow-2xl": "0px 32px 64px -12px rgb(from var(--neutral) r g b / 0.14)",
+          "shadow-focus-primary": "0px 0px 0px 4px rgb(from var(--primary) r g b / 0.48)",
+          "shadow-focus-secondary": "0px 0px 0px 4px rgb(from var(--secondary) r g b / 0.48)",
+          "shadow-focus-success": "0px 0px 0px 4px rgb(from var(--success) r g b / 0.48)",
+          "shadow-focus-danger": "0px 0px 0px 4px rgb(from var(--danger) r g b / 0.48)",
+          "shadow-focus-warning": "0px 0px 0px 4px rgb(from var(--warning) r g b / 0.48)",
+          "shadow-focus-neutral": "0px 0px 0px 4px rgb(from var(--neutral) r g b / 0.48)",
+          "radius-none": "calc(var(--radius) - 8px)",
+          "radius-xxs": "calc(var(--radius) - 6px)",
+          "radius-xs": "calc(var(--radius) - 4px)",
+          "radius-sm": "calc(var(--radius) - 2px)",
+          "radius-md": "var(--radius)",
+          "radius": "var(--radius)",
+          "radius-lg": "calc(var(--radius) + 4px)",
+          "radius-xl": "calc(var(--radius) + 8px)",
+          "radius-2xl": "calc(var(--radius) + 12px)",
+          "radius-3xl": "calc(var(--radius) + 16px)",
+          "radius-4xl": "calc(var(--radius) + 24px)",
+          "radius-5xl": "calc(var(--radius) + 32px)",
+          "radius-full": "999px",
+          "animate-accordion-down": "accordion-down 0.2s ease-out",
+          "animate-accordion-up": "accordion-up 0.2s ease-out",
+          "animate-collapsible-down": "collapsible-down 0.2s ease-out",
+          "animate-collapsible-up": "collapsible-up 0.2s ease-out",
           "color-primary": "var(--primary)",
           "color-primary-50": "var(--primary-50)",
           "color-primary-100": "var(--primary-100)",
@@ -90,34 +119,12 @@
           "color-info-900": "var(--info-900)",
           "color-disabled": "color-mix(in srgb, var(--neutral) 50%, transparent)",
           "color-hint": "var(--neutral-600)",
-          "shadow-xs": "0px 2px 3px 1px rgb(from var(--neutral) r g b / 0.12)",
-          "shadow-sm": "0px 4px 4px rgb(from var(--neutral) r g b / 0.12), 0px 1px 3px 1px rgb(from var(--neutral) r g b / 0.1)",
-          "shadow-md": "0px 6px 8px -2px rgb(from var(--neutral) r g b / 0.2), 0px 2px 8px -2px rgb(from var(--neutral) r g b / 0.04)",
-          "shadow-lg": "0px 4px 6px -2px rgb(from var(--neutral) r g b / 0.03), 0px 12px 16px -4px rgb(from var(--neutral) r g b / 0.08)",
-          "shadow-xl": "0px 24px 48px -12px rgb(from var(--neutral) r g b / 0.18)",
-          "shadow-2xl": "0px 32px 64px -12px rgb(from var(--neutral) r g b / 0.14)",
-          "shadow-focus-primary": "0px 0px 0px 4px rgb(from var(--primary) r g b / 0.48)",
-          "shadow-focus-secondary": "0px 0px 0px 4px rgb(from var(--secondary) r g b / 0.48)",
-          "shadow-focus-success": "0px 0px 0px 4px rgb(from var(--success) r g b / 0.48)",
-          "shadow-focus-danger": "0px 0px 0px 4px rgb(from var(--danger) r g b / 0.48)",
-          "shadow-focus-warning": "0px 0px 0px 4px rgb(from var(--warning) r g b / 0.48)",
-          "shadow-focus-neutral": "0px 0px 0px 4px rgb(from var(--neutral) r g b / 0.48)",
-          "radius-none": "calc(var(--radius) - 8px)",
-          "radius-xxs": "calc(var(--radius) - 6px)",
-          "radius-xs": "calc(var(--radius) - 4px)",
-          "radius-sm": "calc(var(--radius) - 2px)",
-          "radius-md": "var(--radius)",
-          "radius-lg": "calc(var(--radius) + 4px)",
-          "radius-xl": "calc(var(--radius) + 8px)",
-          "radius-2xl": "calc(var(--radius) + 12px)",
-          "radius-3xl": "calc(var(--radius) + 16px)",
-          "radius-4xl": "calc(var(--radius) + 24px)",
-          "radius-5xl": "calc(var(--radius) + 32px)",
-          "radius-full": "999px",
-          "animate-accordion-down": "accordion-down 0.2s ease-out",
-          "animate-accordion-up": "accordion-up 0.2s ease-out",
-          "animate-collapsible-down": "collapsible-down 0.2s ease-out",
-          "animate-collapsible-up": "collapsible-up 0.2s ease-out"
+          "color-primary-foreground": "var(--primary-foreground)",
+          "color-secondary-foreground": "var(--secondary-foreground)",
+          "color-success-foreground": "var(--success-foreground)",
+          "color-danger-foreground": "var(--danger-foreground)",
+          "color-warning-foreground": "var(--warning-foreground)",
+          "color-info-foreground": "var(--info-foreground)"
         },
         "light": {
           "radius": "0.5rem",
@@ -132,7 +139,7 @@
           "primary-700": "#240792",
           "primary-800": "#180561",
           "primary-900": "#0c0231",
-          "secondary": "#938bb6",
+          "secondary": "#6d629d",
           "secondary-50": "#f0eff5",
           "secondary-100": "#e2e0eb",
           "secondary-200": "#c5c0d8",
@@ -155,7 +162,7 @@
           "neutral-700": "#5e5e5e",
           "neutral-800": "#4b4b4b",
           "neutral-900": "#393939",
-          "success": "#3c9718",
+          "success": "#107400",
           "success-50": "#edf7e6",
           "success-100": "#e3f2d9",
           "success-200": "#c6e5b5",
@@ -177,7 +184,7 @@
           "danger-700": "#b72120",
           "danger-800": "#961416",
           "danger-900": "#741010",
-          "warning": "#b77224",
+          "warning": "#a46212",
           "warning-50": "#fef1e7",
           "warning-100": "#f9d7b9",
           "warning-200": "#f0bd8f",
@@ -188,7 +195,7 @@
           "warning-700": "#8b5000",
           "warning-800": "#713f00",
           "warning-900": "#573000",
-          "info": "#00aaff",
+          "info": "#006699",
           "info-50": "#e5f6ff",
           "info-100": "#cbf0ff",
           "info-200": "#99dfff",
@@ -205,13 +212,13 @@
           "alert-secondary-color": "#5a6370",
           "alert-secondary-bg": "#f0f0f0",
           "alert-secondary-border": "#d8dbdf",
-          "alert-success-color": "#1a7844",
+          "alert-success-color": "#18703f",
           "alert-success-bg": "#dcfad8",
           "alert-success-border": "#b3f6b1",
           "alert-info-color": "#0063b8",
           "alert-info-bg": "#cbfbff",
           "alert-info-border": "#99f1ff",
-          "alert-warning-color": "#b76d00",
+          "alert-warning-color": "#9a5c00",
           "alert-warning-bg": "#fff3cd",
           "alert-warning-border": "#ffecb5",
           "alert-danger-color": "#7f0f1b",
@@ -222,10 +229,16 @@
           "alert-light-border": "#ffffff",
           "alert-dark-color": "#ffffff",
           "alert-dark-bg": "#1c1d1f",
-          "alert-dark-border": "#313033"
+          "alert-dark-border": "#313033",
+          "primary-foreground": "var(--neutral-0)",
+          "secondary-foreground": "var(--neutral-0)",
+          "success-foreground": "var(--neutral-0)",
+          "danger-foreground": "var(--neutral-0)",
+          "warning-foreground": "var(--neutral-0)",
+          "info-foreground": "var(--neutral-0)"
         },
         "dark": {
-          "primary": "#613af5",
+          "primary": "#b19efa",
           "primary-50": "#0c0231",
           "primary-100": "#180561",
           "primary-200": "#240792",
@@ -259,7 +272,7 @@
           "neutral-700": "#c6c6c6",
           "neutral-800": "#dddddd",
           "neutral-900": "#f3f3f3",
-          "success": "#3c9718",
+          "success": "#69b349",
           "success-50": "#044400",
           "success-100": "#024900",
           "success-200": "#005a00",
@@ -270,7 +283,7 @@
           "success-700": "#c6e5b5",
           "success-800": "#e3f2d9",
           "success-900": "#edf7e6",
-          "danger": "#b7131a",
+          "danger": "#ff6c5a",
           "danger-50": "#741010",
           "danger-100": "#961416",
           "danger-200": "#b72120",
@@ -281,7 +294,7 @@
           "danger-700": "#ffac9a",
           "danger-800": "#ffcdc0",
           "danger-900": "#ffeeea",
-          "warning": "#b77224",
+          "warning": "#d08d47",
           "warning-50": "#573000",
           "warning-100": "#713f00",
           "warning-200": "#8b5000",
@@ -302,7 +315,37 @@
           "info-600": "#66ceff",
           "info-700": "#99dfff",
           "info-800": "#cbf0ff",
-          "info-900": "#e5f6ff"
+          "info-900": "#e5f6ff",
+          "primary-foreground": "var(--neutral-0)",
+          "secondary-foreground": "var(--neutral-0)",
+          "success-foreground": "var(--neutral-0)",
+          "danger-foreground": "var(--neutral-0)",
+          "warning-foreground": "var(--neutral-0)",
+          "info-foreground": "var(--neutral-0)",
+          "alert-primary-color": "#b5c9ee",
+          "alert-primary-bg": "#213150",
+          "alert-primary-border": "#35548d",
+          "alert-secondary-color": "#b5ccee",
+          "alert-secondary-bg": "#213450",
+          "alert-secondary-border": "#35598d",
+          "alert-success-color": "#b5eece",
+          "alert-success-bg": "#215036",
+          "alert-success-border": "#358d5c",
+          "alert-info-color": "#b5d3ee",
+          "alert-info-bg": "#213a50",
+          "alert-info-border": "#35648d",
+          "alert-warning-color": "#eed7b5",
+          "alert-warning-bg": "#503d21",
+          "alert-warning-border": "#8d6935",
+          "alert-danger-color": "#eeb5bb",
+          "alert-danger-bg": "#502126",
+          "alert-danger-border": "#8d353f",
+          "alert-light-color": "#f3f3f3",
+          "alert-light-bg": "#2a2b2e",
+          "alert-light-border": "#3a3b3f",
+          "alert-dark-color": "#1c1d1f",
+          "alert-dark-bg": "#f3f3f3",
+          "alert-dark-border": "#dddddd"
         }
       },
       "css": {
@@ -416,7 +459,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Compact label for status, counts, or categories. 9 themes \u00d7 3 variants \u00d7 3 sizes \u00d7 2 shapes.",
+      "description": "Compact label for status, counts, or categories. 9 themes × 3 variants × 3 sizes × 2 shapes.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
@@ -498,7 +541,7 @@
       "name": "chip",
       "type": "registry:ui",
       "title": "Chip",
-      "description": "Tags, filters, or selections. 7 themes \u00d7 3 variants \u00d7 3 sizes; supports icons, avatars, dismiss, and selected state.",
+      "description": "Tags, filters, or selections. 7 themes × 3 variants × 3 sizes; supports icons, avatars, dismiss, and selected state.",
       "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
@@ -749,6 +792,71 @@
       "files": [
         {
           "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Accessible caption for a form control. Built on Radix Label.",
+      "dependencies": ["@radix-ui/react-label"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Tri-state checkbox with checked, indeterminate, and unchecked types across five states. Built on Radix Checkbox.",
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "Mutually exclusive options with a 40px state layer and AA focus ring. Built on Radix Radio Group.",
+      "dependencies": ["@radix-ui/react-radio-group"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "On/off toggle in default and small sizes; the handle grows on check per UX4G. Built on Radix Switch.",
+      "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/label.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
           "type": "registry:ui"
         }
       ]

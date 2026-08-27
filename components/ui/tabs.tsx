@@ -72,7 +72,7 @@ function TabsTrigger({ className, variant, ...props }: ITabsTriggerProps) {
         resolved === 'pills' && [
           'rounded-md text-neutral-600',
           'hover:text-primary',
-          'data-[state=active]:bg-primary data-[state=active]:text-neutral-0',
+          'data-[state=active]:bg-primary data-[state=active]:text-primary-foreground',
         ],
         resolved === 'underline' && [
           'relative -mb-px border-b-2 border-transparent text-neutral-600',

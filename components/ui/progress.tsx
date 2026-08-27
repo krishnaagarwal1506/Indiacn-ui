@@ -11,13 +11,13 @@ import { cn } from '@/lib/utils';
 const PROGRESS_BAR_VARIANTS = cva('h-full rounded-full transition-all duration-600 ease-in-out', {
   variants: {
     theme: {
-      primary: 'bg-primary',
-      secondary: 'bg-secondary',
-      success: 'bg-success',
-      danger: 'bg-danger',
-      warning: 'bg-warning',
-      info: 'bg-info',
-      neutral: 'bg-neutral',
+      primary: 'bg-primary text-primary-foreground',
+      secondary: 'bg-secondary text-secondary-foreground',
+      success: 'bg-success text-success-foreground',
+      danger: 'bg-danger text-danger-foreground',
+      warning: 'bg-warning text-warning-foreground',
+      info: 'bg-info text-info-foreground',
+      neutral: 'bg-neutral text-neutral-0',
     },
     striped: {
       true: 'bg-[length:1rem_1rem] bg-[linear-gradient(45deg,rgba(255,255,255,.15)_25%,transparent_25%,transparent_50%,rgba(255,255,255,.15)_50%,rgba(255,255,255,.15)_75%,transparent_75%,transparent)]',
@@ -91,7 +91,7 @@ function Progress({
           className={cn(
             'bg-primary h-full rounded-full transition-all duration-600 ease-in-out',
             showLabel &&
-              'text-neutral-0 flex items-center justify-center text-[0.625rem] font-medium',
+              'text-primary-foreground flex items-center justify-center text-[0.625rem] font-medium',
           )}
           style={{ width: `${percentage}%` }}
         >
@@ -116,7 +116,7 @@ function ProgressBar({
     <div
       className={cn(
         PROGRESS_BAR_VARIANTS({ theme, striped, animated, className }),
-        children && 'text-neutral-0 flex items-center justify-center text-[0.625rem] font-medium',
+        children && 'flex items-center justify-center text-[0.625rem] font-medium',
       )}
       style={{ width: `${value}%` }}
       {...props}

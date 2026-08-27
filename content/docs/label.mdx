@@ -1,0 +1,44 @@
+---
+title: Label
+description: An accessible caption for a form control.
+---
+
+## Introduction
+
+Labels name a form control so it is announced correctly and gains a second click target. Point `htmlFor` at the control's `id` — clicking the text then toggles the control. When the control is disabled, the label dims with it via the `peer` and `group` states.
+
+Built on Radix UI's Label primitive, which also stops the double-fire that a plain `<label>` causes on some controls.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/label.json`}
+/>
+
+<ComponentSource collapsible={false} code={`import { Label } from '@/components/ui/label';`} />
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<div className="flex items-center gap-3">
+  <Checkbox id="terms" />
+  <Label htmlFor="terms">Accept terms and conditions</Label>
+</div>`}
+/>
+
+## Guidelines
+
+- Always set `htmlFor`. A label with no association is just text, and screen readers will not read it with the control.
+- Keep labels short and descriptive. Put help text in a separate element rather than inside the label.
+- Do not use a label as the only error message; pair it with a description the control references via `aria-describedby`.
+
+## API Reference
+
+### Label
+
+| Prop        | Type     | Default | Description                              |
+| ----------- | -------- | ------- | ---------------------------------------- |
+| `htmlFor`   | `string` | —       | `id` of the control this label describes |
+| `className` | `string` | —       | Extra Tailwind classes                   |

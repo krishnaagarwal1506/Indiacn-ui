@@ -125,7 +125,7 @@ function PaginationLink({
         'text-primary focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
         PAGINATION_SIZE_CLASSES.default[resolvedSize],
         isActive
-          ? 'border-primary bg-primary text-neutral-0 z-3'
+          ? 'border-primary bg-primary text-primary-foreground z-3'
           : 'hover:text-primary hover:z-2 hover:bg-neutral-100',
         disabled && 'pointer-events-none text-neutral-400',
         className,

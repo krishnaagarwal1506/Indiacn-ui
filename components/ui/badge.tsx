@@ -11,16 +11,16 @@ const BADGE_VARIANTS = cva(
     variants: {
       theme: {
         primary:
-          'text-primary [--badge-bg:var(--color-primary)] [--badge-bg-tonal:var(--color-primary-100)] [--badge-border-color:var(--color-primary)] [--badge-text-color:var(--color-primary)]',
+          'text-primary [--badge-bg:var(--color-primary)] [--badge-fg:var(--color-primary-foreground)] [--badge-bg-tonal:var(--color-primary-100)] [--badge-border-color:var(--color-primary)] [--badge-text-color:var(--color-primary)]',
         secondary:
-          'text-secondary [--badge-bg:var(--color-secondary)] [--badge-bg-tonal:var(--color-secondary-100)] [--badge-border-color:var(--color-secondary)] [--badge-text-color:var(--color-secondary)]',
+          'text-secondary [--badge-bg:var(--color-secondary)] [--badge-fg:var(--color-secondary-foreground)] [--badge-bg-tonal:var(--color-secondary-100)] [--badge-border-color:var(--color-secondary)] [--badge-text-color:var(--color-secondary)]',
         success:
-          'text-success [--badge-bg:var(--color-success)] [--badge-bg-tonal:var(--color-success-100)] [--badge-border-color:var(--color-success)] [--badge-text-color:var(--color-success)]',
+          'text-success [--badge-bg:var(--color-success)] [--badge-fg:var(--color-success-foreground)] [--badge-bg-tonal:var(--color-success-100)] [--badge-border-color:var(--color-success)] [--badge-text-color:var(--color-success)]',
         danger:
-          'text-danger [--badge-bg:var(--color-danger)] [--badge-bg-tonal:var(--color-danger-100)] [--badge-border-color:var(--color-danger)] [--badge-text-color:var(--color-danger)]',
+          'text-danger [--badge-bg:var(--color-danger)] [--badge-fg:var(--color-danger-foreground)] [--badge-bg-tonal:var(--color-danger-100)] [--badge-border-color:var(--color-danger)] [--badge-text-color:var(--color-danger)]',
         warning:
-          'text-warning [--badge-bg:var(--color-warning)] [--badge-bg-tonal:var(--color-warning-100)] [--badge-border-color:var(--color-warning)] [--badge-text-color:var(--color-warning)]',
-        info: 'text-info [--badge-bg:var(--color-info)] [--badge-bg-tonal:var(--color-info-100)] [--badge-border-color:var(--color-info)] [--badge-text-color:var(--color-info)]',
+          'text-warning [--badge-bg:var(--color-warning)] [--badge-fg:var(--color-warning-foreground)] [--badge-bg-tonal:var(--color-warning-100)] [--badge-border-color:var(--color-warning)] [--badge-text-color:var(--color-warning)]',
+        info: 'text-info [--badge-bg:var(--color-info)] [--badge-fg:var(--color-info-foreground)] [--badge-bg-tonal:var(--color-info-100)] [--badge-border-color:var(--color-info)] [--badge-text-color:var(--color-info)]',
         neutral:
           'text-neutral [--badge-bg:var(--color-neutral)] [--badge-bg-tonal:var(--color-neutral-100)] [--badge-border-color:var(--color-neutral)] [--badge-text-color:var(--color-neutral)]',
         light:
@@ -28,7 +28,8 @@ const BADGE_VARIANTS = cva(
         dark: 'text-neutral-0 [--badge-bg:var(--color-neutral)] [--badge-bg-tonal:var(--color-neutral-900)] [--badge-border-color:var(--color-neutral)] [--badge-text-color:var(--color-neutral-0)]',
       },
       variant: {
-        filled: 'bg-(--badge-bg) text-neutral-0 border border-transparent',
+        filled:
+          'bg-(--badge-bg) text-[var(--badge-fg,var(--color-neutral-0))] border border-transparent',
         outlined: 'bg-transparent border border-(--badge-border-color) text-(--badge-text-color)',
         tonal: 'bg-(--badge-bg-tonal) text-(--badge-text-color) border border-transparent',
       },

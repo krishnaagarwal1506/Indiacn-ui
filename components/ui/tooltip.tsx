@@ -15,12 +15,12 @@ const TOOLTIP_VARIANTS = cva('z-50 overflow-hidden rounded px-2 py-1 text-sm sha
   variants: {
     theme: {
       neutral: 'bg-neutral text-neutral-0',
-      primary: 'bg-primary text-neutral-0',
-      secondary: 'bg-secondary text-neutral-0',
-      success: 'bg-success text-neutral-0',
-      danger: 'bg-danger text-neutral-0',
-      warning: 'bg-warning text-neutral-0',
-      info: 'bg-info text-neutral-0',
+      primary: 'bg-primary text-primary-foreground',
+      secondary: 'bg-secondary text-secondary-foreground',
+      success: 'bg-success text-success-foreground',
+      danger: 'bg-danger text-danger-foreground',
+      warning: 'bg-warning text-warning-foreground',
+      info: 'bg-info text-info-foreground',
       light: 'bg-neutral-0 text-neutral border border-neutral-200',
     },
   },

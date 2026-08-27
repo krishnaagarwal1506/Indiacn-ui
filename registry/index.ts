@@ -57,6 +57,11 @@ import {
 } from '@/components/examples/button-group-demo';
 import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
 import {
+  CheckboxDefault,
+  CheckboxGroup,
+  CheckboxStates,
+} from '@/components/examples/checkbox-demo';
+import {
   ChipDefault,
   ChipDismissible,
   ChipDisabled,
@@ -103,6 +108,11 @@ import {
   ProgressThemes,
   ProgressWithLabel,
 } from '@/components/examples/progress-demo';
+import {
+  RadioGroupDefault,
+  RadioGroupDisabled,
+  RadioGroupHorizontal,
+} from '@/components/examples/radio-group-demo';
 import { SearchDefault, SearchSizes } from '@/components/examples/search-demo';
 import {
   SeparatorDefault,
@@ -121,6 +131,7 @@ import {
   StepperVertical,
   StepperWarning,
 } from '@/components/examples/stepper-demo';
+import { SwitchDefault, SwitchDisabled, SwitchSizes } from '@/components/examples/switch-demo';
 import {
   TabsDefault,
   TabsDisabled,
@@ -154,20 +165,24 @@ import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { Card } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
 import { Collapse } from '@/components/ui/collapse';
 import { Dropdown } from '@/components/ui/dropdown';
+import { Label } from '@/components/ui/label';
 import { ListGroup } from '@/components/ui/list-group';
 import { Modal } from '@/components/ui/modal';
 import { Offcanvas } from '@/components/ui/offcanvas';
 import { Pagination } from '@/components/ui/pagination';
 import { Popover } from '@/components/ui/popover';
 import { Progress, ProgressBar } from '@/components/ui/progress';
+import { RadioGroup } from '@/components/ui/radio-group';
 import { Search } from '@/components/ui/search';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Spinner } from '@/components/ui/spinner';
 import { Stepper } from '@/components/ui/stepper';
+import { Switch } from '@/components/ui/switch';
 import { Tabs } from '@/components/ui/tabs';
 import { Toast } from '@/components/ui/toast';
 import { Tooltip } from '@/components/ui/tooltip';
@@ -2712,5 +2727,305 @@ export default function Component() {
     files: [
       { path: 'components/examples/skeleton-demo.tsx', type: 'registry:example', target: '' },
     ],
+  },
+  // ── Form primitives ────────────────────────────────────────────
+  label: {
+    name: 'label',
+    description: 'Accessible caption for a form control',
+    type: 'registry:ui',
+    component: Label,
+    files: [{ path: 'components/ui/label.tsx', type: 'registry:ui', target: '' }],
+  },
+  checkbox: {
+    name: 'checkbox',
+    description: 'Tri-state checkbox with indeterminate support',
+    type: 'registry:ui',
+    component: Checkbox,
+    files: [{ path: 'components/ui/checkbox.tsx', type: 'registry:ui', target: '' }],
+  },
+  'radio-group': {
+    name: 'radio-group',
+    description: 'Mutually exclusive option set',
+    type: 'registry:ui',
+    component: RadioGroup,
+    files: [{ path: 'components/ui/radio-group.tsx', type: 'registry:ui', target: '' }],
+  },
+  switch: {
+    name: 'switch',
+    description: 'On/off toggle in two sizes',
+    type: 'registry:ui',
+    component: Switch,
+    files: [{ path: 'components/ui/switch.tsx', type: 'registry:ui', target: '' }],
+  },
+  CheckboxDefault: {
+    name: 'CheckboxDefault',
+    description: 'Checkbox with an associated label',
+    type: 'registry:example',
+    component: CheckboxDefault,
+    code: `import { useCallback, useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-3'>
+      <Checkbox id='terms' defaultChecked />
+      <Label htmlFor='terms'>Accept terms and conditions</Label>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/checkbox-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CheckboxStates: {
+    name: 'CheckboxStates',
+    description: 'Checked, indeterminate, unchecked, and disabled states',
+    type: 'registry:example',
+    component: CheckboxStates,
+    code: `import { useCallback, useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='grid gap-4'>
+      <div className='flex items-center gap-3'>
+        <Checkbox id='state-checked' defaultChecked />
+        <Label htmlFor='state-checked'>Checked</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Checkbox id='state-indeterminate' checked='indeterminate' />
+        <Label htmlFor='state-indeterminate'>Indeterminate</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Checkbox id='state-unchecked' />
+        <Label htmlFor='state-unchecked'>Unchecked</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Checkbox id='state-disabled' disabled defaultChecked />
+        <Label htmlFor='state-disabled'>Disabled</Label>
+      </div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/checkbox-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CheckboxGroup: {
+    name: 'CheckboxGroup',
+    description: 'Controlled multi-select checkbox group',
+    type: 'registry:example',
+    component: CheckboxGroup,
+    code: `import { useCallback, useState } from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import { Body3 } from '@/components/ui/typography';
+
+const DOCUMENTS = ['Aadhaar', 'PAN card', 'Driving licence'];
+
+interface IDocumentOptionProps {
+  document: string;
+  checked: boolean;
+  onToggle: (document: string) => void;
+}
+
+/** Single checkbox row within the controlled group example. */
+function DocumentOption({ document, checked, onToggle }: IDocumentOptionProps) {
+  const handleCheckedChange = useCallback(() => onToggle(document), [document, onToggle]);
+
+  return (
+    <div className='flex items-center gap-3'>
+      <Checkbox id={document} checked={checked} onCheckedChange={handleCheckedChange} />
+      <Label htmlFor={document}>{document}</Label>
+    </div>
+  );
+}
+
+export default function Component() {
+  const [selected, setSelected] = useState<string[]>(['Aadhaar']);
+
+  const handleToggle = useCallback((document: string) => {
+    setSelected((current) =>
+      current.includes(document)
+        ? current.filter((entry) => entry !== document)
+        : [...current, document],
+    );
+  }, []);
+
+  return (
+    <div className='grid gap-3'>
+      {DOCUMENTS.map((document) => (
+        <DocumentOption
+          key={document}
+          document={document}
+          checked={selected.includes(document)}
+          onToggle={handleToggle}
+        />
+      ))}
+      <Body3 className='text-neutral-500'>
+        {selected.length} document{selected.length === 1 ? '' : 's'} selected
+      </Body3>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/checkbox-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  RadioGroupDefault: {
+    name: 'RadioGroupDefault',
+    description: 'Radio group for choosing a language',
+    type: 'registry:example',
+    component: RadioGroupDefault,
+    code: `import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+
+export default function Component() {
+  return (
+    <RadioGroup defaultValue='hindi'>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='hindi' id='lang-hindi' />
+        <Label htmlFor='lang-hindi'>हिन्दी</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='english' id='lang-english' />
+        <Label htmlFor='lang-english'>English</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='tamil' id='lang-tamil' />
+        <Label htmlFor='lang-tamil'>தமிழ்</Label>
+      </div>
+    </RadioGroup>
+  );
+}`,
+    files: [
+      { path: 'components/examples/radio-group-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  RadioGroupDisabled: {
+    name: 'RadioGroupDisabled',
+    description: 'Radio group with one option disabled',
+    type: 'registry:example',
+    component: RadioGroupDisabled,
+    code: `import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+
+export default function Component() {
+  return (
+    <RadioGroup defaultValue='self'>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='self' id='applicant-self' />
+        <Label htmlFor='applicant-self'>Applying for myself</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='other' id='applicant-other' />
+        <Label htmlFor='applicant-other'>Applying on behalf of someone</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='agent' id='applicant-agent' disabled />
+        <Label htmlFor='applicant-agent'>Applying as an agent (unavailable)</Label>
+      </div>
+    </RadioGroup>
+  );
+}`,
+    files: [
+      { path: 'components/examples/radio-group-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  RadioGroupHorizontal: {
+    name: 'RadioGroupHorizontal',
+    description: 'Radio group laid out horizontally',
+    type: 'registry:example',
+    component: RadioGroupHorizontal,
+    code: `import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+
+export default function Component() {
+  return (
+    <RadioGroup defaultValue='yes' className='flex gap-6'>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='yes' id='consent-yes' />
+        <Label htmlFor='consent-yes'>Yes</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <RadioGroupItem value='no' id='consent-no' />
+        <Label htmlFor='consent-no'>No</Label>
+      </div>
+    </RadioGroup>
+  );
+}`,
+    files: [
+      { path: 'components/examples/radio-group-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  SwitchDefault: {
+    name: 'SwitchDefault',
+    description: 'Switch with an associated label',
+    type: 'registry:example',
+    component: SwitchDefault,
+    code: `import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-3'>
+      <Switch id='notifications' defaultChecked />
+      <Label htmlFor='notifications'>SMS notifications</Label>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/switch-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  SwitchSizes: {
+    name: 'SwitchSizes',
+    description: 'Default and small switch sizes',
+    type: 'registry:example',
+    component: SwitchSizes,
+    code: `import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+
+export default function Component() {
+  return (
+    <div className='grid gap-4'>
+      <div className='flex items-center gap-3'>
+        <Switch id='size-default' defaultChecked />
+        <Label htmlFor='size-default'>Default</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Switch id='size-sm' size='sm' defaultChecked />
+        <Label htmlFor='size-sm'>Small</Label>
+      </div>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/switch-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  SwitchDisabled: {
+    name: 'SwitchDisabled',
+    description: 'Disabled switch in both states',
+    type: 'registry:example',
+    component: SwitchDisabled,
+    code: `import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
+
+export default function Component() {
+  return (
+    <div className='grid gap-4'>
+      <div className='flex items-center gap-3'>
+        <Switch id='disabled-on' disabled defaultChecked />
+        <Label htmlFor='disabled-on'>Disabled, on</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Switch id='disabled-off' disabled />
+        <Label htmlFor='disabled-off'>Disabled, off</Label>
+      </div>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/switch-demo.tsx', type: 'registry:example', target: '' }],
   },
 };
