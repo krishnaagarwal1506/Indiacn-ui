@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "indicator",
+  "title": "Indicator",
+  "description": "Notification dot, count, or short status label. UX4G's Badge component.",
+  "dependencies": ["class-variance-authority"],
+  "registryDependencies": [
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/indicator.tsx",
+      "content": "import { cva, type VariantProps } from 'class-variance-authority';\nimport { ComponentProps } from 'react';\n\nimport { Label3 } from '@/components/ui/typography';\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G badge indicator: 6px dot, 16px single-digit circle, 22x16 multi-digit\n * pill, text pill at 8px/2px padding. Type comes from Label3 (11px/16px/0.5px).\n */\nconst INDICATOR_VARIANTS = cva(\n  'inline-flex shrink-0 items-center justify-center rounded-full text-center align-middle whitespace-nowrap',\n  {\n    variants: {\n      theme: {\n        primary: 'bg-primary text-primary-foreground',\n        success: 'bg-success text-success-foreground',\n        danger: 'bg-danger text-danger-foreground',\n      },\n      variant: {\n        dot: 'size-1.5',\n        count: 'h-4 min-w-4 px-1',\n        text: 'h-5 px-2',\n      },\n    },\n    defaultVariants: {\n      theme: 'primary',\n      variant: 'count',\n    },\n  },\n);\n\ninterface IIndicatorProps\n  extends ComponentProps<typeof Label3>,\n    VariantProps<typeof INDICATOR_VARIANTS> {}\n\n/**\n * Status or count indicator for attaching to another element. Use `dot` for\n * unread state, `count` for a number, and `text` for a short label.\n */\nfunction Indicator({ className, theme, variant, children, ...props }: IIndicatorProps) {\n  const isDot = variant === 'dot';\n\n  return (\n    <Label3\n      className={cn(INDICATOR_VARIANTS({ theme, variant }), className)}\n      role={isDot ? 'presentation' : undefined}\n      {...props}\n    >\n      {isDot ? null : children}\n    </Label3>\n  );\n}\n\nexport { Indicator, INDICATOR_VARIANTS };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
