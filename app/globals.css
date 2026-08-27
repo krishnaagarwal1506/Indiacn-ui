@@ -132,6 +132,13 @@
   --color-disabled: color-mix(in srgb, var(--neutral) 50%, transparent);
   --color-hint: var(--neutral-600);
 
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-success-foreground: var(--success-foreground);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info-foreground: var(--info-foreground);
+
   --color-fd-background: var(--fd-background);
   --color-fd-foreground: var(--fd-foreground);
   --color-fd-card: var(--fd-card);
@@ -166,7 +173,7 @@
   --primary-800: #180561;
   --primary-900: #0c0231;
 
-  --secondary: #938bb6;
+  --secondary: #6d629d;
   --secondary-50: #f0eff5;
   --secondary-100: #e2e0eb;
   --secondary-200: #c5c0d8;
@@ -191,7 +198,7 @@
   --neutral-800: #4b4b4b;
   --neutral-900: #393939;
 
-  --success: #3c9718;
+  --success: #107400;
   --success-50: #edf7e6;
   --success-100: #e3f2d9;
   --success-200: #c6e5b5;
@@ -215,7 +222,7 @@
   --danger-800: #961416;
   --danger-900: #741010;
 
-  --warning: #b77224;
+  --warning: #a46212;
   --warning-50: #fef1e7;
   --warning-100: #f9d7b9;
   --warning-200: #f0bd8f;
@@ -227,7 +234,7 @@
   --warning-800: #713f00;
   --warning-900: #573000;
 
-  --info: #00aaff;
+  --info: #006699;
   --info-50: #e5f6ff;
   --info-100: #cbf0ff;
   --info-200: #99dfff;
@@ -245,13 +252,13 @@
   --alert-secondary-color: #5a6370;
   --alert-secondary-bg: #f0f0f0;
   --alert-secondary-border: #d8dbdf;
-  --alert-success-color: #1a7844;
+  --alert-success-color: #18703f;
   --alert-success-bg: #dcfad8;
   --alert-success-border: #b3f6b1;
   --alert-info-color: #0063b8;
   --alert-info-bg: #cbfbff;
   --alert-info-border: #99f1ff;
-  --alert-warning-color: #b76d00;
+  --alert-warning-color: #9a5c00;
   --alert-warning-bg: #fff3cd;
   --alert-warning-border: #ffecb5;
   --alert-danger-color: #7f0f1b;
@@ -279,10 +286,17 @@
   --fd-border: var(--neutral-900);
   --fd-input: var(--neutral-900);
   --fd-ring: var(--primary);
+
+  --primary-foreground: var(--neutral-0);
+  --secondary-foreground: var(--neutral-0);
+  --success-foreground: var(--neutral-0);
+  --danger-foreground: var(--neutral-0);
+  --warning-foreground: var(--neutral-0);
+  --info-foreground: var(--neutral-0);
 }
 
 .dark {
-  --primary: #613af5;
+  --primary: #b19efa;
   --primary-50: #0c0231;
   --primary-100: #180561;
   --primary-200: #240792;
@@ -319,7 +333,7 @@
   --neutral-800: #dddddd;
   --neutral-900: #f3f3f3;
 
-  --success: #3c9718;
+  --success: #69b349;
   --success-50: #044400;
   --success-100: #024900;
   --success-200: #005a00;
@@ -331,7 +345,7 @@
   --success-800: #e3f2d9;
   --success-900: #edf7e6;
 
-  --danger: #b7131a;
+  --danger: #ff6c5a;
   --danger-50: #741010;
   --danger-100: #961416;
   --danger-200: #b72120;
@@ -343,7 +357,7 @@
   --danger-800: #ffcdc0;
   --danger-900: #ffeeea;
 
-  --warning: #b77224;
+  --warning: #d08d47;
   --warning-50: #573000;
   --warning-100: #713f00;
   --warning-200: #8b5000;
@@ -366,6 +380,38 @@
   --info-700: #99dfff;
   --info-800: #cbf0ff;
   --info-900: #e5f6ff;
+
+  --primary-foreground: var(--neutral-0);
+  --secondary-foreground: var(--neutral-0);
+  --success-foreground: var(--neutral-0);
+  --danger-foreground: var(--neutral-0);
+  --warning-foreground: var(--neutral-0);
+  --info-foreground: var(--neutral-0);
+
+  --alert-primary-color: #b5c9ee;
+  --alert-primary-bg: #213150;
+  --alert-primary-border: #35548d;
+  --alert-secondary-color: #b5ccee;
+  --alert-secondary-bg: #213450;
+  --alert-secondary-border: #35598d;
+  --alert-success-color: #b5eece;
+  --alert-success-bg: #215036;
+  --alert-success-border: #358d5c;
+  --alert-info-color: #b5d3ee;
+  --alert-info-bg: #213a50;
+  --alert-info-border: #35648d;
+  --alert-warning-color: #eed7b5;
+  --alert-warning-bg: #503d21;
+  --alert-warning-border: #8d6935;
+  --alert-danger-color: #eeb5bb;
+  --alert-danger-bg: #502126;
+  --alert-danger-border: #8d353f;
+  --alert-light-color: #f3f3f3;
+  --alert-light-bg: #2a2b2e;
+  --alert-light-border: #3a3b3f;
+  --alert-dark-color: #1c1d1f;
+  --alert-dark-bg: #f3f3f3;
+  --alert-dark-border: #dddddd;
 }
 
 @keyframes float {
