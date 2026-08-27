@@ -78,7 +78,7 @@ function ListGroupItem({
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
         action && 'cursor-pointer hover:bg-neutral-50 active:bg-neutral-100',
-        active && 'bg-primary text-neutral-0 border-primary',
+        active && 'bg-primary text-primary-foreground border-primary',
         disabled && 'pointer-events-none opacity-50 select-none',
       )}
       {...props}
@@ -103,7 +103,7 @@ function ListGroupAction({ className, theme, active, disabled, ...props }: IList
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
         'cursor-pointer no-underline hover:bg-neutral-50 active:bg-neutral-100',
-        active && 'bg-primary text-neutral-0 hover:bg-primary border-primary',
+        active && 'bg-primary text-primary-foreground hover:bg-primary border-primary',
         disabled && 'pointer-events-none opacity-50 select-none',
       )}
       {...props}

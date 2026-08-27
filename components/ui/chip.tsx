@@ -28,16 +28,16 @@ const CHIP_VARIANTS = cva(
     variants: {
       theme: {
         primary:
-          '[--chip-bg:var(--color-primary)] [--chip-bg-tonal:var(--color-primary-100)] [--chip-border-color:var(--color-primary)] [--chip-text-color:var(--color-primary)] focus-visible:shadow-focus-primary',
+          '[--chip-bg:var(--color-primary)] [--chip-fg:var(--color-primary-foreground)] [--chip-bg-tonal:var(--color-primary-100)] [--chip-border-color:var(--color-primary)] [--chip-text-color:var(--color-primary)] focus-visible:shadow-focus-primary',
         secondary:
-          '[--chip-bg:var(--color-secondary)] [--chip-bg-tonal:var(--color-secondary-100)] [--chip-border-color:var(--color-secondary)] [--chip-text-color:var(--color-secondary)] focus-visible:shadow-focus-secondary',
+          '[--chip-bg:var(--color-secondary)] [--chip-fg:var(--color-secondary-foreground)] [--chip-bg-tonal:var(--color-secondary-100)] [--chip-border-color:var(--color-secondary)] [--chip-text-color:var(--color-secondary)] focus-visible:shadow-focus-secondary',
         success:
-          '[--chip-bg:var(--color-success)] [--chip-bg-tonal:var(--color-success-100)] [--chip-border-color:var(--color-success)] [--chip-text-color:var(--color-success)] focus-visible:shadow-focus-success',
+          '[--chip-bg:var(--color-success)] [--chip-fg:var(--color-success-foreground)] [--chip-bg-tonal:var(--color-success-100)] [--chip-border-color:var(--color-success)] [--chip-text-color:var(--color-success)] focus-visible:shadow-focus-success',
         danger:
-          '[--chip-bg:var(--color-danger)] [--chip-bg-tonal:var(--color-danger-100)] [--chip-border-color:var(--color-danger)] [--chip-text-color:var(--color-danger)] focus-visible:shadow-focus-danger',
+          '[--chip-bg:var(--color-danger)] [--chip-fg:var(--color-danger-foreground)] [--chip-bg-tonal:var(--color-danger-100)] [--chip-border-color:var(--color-danger)] [--chip-text-color:var(--color-danger)] focus-visible:shadow-focus-danger',
         warning:
-          '[--chip-bg:var(--color-warning)] [--chip-bg-tonal:var(--color-warning-100)] [--chip-border-color:var(--color-warning)] [--chip-text-color:var(--color-warning)] focus-visible:shadow-focus-warning',
-        info: '[--chip-bg:var(--color-info)] [--chip-bg-tonal:var(--color-info-100)] [--chip-border-color:var(--color-info)] [--chip-text-color:var(--color-info)]',
+          '[--chip-bg:var(--color-warning)] [--chip-fg:var(--color-warning-foreground)] [--chip-bg-tonal:var(--color-warning-100)] [--chip-border-color:var(--color-warning)] [--chip-text-color:var(--color-warning)] focus-visible:shadow-focus-warning',
+        info: '[--chip-bg:var(--color-info)] [--chip-fg:var(--color-info-foreground)] [--chip-bg-tonal:var(--color-info-100)] [--chip-border-color:var(--color-info)] [--chip-text-color:var(--color-info)]',
         neutral:
           '[--chip-bg:var(--color-neutral)] [--chip-bg-tonal:var(--color-neutral-100)] [--chip-border-color:var(--color-neutral-200)] [--chip-text-color:var(--color-neutral)] focus-visible:shadow-focus-neutral',
       },
@@ -45,7 +45,7 @@ const CHIP_VARIANTS = cva(
         outlined:
           'border border-(--chip-border-color) bg-transparent text-(--chip-text-color) hover:bg-(--chip-bg)/8 active:bg-(--chip-bg)/16',
         filled:
-          'border border-transparent bg-(--chip-bg) text-neutral-0 hover:shadow-xs active:opacity-90',
+          'border border-transparent bg-(--chip-bg) text-[var(--chip-fg,var(--color-neutral-0))] hover:shadow-xs active:opacity-90',
         tonal:
           'border border-transparent bg-(--chip-bg-tonal) text-(--chip-text-color) hover:shadow-xs active:opacity-90',
       },
@@ -109,7 +109,7 @@ function Chip({
       className={cn(
         CHIP_VARIANTS({ variant, theme, size, className }),
         selected && [
-          'text-neutral-0 border-transparent bg-(--chip-bg)',
+          'border-transparent bg-(--chip-bg) text-[var(--chip-fg,var(--color-neutral-0))]',
           'hover:bg-(--chip-bg) hover:shadow-xs',
         ],
         disabled && 'pointer-events-none opacity-50',

@@ -19,12 +19,12 @@ const TOAST_VARIANTS = cva(
     variants: {
       theme: {
         default: 'bg-neutral-0 text-neutral border-neutral-200',
-        primary: 'bg-primary text-neutral-0 border-transparent',
-        secondary: 'bg-secondary text-neutral-0 border-transparent',
-        success: 'bg-success text-neutral-0 border-transparent',
-        danger: 'bg-danger text-neutral-0 border-transparent',
-        warning: 'bg-warning text-neutral-0 border-transparent',
-        info: 'bg-info text-neutral-0 border-transparent',
+        primary: 'bg-primary text-primary-foreground border-transparent',
+        secondary: 'bg-secondary text-secondary-foreground border-transparent',
+        success: 'bg-success text-success-foreground border-transparent',
+        danger: 'bg-danger text-danger-foreground border-transparent',
+        warning: 'bg-warning text-warning-foreground border-transparent',
+        info: 'bg-info text-info-foreground border-transparent',
       },
     },
     defaultVariants: {

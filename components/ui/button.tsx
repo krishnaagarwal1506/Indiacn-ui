@@ -20,14 +20,14 @@ const BUTTON_VARIANTS = cva(
     variants: {
       theme: {
         primary:
-          'text-primary [--btn-bg:var(--color-primary)] [--btn-bg-tonal:var(--color-primary-100)] [--btn-border-color:var(--color-primary)] [--btn-text-color:var(--color-primary)] focus:shadow-focus-primary',
+          'text-primary [--btn-bg:var(--color-primary)] [--btn-fg:var(--color-primary-foreground)] [--btn-bg-tonal:var(--color-primary-100)] [--btn-border-color:var(--color-primary)] [--btn-text-color:var(--color-primary)] focus:shadow-focus-primary',
         success:
-          'text-success [--btn-bg:var(--color-success)] [--btn-bg-tonal:var(--color-success-100)] [--btn-border-color:var(--color-success-300)] [--btn-text-color:var(--color-success)] focus:shadow-focus-success',
+          'text-success [--btn-bg:var(--color-success)] [--btn-fg:var(--color-success-foreground)] [--btn-bg-tonal:var(--color-success-100)] [--btn-border-color:var(--color-success-300)] [--btn-text-color:var(--color-success)] focus:shadow-focus-success',
         destructive:
-          'text-danger [--btn-bg:var(--color-danger)] [--btn-bg-tonal:var(--color-danger-100)] [--btn-border-color:var(--color-danger-300)] [--btn-text-color:var(--color-danger)] focus:shadow-focus-danger',
+          'text-danger [--btn-bg:var(--color-danger)] [--btn-fg:var(--color-danger-foreground)] [--btn-bg-tonal:var(--color-danger-100)] [--btn-border-color:var(--color-danger-300)] [--btn-text-color:var(--color-danger)] focus:shadow-focus-danger',
       },
       variant: {
-        filled: 'bg-(--btn-bg) text-neutral-0 hover:shadow-xs active:opacity-90',
+        filled: 'bg-(--btn-bg) text-(--btn-fg) hover:shadow-xs active:opacity-90',
         outlined:
           'border border-(--btn-border-color) bg-transparent hover:bg-(--btn-bg)/8 active:bg-(--btn-bg)/16 text-(--btn-text-color)',
         tonal: 'bg-(--btn-bg-tonal) text-neutral active:opacity-90 hover:shadow-xs',
