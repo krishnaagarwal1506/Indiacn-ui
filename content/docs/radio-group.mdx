@@ -1,0 +1,80 @@
+---
+title: Radio Group
+description: A set of mutually exclusive options, only one of which can be selected.
+---
+
+## Introduction
+
+Radio groups present a small, fixed list of options where exactly one choice applies — a language, an applicant type, a yes/no consent. If people should be able to pick several, use a [Checkbox](/docs/checkbox) instead. Built on Radix UI's Radio Group primitive.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/radio-group.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<RadioGroup defaultValue="english">
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="hindi" id="lang-hindi" />
+    <Label htmlFor="lang-hindi">हिन्दी</Label>
+  </div>
+  <div className="flex items-center gap-3">
+    <RadioGroupItem value="english" id="lang-english" />
+    <Label htmlFor="lang-english">English</Label>
+  </div>
+</RadioGroup>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='RadioGroupDefault' />
+
+### With a Disabled Option
+
+<ComponentPreview name='RadioGroupDisabled' />
+
+### Horizontal
+
+<ComponentPreview name='RadioGroupHorizontal' />
+
+## Accessibility
+
+- Arrow keys move between options and select as they move, which is the expected radio behaviour. <kbd>Tab</kbd> enters and leaves the group as a single stop.
+- Give each item an `id` and point a `Label` at it with `htmlFor`.
+- Radio groups are for one choice out of a known set. Above roughly seven options, prefer a select.
+
+## API Reference
+
+### RadioGroup
+
+| Prop            | Type                         | Default | Description                                |
+| --------------- | ---------------------------- | ------- | ------------------------------------------ |
+| `value`         | `string`                     | —       | Controlled selected value                  |
+| `defaultValue`  | `string`                     | —       | Initially selected value when uncontrolled |
+| `onValueChange` | `(value: string) => void`    | —       | Fires when the selection changes           |
+| `disabled`      | `boolean`                    | `false` | Disables every item in the group           |
+| `name`          | `string`                     | —       | Name submitted with the parent form        |
+| `required`      | `boolean`                    | `false` | Requires a selection before submit         |
+| `orientation`   | `'horizontal' \| 'vertical'` | —       | Direction for arrow-key navigation         |
+| `className`     | `string`                     | —       | Extra Tailwind classes                     |
+
+### RadioGroupItem
+
+| Prop        | Type      | Default | Description                                         |
+| ----------- | --------- | ------- | --------------------------------------------------- |
+| `value`     | `string`  | —       | **Required.** Value this item submits when selected |
+| `disabled`  | `boolean` | `false` | Prevents interaction and dims to 50%                |
+| `id`        | `string`  | —       | Ties the item to its `Label`                        |
+| `className` | `string`  | —       | Extra Tailwind classes                              |
