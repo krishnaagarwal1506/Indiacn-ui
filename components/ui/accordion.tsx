@@ -7,13 +7,9 @@ import { ComponentProps } from 'react';
 import { cn } from '@/lib/utils';
 
 /*
- * UX4G accordion:
- * - item: border-top/bottom neutral-200, first no top, last no bottom
- * - trigger padding: 1rem 1.25rem, font-size 1rem
- * - open: border primary + shadow-focus-primary, rounded
- * - focus: same as open (primary border + focus shadow)
- * - body padding: 1rem 1.25rem
- * - chevron: 1.25rem, rotates 180deg when open
+ * UX4G accordion: item has a single bottom border in neutral-100; trigger and
+ * body both pad 16px/20px; trigger type is label-1; chevron is 24px. The open
+ * item is not outlined — only the focus ring is.
  */
 
 /** Accordion root component. */
@@ -21,14 +17,15 @@ function Accordion({ className, ...props }: ComponentProps<typeof AccordionPrimi
   return <AccordionPrimitive.Root className={cn('w-full', className)} {...props} />;
 }
 
-/** Single collapsible accordion item. */
-function AccordionItem({ className, ...props }: ComponentProps<typeof AccordionPrimitive.Item>) {
+interface IAccordionItemProps extends ComponentProps<typeof AccordionPrimitive.Item> {
+  borderless?: boolean;
+}
+
+/** Single collapsible accordion item. `borderless` drops the divider. */
+function AccordionItem({ className, borderless, ...props }: IAccordionItemProps) {
   return (
     <AccordionPrimitive.Item
-      className={cn(
-        'border-t border-b border-neutral-200 first:border-t-0 last:border-b-0',
-        className,
-      )}
+      className={cn('border-b border-neutral-100', borderless && 'border-b-0', className)}
       {...props}
     />
   );
@@ -44,16 +41,15 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className='flex'>
       <AccordionPrimitive.Trigger
         className={cn(
-          'text-neutral flex flex-1 items-center justify-between px-5 py-4 text-base transition-all',
+          'text-neutral flex flex-1 items-center justify-between px-5 py-4 text-sm font-medium tracking-[0.1px] transition-all',
           'focus-visible:border-primary focus-visible:shadow-focus-primary focus-visible:z-3 focus-visible:rounded-lg focus-visible:border focus-visible:outline-none',
-          'data-[state=open]:border-primary data-[state=open]:shadow-focus-primary data-[state=open]:rounded-lg data-[state=open]:border',
           '[&[data-state=open]>svg]:rotate-180',
           className,
         )}
         {...props}
       >
         {children}
-        <ChevronDown className='size-5 shrink-0 text-neutral-500 transition-transform duration-200' />
+        <ChevronDown className='size-6 shrink-0 text-neutral-500 transition-transform duration-200' />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
