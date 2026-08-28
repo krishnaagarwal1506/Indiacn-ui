@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "title": "Avatar",
+  "description": "Person or entity avatar with picture, initials, or icon fallback. Four sizes, circular or rectangular.",
+  "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/avatar.tsx",
+      "content": "'use client';\n\nimport * as AvatarPrimitive from '@radix-ui/react-avatar';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { ComponentProps, createContext, useContext } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G avatar: 24/32/40/48px, circular or 8px-rounded, primary-100 on\n * primary-800. Initials scale with the box: 11/12/14/16px.\n */\nconst AVATAR_VARIANTS = cva(\n  'relative inline-flex shrink-0 items-center justify-center overflow-hidden font-medium select-none',\n  {\n    variants: {\n      size: {\n        sm: 'size-6 text-[11px] leading-4 tracking-[0.5px]',\n        md: 'size-8 text-xs leading-4 tracking-[0.5px]',\n        lg: 'size-10 text-sm leading-5 tracking-[0.1px]',\n        xl: 'size-12 text-base leading-6 tracking-[0.15px]',\n      },\n      shape: {\n        circular: 'rounded-full',\n        rectangular: 'rounded-md',\n      },\n    },\n    defaultVariants: {\n      size: 'md',\n      shape: 'circular',\n    },\n  },\n);\n\ntype TAvatarSize = NonNullable<VariantProps<typeof AVATAR_VARIANTS>['size']>;\n\nconst AVATAR_CONTEXT = createContext<TAvatarSize>('md');\n\ninterface IAvatarProps\n  extends ComponentProps<typeof AvatarPrimitive.Root>,\n    VariantProps<typeof AVATAR_VARIANTS> {}\n\n/** Avatar container. Wrap an AvatarImage and an AvatarFallback. */\nfunction Avatar({ className, size, shape, ...props }: IAvatarProps) {\n  return (\n    <AVATAR_CONTEXT.Provider value={size ?? 'md'}>\n      <AvatarPrimitive.Root\n        className={cn(AVATAR_VARIANTS({ size, shape }), className)}\n        {...props}\n      />\n    </AVATAR_CONTEXT.Provider>\n  );\n}\n\n/** Avatar picture. Falls back automatically if the image fails to load. */\nfunction AvatarImage({ className, ...props }: ComponentProps<typeof AvatarPrimitive.Image>) {\n  return <AvatarPrimitive.Image className={cn('size-full object-cover', className)} {...props} />;\n}\n\n/** Shown while the image loads or when there is none. Holds initials or an icon. */\nfunction AvatarFallback({ className, ...props }: ComponentProps<typeof AvatarPrimitive.Fallback>) {\n  const size = useContext(AVATAR_CONTEXT);\n  const iconSize = {\n    sm: '[&>svg]:size-3.5',\n    md: '[&>svg]:size-4',\n    lg: '[&>svg]:size-5',\n    xl: '[&>svg]:size-6',\n  };\n\n  return (\n    <AvatarPrimitive.Fallback\n      className={cn(\n        'bg-primary-100 text-primary-800 flex size-full items-center justify-center uppercase',\n        iconSize[size],\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport type { TAvatarSize };\n\nexport { Avatar, AvatarImage, AvatarFallback, AVATAR_VARIANTS };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
