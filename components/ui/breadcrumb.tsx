@@ -1,10 +1,12 @@
-import { MoreHorizontal } from 'lucide-react';
 import { ComponentProps } from 'react';
 
-import { Body2, Label2 } from '@/components/ui/typography';
+import { Body2, Label1, Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
-/* UX4G breadcrumb: divider "/", divider-color neutral-500, active-color neutral, link-color neutral-500 */
+/*
+ * UX4G breadcrumb: links are body-2 in neutral-600, the current page is
+ * label-1 in neutral, separators are neutral-600, and a chevron divider is 6px.
+ */
 
 /** Root navigation container for breadcrumb trails. */
 function Breadcrumb({ ...props }: ComponentProps<'nav'>) {
@@ -15,10 +17,7 @@ function Breadcrumb({ ...props }: ComponentProps<'nav'>) {
 function BreadcrumbList({ className, ...props }: ComponentProps<'ol'>) {
   return (
     <ol
-      className={cn(
-        'mb-4 flex list-none flex-wrap items-center gap-2 p-0 wrap-break-word',
-        className,
-      )}
+      className={cn('flex list-none flex-wrap items-center gap-2 p-0 wrap-break-word', className)}
       {...props}
     />
   );
@@ -34,7 +33,7 @@ function BreadcrumbLink({ className, children, ...props }: ComponentProps<'a'>) 
   return (
     <a
       className={cn(
-        'hover:text-neutral text-neutral-500 no-underline transition-colors',
+        'hover:text-neutral text-neutral-600 no-underline transition-colors',
         className,
       )}
       {...props}
@@ -47,9 +46,9 @@ function BreadcrumbLink({ className, children, ...props }: ComponentProps<'a'>) 
 /** Non-interactive element for the current page in breadcrumb. */
 function BreadcrumbPage({ className, children, ...props }: ComponentProps<'p'>) {
   return (
-    <Body2 aria-current='page' className={cn('text-neutral font-medium', className)} {...props}>
+    <Label1 aria-current='page' className={cn('text-neutral', className)} {...props}>
       {children}
-    </Body2>
+    </Label1>
   );
 }
 
@@ -59,7 +58,7 @@ function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<'
     <li
       role='presentation'
       aria-hidden='true'
-      className={cn('text-neutral-500 [&>svg]:size-3.5', className)}
+      className={cn('text-neutral-600 [&>svg]:size-1.5', className)}
       {...props}
     >
       {children ?? <Body2>/</Body2>}
@@ -70,14 +69,9 @@ function BreadcrumbSeparator({ children, className, ...props }: ComponentProps<'
 /** Ellipsis indicator for collapsed breadcrumb items. */
 function BreadcrumbEllipsis({ className, ...props }: ComponentProps<'div'>) {
   return (
-    <div
-      role='presentation'
-      aria-hidden='true'
-      className={cn('flex size-9 items-center justify-center text-neutral-500', className)}
-      {...props}
-    >
-      <MoreHorizontal className='size-4' />
-      <Label2 className='sr-only'>More</Label2>
+    <div role='presentation' className={cn('text-neutral-600', className)} {...props}>
+      <Body2 aria-hidden='true'>...</Body2>
+      <Label2 className='sr-only'>More pages</Label2>
     </div>
   );
 }
