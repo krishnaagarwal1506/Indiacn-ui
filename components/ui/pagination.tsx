@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ComponentProps, createContext, useContext, useMemo } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
@@ -13,6 +13,13 @@ const PAGINATION_CONTEXT = createContext<{ size: TPaginationSize; variant: TPagi
   size: 'md',
   variant: 'default',
 });
+
+/*
+ * UX4G pagination: 32px pages at radius 8px, px-2 py-1.5, 2px gaps. Inactive is
+ * plain neutral-600 text; selected is white with a primary border at weight 500;
+ * hover draws a neutral-300 border. The `default` variant's joined borders are a
+ * Bootstrap pattern with no UX4G counterpart.
+ */
 
 /** Navigation pagination component. */
 function Pagination({
@@ -44,7 +51,7 @@ function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
       className={cn(
         'flex list-none flex-row items-center pl-0',
         variant === 'flat'
-          ? 'gap-1.5'
+          ? 'gap-0.5'
           : // The `first:`/`last:` Tailwind selectors compile to :first-child/:last-child.
             // Each <a> is the only child of its <li>, so applying them on the link
             // matches every link. Apply them at the <ul> level via descendant
@@ -76,9 +83,9 @@ const PAGINATION_SIZE_CLASSES: Record<TPaginationVariant, Record<TPaginationSize
     lg: 'px-6 py-3 text-lg',
   },
   flat: {
-    sm: 'size-7 text-sm',
-    md: 'size-8 text-base',
-    lg: 'size-10 text-lg',
+    sm: 'size-7 text-xs tracking-[0.25px]',
+    md: 'size-8 text-sm tracking-[0.25px]',
+    lg: 'size-10 text-base tracking-[0.25px]',
   },
 };
 
@@ -103,12 +110,12 @@ function PaginationLink({
         aria-disabled={disabled || undefined}
         tabIndex={disabled ? -1 : undefined}
         className={cn(
-          'focus-visible:shadow-focus-primary inline-flex items-center justify-center rounded-lg border border-transparent bg-transparent no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:outline-none',
+          'focus-visible:shadow-focus-primary inline-flex items-center justify-center rounded-md border border-transparent bg-transparent no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:outline-none',
           PAGINATION_SIZE_CLASSES.flat[resolvedSize],
           isActive
-            ? 'border-primary text-neutral bg-transparent font-bold'
-            : 'hover:text-neutral text-neutral-600 hover:bg-neutral-100',
-          disabled && 'pointer-events-none text-neutral-400',
+            ? 'border-primary bg-neutral-0 text-neutral font-medium tracking-[0.1px]'
+            : 'hover:text-neutral text-neutral-600 hover:border-neutral-300',
+          disabled && 'text-disabled pointer-events-none',
           className,
         )}
         {...props}
@@ -124,12 +131,12 @@ function PaginationLink({
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       className={cn(
-        'text-primary focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
+        'focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
         PAGINATION_SIZE_CLASSES.default[resolvedSize],
         isActive
           ? 'border-primary bg-primary text-primary-foreground z-3'
           : 'hover:text-primary hover:z-2 hover:bg-neutral-100',
-        disabled && 'pointer-events-none text-neutral-400',
+        disabled && 'text-disabled pointer-events-none',
         className,
       )}
       {...props}
@@ -167,23 +174,25 @@ function PaginationNext({ className, children, ...props }: ComponentProps<typeof
   );
 }
 
-/** Ellipsis indicator for truncated page ranges. */
+/**
+ * Ellipsis for truncated page ranges. UX4G renders it as a page-shaped "..."
+ * rather than an icon, so it lines up with the numbers either side.
+ */
 function PaginationEllipsis({ className, ...props }: ComponentProps<'div'>) {
   const { size, variant } = useContext(PAGINATION_CONTEXT);
 
   return (
     <div
-      aria-hidden
       className={cn(
         variant === 'flat'
-          ? 'inline-flex items-center justify-center rounded-lg text-neutral-600'
+          ? 'inline-flex items-center justify-center rounded-md text-neutral-600'
           : 'bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600',
         PAGINATION_SIZE_CLASSES[variant][size],
         className,
       )}
       {...props}
     >
-      <MoreHorizontal className='size-4' />
+      <Label2 aria-hidden>...</Label2>
       <Label2 className='sr-only'>More pages</Label2>
     </div>
   );
