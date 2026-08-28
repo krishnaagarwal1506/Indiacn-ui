@@ -5,9 +5,15 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-/** Collapsible root component. */
-function Collapse(props: ComponentProps<typeof CollapsiblePrimitive.Root>) {
-  return <CollapsiblePrimitive.Root {...props} />;
+/**
+ * Collapsible root component.
+ *
+ * Takes full width so the container does not resize when the content mounts.
+ * Without it, a shrink-to-fit parent sizes itself to the trigger while closed
+ * and to the wider content once open, stretching the trigger on every toggle.
+ */
+function Collapse({ className, ...props }: ComponentProps<typeof CollapsiblePrimitive.Root>) {
+  return <CollapsiblePrimitive.Root className={cn('w-full', className)} {...props} />;
 }
 
 /** Collapsible trigger button. */
