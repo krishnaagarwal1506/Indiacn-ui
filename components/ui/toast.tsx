@@ -2,23 +2,34 @@
 /* eslint-disable eslint-frontend-rules/top-level-const-snake */
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { X } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Loader2, X, XCircle } from 'lucide-react';
 import { ComponentProps, createContext, useCallback, useContext, useState } from 'react';
 
+import { Body2, Title3 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 /*
- * UX4G toast: max-width 350px, font-size 0.875rem, border-radius 0.5rem,
- * border 1px solid neutral-200,
- * shadow: 0px 4px 6px -2px rgba(33,33,33,0.03), 0px 12px 16px -4px rgba(33,33,33,0.08).
- * Header: padding 0.75rem, NO border-bottom. Body: padding 0.75rem.
+ * UX4G toast: 358px wide, radius 8px, 1px neutral-100 border, padding 12px,
+ * shadow-lg. Optional 24px status icon leads the row.
  */
+/* Figma leads each toast with a 24px status glyph. Colours use semantic
+ * tokens, so a status only reads correctly on the default (white) theme. */
+const TOAST_STATUS_ICONS = {
+  success: { Icon: CheckCircle2, className: 'text-success' },
+  warning: { Icon: AlertTriangle, className: 'text-warning' },
+  info: { Icon: Info, className: 'text-info' },
+  error: { Icon: XCircle, className: 'text-danger' },
+  loading: { Icon: Loader2, className: 'text-primary animate-spin' },
+} as const;
+
+type TToastStatus = keyof typeof TOAST_STATUS_ICONS;
+
 const TOAST_VARIANTS = cva(
-  'pointer-events-auto relative flex w-[350px] max-w-full items-center justify-between overflow-hidden rounded-lg border p-3 text-sm shadow-lg transition-all',
+  'pointer-events-auto relative flex w-[358px] max-w-full items-center gap-2 overflow-hidden rounded-md border p-3 text-sm shadow-lg transition-all',
   {
     variants: {
       theme: {
-        default: 'bg-neutral-0 text-neutral border-neutral-200',
+        default: 'bg-neutral-0 text-neutral border-neutral-100',
         primary: 'bg-primary text-primary-foreground border-transparent',
         secondary: 'bg-secondary text-secondary-foreground border-transparent',
         success: 'bg-success text-success-foreground border-transparent',
@@ -89,10 +100,18 @@ function useToast() {
 
 interface IToastProps extends ComponentProps<'div'>, VariantProps<typeof TOAST_VARIANTS> {
   onDismiss?: () => void;
+  status?: TToastStatus;
+}
+
+/** 24px status glyph shown at the start of a toast. */
+function ToastStatusIcon({ status }: { status: TToastStatus }) {
+  const { Icon, className } = TOAST_STATUS_ICONS[status];
+
+  return <Icon className={cn('size-6 shrink-0', className)} aria-hidden />;
 }
 
 /** Dismissable toast notification component. */
-function Toast({ className, theme, onDismiss, children, ...props }: IToastProps) {
+function Toast({ className, theme, onDismiss, status, children, ...props }: IToastProps) {
   return (
     <div
       role='alert'
@@ -101,6 +120,7 @@ function Toast({ className, theme, onDismiss, children, ...props }: IToastProps)
       className={cn(TOAST_VARIANTS({ theme, className }))}
       {...props}
     >
+      {status && <ToastStatusIcon status={status} />}
       <div className='flex-1'>{children}</div>
       {onDismiss && (
         <button
@@ -109,21 +129,21 @@ function Toast({ className, theme, onDismiss, children, ...props }: IToastProps)
           className='ml-2 shrink-0 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none'
           aria-label='Close'
         >
-          <X className='size-4' />
+          <X className='size-6' />
         </button>
       )}
     </div>
   );
 }
 
-/** Title heading for a toast notification. */
-function ToastTitle({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('text-sm font-semibold', className)} {...props} />;
+/** Title heading for a toast notification. UX4G title-3: 14px/20px, weight 500. */
+function ToastTitle({ className, ...props }: ComponentProps<typeof Title3>) {
+  return <Title3 className={className} {...props} />;
 }
 
-/** Description body text for a toast notification. */
-function ToastDescription({ className, ...props }: ComponentProps<'div'>) {
-  return <div className={cn('text-sm opacity-90', className)} {...props} />;
+/** Description body text for a toast notification. UX4G body-2. */
+function ToastDescription({ className, ...props }: ComponentProps<typeof Body2>) {
+  return <Body2 className={className} {...props} />;
 }
 
 /** Fixed-position container for stacking toast notifications. */
@@ -160,6 +180,8 @@ function ToastContainer({
     />
   );
 }
+
+export type { TToastStatus };
 
 export {
   Toast,
