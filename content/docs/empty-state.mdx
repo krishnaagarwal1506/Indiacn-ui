@@ -1,0 +1,93 @@
+---
+title: Empty State
+description: A placeholder shown when there is nothing to display.
+---
+
+## Introduction
+
+Empty states explain why a region is blank and, where possible, what to do about it. Use one whenever a list, table or panel has no rows — a bare white area reads as a broken page.
+
+UX4G defines three forms: an illustration with a label, a lighter version for small regions, and a version with a description and an action. All three are the same composition, so this ships as parts you assemble rather than a `type` prop.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/empty-state.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  EmptyState,
+  EmptyStateMedia,
+  EmptyStateTitle,
+  EmptyStateDescription,
+  EmptyStateActions,
+} from '@/components/ui/empty-state';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<EmptyState>
+  <EmptyStateMedia />
+  <EmptyStateTitle>No applications yet</EmptyStateTitle>
+  <EmptyStateDescription>
+    Applications you submit will appear here for tracking.
+  </EmptyStateDescription>
+</EmptyState>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='EmptyStateDefault' />
+
+### With a Description
+
+<ComponentPreview name='EmptyStateWithDescription' />
+
+### With an Action
+
+<ComponentPreview name='EmptyStateWithAction' />
+
+### Custom Illustration
+
+`EmptyStateMedia` renders the default illustration when given no children. Pass any node to replace it.
+
+<ComponentPreview name='EmptyStateCustomMedia' />
+
+## About the illustration
+
+UX4G's empty-state illustrations are flat SVGs with baked light-grey fills, and two of the three use linear gradients. Those would render as light shapes floating on a dark surface, and a component installed through the registry cannot ship an image file alongside itself.
+
+So the default illustration is UX4G's empty box **redrawn with theme tokens** — the same geometry, coloured from `neutral-50`, `neutral-200` and `neutral-0`, so it inverts with the theme. Pass your own node to `EmptyStateMedia` if you want the original artwork or something else entirely.
+
+## Guidelines
+
+- Say what is missing, not that something failed. "No applications yet" beats "Nothing found".
+- Give an action when the person can do something about it. Omit it when they cannot — an empty inbox needs no button.
+- Keep the description to one line. This is a placeholder, not documentation.
+
+## API Reference
+
+### EmptyState
+
+Centred column, 8px gap. Accepts any `div` props.
+
+### EmptyStateMedia
+
+| Prop       | Type        | Default           | Description                       |
+| ---------- | ----------- | ----------------- | --------------------------------- |
+| `children` | `ReactNode` | UX4G illustration | Replaces the default illustration |
+
+### EmptyStateTitle / EmptyStateDescription
+
+Both render `Body1` (16px / 24px). The title uses `neutral`, the description `neutral-600`.
+
+### EmptyStateActions
+
+Row of actions with a 12px gap and 8px of space above.
