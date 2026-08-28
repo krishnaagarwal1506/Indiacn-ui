@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Body1, Body2, Headline2, Label1, Label2, Label3 } from '@/components/ui/typography';
 import { GITHUB_URL } from '@/constants';
 
+const HEADING_STYLE = { fontSize: 'clamp(32px, 4vw, 48px)' } as const;
+
 export const CommunityCtaSection = () => (
   <div className='dark'>
     <section className='bg-neutral-0 relative overflow-hidden py-28'>
@@ -18,7 +20,7 @@ export const CommunityCtaSection = () => (
             </Label2>
             <Headline2
               className='text-neutral mb-5 font-semibold tracking-tight'
-              style={{ fontSize: 'clamp(32px, 4vw, 48px)' }}
+              style={HEADING_STYLE}
             >
               A movement, not a library.
             </Headline2>

@@ -1,5 +1,7 @@
 import { Body1, Headline2, Label1, Label2, Label3 } from '@/components/ui/typography';
 
+const SWATCH_GRID_STYLE = { display: 'grid', gridTemplateColumns: 'repeat(9,1fr)' } as const;
+
 /* These hex values are the explicit color palette being showcased — intentionally kept as literals */
 const COLOR_SCALES = [
   {
@@ -155,7 +157,7 @@ export const ThemeBand = () => (
                   <Label3 className='font-mono text-neutral-500'>{s.base}</Label3>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9,1fr)' }}>
+              <div style={SWATCH_GRID_STYLE}>
                 {s.swatches.map((c, idx) => (
                   <div
                     key={idx}

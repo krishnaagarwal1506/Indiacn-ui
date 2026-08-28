@@ -14,6 +14,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Body1, Body2, Headline1, Label1, Label3 } from '@/components/ui/typography';
 import { GITHUB_URL, UX_4G_URL } from '@/constants';
 
+const HERO_HEADING_STYLE = {
+  fontSize: 'clamp(36px, 4.5vw, 56px)',
+  lineHeight: 1.12,
+  letterSpacing: '-0.025em',
+} as const;
+
 /** Framed component preview shown inside the homepage hero. */
 const HeroPreviewCard = () => {
   const [tab, setTab] = useState('button');
@@ -109,11 +115,7 @@ export const HeroSection = () => (
 
           <Headline1
             className='text-neutral mb-6 font-bold tracking-tight'
-            style={{
-              fontSize: 'clamp(36px, 4.5vw, 56px)',
-              lineHeight: 1.12,
-              letterSpacing: '-0.025em',
-            }}
+            style={HERO_HEADING_STYLE}
           >
             Components <em className='text-primary not-italic'>built for Bharat.</em>
           </Headline1>
