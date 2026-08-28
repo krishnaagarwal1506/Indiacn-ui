@@ -1,7 +1,7 @@
 'use client';
 
 import { AlertTriangle, Check } from 'lucide-react';
-import { ComponentProps, createContext, useContext } from 'react';
+import { ComponentProps, createContext, useContext, useMemo } from 'react';
 
 import { Label1, Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
@@ -16,6 +16,10 @@ import { cn } from '@/lib/utils';
  * vertical connector: left 2.45rem, width 1px
  * horizontal padding: 1.5rem
  */
+
+/* Hoisted so the object identity is stable across renders. */
+const LIST_RESET_STYLE = { listStyle: 'none' } as const;
+const VERTICAL_CONNECTOR_STYLE = { top: '3.25rem', height: 'calc(100% - 2.45rem)' } as const;
 
 interface IStepperContext {
   activeStep: number;
@@ -46,15 +50,17 @@ function Stepper({
   children,
   ...props
 }: IStepperProps) {
+  const contextValue = useMemo(() => ({ activeStep, orientation }), [activeStep, orientation]);
+
   return (
-    <STEPPER_CONTEXT.Provider value={{ activeStep, orientation }}>
+    <STEPPER_CONTEXT.Provider value={contextValue}>
       <ul
         className={cn(
           'relative m-0 flex w-full gap-0 overflow-hidden p-0',
           orientation === 'horizontal' ? 'flex-row justify-between' : 'flex-col',
           className,
         )}
-        style={{ listStyle: 'none' }}
+        style={LIST_RESET_STYLE}
         {...props}
       >
         {children}
@@ -151,7 +157,7 @@ function Step({ className, step, title, description, status, isLast, ...props }:
             'absolute left-[2.45rem] w-px',
             isCompleted ? 'bg-success' : 'bg-neutral-200',
           )}
-          style={{ top: '3.25rem', height: 'calc(100% - 2.45rem)' }}
+          style={VERTICAL_CONNECTOR_STYLE}
         />
       )}
     </li>

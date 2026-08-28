@@ -3,7 +3,7 @@
 
 import { cva, type VariantProps } from 'class-variance-authority';
 import { AlertTriangle, CheckCircle2, Info, Loader2, X, XCircle } from 'lucide-react';
-import { ComponentProps, createContext, useCallback, useContext, useState } from 'react';
+import { ComponentProps, createContext, useCallback, useContext, useMemo, useState } from 'react';
 
 import { Body2, Title3 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
@@ -85,11 +85,12 @@ function ToastProvider({ children }: { children: React.ReactNode }) {
     setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
-  return (
-    <ToastContext.Provider value={{ toasts, addToast, removeToast }}>
-      {children}
-    </ToastContext.Provider>
+  const contextValue = useMemo(
+    () => ({ toasts, addToast, removeToast }),
+    [toasts, addToast, removeToast],
   );
+
+  return <ToastContext.Provider value={contextValue}>{children}</ToastContext.Provider>;
 }
 
 /** Hook to create and dismiss toast notifications. */

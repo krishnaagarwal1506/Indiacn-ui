@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
-import { ComponentProps, createContext, useContext } from 'react';
+import { ComponentProps, createContext, useContext, useMemo } from 'react';
 
 import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
@@ -21,8 +21,10 @@ function Pagination({
   variant = 'default',
   ...props
 }: ComponentProps<'nav'> & { size?: TPaginationSize; variant?: TPaginationVariant }) {
+  const contextValue = useMemo(() => ({ size, variant }), [size, variant]);
+
   return (
-    <PAGINATION_CONTEXT.Provider value={{ size, variant }}>
+    <PAGINATION_CONTEXT.Provider value={contextValue}>
       <nav
         role='navigation'
         aria-label='pagination'

@@ -51,6 +51,7 @@ export const transformers = [
   },
 ] as ShikiTransformer[];
 
+/** Highlights a code string with Shiki for both light and dark themes. */
 export async function highlightCode(code: string, language: string = 'tsx') {
   const html = await codeToHtml(code, {
     lang: language,

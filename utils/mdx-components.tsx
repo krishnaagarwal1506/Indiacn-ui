@@ -6,6 +6,7 @@ import { ComponentSource } from '@/components/docs/component-source';
 
 import type { MDXComponents } from 'mdx/types';
 
+/** Returns the MDX component map, merging in any per-page overrides. */
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...defaultMdxComponents,
