@@ -18,6 +18,7 @@ export interface IRegistryEntry {
 }
 
 import { AccordionDefault, AccordionMultiple } from '@/components/examples/accordion-demo';
+import { AccordionBorderless } from '@/components/examples/accordion-demo';
 import {
   AlertAdditionalContent,
   AlertDefault,
@@ -3385,5 +3386,35 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/toast-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  // ── Accordion borderless ──────────────────────────────
+  AccordionBorderless: {
+    name: 'AccordionBorderless',
+    description: 'Accordion without dividers',
+    type: 'registry:example',
+    component: AccordionBorderless,
+    code: `import {
+
+export default function Component() {
+  return (
+    <Accordion type='single' collapsible className='w-full max-w-lg'>
+      <AccordionItem borderless value='eligibility'>
+        <AccordionTrigger>Who is eligible to apply?</AccordionTrigger>
+        <AccordionContent>
+          Any resident of India aged 18 or over holding a valid Aadhaar number.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem borderless value='documents'>
+        <AccordionTrigger>What documents are required?</AccordionTrigger>
+        <AccordionContent>
+          Proof of identity, proof of address, and a recent passport-size photograph.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}`,
+    files: [
+      { path: 'components/examples/accordion-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };

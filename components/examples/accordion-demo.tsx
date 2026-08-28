@@ -56,3 +56,22 @@ export function AccordionMultiple() {
     </Accordion>
   );
 }
+
+export function AccordionBorderless() {
+  return (
+    <Accordion type='single' collapsible className='w-full max-w-lg'>
+      <AccordionItem borderless value='eligibility'>
+        <AccordionTrigger>Who is eligible to apply?</AccordionTrigger>
+        <AccordionContent>
+          Any resident of India aged 18 or over holding a valid Aadhaar number.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem borderless value='documents'>
+        <AccordionTrigger>What documents are required?</AccordionTrigger>
+        <AccordionContent>
+          Proof of identity, proof of address, and a recent passport-size photograph.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+}

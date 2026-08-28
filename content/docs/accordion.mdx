@@ -40,21 +40,27 @@ Set `type="multiple"` to allow multiple items open simultaneously.
 
 <ComponentPreview name='AccordionMultiple' />
 
+### Borderless
+
+Figma defines a borderless variant that drops the divider between items.
+
+<ComponentPreview name='AccordionBorderless' />
+
 ## API Reference
 
 ### Accordion
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `type` | `single \| multiple` | — | Whether one or multiple items can be open |
-| `collapsible` | `boolean` | `false` | When `type="single"`, allows closing all items |
-| `defaultValue` | `string \| string[]` | — | Initially open item(s) |
+| Prop           | Type                 | Default | Description                                    |
+| -------------- | -------------------- | ------- | ---------------------------------------------- |
+| `type`         | `single \| multiple` | —       | Whether one or multiple items can be open      |
+| `collapsible`  | `boolean`            | `false` | When `type="single"`, allows closing all items |
+| `defaultValue` | `string \| string[]` | —       | Initially open item(s)                         |
 
 ### AccordionItem
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | — | Unique identifier for the item |
+| Prop    | Type     | Default | Description                    |
+| ------- | -------- | ------- | ------------------------------ |
+| `value` | `string` | —       | Unique identifier for the item |
 
 ### AccordionTrigger
 
