@@ -898,6 +898,23 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty State",
+      "description": "Centred placeholder for empty lists and panels, with a themable UX4G illustration.",
+      "dependencies": [],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/empty-state.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

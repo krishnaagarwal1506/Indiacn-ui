@@ -87,6 +87,12 @@ import {
   DropdownWithShortcuts,
 } from '@/components/examples/dropdown-demo';
 import {
+  EmptyStateCustomMedia,
+  EmptyStateDefault,
+  EmptyStateWithAction,
+  EmptyStateWithDescription,
+} from '@/components/examples/empty-state-demo';
+import {
   IndicatorAttached,
   IndicatorCounts,
   IndicatorDefault,
@@ -186,6 +192,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
 import { Collapse } from '@/components/ui/collapse';
 import { Dropdown } from '@/components/ui/dropdown';
+import { EmptyState } from '@/components/ui/empty-state';
 import { Indicator } from '@/components/ui/indicator';
 import { Label } from '@/components/ui/label';
 import { ListGroup } from '@/components/ui/list-group';
@@ -3466,5 +3473,111 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/search-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  // ── Empty state ──────────────────────────────
+  'empty-state': {
+    name: 'empty-state',
+    description: 'Placeholder for empty lists and panels',
+    type: 'registry:ui',
+    component: EmptyState,
+    files: [{ path: 'components/ui/empty-state.tsx', type: 'registry:ui', target: '' }],
+  },
+  EmptyStateDefault: {
+    name: 'EmptyStateDefault',
+    description: 'Illustration with a label',
+    type: 'registry:example',
+    component: EmptyStateDefault,
+    code: `import { FileSearch, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+
+export default function Component() {
+  return (
+    <EmptyState>
+      <EmptyStateMedia />
+      <EmptyStateTitle>No data</EmptyStateTitle>
+    </EmptyState>
+  );
+}`,
+    files: [
+      { path: 'components/examples/empty-state-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  EmptyStateWithDescription: {
+    name: 'EmptyStateWithDescription',
+    description: 'Empty state with supporting copy',
+    type: 'registry:example',
+    component: EmptyStateWithDescription,
+    code: `import { FileSearch, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+
+export default function Component() {
+  return (
+    <EmptyState>
+      <EmptyStateMedia />
+      <EmptyStateTitle>No applications yet</EmptyStateTitle>
+      <EmptyStateDescription>
+        Applications you submit will appear here for tracking.
+      </EmptyStateDescription>
+    </EmptyState>
+  );
+}`,
+    files: [
+      { path: 'components/examples/empty-state-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  EmptyStateWithAction: {
+    name: 'EmptyStateWithAction',
+    description: 'Empty state with a primary action',
+    type: 'registry:example',
+    component: EmptyStateWithAction,
+    code: `import { FileSearch, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+
+export default function Component() {
+  return (
+    <EmptyState>
+      <EmptyStateMedia />
+      <EmptyStateTitle>No grievances filed</EmptyStateTitle>
+      <EmptyStateDescription>
+        File a grievance and track its progress from this page.
+      </EmptyStateDescription>
+      <EmptyStateActions>
+        <Button theme='primary' variant='filled' prefixIcon={<Plus />}>
+          File a grievance
+        </Button>
+      </EmptyStateActions>
+    </EmptyState>
+  );
+}`,
+    files: [
+      { path: 'components/examples/empty-state-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  EmptyStateCustomMedia: {
+    name: 'EmptyStateCustomMedia',
+    description: 'Empty state with a custom illustration',
+    type: 'registry:example',
+    component: EmptyStateCustomMedia,
+    code: `import { FileSearch, Plus } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+
+export default function Component() {
+  return (
+    <EmptyState>
+      <EmptyStateMedia>
+        <FileSearch className='size-16 text-neutral-300' aria-hidden />
+      </EmptyStateMedia>
+      <EmptyStateTitle>No results for “Aadhaar update”</EmptyStateTitle>
+      <EmptyStateDescription>Check the spelling or try a broader term.</EmptyStateDescription>
+    </EmptyState>
+  );
+}`,
+    files: [
+      { path: 'components/examples/empty-state-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };
