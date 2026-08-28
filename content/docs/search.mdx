@@ -9,10 +9,7 @@ The Search component provides a styled search input with a leading search icon, 
 
 ## Installation
 
-<ComponentSource
-  collapsible={false}
-  code={`import { Search } from '@/components/ui/search';`}
-/>
+<ComponentSource collapsible={false} code={`import { Search } from '@/components/ui/search';`} />
 
 ## Usage
 
@@ -31,12 +28,18 @@ The Search component provides a styled search input with a leading search icon, 
 
 <ComponentPreview name='SearchSizes' />
 
+### Trailing Actions
+
+UX4G's search is 56px tall (`size='xl'`) and carries voice-search and assistant actions on the right. The `trailing` slot takes any node.
+
+<ComponentPreview name='SearchWithTrailingActions' />
+
 ## API Reference
 
 ### Search
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `size` | `sm \| md \| lg` | `md` | Input size |
-| `onClear` | `() => void` | — | Clear button callback |
-| `containerClassName` | `string` | — | Class for the outer wrapper |
+| Prop                 | Type             | Default | Description                 |
+| -------------------- | ---------------- | ------- | --------------------------- |
+| `size`               | `sm \| md \| lg` | `md`    | Input size                  |
+| `onClear`            | `() => void`     | —       | Clear button callback       |
+| `containerClassName` | `string`         | —       | Class for the outer wrapper |
