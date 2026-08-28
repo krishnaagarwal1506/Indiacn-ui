@@ -35,6 +35,8 @@ Pagination helps users navigate through large sets of data split across multiple
 
 ### Default
 
+Separate 32px squares, which is what UX4G specifies. The selected page is white with a primary border, not a filled block.
+
 <ComponentPreview name='PaginationDefault' />
 
 ### With Ellipsis
@@ -45,20 +47,20 @@ Pagination helps users navigate through large sets of data split across multiple
 
 <ComponentPreview name='PaginationSizes' />
 
-### Flat Variant
+### Joined Variant
 
-Use `variant="flat"` on `Pagination` for a borderless pagination style.
+`variant='joined'` draws the pages as a single row with shared borders. UX4G does not define this style — it comes from Bootstrap — but it is kept for anyone who wants it.
 
-<ComponentPreview name='PaginationFlat' />
+<ComponentPreview name='PaginationJoined' />
 
 ## API Reference
 
 ### Pagination
 
-| Prop      | Type              | Default   | Description                                       |
-| --------- | ----------------- | --------- | ------------------------------------------------- |
-| `variant` | `default \| flat` | `default` | Controls whether links are bordered or borderless |
-| `size`    | `sm \| md \| lg`  | `md`      | Applies a shared size to all pagination links     |
+| Prop      | Type                 | Default  | Description                                                                                                                                |
+| --------- | -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `variant` | `'flat' \| 'joined'` | `'flat'` | `flat` is UX4G's separate squares. `joined` is the Bootstrap shared-border row. `'default'` still works as a deprecated alias for `joined` |
+| `size`    | `sm \| md \| lg`     | `md`     | Applies a shared size to all pagination links                                                                                              |
 
 ### PaginationLink
 
