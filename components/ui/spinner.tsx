@@ -4,7 +4,7 @@ import { ComponentProps } from 'react';
 import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
-/* UX4G spinner: border-width 0.3em, size 2rem, animation 0.75s, sm size 1rem, sm border 0.2em */
+/* UX4G spinner: 32px, border-width 0.3em (0.2em at sm), both variants animate at 0.75s. */
 const SPINNER_VARIANTS = cva('inline-block rounded-full align-[-0.125em]', {
   variants: {
     theme: {
@@ -19,7 +19,7 @@ const SPINNER_VARIANTS = cva('inline-block rounded-full align-[-0.125em]', {
       neutral: 'text-neutral',
     },
     variant: {
-      border: 'animate-spin border-[0.3em] border-current border-r-transparent',
+      border: 'animate-spinner-border border-[0.3em] border-current border-r-transparent',
       grow: 'bg-current [animation:spinner-grow_0.75s_linear_infinite]',
     },
     size: {

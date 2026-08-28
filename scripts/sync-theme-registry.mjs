@@ -28,6 +28,27 @@ function readBlock(opening) {
 /** fumadocs tokens power the docs site only and are not part of the published theme. */
 const isPublished = name => !name.startsWith('fd-') && !name.startsWith('color-fd-');
 
+/** These animate the docs site itself, so consumers have no use for them. */
+const DOCS_ONLY_KEYFRAMES = new Set(['float', 'scroll']);
+
+/** Top-level @keyframes blocks, which components reference through --animate-* tokens. */
+function readKeyframes() {
+  const out = {};
+  for (const m of CSS.matchAll(/^@keyframes ([\w-]+) \{\n([\s\S]*?)^\}/gm)) {
+    const [, name, body] = m;
+    if (DOCS_ONLY_KEYFRAMES.has(name)) continue;
+    out[`@keyframes ${name}`] = Object.fromEntries(
+      [...body.matchAll(/^ {2}([\w%,\s]+) \{\n([\s\S]*?)^ {2}\}/gm)].map(([, step, decls]) => [
+        step.trim(),
+        Object.fromEntries(
+          [...decls.matchAll(/^\s*([\w-]+):\s*([^;]+);/gm)].map(([, k, v]) => [k, v.trim()]),
+        ),
+      ]),
+    );
+  }
+  return out;
+}
+
 const sections = {
   theme: readBlock('@theme inline'),
   light: readBlock(':root'),
@@ -53,6 +74,19 @@ for (const [section, tokens] of Object.entries(sections)) {
 
   theme.cssVars[section] = wanted;
 }
+
+// Keyframes live outside @theme, so components referencing --animate-* tokens
+// break for consumers if these drift out of the published theme.
+const keyframes = readKeyframes();
+const currentCss = theme.css ?? {};
+for (const [key, value] of Object.entries(keyframes)) {
+  if (!(key in currentCss)) changes.push(`+ css.${key}`);
+  else if (JSON.stringify(currentCss[key]) !== JSON.stringify(value)) changes.push(`~ css.${key}`);
+}
+for (const key of Object.keys(currentCss)) {
+  if (!(key in keyframes)) changes.push(`- css.${key}`);
+}
+theme.css = keyframes;
 
 if (changes.length === 0) {
   console.log('registry.json theme tokens already match app/globals.css');
