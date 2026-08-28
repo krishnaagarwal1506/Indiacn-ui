@@ -19,6 +19,8 @@ export default defineConfig([
       'dist',
       '_resource_UX4G@2.0.8/**',
       '.source/**',
+      '.claude/**',
+      '.playwright-mcp/**',
     ],
   },
   ...nextVitals,

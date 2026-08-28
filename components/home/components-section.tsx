@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 /* ── Component tile wrapper ─────────────────────────────────── */
 
+/** Card wrapper for a single component preview in the homepage grid. */
 const ComponentTile = ({
   title,
   tag,
@@ -33,6 +34,7 @@ const ComponentTile = ({
 
 /* ── Individual demo tiles ──────────────────────────────────── */
 
+/** Homepage preview tile showing button variants. */
 const ButtonTile = () => (
   <div className='flex flex-wrap justify-center gap-2'>
     <Button size='sm'>Primary</Button>
@@ -45,6 +47,7 @@ const ButtonTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing badge themes. */
 const BadgeTile = () => (
   <div className='flex max-w-[220px] flex-wrap justify-center gap-2'>
     <Badge theme='success' variant='tonal'>
@@ -65,6 +68,7 @@ const BadgeTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing a search input. */
 const InputTile = () => (
   <div className='w-full max-w-[240px]'>
     <Label2 className='mb-1.5 block font-semibold text-neutral-600'>Aadhaar number</Label2>
@@ -77,6 +81,7 @@ const InputTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing the tabs component. */
 const TabsTile = () => (
   <div className='w-full max-w-[260px]'>
     <Tabs defaultValue='application' variant='underline'>
@@ -98,6 +103,7 @@ const TabsTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing progress bars. */
 const ProgressTile = () => (
   <div className='w-full max-w-[220px]'>
     <div className='mb-2 flex justify-between'>
@@ -117,6 +123,7 @@ const ProgressTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing selectable chips. */
 const ChipTile = () => (
   <div className='flex max-w-[220px] flex-wrap justify-center gap-1.5'>
     {['PAN', 'Aadhaar', 'Driving Licence', 'Voter ID', 'Passport'].map(x => (
@@ -127,6 +134,7 @@ const ChipTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing a toast notification. */
 const ToastTile = () => (
   <div className='bg-neutral flex w-full max-w-[260px] items-center gap-2.5 rounded-lg p-3.5 shadow-lg dark:bg-neutral-100 dark:text-neutral-900'>
     <Check className='text-success-400 size-4 shrink-0' />
@@ -137,6 +145,7 @@ const ToastTile = () => (
   </div>
 );
 
+/** Homepage preview tile showing avatars. */
 const AvatarTile = () => (
   <div className='flex'>
     {[

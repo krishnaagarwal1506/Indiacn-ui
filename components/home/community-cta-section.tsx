@@ -1,11 +1,10 @@
 import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 
+import { ChakraBgDark } from '@/components/home/chakra-bg';
 import { Button } from '@/components/ui/button';
 import { Body1, Body2, Headline2, Label1, Label2, Label3 } from '@/components/ui/typography';
 import { GITHUB_URL } from '@/constants';
-
-import { ChakraBgDark } from './chakra-bg';
 
 export const CommunityCtaSection = () => (
   <div className='dark'>

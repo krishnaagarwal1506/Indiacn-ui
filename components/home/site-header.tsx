@@ -4,12 +4,11 @@ import { ArrowRight, Github } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { BrandName } from '@/components/home/brand-name';
+import { ChakraMark } from '@/components/home/chakra-mark';
 import { Button } from '@/components/ui/button';
 import { GITHUB_URL } from '@/constants';
 import { cn } from '@/lib/utils';
-
-import { BrandName } from './brand-name';
-import { ChakraMark } from './chakra-mark';
 
 export const SiteHeader = () => {
   const [scrolled, setScrolled] = useState(false);
