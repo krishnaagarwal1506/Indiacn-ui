@@ -28,6 +28,12 @@ import {
   AlertWithLink,
 } from '@/components/examples/alert-demo';
 import {
+  AvatarDefault,
+  AvatarShapes,
+  AvatarSizes,
+  AvatarWithBadge,
+} from '@/components/examples/avatar-demo';
+import {
   BadgeDefault,
   BadgeHeadings,
   BadgeOutlined,
@@ -56,6 +62,7 @@ import {
   ButtonGroupVertical,
 } from '@/components/examples/button-group-demo';
 import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
+import { CardElevated } from '@/components/examples/card-demo';
 import {
   CheckboxDefault,
   CheckboxGroup,
@@ -166,6 +173,7 @@ import {
 } from '@/components/examples/typography-demo';
 import { Accordion } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertLink, AlertTitle } from '@/components/ui/alert';
+import { Avatar } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
@@ -216,8 +224,6 @@ import {
   Title2,
   Title3,
 } from '@/components/ui/typography';
-
-import { CardElevated } from '@/components/examples/card-demo';
 
 export const Index: Record<string, IRegistryEntry> = {
   // ── UI components ──────────────────────────────────────────────
@@ -3219,5 +3225,128 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/card-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  // ── Avatar ──────────────────────────────
+  avatar: {
+    name: 'avatar',
+    description: 'Avatar with picture, initials or icon fallback',
+    type: 'registry:ui',
+    component: Avatar,
+    files: [{ path: 'components/ui/avatar.tsx', type: 'registry:ui', target: '' }],
+  },
+  AvatarDefault: {
+    name: 'AvatarDefault',
+    description: 'Picture, initials and icon fallbacks',
+    type: 'registry:example',
+    component: AvatarDefault,
+    code: `import { User } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-4'>
+      <Avatar>
+        <AvatarFallback>SM</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>
+          <User aria-hidden />
+        </AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarImage src='/icon.svg' alt='Aarav Sharma' />
+        <AvatarFallback>AS</AvatarFallback>
+      </Avatar>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AvatarSizes: {
+    name: 'AvatarSizes',
+    description: 'All four avatar sizes',
+    type: 'registry:example',
+    component: AvatarSizes,
+    code: `import { User } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-end gap-4'>
+      <Avatar size='sm'>
+        <AvatarFallback>SM</AvatarFallback>
+      </Avatar>
+      <Avatar size='md'>
+        <AvatarFallback>MD</AvatarFallback>
+      </Avatar>
+      <Avatar size='lg'>
+        <AvatarFallback>LG</AvatarFallback>
+      </Avatar>
+      <Avatar size='xl'>
+        <AvatarFallback>XL</AvatarFallback>
+      </Avatar>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AvatarShapes: {
+    name: 'AvatarShapes',
+    description: 'Circular and rectangular avatars',
+    type: 'registry:example',
+    component: AvatarShapes,
+    code: `import { User } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-4'>
+      <Avatar shape='circular' size='lg'>
+        <AvatarFallback>CI</AvatarFallback>
+      </Avatar>
+      <Avatar shape='rectangular' size='lg'>
+        <AvatarFallback>RE</AvatarFallback>
+      </Avatar>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AvatarWithBadge: {
+    name: 'AvatarWithBadge',
+    description: 'Avatar composed with an Indicator dot',
+    type: 'registry:example',
+    component: AvatarWithBadge,
+    code: `import { User } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Indicator } from '@/components/ui/indicator';
+import { Body3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-6'>
+      <div className='relative inline-flex'>
+        <Avatar size='lg'>
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
+        <Indicator
+          theme='success'
+          variant='dot'
+          className='ring-neutral-0 absolute right-0 bottom-0 ring-2'
+        />
+      </div>
+      <Body3 className='text-neutral-600'>
+        The 6px status dot is an Indicator, positioned by the consumer.
+      </Body3>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
   },
 };

@@ -1,0 +1,92 @@
+---
+title: Avatar
+description: A person or entity represented by a picture, initials, or an icon.
+---
+
+## Introduction
+
+Avatars identify a person or organisation in lists, headers and comment threads. When no picture is available they fall back to initials, and failing that, an icon.
+
+Built on Radix UI's Avatar primitive, so a broken or slow image resolves to the fallback rather than showing a torn image.
+
+| Size | Box  | Initials |
+| ---- | ---- | -------- |
+| `sm` | 24px | 11px     |
+| `md` | 32px | 12px     |
+| `lg` | 40px | 14px     |
+| `xl` | 48px | 16px     |
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/avatar.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Avatar>
+  <AvatarImage src="/aarav.jpg" alt="Aarav Sharma" />
+  <AvatarFallback>AS</AvatarFallback>
+</Avatar>`}
+/>
+
+## Examples
+
+### Default
+
+Picture, initials, and icon fallbacks.
+
+<ComponentPreview name='AvatarDefault' />
+
+### Sizes
+
+<ComponentPreview name='AvatarSizes' />
+
+### Shapes
+
+<ComponentPreview name='AvatarShapes' />
+
+### With a Status Dot
+
+UX4G's avatar has an optional 6px badge. That is the same 6px dot as [Indicator](/docs/indicator), so compose the two rather than duplicating it.
+
+<ComponentPreview name='AvatarWithBadge' />
+
+## Accessibility
+
+- Always give `AvatarImage` a meaningful `alt`. If the avatar sits beside the person's name, `alt=""` is correct — repeating the name makes screen readers announce it twice.
+- Initials are decorative to a screen reader. Make sure the name appears in nearby text, or label the container.
+- A status dot carries no text. State what it means in the surrounding markup, not by colour alone.
+
+## API Reference
+
+### Avatar
+
+| Prop        | Type                           | Default      | Description                                |
+| ----------- | ------------------------------ | ------------ | ------------------------------------------ |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`       | 24, 32, 40 or 48px. Initials scale with it |
+| `shape`     | `'circular' \| 'rectangular'`  | `'circular'` | Fully rounded, or 8px corners              |
+| `className` | `string`                       | —            | Extra Tailwind classes                     |
+
+### AvatarImage
+
+| Prop                    | Type               | Default | Description                       |
+| ----------------------- | ------------------ | ------- | --------------------------------- |
+| `src`                   | `string`           | —       | Image source                      |
+| `alt`                   | `string`           | —       | Alternative text                  |
+| `onLoadingStatusChange` | `(status) => void` | —       | Fires as the image loads or fails |
+
+### AvatarFallback
+
+| Prop       | Type        | Default | Description                                                      |
+| ---------- | ----------- | ------- | ---------------------------------------------------------------- |
+| `delayMs`  | `number`    | —       | Wait before showing, to avoid a flash on fast connections        |
+| `children` | `ReactNode` | —       | Initials or an icon. Icons are sized to the avatar automatically |
