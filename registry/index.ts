@@ -128,6 +128,7 @@ import {
   RadioGroupHorizontal,
 } from '@/components/examples/radio-group-demo';
 import { SearchDefault, SearchSizes } from '@/components/examples/search-demo';
+import { SearchWithTrailingActions } from '@/components/examples/search-demo';
 import {
   SeparatorDefault,
   SeparatorInList,
@@ -3416,5 +3417,54 @@ export default function Component() {
     files: [
       { path: 'components/examples/accordion-demo.tsx', type: 'registry:example', target: '' },
     ],
+  },
+  // ── Search trailing actions ──────────────────────────────
+  SearchWithTrailingActions: {
+    name: 'SearchWithTrailingActions',
+    description: 'Search with voice and assistant actions',
+    type: 'registry:example',
+    component: SearchWithTrailingActions,
+    code: `import { Mic, Sparkles } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { Search } from '@/components/ui/search';
+import { Body3 } from '@/components/ui/typography';
+
+/** Icon button used in the search trailing slot. */
+function TrailingAction({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <button
+      type='button'
+      className='text-neutral-600 hover:text-primary shrink-0 rounded-md p-2 transition-colors focus-visible:outline-none'
+      aria-label={label}
+    >
+      {children}
+    </button>
+  );
+}
+
+export default function Component() {
+  return (
+    <div className='grid w-full max-w-md gap-2'>
+      <Search
+        size='xl'
+        placeholder='Search for services'
+        trailing={
+          <>
+            <TrailingAction label='Search by voice'>
+              <Mic className='size-6' aria-hidden />
+            </TrailingAction>
+            <TrailingAction label='Ask the assistant'>
+              <Sparkles className='size-6' aria-hidden />
+            </TrailingAction>
+          </>
+        }
+      />
+      <Body3 className='text-neutral-600'>
+        UX4G puts voice search and an assistant here. The slot takes any node.
+      </Body3>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/search-demo.tsx', type: 'registry:example', target: '' }],
   },
 };
