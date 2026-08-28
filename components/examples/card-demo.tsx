@@ -84,3 +84,26 @@ export function CardGrid() {
     </div>
   );
 }
+
+export function CardElevated() {
+  return (
+    <div className='grid w-full max-w-2xl gap-6 sm:grid-cols-2'>
+      <Card variant='outlined'>
+        <CardHeader>
+          <CardTitle>Outlined</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>The default. A 1px neutral-100 border, no shadow.</CardDescription>
+        </CardContent>
+      </Card>
+      <Card variant='elevated'>
+        <CardHeader>
+          <CardTitle>Elevated</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CardDescription>Same border, plus the UX4G card shadow.</CardDescription>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
