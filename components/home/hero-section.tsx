@@ -4,6 +4,8 @@ import { ArrowRight, Check, Github, Shield, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { ChakraBg } from '@/components/home/chakra-bg';
+import { WindowChromeDots } from '@/components/home/window-chrome-dots';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,9 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Body1, Body2, Headline1, Label1, Label3 } from '@/components/ui/typography';
 import { GITHUB_URL, UX_4G_URL } from '@/constants';
 
-import { ChakraBg } from './chakra-bg';
-import { WindowChromeDots } from './window-chrome-dots';
-
+/** Framed component preview shown inside the homepage hero. */
 const HeroPreviewCard = () => {
   const [tab, setTab] = useState('button');
 
