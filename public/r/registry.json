@@ -40,6 +40,7 @@
           "animate-accordion-up": "accordion-up 0.2s ease-out",
           "animate-collapsible-down": "collapsible-down 0.2s ease-out",
           "animate-collapsible-up": "collapsible-up 0.2s ease-out",
+          "animate-spinner-border": "spinner-border 0.75s linear infinite",
           "color-primary": "var(--primary)",
           "color-primary-50": "var(--primary-50)",
           "color-primary-100": "var(--primary-100)",
@@ -380,6 +381,11 @@
           },
           "to": {
             "height": "0"
+          }
+        },
+        "@keyframes spinner-border": {
+          "to": {
+            "transform": "rotate(360deg)"
           }
         },
         "@keyframes spinner-grow": {
