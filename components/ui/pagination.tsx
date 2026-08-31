@@ -7,11 +7,22 @@ import { Label2 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 type TPaginationSize = 'sm' | 'md' | 'lg';
-type TPaginationVariant = 'default' | 'flat';
+/**
+ * `flat` is UX4G's pagination: separate 32px rounded squares. `joined` is the
+ * Bootstrap-style shared-border row, which UX4G does not define; `default` is
+ * kept as a deprecated alias for it.
+ */
+type TPaginationVariant = 'flat' | 'joined' | 'default';
+type TResolvedVariant = 'flat' | 'joined';
 
-const PAGINATION_CONTEXT = createContext<{ size: TPaginationSize; variant: TPaginationVariant }>({
+/** Maps the deprecated `default` value onto `joined`. */
+function resolveVariant(variant: TPaginationVariant): TResolvedVariant {
+  return variant === 'default' ? 'joined' : variant;
+}
+
+const PAGINATION_CONTEXT = createContext<{ size: TPaginationSize; variant: TResolvedVariant }>({
   size: 'md',
-  variant: 'default',
+  variant: 'flat',
 });
 
 /*
@@ -25,10 +36,11 @@ const PAGINATION_CONTEXT = createContext<{ size: TPaginationSize; variant: TPagi
 function Pagination({
   className,
   size = 'md',
-  variant = 'default',
+  variant = 'flat',
   ...props
 }: ComponentProps<'nav'> & { size?: TPaginationSize; variant?: TPaginationVariant }) {
-  const contextValue = useMemo(() => ({ size, variant }), [size, variant]);
+  const resolved = resolveVariant(variant);
+  const contextValue = useMemo(() => ({ size, variant: resolved }), [size, resolved]);
 
   return (
     <PAGINATION_CONTEXT.Provider value={contextValue}>
@@ -76,8 +88,8 @@ interface IPaginationLinkProps extends ComponentProps<'a'> {
   variant?: TPaginationVariant;
 }
 
-const PAGINATION_SIZE_CLASSES: Record<TPaginationVariant, Record<TPaginationSize, string>> = {
-  default: {
+const PAGINATION_SIZE_CLASSES: Record<TResolvedVariant, Record<TPaginationSize, string>> = {
+  joined: {
     sm: 'px-2 py-1 text-sm',
     md: 'px-3 py-1.5 text-base',
     lg: 'px-6 py-3 text-lg',
@@ -101,7 +113,7 @@ function PaginationLink({
 }: IPaginationLinkProps) {
   const pagination = useContext(PAGINATION_CONTEXT);
   const resolvedSize = size ?? pagination.size;
-  const resolvedVariant = variant ?? pagination.variant;
+  const resolvedVariant = variant ? resolveVariant(variant) : pagination.variant;
 
   if (resolvedVariant === 'flat') {
     return (
@@ -132,7 +144,7 @@ function PaginationLink({
       tabIndex={disabled ? -1 : undefined}
       className={cn(
         'focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
-        PAGINATION_SIZE_CLASSES.default[resolvedSize],
+        PAGINATION_SIZE_CLASSES.joined[resolvedSize],
         isActive
           ? 'border-primary bg-primary text-primary-foreground z-3'
           : 'hover:text-primary hover:z-2 hover:bg-neutral-100',
@@ -146,30 +158,41 @@ function PaginationLink({
   );
 }
 
-/** Previous page navigation link. */
+/**
+ * Previous page navigation link. In the flat variant it sits 8px from the page
+ * numbers, which are only 2px apart from each other, per UX4G.
+ */
 function PaginationPrevious({
   className,
   children,
   ...props
 }: ComponentProps<typeof PaginationLink>) {
+  const { variant } = useContext(PAGINATION_CONTEXT);
+
   return (
     <PaginationLink
       aria-label='Go to previous page'
-      className={cn('gap-1.5', className)}
+      className={cn('gap-1.5', variant === 'flat' && 'mr-1.5 h-8 w-auto px-2', className)}
       {...props}
     >
-      <ChevronLeft className='size-4' />
+      <ChevronLeft className='size-4 shrink-0' aria-hidden />
       {children ?? <Label2>Previous</Label2>}
     </PaginationLink>
   );
 }
 
-/** Next page navigation link. */
+/** Next page navigation link. Mirrors PaginationPrevious's spacing. */
 function PaginationNext({ className, children, ...props }: ComponentProps<typeof PaginationLink>) {
+  const { variant } = useContext(PAGINATION_CONTEXT);
+
   return (
-    <PaginationLink aria-label='Go to next page' className={cn('gap-1.5', className)} {...props}>
+    <PaginationLink
+      aria-label='Go to next page'
+      className={cn('gap-1.5', variant === 'flat' && 'ml-1.5 h-8 w-auto px-2', className)}
+      {...props}
+    >
       {children ?? <Label2>Next</Label2>}
-      <ChevronRight className='size-4' />
+      <ChevronRight className='size-4 shrink-0' aria-hidden />
     </PaginationLink>
   );
 }

@@ -35,9 +35,9 @@ export function PaginationDefault() {
   );
 }
 
-export function PaginationFlat() {
+export function PaginationJoined() {
   return (
-    <Pagination variant='flat'>
+    <Pagination variant='joined'>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href='#' aria-label='Previous page'>

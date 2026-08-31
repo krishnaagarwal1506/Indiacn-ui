@@ -115,7 +115,7 @@ import {
 } from '@/components/examples/offcanvas-demo';
 import {
   PaginationDefault,
-  PaginationFlat,
+  PaginationJoined,
   PaginationSizes,
   PaginationWithEllipsis,
 } from '@/components/examples/pagination-demo';
@@ -1609,17 +1609,30 @@ export default function Component() {
     description: 'Default pagination example',
     type: 'registry:example',
     component: PaginationDefault,
-    code: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext } from '@/components/ui/pagination';
+    code: `import {
+import { Label1 } from '@/components/ui/typography';
 
 export default function Component() {
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-        <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationNext href="#" /></PaginationItem>
+        <PaginationItem>
+          <PaginationPrevious href='#' />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#'>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#' isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#'>3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href='#' />
+        </PaginationItem>
       </PaginationContent>
     </Pagination>
   );
@@ -1633,19 +1646,36 @@ export default function Component() {
     description: 'Pagination with ellipsis',
     type: 'registry:example',
     component: PaginationWithEllipsis,
-    code: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@/components/ui/pagination';
+    code: `import {
+import { Label1 } from '@/components/ui/typography';
 
 export default function Component() {
   return (
     <Pagination>
       <PaginationContent>
-        <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-        <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationEllipsis /></PaginationItem>
-        <PaginationItem><PaginationLink href="#">10</PaginationLink></PaginationItem>
-        <PaginationItem><PaginationNext href="#" /></PaginationItem>
+        <PaginationItem>
+          <PaginationPrevious href='#' />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#'>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#'>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#' isActive>
+            3
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href='#'>8</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href='#' />
+        </PaginationItem>
       </PaginationContent>
     </Pagination>
   );
@@ -1659,23 +1689,40 @@ export default function Component() {
     description: 'Pagination sizes example',
     type: 'registry:example',
     component: PaginationSizes,
-    code: `import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '@/components/ui/pagination';
+    code: `import {
+import { Label1 } from '@/components/ui/typography';
 
 export default function Component() {
   return (
-    <div className="flex flex-col gap-4">
-      <Pagination>
+    <div className='flex flex-col gap-4'>
+      <Pagination size='sm'>
         <PaginationContent>
-          <PaginationItem><PaginationLink href="#" size="sm">1</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#" size="sm" isActive>2</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#" size="sm">3</PaginationLink></PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#'>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#' isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#'>3</PaginationLink>
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
-      <Pagination>
+      <Pagination size='lg'>
         <PaginationContent>
-          <PaginationItem><PaginationLink href="#" size="lg">1</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#" size="lg" isActive>2</PaginationLink></PaginationItem>
-          <PaginationItem><PaginationLink href="#" size="lg">3</PaginationLink></PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#'>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#' isActive>
+              2
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href='#'>3</PaginationLink>
+          </PaginationItem>
         </PaginationContent>
       </Pagination>
     </div>
@@ -1685,11 +1732,11 @@ export default function Component() {
       { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
     ],
   },
-  PaginationFlat: {
-    name: 'PaginationFlat',
+  PaginationJoined: {
+    name: 'PaginationJoined',
     description: 'Flat pagination variant without borders',
     type: 'registry:example',
-    component: PaginationFlat,
+    component: PaginationJoined,
     files: [
       { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
     ],
@@ -1701,10 +1748,33 @@ export default function Component() {
     description: 'Default button example',
     type: 'registry:example',
     component: ButtonDefault,
-    code: `import { Button } from '@/components/ui/button';
+    code: `import {
+import { Label1 } from '@/components/ui/typography';
 
 export default function Component() {
-  return <Button>Primary Action</Button>;
+  return (
+    <Pagination variant='joined'>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href='#' aria-label='Previous page'>
+            <Label1 className='sr-only'>Previous</Label1>
+          </PaginationPrevious>
+        </PaginationItem>
+        {['1', '2', '3', '4', '5', '6', '7', '8'].map(page => (
+          <PaginationItem key={page}>
+            <PaginationLink href='#' isActive={page === '4'}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+        <PaginationItem>
+          <PaginationNext href='#' aria-label='Next page'>
+            <Label1 className='sr-only'>Next</Label1>
+          </PaginationNext>
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
 }`,
     files: [{ path: 'components/examples/button-demo.tsx', type: 'registry:example', target: '' }],
   },
