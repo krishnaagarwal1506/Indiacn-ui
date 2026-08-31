@@ -25,6 +25,11 @@ const BUTTON_VARIANTS = cva(
           'text-success [--btn-bg:var(--color-success)] [--btn-fg:var(--color-success-foreground)] [--btn-bg-tonal:var(--color-success-100)] [--btn-border-color:var(--color-success-300)] [--btn-text-color:var(--color-success)] focus:shadow-focus-success',
         destructive:
           'text-danger [--btn-bg:var(--color-danger)] [--btn-fg:var(--color-danger-foreground)] [--btn-bg-tonal:var(--color-danger-100)] [--btn-border-color:var(--color-danger-300)] [--btn-text-color:var(--color-danger)] focus:shadow-focus-danger',
+        secondary:
+          'text-secondary [--btn-bg:var(--color-secondary)] [--btn-fg:var(--color-secondary-foreground)] [--btn-bg-tonal:var(--color-secondary-100)] [--btn-border-color:var(--color-secondary-300)] [--btn-text-color:var(--color-secondary)] focus:shadow-focus-secondary',
+        warning:
+          'text-warning [--btn-bg:var(--color-warning)] [--btn-fg:var(--color-warning-foreground)] [--btn-bg-tonal:var(--color-warning-100)] [--btn-border-color:var(--color-warning-300)] [--btn-text-color:var(--color-warning)] focus:shadow-focus-warning',
+        info: 'text-info [--btn-bg:var(--color-info)] [--btn-fg:var(--color-info-foreground)] [--btn-bg-tonal:var(--color-info-100)] [--btn-border-color:var(--color-info-300)] [--btn-text-color:var(--color-info)] focus:shadow-focus-info',
       },
       variant: {
         filled: 'bg-(--btn-bg) text-(--btn-fg) hover:shadow-xs active:opacity-90',
@@ -82,7 +87,7 @@ const BUTTON_VARIANTS = cva(
  *
  * Supports:
  * - Multiple visual variants: filled, outlined, text, tonal
- * - Theme colors: primary, success, destructive
+ * - Theme colors: primary, secondary, success, destructive, warning, info
  * - Three sizes: sm, md, lg
  * - Icon support with prefix/suffix positioning
  * - Icon-only button mode
