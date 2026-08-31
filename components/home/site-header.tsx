@@ -35,7 +35,7 @@ export const SiteHeader = () => {
           </Link>
           <nav aria-label='Primary navigation' className='hidden items-center gap-6 md:flex'>
             {[
-              { label: 'Components', href: '#components' },
+              { label: 'Components', href: '/#components' },
               { label: 'Docs', href: '/docs' },
             ].map(({ label, href }) => (
               <Link
