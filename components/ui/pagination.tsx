@@ -28,8 +28,9 @@ const PAGINATION_CONTEXT = createContext<{ size: TPaginationSize; variant: TReso
 /*
  * UX4G pagination: 32px pages at radius 8px, px-2 py-1.5, 2px gaps. Inactive is
  * plain neutral-600 text; selected is white with a primary border at weight 500;
- * hover draws a neutral-300 border. The `default` variant's joined borders are a
- * Bootstrap pattern with no UX4G counterpart.
+ * hover draws a neutral-300 border. The `joined` variant's shared borders are a
+ * Bootstrap pattern with no UX4G counterpart, so it borrows the same 28/32/40px
+ * heights rather than sizing itself from its own text.
  */
 
 /** Navigation pagination component. */
@@ -68,7 +69,7 @@ function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
             // Each <a> is the only child of its <li>, so applying them on the link
             // matches every link. Apply them at the <ul> level via descendant
             // selectors so only the actual edge items get rounded corners.
-            'gap-0 [&>li:first-child>*]:rounded-l-md [&>li:last-child>*]:rounded-r-md',
+            'gap-0 [&>li:first-child>*]:rounded-l-md [&>li:last-child>*]:rounded-r-md [&>li:not(:first-child)>*]:-ml-px',
         className,
       )}
       {...props}
@@ -76,9 +77,13 @@ function PaginationContent({ className, ...props }: ComponentProps<'ul'>) {
   );
 }
 
-/** Single pagination list item wrapper. */
+/**
+ * Single pagination list item wrapper. Laid out as flex so the link is a flex
+ * item rather than an inline box: an icon-led link and a digit-led link resolve
+ * different baselines, which otherwise offsets them from each other.
+ */
 function PaginationItem({ className, ...props }: ComponentProps<'li'>) {
-  return <li className={cn('list-none', className)} {...props} />;
+  return <li className={cn('flex list-none', className)} {...props} />;
 }
 
 interface IPaginationLinkProps extends ComponentProps<'a'> {
@@ -90,9 +95,9 @@ interface IPaginationLinkProps extends ComponentProps<'a'> {
 
 const PAGINATION_SIZE_CLASSES: Record<TResolvedVariant, Record<TPaginationSize, string>> = {
   joined: {
-    sm: 'px-2 py-1 text-sm',
-    md: 'px-3 py-1.5 text-base',
-    lg: 'px-6 py-3 text-lg',
+    sm: 'h-7 min-w-7 px-1.5 text-xs',
+    md: 'h-8 min-w-8 px-2 text-sm',
+    lg: 'h-10 min-w-10 px-3 text-base',
   },
   flat: {
     sm: 'size-7 text-xs tracking-[0.25px]',
@@ -143,7 +148,7 @@ function PaginationLink({
       aria-disabled={disabled || undefined}
       tabIndex={disabled ? -1 : undefined}
       className={cn(
-        'focus-visible:shadow-focus-primary bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
+        'focus-visible:shadow-focus-primary bg-neutral-0 relative inline-flex items-center justify-center border border-neutral-200 text-neutral-600 no-underline transition-[color,background-color,border-color,box-shadow] duration-150 focus-visible:z-10 focus-visible:outline-none',
         PAGINATION_SIZE_CLASSES.joined[resolvedSize],
         isActive
           ? 'border-primary bg-primary text-primary-foreground z-3'
@@ -209,7 +214,7 @@ function PaginationEllipsis({ className, ...props }: ComponentProps<'div'>) {
       className={cn(
         variant === 'flat'
           ? 'inline-flex items-center justify-center rounded-md text-neutral-600'
-          : 'bg-neutral-0 relative -ml-px inline-flex items-center justify-center border border-neutral-200 text-neutral-600',
+          : 'bg-neutral-0 relative inline-flex items-center justify-center border border-neutral-200 text-neutral-600',
         PAGINATION_SIZE_CLASSES[variant][size],
         className,
       )}
