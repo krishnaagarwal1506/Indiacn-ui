@@ -60,6 +60,12 @@ UX4G's avatar has an optional 6px badge. That is the same 6px dot as [Indicator]
 
 <ComponentPreview name='AvatarWithBadge' />
 
+### Group
+
+Stack multiple avatars with automatic overlap. Excess avatars beyond `max` collapse into a `+N` badge.
+
+<ComponentPreview name='AvatarGroupDemo' />
+
 ## Accessibility
 
 - Always give `AvatarImage` a meaningful `alt`. If the avatar sits beside the person's name, `alt=""` is correct — repeating the name makes screen readers announce it twice.
@@ -90,3 +96,12 @@ UX4G's avatar has an optional 6px badge. That is the same 6px dot as [Indicator]
 | ---------- | ----------- | ------- | ---------------------------------------------------------------- |
 | `delayMs`  | `number`    | —       | Wait before showing, to avoid a flash on fast connections        |
 | `children` | `ReactNode` | —       | Initials or an icon. Icons are sized to the avatar automatically |
+
+### AvatarGroup
+
+| Prop        | Type                           | Default      | Description                                           |
+| ----------- | ------------------------------ | ------------ | ----------------------------------------------------- |
+| `size`      | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`       | Inherited by all child avatars                        |
+| `shape`     | `'circular' \| 'rectangular'`  | `'circular'` | Inherited by all child avatars                        |
+| `max`       | `number`                       | `5`          | Maximum avatars shown; excess renders as a `+N` badge |
+| `className` | `string`                       | —            | Extra Tailwind classes on the wrapper `div`           |

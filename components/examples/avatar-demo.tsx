@@ -1,6 +1,6 @@
 import { User } from 'lucide-react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarGroup, AvatarImage } from '@/components/ui/avatar';
 import { Indicator } from '@/components/ui/indicator';
 import { Body3 } from '@/components/ui/typography';
 
@@ -51,6 +51,45 @@ export function AvatarShapes() {
       <Avatar shape='rectangular' size='lg'>
         <AvatarFallback>RE</AvatarFallback>
       </Avatar>
+    </div>
+  );
+}
+
+export function AvatarGroupDemo() {
+  return (
+    <div className='flex flex-col gap-6'>
+      <AvatarGroup>
+        <Avatar>
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>RK</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>PM</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarImage src='/icon.svg' alt='Dev User' />
+          <AvatarFallback>DU</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
+      <AvatarGroup max={3}>
+        <Avatar>
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>RK</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>PM</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>DU</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>VN</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
     </div>
   );
 }
