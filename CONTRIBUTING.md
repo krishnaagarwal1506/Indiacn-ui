@@ -134,6 +134,8 @@ Documentation lives in `content/docs/` as MDX files. To add or update docs:
 - Keep language clear, concise, and beginner-friendly.
 - Include code examples for any UI components you document.
 
+For design-system contributions that touch theme tokens, color ramps, or accessibility-sensitive styling, read the architecture guide in [docs/theming.md](./docs/theming.md) before editing `app/globals.css` or any token-based component.
+
 ---
 
 ## Development Setup
@@ -145,15 +147,19 @@ Documentation lives in `content/docs/` as MDX files. To add or update docs:
 
 ### Available Scripts
 
-| Command                  | Description                      |
-| ------------------------ | -------------------------------- |
-| `npm run dev`            | Start local development server   |
-| `npm run build`          | Build for production             |
-| `npm run start`          | Run the production build locally |
-| `npm run lint`           | Run ESLint                       |
-| `npm run format`         | Run Prettier formatter           |
-| `npm run lint:format`    | Run lint and format together     |
-| `npm run registry:build` | Build the component registry     |
+| Command                  | Description                                                     |
+| ------------------------ | --------------------------------------------------------------- |
+| `npm run dev`            | Start local development server                                  |
+| `npm run build`          | Build for production                                            |
+| `npm run start`          | Run the production build locally                                |
+| `npm run lint`           | Run ESLint                                                      |
+| `npm run format`         | Run Prettier formatter                                          |
+| `npm run lint:format`    | Run lint and format together                                    |
+| `npm run registry:build` | Build the component registry                                    |
+| `npm run theme:check`    | Verify registry metadata matches the source theme configuration |
+| `npm run check:contrast` | Fail if any theme color pair drops below WCAG AA                |
+
+The token architecture guide in [docs/theming.md](./docs/theming.md) explains why these checks exist and how contributors should update design tokens safely.
 
 ### Git Hooks
 
