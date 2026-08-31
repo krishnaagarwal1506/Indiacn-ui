@@ -2,7 +2,7 @@
 
 import * as AvatarPrimitive from '@radix-ui/react-avatar';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { ComponentProps, createContext, useContext } from 'react';
+import { Children, ComponentProps, ReactNode, createContext, useContext } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -33,8 +33,28 @@ const AVATAR_VARIANTS = cva(
 );
 
 type TAvatarSize = NonNullable<VariantProps<typeof AVATAR_VARIANTS>['size']>;
+type TAvatarShape = NonNullable<VariantProps<typeof AVATAR_VARIANTS>['shape']>;
 
 const AVATAR_CONTEXT = createContext<TAvatarSize>('md');
+
+interface IAvatarGroupContext {
+  size: TAvatarSize;
+  shape: TAvatarShape;
+  inGroup: boolean;
+}
+
+const GROUP_CONTEXT = createContext<IAvatarGroupContext>({
+  size: 'md',
+  shape: 'circular',
+  inGroup: false,
+});
+
+const GROUP_OVERLAP: Record<TAvatarSize, string> = {
+  sm: '-ml-1.5',
+  md: '-ml-2',
+  lg: '-ml-2.5',
+  xl: '-ml-3',
+};
 
 interface IAvatarProps
   extends ComponentProps<typeof AvatarPrimitive.Root>,
@@ -42,10 +62,18 @@ interface IAvatarProps
 
 /** Avatar container. Wrap an AvatarImage and an AvatarFallback. */
 function Avatar({ className, size, shape, ...props }: IAvatarProps) {
+  const { size: groupSize, shape: groupShape, inGroup } = useContext(GROUP_CONTEXT);
+  const effectiveSize = size ?? (inGroup ? groupSize : 'md');
+  const effectiveShape = shape ?? (inGroup ? groupShape : 'circular');
+
   return (
-    <AVATAR_CONTEXT.Provider value={size ?? 'md'}>
+    <AVATAR_CONTEXT.Provider value={effectiveSize}>
       <AvatarPrimitive.Root
-        className={cn(AVATAR_VARIANTS({ size, shape }), className)}
+        className={cn(
+          AVATAR_VARIANTS({ size: effectiveSize, shape: effectiveShape }),
+          inGroup && 'ring-neutral-0 ring-2',
+          className,
+        )}
         {...props}
       />
     </AVATAR_CONTEXT.Provider>
@@ -79,6 +107,53 @@ function AvatarFallback({ className, ...props }: ComponentProps<typeof AvatarPri
   );
 }
 
-export type { TAvatarSize };
+interface IAvatarGroupProps {
+  children: ReactNode;
+size?: TAvatarSize;
+shape?: TAvatarShape;
+/** Maximum avatars shown before a +N overflow badge appears. Defaults to 5. */
+  max?: number;
+className?: string;
+}
 
-export { Avatar, AvatarImage, AvatarFallback, AVATAR_VARIANTS };
+/** Stacks multiple avatars with overlap. Excess avatars beyond `max` render as a +N badge. */
+function AvatarGroup({
+  size = 'md',
+  shape = 'circular',
+  max = 5,
+  className,
+  children,
+}: IAvatarGroupProps) {
+  const all = Children.toArray(children);
+  const visible = all.slice(0, max);
+  const overflow = all.length - visible.length;
+
+  return (
+    <GROUP_CONTEXT.Provider value={{ size, shape, inGroup: true }}>
+      <div className={cn('flex items-center', className)}>
+        {visible.map((child, i) => (
+          <div key={i} className={cn(i > 0 && GROUP_OVERLAP[size])}>
+            {child}
+          </div>
+        ))}
+        {overflow > 0 && (
+          <div
+            className={cn(
+              GROUP_OVERLAP[size],
+              AVATAR_VARIANTS({ size, shape }),
+              'ring-neutral-0 ring-2',
+            )}
+          >
+            <div className='flex size-full items-center justify-center bg-neutral-100 font-medium text-neutral-700'>
+              +{overflow}
+            </div>
+          </div>
+        )}
+      </div>
+    </GROUP_CONTEXT.Provider>
+  );
+}
+
+export type { TAvatarSize, TAvatarShape };
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup, AVATAR_VARIANTS };
