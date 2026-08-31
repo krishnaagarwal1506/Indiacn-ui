@@ -30,6 +30,7 @@ import {
 } from '@/components/examples/alert-demo';
 import {
   AvatarDefault,
+  AvatarGroupDemo,
   AvatarShapes,
   AvatarSizes,
   AvatarWithBadge,
@@ -3424,6 +3425,53 @@ export default function Component() {
       <Body3 className='text-neutral-600'>
         The 6px status dot is an Indicator, positioned by the consumer.
       </Body3>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/avatar-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  AvatarGroupDemo: {
+    name: 'AvatarGroupDemo',
+    description: 'Stacked avatar group with overflow badge',
+    type: 'registry:example',
+    component: AvatarGroupDemo,
+    code: `import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from '@/components/ui/avatar';
+
+export default function Component() {
+  return (
+    <div className='flex flex-col gap-6'>
+      <AvatarGroup>
+        <Avatar>
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>RK</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>PM</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarImage src='/icon.svg' alt='Dev User' />
+          <AvatarFallback>DU</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
+      <AvatarGroup max={3}>
+        <Avatar>
+          <AvatarFallback>AS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>RK</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>PM</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>DU</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>VN</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
     </div>
   );
 }`,
