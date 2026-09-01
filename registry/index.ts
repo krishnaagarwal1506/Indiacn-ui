@@ -1748,21 +1748,17 @@ export default function Component() {
   },
   PaginationJoined: {
     name: 'PaginationJoined',
-    description: 'Flat pagination variant without borders',
+    description: 'Bootstrap-style pagination with shared borders',
     type: 'registry:example',
     component: PaginationJoined,
-    files: [
-      { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
-    ],
-  },
-
-  // ── Button examples ───────────────────────────────────────────
-  ButtonDefault: {
-    name: 'ButtonDefault',
-    description: 'Default button example',
-    type: 'registry:example',
-    component: ButtonDefault,
     code: `import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination';
 import { Label1 } from '@/components/ui/typography';
 
 export default function Component() {
@@ -1789,6 +1785,22 @@ export default function Component() {
       </PaginationContent>
     </Pagination>
   );
+}`,
+    files: [
+      { path: 'components/examples/pagination-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+
+  // ── Button examples ───────────────────────────────────────────
+  ButtonDefault: {
+    name: 'ButtonDefault',
+    description: 'Default button example',
+    type: 'registry:example',
+    component: ButtonDefault,
+    code: `import { Button } from '@/components/ui/button';
+
+export default function Component() {
+  return <Button>Primary Action</Button>;
 }`,
     files: [{ path: 'components/examples/button-demo.tsx', type: 'registry:example', target: '' }],
   },
