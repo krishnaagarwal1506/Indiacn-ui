@@ -1,0 +1,63 @@
+---
+title: Textarea
+description: Multi-line text field with validation states and a character counter.
+---
+
+## Introduction
+
+Textareas collect free text — a grievance, an address, a reason for appeal. UX4G specifies the same validation states as the Input, plus a character counter beneath the right edge.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/textarea.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Textarea } from '@/components/ui/textarea';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Label htmlFor="reason">Reason for appeal</Label>
+<Textarea id="reason" showCount maxLength={500} />`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='TextareaDefault' />
+
+### With a character counter
+
+`showCount` renders the counter UX4G places under the right edge. It needs `maxLength` — a counter with no limit has nothing to count towards.
+
+<ComponentPreview name='TextareaWithCount' />
+
+### States
+
+<ComponentPreview name='TextareaStates' />
+
+## Guidelines
+
+- Set `maxLength` when a limit is real. Truncating someone's grievance at an arbitrary number is worse than accepting it.
+- The counter is announced politely, so a screen-reader user hears the remaining count without being interrupted mid-word.
+- Keep the field resizable. People writing a long explanation will want the room.
+
+## API Reference
+
+### Textarea
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `state` | `default \| error \| success \| warning` | `default` | Border and focus-ring colour |
+| `showCount` | `boolean` | `false` | Shows `used/maxLength` beneath the field. Requires `maxLength` |
+| `maxLength` | `number` | — | Character limit |
+| `containerClassName` | `string` | — | Classes for the wrapper rather than the `textarea` |
+
+Any other `textarea` prop is forwarded. Validation messages use `InputMessage` from the Input component.
