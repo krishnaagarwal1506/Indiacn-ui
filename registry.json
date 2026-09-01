@@ -615,7 +615,8 @@
       "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
-        "https://indiacn.in/r/typography.json"
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/close-button.json"
       ],
       "files": [
         {
@@ -632,7 +633,8 @@
       "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
-        "https://indiacn.in/r/typography.json"
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/close-button.json"
       ],
       "files": [
         {
@@ -782,7 +784,10 @@
       "title": "Toast",
       "description": "Notification toast with provider, hook, container, and theme variants.",
       "dependencies": ["class-variance-authority", "lucide-react"],
-      "registryDependencies": ["https://indiacn.in/r/theme.json"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/close-button.json"
+      ],
       "files": [
         {
           "path": "components/ui/toast.tsx",
@@ -947,6 +952,20 @@
       "files": [
         {
           "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "close-button",
+      "type": "registry:ui",
+      "title": "Close Button",
+      "description": "Dismiss control for modals, toasts and panels, with a guaranteed accessible name.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
+      "files": [
+        {
+          "path": "components/ui/close-button.tsx",
           "type": "registry:ui"
         }
       ]

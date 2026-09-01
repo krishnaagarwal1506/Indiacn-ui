@@ -2,9 +2,10 @@
 /* eslint-disable eslint-frontend-rules/top-level-const-snake */
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertTriangle, CheckCircle2, Info, Loader2, X, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, Loader2, XCircle } from 'lucide-react';
 import { ComponentProps, createContext, useCallback, useContext, useMemo, useState } from 'react';
 
+import { CloseButton } from '@/components/ui/close-button';
 import { Body2, Title3 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
@@ -124,14 +125,7 @@ function Toast({ className, theme, onDismiss, status, children, ...props }: IToa
       {status && <ToastStatusIcon status={status} />}
       <div className='flex-1'>{children}</div>
       {onDismiss && (
-        <button
-          type='button'
-          onClick={onDismiss}
-          className='ml-2 shrink-0 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none'
-          aria-label='Close'
-        >
-          <X className='size-6' />
-        </button>
+        <CloseButton size='sm' onClick={onDismiss} className='-mr-1 ml-2' />
       )}
     </div>
   );

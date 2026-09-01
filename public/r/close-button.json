@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "close-button",
+  "title": "Close Button",
+  "description": "Dismiss control for modals, toasts and panels, with a guaranteed accessible name.",
+  "dependencies": ["class-variance-authority", "lucide-react"],
+  "registryDependencies": ["https://indiacn.in/r/theme.json"],
+  "files": [
+    {
+      "path": "components/ui/close-button.tsx",
+      "content": "'use client';\n\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { X } from 'lucide-react';\nimport { ComponentProps } from 'react';\n\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G close button: 32/40/48px at radius 8px, with a neutral glyph in all\n * three variants. Interaction matches the rest of the library — primary at 8%\n * on hover, 16% on press, a 4px focus ring, and 50% when disabled.\n */\nconst CLOSE_BUTTON_VARIANTS = cva(\n  'text-neutral focus-visible:shadow-focus-primary inline-flex shrink-0 cursor-pointer items-center justify-center rounded-md transition-[color,background-color,border-color,box-shadow,opacity] duration-150 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50',\n  {\n    variants: {\n      variant: {\n        text: 'hover:bg-primary/8 active:bg-primary/16 bg-transparent',\n        outlined:\n          'hover:bg-primary/8 active:bg-primary/16 border border-neutral-100 bg-transparent',\n        tonal: 'bg-primary-100 hover:shadow-xs active:opacity-90',\n      },\n      size: {\n        sm: 'size-8 [&>svg]:size-5',\n        md: 'size-10 [&>svg]:size-6',\n        lg: 'size-12 [&>svg]:size-8',\n      },\n    },\n    defaultVariants: {\n      variant: 'text',\n      size: 'md',\n    },\n  },\n);\n\ninterface ICloseButtonProps\n  extends Omit<ComponentProps<'button'>, 'children'>,\n    VariantProps<typeof CLOSE_BUTTON_VARIANTS> {\n  /** Accessible name. Say what closes, not just \"Close\". */\n  label?: string;\n}\n\n/**\n * Dismiss control for modals, toasts, panels and banners.\n *\n * Always renders its own accessible name, so a dismiss control cannot ship as\n * an unlabelled glyph.\n */\nfunction CloseButton({\n  className,\n  variant,\n  size,\n  label = 'Close',\n  type = 'button',\n  ...props\n}: ICloseButtonProps) {\n  return (\n    <button\n      type={type}\n      aria-label={label}\n      className={cn(CLOSE_BUTTON_VARIANTS({ variant, size }), className)}\n      {...props}\n    >\n      <X aria-hidden />\n    </button>\n  );\n}\n\nexport { CloseButton, CLOSE_BUTTON_VARIANTS };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
