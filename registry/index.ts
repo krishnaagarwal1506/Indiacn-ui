@@ -3409,17 +3409,16 @@ export default function Component() {
   },
   AvatarWithBadge: {
     name: 'AvatarWithBadge',
-    description: 'Avatar composed with an Indicator dot',
+    description: 'Avatar composed with a status dot and a count Indicator',
     type: 'registry:example',
     component: AvatarWithBadge,
-    code: `import { User } from 'lucide-react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+    code: `import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Indicator } from '@/components/ui/indicator';
 import { Body3 } from '@/components/ui/typography';
 
 export default function Component() {
   return (
-    <div className='flex items-center gap-6'>
+    <div className='flex items-center gap-8'>
       <div className='relative inline-flex'>
         <Avatar size='lg'>
           <AvatarFallback>AS</AvatarFallback>
@@ -3427,11 +3426,20 @@ export default function Component() {
         <Indicator
           theme='success'
           variant='dot'
-          className='ring-neutral-0 absolute right-0 bottom-0 ring-2'
+          className='ring-neutral-0 absolute right-[3px] bottom-[3px] ring-2'
         />
       </div>
-      <Body3 className='text-neutral-600'>
-        The 6px status dot is an Indicator, positioned by the consumer.
+      <div className='relative inline-flex'>
+        <Avatar size='lg'>
+          <AvatarFallback>RK</AvatarFallback>
+        </Avatar>
+        <Indicator theme='danger' className='ring-neutral-0 absolute -top-1 -right-1 ring-2'>
+          3
+        </Indicator>
+      </div>
+      <Body3 className='max-w-[26rem] text-neutral-600'>
+        Indicators are positioned by the consumer. A status dot sits on the circle&apos;s
+        bottom-right edge; a count overhangs the top-right corner.
       </Body3>
     </div>
   );

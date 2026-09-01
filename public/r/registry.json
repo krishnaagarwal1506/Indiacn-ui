@@ -22,6 +22,7 @@
           "shadow-focus-success": "0px 0px 0px 4px rgb(from var(--success) r g b / 0.48)",
           "shadow-focus-danger": "0px 0px 0px 4px rgb(from var(--danger) r g b / 0.48)",
           "shadow-focus-warning": "0px 0px 0px 4px rgb(from var(--warning) r g b / 0.48)",
+          "shadow-focus-info": "0px 0px 0px 4px rgb(from var(--info) r g b / 0.48)",
           "shadow-focus-neutral": "0px 0px 0px 4px rgb(from var(--neutral) r g b / 0.48)",
           "radius-none": "calc(var(--radius) - 8px)",
           "radius-xxs": "calc(var(--radius) - 6px)",
