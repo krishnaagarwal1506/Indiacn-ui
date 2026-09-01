@@ -1,0 +1,94 @@
+---
+title: Input
+description: Text field with sizes, validation states, a leading icon and a clear button.
+---
+
+## Introduction
+
+Inputs collect a single line of text. Most government forms are mostly inputs, so this component carries the four validation states UX4G defines — default, error, success and warning — rather than leaving them to each application.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/input.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Input, InputMessage } from '@/components/ui/input';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Label htmlFor="pan">PAN</Label>
+<Input id="pan" placeholder="ABCDE1234F" />
+<InputMessage>Ten characters, as printed on your card.</InputMessage>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='InputDefault' />
+
+### Sizes
+
+<ComponentPreview name='InputSizes' />
+
+### States
+
+<ComponentPreview name='InputStates' />
+
+### With icons
+
+<ComponentPreview name='InputWithIcons' />
+
+## Why there is no small size
+
+UX4G's Figma kit lists three sizes — Small, Default and Large. Rendering the Small and Default symbols and comparing them pixel by pixel gives **zero differing pixels** across all 32,578: the Small variant is not actually differentiated in the kit.
+
+So this ships the two sizes that exist: `md` at 44px and `lg` at 48px. Pass `className` if you need something smaller, and we will add a real `sm` if UX4G ever defines one.
+
+## Validation colours
+
+Borders come from the `-500` step of each semantic scale, measured off the Figma symbols:
+
+| State | Token | Value |
+| ----- | ----- | ----- |
+| default | `neutral-200` | `#c6c6c6` |
+| hover | `primary` | `#613af5` |
+| error | `danger-500` | `#ec5042` |
+| success | `success-500` | `#389314` |
+| warning | `warning-500` | `#bb772b` |
+
+All four state borders clear the 3:1 that WCAG 1.4.11 asks of non-text UI boundaries. The resting `neutral-200` border does not — it measures 1.71:1 on white. That is what UX4G specifies, so it is what ships, but it is worth knowing.
+
+## Guidelines
+
+- Label every input. `InputMessage` is for guidance, not identification.
+- Say what to do, not what went wrong: "Enter all twelve digits" beats "Invalid".
+- Keep the success state for things actually verified against a source, not merely well-formed.
+
+## API Reference
+
+### Input
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `size` | `md \| lg` | `md` | 44px or 48px |
+| `state` | `default \| error \| success \| warning` | `default` | Border and focus-ring colour |
+| `prefixIcon` | `ReactNode` | — | Leading icon, sized by the container |
+| `suffix` | `ReactNode` | — | Trailing slot, after the clear button |
+| `onClear` | `() => void` | — | Renders a clear button when `value` is non-empty |
+| `containerClassName` | `string` | — | Classes for the field wrapper rather than the `input` |
+
+Any other `input` prop is forwarded.
+
+### InputMessage
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `state` | `default \| error \| success \| warning` | `default` | Picks the icon and colour |

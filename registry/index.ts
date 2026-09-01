@@ -100,6 +100,12 @@ import {
   IndicatorThemes,
 } from '@/components/examples/indicator-demo';
 import {
+  InputDefault,
+  InputSizes,
+  InputStates,
+  InputWithIcons,
+} from '@/components/examples/input-demo';
+import {
   ListGroupActionable,
   ListGroupActive,
   ListGroupContextual,
@@ -160,6 +166,11 @@ import {
   TabsPills,
   TabsUnderline,
 } from '@/components/examples/tabs-demo';
+import {
+  TextareaDefault,
+  TextareaStates,
+  TextareaWithCount,
+} from '@/components/examples/textarea-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
 import { ToastStatuses } from '@/components/examples/toast-demo';
 import {
@@ -195,6 +206,7 @@ import { Collapse } from '@/components/ui/collapse';
 import { Dropdown } from '@/components/ui/dropdown';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Indicator } from '@/components/ui/indicator';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ListGroup } from '@/components/ui/list-group';
 import { Modal } from '@/components/ui/modal';
@@ -210,6 +222,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { Stepper } from '@/components/ui/stepper';
 import { Switch } from '@/components/ui/switch';
 import { Tabs } from '@/components/ui/tabs';
+import { Textarea } from '@/components/ui/textarea';
 import { Toast } from '@/components/ui/toast';
 import { Tooltip } from '@/components/ui/tooltip';
 import {
@@ -3621,9 +3634,13 @@ export default function Component() {
     description: 'Illustration with a label',
     type: 'registry:example',
     component: EmptyStateDefault,
-    code: `import { FileSearch, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+    code: `import { FileSearch } from 'lucide-react';
 import {
+  EmptyState,
+  EmptyStateDescription,
+  EmptyStateMedia,
+  EmptyStateTitle,
+} from '@/components/ui/empty-state';
 
 export default function Component() {
   return (
@@ -3642,9 +3659,13 @@ export default function Component() {
     description: 'Empty state with supporting copy',
     type: 'registry:example',
     component: EmptyStateWithDescription,
-    code: `import { FileSearch, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+    code: `import { FileSearch } from 'lucide-react';
 import {
+  EmptyState,
+  EmptyStateDescription,
+  EmptyStateMedia,
+  EmptyStateTitle,
+} from '@/components/ui/empty-state';
 
 export default function Component() {
   return (
@@ -3666,9 +3687,13 @@ export default function Component() {
     description: 'Empty state with a primary action',
     type: 'registry:example',
     component: EmptyStateWithAction,
-    code: `import { FileSearch, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+    code: `import { FileSearch } from 'lucide-react';
 import {
+  EmptyState,
+  EmptyStateDescription,
+  EmptyStateMedia,
+  EmptyStateTitle,
+} from '@/components/ui/empty-state';
 
 export default function Component() {
   return (
@@ -3695,9 +3720,13 @@ export default function Component() {
     description: 'Empty state with a custom illustration',
     type: 'registry:example',
     component: EmptyStateCustomMedia,
-    code: `import { FileSearch, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+    code: `import { FileSearch } from 'lucide-react';
 import {
+  EmptyState,
+  EmptyStateDescription,
+  EmptyStateMedia,
+  EmptyStateTitle,
+} from '@/components/ui/empty-state';
 
 export default function Component() {
   return (
@@ -3713,5 +3742,225 @@ export default function Component() {
     files: [
       { path: 'components/examples/empty-state-demo.tsx', type: 'registry:example', target: '' },
     ],
+  },
+  input: {
+    name: 'input',
+    description: 'Text field with sizes, validation states and icons',
+    type: 'registry:ui',
+    component: Input,
+    files: [{ path: 'components/ui/input.tsx', type: 'registry:ui', target: '' }],
+  },
+  textarea: {
+    name: 'textarea',
+    description: 'Multi-line text field with a character counter',
+    type: 'registry:ui',
+    component: Textarea,
+    files: [{ path: 'components/ui/textarea.tsx', type: 'registry:ui', target: '' }],
+  },
+  InputDefault: {
+    name: 'InputDefault',
+    description: 'Input with a label and description',
+    type: 'registry:example',
+    component: InputDefault,
+    code: `import { Input, InputMessage } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
+export default function Component() {
+  return (
+    <div className='w-full max-w-[360px]'>
+      <Label htmlFor='aadhaar' className='mb-2'>
+        Aadhaar number
+      </Label>
+      <Input id='aadhaar' placeholder='XXXX XXXX XXXX' />
+      <InputMessage>Twelve digits, as printed on your card.</InputMessage>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/input-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  InputSizes: {
+    name: 'InputSizes',
+    description: 'The two sizes UX4G defines',
+    type: 'registry:example',
+    component: InputSizes,
+    code: `import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
+export default function Component() {
+  return (
+    <div className='flex w-full max-w-[360px] flex-col gap-5'>
+      <div>
+        <Label htmlFor='size-md' className='mb-2'>
+          Default — 44px
+        </Label>
+        <Input id='size-md' placeholder='Placeholder' />
+      </div>
+      <div>
+        <Label htmlFor='size-lg' className='mb-2'>
+          Large — 48px
+        </Label>
+        <Input id='size-lg' size='lg' placeholder='Placeholder' />
+      </div>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/input-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  InputStates: {
+    name: 'InputStates',
+    description: 'Error, success, warning and disabled states',
+    type: 'registry:example',
+    component: InputStates,
+    code: `import { Input, InputMessage } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+
+export default function Component() {
+  return (
+    <div className='flex w-full max-w-[360px] flex-col gap-5'>
+      <div>
+        <Label htmlFor='st-error' className='mb-2'>
+          Error
+        </Label>
+        <Input id='st-error' state='error' defaultValue='1234' />
+        <InputMessage state='error'>Enter all twelve digits.</InputMessage>
+      </div>
+      <div>
+        <Label htmlFor='st-success' className='mb-2'>
+          Success
+        </Label>
+        <Input id='st-success' state='success' defaultValue='2345 6789 0123' />
+        <InputMessage state='success'>Verified with UIDAI.</InputMessage>
+      </div>
+      <div>
+        <Label htmlFor='st-warning' className='mb-2'>
+          Warning
+        </Label>
+        <Input id='st-warning' state='warning' defaultValue='2345 6789 0123' />
+        <InputMessage state='warning'>This number is already linked to a claim.</InputMessage>
+      </div>
+      <div>
+        <Label htmlFor='st-disabled' className='mb-2'>
+          Disabled
+        </Label>
+        <Input id='st-disabled' disabled defaultValue='Locked after submission' />
+      </div>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/input-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  InputWithIcons: {
+    name: 'InputWithIcons',
+    description: 'Leading icon and clear button',
+    type: 'registry:example',
+    component: InputWithIcons,
+    code: `import { Mail, Search as SearchIcon } from 'lucide-react';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { Input } from '@/components/ui/input';
+
+export default function Component() {
+  const [value, setValue] = useState('priya@example.in');
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value), []);
+  const handleClear = useCallback(() => setValue(''), []);
+
+  return (
+    <div className='flex w-full max-w-[360px] flex-col gap-5'>
+      <Input prefixIcon={<Mail />} placeholder='Email address' />
+      <Input
+        prefixIcon={<SearchIcon />}
+        value={value}
+        onChange={handleChange}
+        onClear={handleClear}
+        placeholder='Clearable'
+      />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/input-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TextareaDefault: {
+    name: 'TextareaDefault',
+    description: 'Multi-line field with a label',
+    type: 'registry:example',
+    component: TextareaDefault,
+    code: `import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
+export default function Component() {
+  return (
+    <div className='w-full max-w-[420px]'>
+      <Label htmlFor='grievance' className='mb-2'>
+        Describe your grievance
+      </Label>
+      <Textarea id='grievance' placeholder='What happened, and when?' />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TextareaWithCount: {
+    name: 'TextareaWithCount',
+    description: 'Character counter beneath the field',
+    type: 'registry:example',
+    component: TextareaWithCount,
+    code: `import { ChangeEvent, useCallback, useState } from 'react';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
+export default function Component() {
+  const [value, setValue] = useState('');
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value),
+    [],
+  );
+
+  return (
+    <div className='w-full max-w-[420px]'>
+      <Label htmlFor='counted' className='mb-2'>
+        Summary
+      </Label>
+      <Textarea
+        id='counted'
+        showCount
+        maxLength={200}
+        value={value}
+        onChange={handleChange}
+        placeholder='Up to 200 characters'
+      />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TextareaStates: {
+    name: 'TextareaStates',
+    description: 'Error and success states',
+    type: 'registry:example',
+    component: TextareaStates,
+    code: `import { InputMessage } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
+export default function Component() {
+  return (
+    <div className='flex w-full max-w-[420px] flex-col gap-5'>
+      <div>
+        <Label htmlFor='ta-error' className='mb-2'>
+          Error
+        </Label>
+        <Textarea id='ta-error' state='error' defaultValue='Too short' />
+        <InputMessage state='error'>Give at least 50 characters of detail.</InputMessage>
+      </div>
+      <div>
+        <Label htmlFor='ta-success' className='mb-2'>
+          Success
+        </Label>
+        <Textarea id='ta-success' state='success' defaultValue='Saved as draft.' />
+        <InputMessage state='success'>Draft saved.</InputMessage>
+      </div>
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
   },
 };
