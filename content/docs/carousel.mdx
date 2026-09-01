@@ -1,0 +1,98 @@
+---
+title: Carousel
+description: Slideshow with bar indicators, keyboard navigation and an accessible pause control.
+---
+
+## Introduction
+
+A carousel rotates through a small set of slides. UX4G specifies chevrons inside the left and right edges, a caption over the lower part of the slide, bar indicators beneath it, and a pause control for when it advances on its own.
+
+Carousels are easy to build badly. Most of this component is the part that stops it moving.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/carousel.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselCaption,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselIndicators,
+  CarouselPlayPause,
+} from '@/components/ui/carousel';`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='CarouselDefault' />
+
+### Over dark slides
+
+`variant='dark'` switches the controls, caption and indicators to white. It describes the **slide behind the controls**, not the page theme — a photographic slide is dark whichever theme the site is in. This mirrors the `Dark` property in the Figma kit.
+
+<ComponentPreview name='CarouselDark' />
+
+### Advancing on its own
+
+<ComponentPreview name='CarouselAutoPlay' />
+
+## Accessibility
+
+Anything that moves by itself is a barrier unless it can be stopped, so:
+
+- **`CarouselPlayPause` is the WCAG 2.2.2 stop control.** Render it whenever you pass `autoPlayInterval`.
+- Auto-advance **pauses on hover and on keyboard focus**, and resumes when you leave. Reading a slide should not be a race.
+- Auto-advance **never starts** under `prefers-reduced-motion: reduce`. `CarouselPlayPause` hides itself in that case, because there is nothing to pause.
+- Left and right arrow keys move between slides while focus is inside the carousel.
+- The region carries `aria-roledescription="carousel"`, each slide `aria-roledescription="slide"`, and the track is an `aria-live="polite"` region so a slide change is announced without interrupting.
+- Indicators are real buttons labelled "Go to slide N", with `aria-current` on the current one.
+
+## Measurements
+
+Read off the Figma symbols:
+
+| | value |
+| --- | ----- |
+| indicator bar | 30 × 3px, 6px gap |
+| inactive indicator | current colour at **50%** |
+| active indicator | current colour at 100% |
+| chevron | 32px |
+
+The 50% is measured, not assumed: on the dark slide the inactive bar reads `#bbbbbb`, which is white at 50% over the `#777777` slide; on the light slide it reads `#7a7a7a`, which is black at 50% over `#f5f5f5`.
+
+## Guidelines
+
+- Three to five slides. A carousel is not a place to hide content — most people never reach slide four.
+- Never put something a person must see in a slide other than the first.
+- Give every slide a caption. A slide that only makes sense as an image excludes anyone who cannot see it.
+
+## API Reference
+
+### Carousel
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `light \| dark` | `light` | Tone of the slide behind the controls |
+| `autoPlayInterval` | `number` | — | Milliseconds between slides. Omit for manual only |
+| `label` | `string` | `'Carousel'` | Accessible name for the region |
+
+### CarouselCaption
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `title` | `ReactNode` | Bold first line |
+| `children` | `ReactNode` | Supporting line |
+
+### Other parts
+
+`CarouselContent` wraps the slides and counts them. `CarouselItem` is one slide. `CarouselPrevious`, `CarouselNext`, `CarouselIndicators` and `CarouselPlayPause` take no required props — they read the carousel's state from context.

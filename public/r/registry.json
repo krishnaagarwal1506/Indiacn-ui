@@ -950,6 +950,23 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Slideshow with bar indicators, keyboard navigation and an accessible pause control.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

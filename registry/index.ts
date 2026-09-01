@@ -66,6 +66,11 @@ import {
 import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
 import { CardElevated } from '@/components/examples/card-demo';
 import {
+  CarouselAutoPlay,
+  CarouselDark,
+  CarouselDefault,
+} from '@/components/examples/carousel-demo';
+import {
   CheckboxDefault,
   CheckboxGroup,
   CheckboxStates,
@@ -200,6 +205,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { Card } from '@/components/ui/card';
+import { Carousel } from '@/components/ui/carousel';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
 import { Collapse } from '@/components/ui/collapse';
@@ -3974,5 +3980,155 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  carousel: {
+    name: 'carousel',
+    description: 'Slideshow with indicators and accessible controls',
+    type: 'registry:ui',
+    component: Carousel,
+    files: [{ path: 'components/ui/carousel.tsx', type: 'registry:ui', target: '' }],
+  },
+  CarouselDefault: {
+    name: 'CarouselDefault',
+    description: 'Carousel over light slides',
+    type: 'registry:example',
+    component: CarouselDefault,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel className='w-full max-w-[640px]' label='How it works'>
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='flex h-[280px] items-center justify-center bg-neutral-50'>
+              <Headline4 className='text-neutral-400'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CarouselDark: {
+    name: 'CarouselDark',
+    description: 'Carousel over dark slides',
+    type: 'registry:example',
+    component: CarouselDark,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel variant='dark' className='w-full max-w-[640px]' label='How it works, dark slides'>
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='bg-neutral flex h-[280px] items-center justify-center'>
+              <Headline4 className='text-neutral-0/40'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CarouselAutoPlay: {
+    name: 'CarouselAutoPlay',
+    description: 'Auto-advancing carousel with a pause control',
+    type: 'registry:example',
+    component: CarouselAutoPlay,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel
+      autoPlayInterval={4000}
+      className='w-full max-w-[640px]'
+      label='How it works, advancing automatically'
+    >
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='flex h-[280px] items-center justify-center bg-neutral-50'>
+              <Headline4 className='text-neutral-400'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPlayPause />
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };
