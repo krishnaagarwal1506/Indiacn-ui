@@ -1,10 +1,10 @@
 'use client';
 
 import * as DialogPrimitive from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
 import { ComponentProps } from 'react';
 
-import { Body2, Headline5, Label2 } from '@/components/ui/typography';
+import { CloseButton } from '@/components/ui/close-button';
+import { Body2, Headline5 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 /*
@@ -100,9 +100,8 @@ function ModalHeader({ className, children, ...props }: ComponentProps<'div'>) {
   return (
     <div className={cn('flex shrink-0 items-center justify-between p-4', className)} {...props}>
       {children}
-      <DialogPrimitive.Close className='hover:bg-primary/8 focus:shadow-focus-primary active:bg-primary/16 rounded-lg p-2 opacity-70 transition-all hover:opacity-100 focus:outline-none'>
-        <X className='size-6' />
-        <Label2 className='sr-only'>Close</Label2>
+      <DialogPrimitive.Close asChild>
+        <CloseButton />
       </DialogPrimitive.Close>
     </div>
   );

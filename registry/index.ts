@@ -80,6 +80,12 @@ import {
   ChipVariants,
   ChipWithIcon,
 } from '@/components/examples/chip-demo';
+import {
+  CloseButtonDefault,
+  CloseButtonDisabled,
+  CloseButtonSizes,
+  CloseButtonVariants,
+} from '@/components/examples/close-button-demo';
 import { CollapseDefault } from '@/components/examples/collapse-demo';
 import {
   DropdownDark,
@@ -202,6 +208,7 @@ import { ButtonGroup } from '@/components/ui/button-group';
 import { Card } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
+import { CloseButton } from '@/components/ui/close-button';
 import { Collapse } from '@/components/ui/collapse';
 import { Dropdown } from '@/components/ui/dropdown';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -3974,5 +3981,94 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  'close-button': {
+    name: 'close-button',
+    description: 'Dismiss control for modals, toasts and panels',
+    type: 'registry:ui',
+    component: CloseButton,
+    files: [{ path: 'components/ui/close-button.tsx', type: 'registry:ui', target: '' }],
+  },
+  CloseButtonDefault: {
+    name: 'CloseButtonDefault',
+    description: 'Default close button',
+    type: 'registry:example',
+    component: CloseButtonDefault,
+    code: `import { CloseButton } from '@/components/ui/close-button';
+
+export default function Component() {
+  return <CloseButton label='Close dialog' />;
+}`,
+    files: [
+      { path: 'components/examples/close-button-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CloseButtonVariants: {
+    name: 'CloseButtonVariants',
+    description: 'Text, outlined and tonal variants',
+    type: 'registry:example',
+    component: CloseButtonVariants,
+    code: `import { CloseButton } from '@/components/ui/close-button';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-6'>
+      {(['text', 'outlined', 'tonal'] as const).map(variant => (
+        <div key={variant} className='flex flex-col items-center gap-2'>
+          <CloseButton variant={variant} label={\`Close (\${variant})\`} />
+          <Label3 className='text-neutral-600'>{variant}</Label3>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/close-button-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CloseButtonSizes: {
+    name: 'CloseButtonSizes',
+    description: 'The 32, 40 and 48px sizes',
+    type: 'registry:example',
+    component: CloseButtonSizes,
+    code: `import { CloseButton } from '@/components/ui/close-button';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-6'>
+      {(['sm', 'md', 'lg'] as const).map(size => (
+        <div key={size} className='flex flex-col items-center gap-2'>
+          <CloseButton size={size} variant='outlined' label={\`Close (\${size})\`} />
+          <Label3 className='text-neutral-600'>{size}</Label3>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/close-button-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CloseButtonDisabled: {
+    name: 'CloseButtonDisabled',
+    description: 'Disabled across all three variants',
+    type: 'registry:example',
+    component: CloseButtonDisabled,
+    code: `import { CloseButton } from '@/components/ui/close-button';
+
+export default function Component() {
+  return (
+    <div className='flex items-center gap-6'>
+      <CloseButton disabled label='Close' />
+      <CloseButton variant='outlined' disabled label='Close' />
+      <CloseButton variant='tonal' disabled label='Close' />
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/close-button-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };

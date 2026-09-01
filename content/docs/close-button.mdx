@@ -1,0 +1,91 @@
+---
+title: Close Button
+description: Dismiss control for modals, toasts and panels, with a guaranteed accessible name.
+---
+
+## Introduction
+
+UX4G specifies the dismiss control as a component in its own right — three sizes, three variants, five states — not as a bare glyph each surface draws for itself.
+
+That distinction is the point of shipping it. Before this existed, Modal, Offcanvas and Toast each drew their own close: three different corner radii, an opacity value that appears nowhere in the spec, and no fixed hit area. All three now use this component.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/close-button.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { CloseButton } from '@/components/ui/close-button';`}
+/>
+
+## Usage
+
+<ComponentSource collapsible={false} code={`<CloseButton label="Close dialog" onClick={dismiss} />`} />
+
+## Examples
+
+### Default
+
+<ComponentPreview name='CloseButtonDefault' />
+
+### Variants
+
+<ComponentPreview name='CloseButtonVariants' />
+
+### Sizes
+
+<ComponentPreview name='CloseButtonSizes' />
+
+### Disabled
+
+<ComponentPreview name='CloseButtonDisabled' />
+
+## Composing with Radix
+
+Modal and Offcanvas close through Radix's `Dialog.Close`. Pass `asChild` so the primitive uses this button rather than wrapping one:
+
+<ComponentSource
+  collapsible={false}
+  code={`<DialogPrimitive.Close asChild>
+  <CloseButton />
+</DialogPrimitive.Close>`}
+/>
+
+## The label is not optional
+
+`label` defaults to `"Close"` and is always rendered as `aria-label`, so a dismiss control cannot ship as an unlabelled glyph. Where a page has more than one, say what closes:
+
+<ComponentSource
+  collapsible={false}
+  code={`<CloseButton label="Close filters" />
+<CloseButton label="Dismiss notification" />`}
+/>
+
+## Measurements
+
+Read off the Figma symbols on the Close button page:
+
+| | box | icon |
+| --- | --- | --- |
+| `sm` | 32px | 20px |
+| `md` | 40px | 24px |
+| `lg` | 48px | 32px |
+
+Interaction matches the rest of the library, which is not a coincidence — the measured values are the same ones Button already uses: `primary` at 8% on hover, 16% on press, a 4px focus ring at 48%, and 50% opacity when disabled.
+
+The glyph is `neutral` in all three variants, and `outlined` draws a `neutral-100` border. Neither takes the primary colour, which is where this differs from an icon Button.
+
+## API Reference
+
+### CloseButton
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `variant` | `text \| outlined \| tonal` | `text` | Surface treatment |
+| `size` | `sm \| md \| lg` | `md` | 32, 40 or 48px |
+| `label` | `string` | `'Close'` | Accessible name |
+
+Any other `button` prop is forwarded.
