@@ -27,3 +27,13 @@ export const SITE_KEYWORDS = [
   'Tailwind design system India',
   'design system documentation',
 ];
+
+/*
+ * Figures quoted on the marketing page. `npm run check:facts` asserts each one
+ * against its real source, so a component added without updating the copy
+ * fails the build rather than quietly making the page wrong.
+ */
+export const COMPONENT_COUNT = 32;
+export const DOC_PAGE_COUNT = 33;
+export const TYPE_STYLE_COUNT = 21;
+export const SEMANTIC_SCALE_COUNT = 7;

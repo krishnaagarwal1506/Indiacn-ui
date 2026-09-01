@@ -1,5 +1,10 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import { Noto_Sans } from 'next/font/google';
+import {
+  Noto_Sans,
+  Noto_Sans_Bengali,
+  Noto_Sans_Tamil,
+  Noto_Sans_Telugu,
+} from 'next/font/google';
 import { ReactNode } from 'react';
 
 import {
@@ -17,9 +22,35 @@ import type { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
 
 const NOTO_SANS = Noto_Sans({
-  subsets: ['latin'],
+  subsets: ['latin', 'devanagari'],
   weight: ['100', '300', '400', '500', '700', '900'],
   style: ['normal', 'italic'],
+});
+
+/*
+ * Noto exists so that no script renders as tofu, which is the same promise a
+ * component library for Indian public services has to make. These carry the
+ * scripts Noto Sans itself does not cover, at the one weight the masthead uses.
+ */
+const NOTO_BENGALI = Noto_Sans_Bengali({
+  subsets: ['bengali'],
+  weight: ['700'],
+  display: 'swap',
+  variable: '--font-bengali',
+});
+
+const NOTO_TAMIL = Noto_Sans_Tamil({
+  subsets: ['tamil'],
+  weight: ['700'],
+  display: 'swap',
+  variable: '--font-tamil',
+});
+
+const NOTO_TELUGU = Noto_Sans_Telugu({
+  subsets: ['telugu'],
+  weight: ['700'],
+  display: 'swap',
+  variable: '--font-telugu',
 });
 
 export const metadata: Metadata = {
@@ -151,7 +182,15 @@ export default function RootLayout({
 
   return (
     <html lang='en-IN' suppressHydrationWarning>
-      <body className={cn(NOTO_SANS.className, 'antialiased')}>
+      <body
+        className={cn(
+          NOTO_SANS.className,
+          NOTO_BENGALI.variable,
+          NOTO_TAMIL.variable,
+          NOTO_TELUGU.variable,
+          'antialiased',
+        )}
+      >
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

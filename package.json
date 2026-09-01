@@ -14,7 +14,8 @@
     "registry:build": "npx --yes shadcn@latest build && prettier --write \"public/r/*.json\"",
     "theme:sync": "node scripts/sync-theme-registry.mjs",
     "theme:check": "node scripts/sync-theme-registry.mjs --check",
-    "check:contrast": "node scripts/check-contrast.mjs"
+    "check:contrast": "node scripts/check-contrast.mjs",
+    "check:facts": "node scripts/check-site-facts.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",

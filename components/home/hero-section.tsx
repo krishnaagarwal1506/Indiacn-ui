@@ -4,6 +4,7 @@ import { ArrowRight, Check, Github, Shield, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 
+import { BharatCycle } from '@/components/home/bharat-cycle';
 import { ChakraBg } from '@/components/home/chakra-bg';
 import { WindowChromeDots } from '@/components/home/window-chrome-dots';
 import { Alert, AlertDescription, AlertIcon, AlertTitle } from '@/components/ui/alert';
@@ -11,14 +12,39 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Step, Stepper } from '@/components/ui/stepper';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Body1, Body2, Headline1, Label1, Label3 } from '@/components/ui/typography';
-import { GITHUB_URL, UX_4G_URL } from '@/constants';
+import { Body1, Headline1, Label2, Label3 } from '@/components/ui/typography';
+import {
+  COMPONENT_COUNT,
+  DOC_PAGE_COUNT,
+  GITHUB_URL,
+  SEMANTIC_SCALE_COUNT,
+  TYPE_STYLE_COUNT,
+  UX_4G_URL,
+} from '@/constants';
 
-const HERO_HEADING_STYLE = {
-  fontSize: 'clamp(36px, 4.5vw, 56px)',
-  lineHeight: 1.12,
-  letterSpacing: '-0.025em',
+/* Font size and line height always travel together: a size override alone
+ * leaves the typography component's own leading behind and the lines collide. */
+const HERO_LEAD_STYLE = {
+  fontSize: 'clamp(26px, 3.1vw, 42px)',
+  lineHeight: 1.15,
+  letterSpacing: '-0.02em',
 } as const;
+
+const HERO_WORD_STYLE = {
+  fontSize: 'clamp(60px, 9vw, 116px)',
+  lineHeight: 0.92,
+  letterSpacing: '-0.035em',
+} as const;
+
+/** Facts a developer can check, set like a package manifest rather than a stat block. */
+const MANIFEST = [
+  `${COMPONENT_COUNT} components`,
+  `${DOC_PAGE_COUNT} documented`,
+  `${TYPE_STYLE_COUNT} type styles`,
+  `${SEMANTIC_SCALE_COUNT} semantic scales`,
+  'WCAG 2.1 AA',
+  'MIT',
+];
 
 /** Framed component preview shown inside the homepage hero. */
 const HeroPreviewCard = () => {
@@ -94,7 +120,7 @@ const HeroPreviewCard = () => {
 };
 
 export const HeroSection = () => (
-  <section className='relative overflow-hidden pt-20 pb-24'>
+  <section className='relative overflow-hidden pt-16 pb-24'>
     <ChakraBg />
 
     {/* Subtle dot grid */}
@@ -105,30 +131,25 @@ export const HeroSection = () => (
     </div>
 
     <div className='relative mx-auto max-w-6xl px-6'>
-      <div className='grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16'>
-        {/* Left — text content */}
+      <Badge variant='tonal' theme='primary' shape='pill' className='mb-8'>
+        <Sparkles className='mr-1.5 size-3.5' />
+        Open source · MIT · Built in India
+      </Badge>
+
+      {/* The masthead. The heading carries the whole sentence for screen
+          readers; the cycling word below it is decorative and aria-hidden. */}
+      <Headline1 className='text-neutral font-semibold' style={HERO_LEAD_STYLE}>
+        Components built for <Label2 className='sr-only'>Bharat</Label2>
+      </Headline1>
+      <BharatCycle className='mt-2 mb-10' style={HERO_WORD_STYLE} />
+
+      <div className='grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-16'>
         <div>
-          <Badge variant='tonal' theme='primary' shape='pill' className='mb-6'>
-            <Sparkles className='mr-1.5 size-3.5' />
-            Open source · MIT · Built in India
-          </Badge>
-
-          <Headline1
-            className='text-neutral mb-6 font-bold tracking-tight'
-            style={HERO_HEADING_STYLE}
-          >
-            Components <em className='text-primary not-italic'>built for Bharat.</em>
-          </Headline1>
-
-          <Body1 className='mb-3 max-w-[540px] text-lg text-neutral-600'>
-            IndiaCN is an open-source, copy-paste React component library based on UX4G&nbsp;2.0 —
-            the design language used for India&apos;s public digital services. ShadCN-compatible,
-            accessible by default, and free forever under MIT.
+          <Body1 className='mb-8 max-w-[540px] text-lg text-neutral-600'>
+            An open-source React component library built on UX4G&nbsp;2.0 — the design language
+            behind India&apos;s public digital services. Installed through a shadcn registry, so the
+            source lands in your repo instead of your lockfile.
           </Body1>
-
-          <Body2 className='mb-9 text-neutral-500'>
-            A community initiative — not affiliated with the Government of India.
-          </Body2>
 
           <div className='flex flex-wrap items-center gap-3'>
             <Link href='/docs'>
@@ -148,31 +169,22 @@ export const HeroSection = () => (
             </a>
           </div>
 
-          {/* Trust strip */}
-          <div className='mt-14 flex flex-wrap items-baseline gap-x-9 gap-y-4'>
-            {[
-              { v: '25+', l: 'components' },
-              { v: 'WCAG 2.1 AA', l: 'accessibility' },
-              { v: '7', l: 'semantic scales' },
-              { v: '21', l: 'type styles' },
-            ].map(s => (
-              <div key={s.l}>
-                <Label1 className='text-neutral text-xl font-semibold tracking-tight'>{s.v}</Label1>
-                <Label3 className='mt-1 block tracking-widest text-neutral-500 uppercase'>
-                  {s.l}
-                </Label3>
-              </div>
+          {/* Reads like a package manifest. No character separators: at narrow
+              widths a wrapped line would open with an orphaned glyph. */}
+          <div className='mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-neutral-200 pt-6'>
+            {MANIFEST.map(item => (
+              <Label3 key={item} className='font-mono text-neutral-500'>
+                {item}
+              </Label3>
             ))}
           </div>
+
+          <Label3 className='mt-4 block text-neutral-500'>
+            A community initiative — not affiliated with the Government of India.
+          </Label3>
         </div>
 
-        {/* Right — live preview */}
-        <div className='relative'>
-          <HeroPreviewCard />
-          <div className='bg-neutral text-neutral-0 absolute top-[-14px] right-5 rounded-full px-3 py-1'>
-            <Label3 className='font-semibold tracking-widest uppercase'>Live preview</Label3>
-          </div>
-        </div>
+        <HeroPreviewCard />
       </div>
     </div>
   </section>

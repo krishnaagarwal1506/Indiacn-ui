@@ -4,9 +4,15 @@ import Link from 'next/link';
 import { ChakraBgDark } from '@/components/home/chakra-bg';
 import { Button } from '@/components/ui/button';
 import { Body1, Body2, Headline2, Label1, Label2, Label3 } from '@/components/ui/typography';
-import { GITHUB_URL } from '@/constants';
+import { COMPONENT_COUNT, DOC_PAGE_COUNT, GITHUB_URL } from '@/constants';
 
-const HEADING_STYLE = { fontSize: 'clamp(32px, 4vw, 48px)' } as const;
+/* Size and leading always travel together. Overriding only fontSize leaves
+ * Headline2's own 40px line-height behind, and at 48px the lines collide. */
+const HEADING_STYLE = {
+  fontSize: 'clamp(32px, 4vw, 48px)',
+  lineHeight: 1.1,
+  letterSpacing: '-0.02em',
+} as const;
 
 export const CommunityCtaSection = () => (
   <div className='dark'>
@@ -44,10 +50,10 @@ export const CommunityCtaSection = () => (
           <div className='rounded-2xl border border-neutral-200 bg-neutral-50 p-7'>
             <div className='grid grid-cols-2 gap-6'>
               {[
-                { v: '25+', l: 'Components' },
-                { v: 'MIT', l: 'License — forever free' },
+                { v: String(COMPONENT_COUNT), l: 'Components' },
+                { v: String(DOC_PAGE_COUNT), l: 'Documented pages' },
                 { v: 'WCAG', l: '2.1 AA compliant' },
-                { v: 'Early', l: 'Planning phase' },
+                { v: 'MIT', l: 'License — forever free' },
               ].map(s => (
                 <div key={s.l}>
                   <Label1 className='text-neutral text-3xl font-semibold tracking-tight'>
@@ -61,8 +67,8 @@ export const CommunityCtaSection = () => (
             </div>
             <div className='my-6 h-px bg-neutral-200' />
             <Body2 className='text-neutral leading-relaxed font-semibold'>
-              &ldquo;IndiaCN is in early planning. Suggest a component, file an issue, or open a PR
-              — every contribution shapes the standard.&rdquo;
+              &ldquo;Suggest a component, file an issue, or open a PR — every contribution shapes
+              the standard.&rdquo;
             </Body2>
             <Body2 className='mt-1.5 text-neutral-500'>— From the project README</Body2>
           </div>

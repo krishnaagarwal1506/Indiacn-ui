@@ -8,6 +8,7 @@ import { Chip } from '@/components/ui/chip';
 import { Progress, ProgressBar } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Body1, Body2, Headline2, Label1, Label2, Label3 } from '@/components/ui/typography';
+import { COMPONENT_COUNT } from '@/constants';
 import { COMPONENTS } from '@/constants/home';
 import { cn } from '@/lib/utils';
 
@@ -196,8 +197,8 @@ export const ComponentsSection = () => (
           <Label2 className='text-primary mb-4 block font-semibold tracking-widest uppercase'>
             The library
           </Label2>
-          <Headline2 className='text-neutral-0 mb-4 text-3xl tracking-tight sm:text-4xl'>
-            {COMPONENTS.length}+ accessible components.{' '}
+          <Headline2 className='text-neutral mb-4 text-3xl tracking-tight sm:text-4xl'>
+            {COMPONENT_COUNT} accessible components.{' '}
             <em className='font-[inherit] text-neutral-500 not-italic'>Copy, paste, ship.</em>
           </Headline2>
           <Body1 className='text-neutral-600'>
