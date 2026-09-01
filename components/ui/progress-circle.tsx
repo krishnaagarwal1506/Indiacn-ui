@@ -31,10 +31,17 @@ const LABEL_CLASSES = {
 type TProgressCircleSize = keyof typeof DIAMETERS;
 type TProgressCircleShape = 'circle' | 'half';
 
+/*
+ * UX4G's ladder starts at 64px and runs to 280px — dashboard scale. A number is
+ * accepted too, for the inline rings the kit has no size for. Font tracks the
+ * measured ratio for those, since the named sizes are not on one curve.
+ */
+const NUMERIC_FONT_RATIO = 0.16;
+
 interface IProgressCircleProps extends Omit<ComponentProps<'div'>, 'children'> {
   value?: number;
   max?: number;
-  size?: TProgressCircleSize;
+  size?: TProgressCircleSize | number;
   shape?: TProgressCircleShape;
   /** Caption shown with the value. Below the ring at `xxs`, inside it otherwise. */
   label?: string;
@@ -46,14 +53,15 @@ function ProgressCircle({
   className,
   value = 0,
   max = 100,
-  size = 'md',
+  size = 'xxs',
   shape = 'circle',
   label,
   showValue = true,
   ...props
 }: IProgressCircleProps) {
-  const diameter = DIAMETERS[size];
-  const stroke = Math.round(diameter * 0.1);
+  const custom = typeof size === 'number';
+  const diameter = custom ? size : DIAMETERS[size];
+  const stroke = Math.max(2, Math.round(diameter * 0.1));
   const radius = (diameter - stroke) / 2;
   const centre = diameter / 2;
   const isHalf = shape === 'half';
@@ -73,7 +81,8 @@ function ProgressCircle({
     strokeLinecap: 'round' as const,
   };
 
-  const captionInside = Boolean(label) && size !== 'xxs';
+  // Nothing legible fits inside a small ring beside the number.
+  const captionInside = Boolean(label) && diameter >= 120;
 
   return (
     <div className={cn('inline-flex flex-col items-center', className)} {...props}>
@@ -119,18 +128,26 @@ function ProgressCircle({
           )}
         >
           {captionInside && (
-            <Body2 className={cn('text-neutral-600', LABEL_CLASSES[size])}>{label}</Body2>
+            <Body2
+              className={cn('text-neutral-600', !custom && LABEL_CLASSES[size])}
+              style={custom ? { fontSize: Math.round(diameter * NUMERIC_FONT_RATIO * 0.6) } : undefined}
+            >
+              {label}
+            </Body2>
           )}
           {showValue && (
-            <Label1 className={cn('text-neutral font-semibold', VALUE_CLASSES[size])}>
+            <Label1
+              className={cn('text-neutral font-semibold', !custom && VALUE_CLASSES[size])}
+              style={custom ? { fontSize: Math.round(diameter * NUMERIC_FONT_RATIO) } : undefined}
+            >
               {Math.round(percent)}%
             </Label1>
           )}
         </div>
       </div>
 
-      {label && size === 'xxs' && (
-        <Body2 className={cn('mt-1 text-neutral-600', LABEL_CLASSES[size])}>{label}</Body2>
+      {label && !captionInside && (
+        <Body2 className='mt-1 text-xs text-neutral-600'>{label}</Body2>
       )}
     </div>
   );
