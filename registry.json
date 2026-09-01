@@ -950,6 +950,22 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "progress-circle",
+      "type": "registry:ui",
+      "title": "Progress Circle",
+      "description": "Circular and half-circular progress indicator with an optional caption.",
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/progress-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

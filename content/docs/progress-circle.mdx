@@ -1,0 +1,79 @@
+---
+title: Progress Circle
+description: Circular and half-circular progress indicator with an optional caption.
+---
+
+## Introduction
+
+The [Progress](/docs/progress) bar answers "how far along a line". The circle answers "how much of a whole" — a quota consumed, a document set completed, a verification part-done. UX4G defines both shapes, five diameters and an optional caption.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/progress-circle.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { ProgressCircle } from '@/components/ui/progress-circle';`}
+/>
+
+## Usage
+
+<ComponentSource collapsible={false} code={`<ProgressCircle value={40} size="xs" />`} />
+
+## Examples
+
+### Default
+
+<ComponentPreview name='ProgressCircleDefault' />
+
+### Sizes
+
+<ComponentPreview name='ProgressCircleSizes' />
+
+### Half circle
+
+<ComponentPreview name='ProgressCircleHalf' />
+
+### With a caption
+
+At `xxs` the caption sits beneath the ring, because nothing legible fits inside a 64px circle. Every other size places it above the value.
+
+<ComponentPreview name='ProgressCircleWithLabel' />
+
+## Measurements
+
+Read off the Figma symbols:
+
+| size | diameter | stroke | value text |
+| ---- | -------- | ------ | ---------- |
+| `xxs` | 64px | 6px | 14px |
+| `xs` | 160px | 16px | 24px |
+| `sm` | 200px | 20px | 30px |
+| `md` | 240px | 24px | 36px |
+| `lg` | 280px | 28px | 48px |
+
+The stroke is a flat **10% of the diameter** at every size, which is why it is computed rather than tabulated. Track is `neutral-50`, the arc is `primary` with a round cap.
+
+The full circle starts at twelve o'clock and sweeps clockwise. The half circle spans the top 180°, starting at nine o'clock — sampling the Figma arc at 40% puts its end at 342°, which is exactly nine o'clock plus 40% of 180°.
+
+## Guidelines
+
+- Use it for a proportion of a known total. For an indeterminate wait, use [Spinner](/docs/spinner).
+- These are large. `xs` is 160px across — the smallest size that holds a legible number inside the ring is `xxs` at 64px, and that one takes its caption underneath.
+- The value is announced through `role="progressbar"`. Pass `label` so a screen reader hears what is progressing, not just a number.
+
+## API Reference
+
+### ProgressCircle
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `number` | `0` | Current progress |
+| `max` | `number` | `100` | Value representing complete |
+| `size` | `xxs \| xs \| sm \| md \| lg` | `md` | Diameter |
+| `shape` | `circle \| half` | `circle` | Full ring or top half |
+| `label` | `string` | — | Caption, and the accessible name |
+| `showValue` | `boolean` | `true` | Renders the percentage |

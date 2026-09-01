@@ -128,6 +128,12 @@ import {
 } from '@/components/examples/pagination-demo';
 import { PopoverDefault, PopoverPlacements } from '@/components/examples/popover-demo';
 import {
+  ProgressCircleDefault,
+  ProgressCircleHalf,
+  ProgressCircleSizes,
+  ProgressCircleWithLabel,
+} from '@/components/examples/progress-circle-demo';
+import {
   ProgressDefault,
   ProgressMultiple,
   ProgressSizes,
@@ -214,6 +220,7 @@ import { Offcanvas } from '@/components/ui/offcanvas';
 import { Pagination } from '@/components/ui/pagination';
 import { Popover } from '@/components/ui/popover';
 import { Progress, ProgressBar } from '@/components/ui/progress';
+import { ProgressCircle } from '@/components/ui/progress-circle';
 import { RadioGroup } from '@/components/ui/radio-group';
 import { Search } from '@/components/ui/search';
 import { Separator } from '@/components/ui/separator';
@@ -3974,5 +3981,104 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  'progress-circle': {
+    name: 'progress-circle',
+    description: 'Circular and half-circular progress indicator',
+    type: 'registry:ui',
+    component: ProgressCircle,
+    files: [{ path: 'components/ui/progress-circle.tsx', type: 'registry:ui', target: '' }],
+  },
+  ProgressCircleDefault: {
+    name: 'ProgressCircleDefault',
+    description: 'Circular progress at 40%',
+    type: 'registry:example',
+    component: ProgressCircleDefault,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+
+export default function Component() {
+  return <ProgressCircle value={40} size='xs' />;
+}`,
+    files: [
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+  },
+  ProgressCircleSizes: {
+    name: 'ProgressCircleSizes',
+    description: 'The five diameters UX4G defines',
+    type: 'registry:example',
+    component: ProgressCircleSizes,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-6'>
+      {(['xxs', 'xs', 'sm'] as const).map(size => (
+        <div key={size} className='flex flex-col items-center gap-2'>
+          <ProgressCircle value={40} size={size} />
+          <Label3 className='text-neutral-600'>{size}</Label3>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+    files: [
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+  },
+  ProgressCircleHalf: {
+    name: 'ProgressCircleHalf',
+    description: 'Half-circle shape',
+    type: 'registry:example',
+    component: ProgressCircleHalf,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-8'>
+      <ProgressCircle value={40} size='xs' shape='half' />
+      <ProgressCircle value={72} size='sm' shape='half' />
+    </div>
+  );
+}`,
+    files: [
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+  },
+  ProgressCircleWithLabel: {
+    name: 'ProgressCircleWithLabel',
+    description: 'Caption alongside the value',
+    type: 'registry:example',
+    component: ProgressCircleWithLabel,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-8'>
+      <ProgressCircle value={40} size='xxs' label='Users' />
+      <ProgressCircle value={40} size='xs' label='Uploading' />
+    </div>
+  );
+}`,
+    files: [
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
   },
 };
