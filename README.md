@@ -1,6 +1,6 @@
 # 🇮🇳 IndiaCN UI — Community Design System for India
 
-IndiaCN is an **open-source design system** built for India's digital services — especially government and public-service applications. Based on the [UX4G 2.0 design system](https://www.figma.com/community/file/1471833723727926454), it ships as a **shadcn-compatible registry** with 25+ production-ready components.
+IndiaCN is an **open-source design system** built for India's digital services — especially government and public-service applications. Based on the [UX4G 2.0 design system](https://www.figma.com/community/file/1471833723727926454), it ships as a **shadcn-compatible registry** with 32 production-ready components.
 
 - **Accessibility-first** — WCAG 2.1 AA compliant, built on Radix UI primitives
 - **Copy-pasteable** — source lands directly in your repo; no runtime dependency, no version lock
@@ -15,7 +15,7 @@ IndiaCN is an **open-source design system** built for India's digital services �
 
 🟢 **Active development**
 
-- 25+ components (Button, Card, Modal, Tabs, Toast, and more)
+- 32 components (Button, Card, Modal, Tabs, Toast, and more)
 - UX4G 2.0 theme with 8 semantic color scales, dark mode, and focus rings
 - Registered in the [shadcn registry](https://ui.shadcn.com/registry)
 - Full documentation at [indiacn.in/docs](https://indiacn.in/docs)
