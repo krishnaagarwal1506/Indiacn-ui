@@ -33,7 +33,7 @@ export function ComponentPreviewTabs({
         <TabsContent value='preview'>
           <div
             className={cn(
-              'flex min-h-96 rounded-lg border p-8',
+              'bg-neutral-0 flex min-h-72 rounded-lg border border-neutral-100 p-8',
               alignClass,
               chromeLessOnMobile && 'sm:p-4',
             )}
@@ -41,13 +41,8 @@ export function ComponentPreviewTabs({
             {component}
           </div>
         </TabsContent>
-        {!hideCode && (
-          <TabsContent value='code'>
-            <div className='overflow-hidden rounded-lg [&_figure]:rounded-none [&_figure]:border-0'>
-              {source}
-            </div>
-          </TabsContent>
-        )}
+        {/* The source's own figure is the bordered surface, so it needs no wrapper. */}
+        {!hideCode && <TabsContent value='code'>{source}</TabsContent>}
       </Tabs>
     </div>
   );

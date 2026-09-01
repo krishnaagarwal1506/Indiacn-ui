@@ -535,6 +535,15 @@ figure[data-rehype-pretty-code-figure] pre {
   border-color: var(--neutral-200);
 }
 
+/* Our own code blocks draw their border on the <figure>, which owns the radius
+ * and the overflow clip. The .prose pre rule above is a descendant selector, so
+ * `not-prose` does not stop it reaching inside — left alone it paints a second
+ * border 1px in, with a different radius and a different colour. */
+.not-fumadocs-codeblock pre {
+  border: 0;
+  border-radius: 0;
+}
+
 .prose pre code,
 [data-rehype-pretty-code-figure] pre code {
   background: transparent !important;

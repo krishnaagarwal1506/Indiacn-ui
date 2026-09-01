@@ -1,52 +1,46 @@
 'use client';
-/* eslint-disable eslint-frontend-rules/no-direct-colors */
 
 import { ChevronsDownUp, ChevronsUpDown } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
+const TOGGLE_CLASS =
+  'focus-visible:shadow-focus-primary pointer-events-auto inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-0 px-3.5 py-1.5 font-sans text-xs font-medium text-neutral-600 transition-colors hover:border-neutral-300 hover:text-neutral focus-visible:outline-none';
+
+/*
+ * Fades long code out rather than painting a coloured gradient over it: a mask
+ * dissolves the content itself, so it needs no knowledge of the code surface's
+ * colour and behaves in both themes.
+ */
 export function CodeCollapsibleWrapper({ children, className }: React.ComponentProps<'div'>) {
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const handleExpand = React.useCallback(() => setIsExpanded(true), []);
-  const handleCollapse = React.useCallback(() => setIsExpanded(false), []);
+  const handleToggle = React.useCallback(() => setIsExpanded(v => !v), []);
 
   return (
     <div className={cn('relative', className)}>
-      {/* Code content with max height when collapsed */}
       <div
         className={cn(
-          'overflow-hidden transition-[max-height] duration-300 ease-in-out',
-          !isExpanded && 'max-h-72',
+          'overflow-hidden',
+          !isExpanded &&
+            'max-h-72 mask-[linear-gradient(to_bottom,black_calc(100%-5rem),transparent)]',
         )}
       >
         {children}
       </div>
 
-      {/* Gradient fade + expand button — only when collapsed */}
-      {!isExpanded && (
-        <div className='pointer-events-none absolute inset-x-0 bottom-0 flex h-28 flex-col justify-end bg-linear-to-t from-zinc-900 via-zinc-900/80 to-transparent pb-3'>
-          <div className='pointer-events-auto flex justify-center'>
-            <button
-              onClick={handleExpand}
-              className='flex items-center gap-1.5 rounded-full border border-zinc-300 bg-white/90 px-4 py-1.5 text-xs font-medium text-zinc-600 shadow-sm backdrop-blur-sm transition-all hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-900 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-white'
-            >
-              <ChevronsUpDown className='size-3.5' />
-              Expand code
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Collapse button — only when expanded */}
-      {isExpanded && (
-        <div className='flex justify-center border-t border-zinc-200 py-2.5 dark:border-zinc-700/60'>
-          <button
-            onClick={handleCollapse}
-            className='flex items-center gap-1.5 rounded-full border border-zinc-300 bg-white/90 px-4 py-1.5 text-xs font-medium text-zinc-600 shadow-sm transition-all hover:border-zinc-400 hover:bg-zinc-50 hover:text-zinc-900 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-white'
-          >
-            <ChevronsDownUp className='size-3.5' />
+      {isExpanded ? (
+        <div className='flex justify-center border-t border-neutral-100 py-2.5'>
+          <button type='button' onClick={handleToggle} className={TOGGLE_CLASS}>
+            <ChevronsDownUp className='size-3.5' aria-hidden />
             Collapse
+          </button>
+        </div>
+      ) : (
+        <div className='pointer-events-none absolute inset-x-0 bottom-0 flex justify-center pb-4'>
+          <button type='button' onClick={handleToggle} className={TOGGLE_CLASS}>
+            <ChevronsUpDown className='size-3.5' aria-hidden />
+            Expand code
           </button>
         </div>
       )}

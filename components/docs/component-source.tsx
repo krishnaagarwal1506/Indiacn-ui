@@ -72,53 +72,59 @@ export async function ComponentSource({
   const lineCount = code.split('\n').length;
   const shouldCollapse = collapsible && lineCount > COLLAPSE_LINE_THRESHOLD;
 
-  if (!shouldCollapse) {
-    return (
-      <div className={cn('relative', className)}>
-        <ComponentCode
-          code={code}
-          highlightedCode={highlightedCode}
-          language={lang}
-          title={title}
-        />
-      </div>
-    );
-  }
-
   return (
-    <CodeCollapsibleWrapper className={className}>
-      <ComponentCode code={code} highlightedCode={highlightedCode} language={lang} title={title} />
-    </CodeCollapsibleWrapper>
+    <ComponentCode
+      code={code}
+      highlightedCode={highlightedCode}
+      language={lang}
+      title={title}
+      collapsible={shouldCollapse}
+      className={className}
+    />
   );
 }
 
-/** Renders syntax-highlighted code with an optional title and copy button. */
+/**
+ * Renders syntax-highlighted code with an optional title and copy button.
+ *
+ * The figure is the only bordered surface: the caption and the collapse control
+ * sit inside it, so a titled or collapsible block is still one box rather than
+ * a box nested in a box.
+ */
 function ComponentCode({
   code,
   highlightedCode,
   language,
   title,
+  collapsible,
+  className,
 }: {
   code: string;
   highlightedCode: string;
   language: string;
   title: string | undefined;
+  collapsible: boolean;
+  className?: string;
 }) {
+  const codeBlock = <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />;
+
   return (
-    <figure className='not-fumadocs-codeblock relative my-0! overflow-hidden rounded-lg border border-neutral-200 font-mono dark:border-neutral-700'>
-      {title && (
-        <figcaption className='mt-0! flex items-center gap-2 px-4 py-2 text-xs text-neutral-900'>
+    <figure
+      className={cn(
+        'not-fumadocs-codeblock bg-neutral-0 relative my-0! overflow-hidden rounded-lg border border-neutral-100 font-mono',
+        className,
+      )}
+    >
+      {title ? (
+        <figcaption className='mt-0! flex items-center gap-2 border-b border-neutral-100 bg-neutral-50 py-1.5 pr-1.5 pl-4 text-xs text-neutral-600'>
           {getIconForLanguageExtension(language)}
           {title}
+          <CopyButton value={code} className='ml-auto' />
         </figcaption>
+      ) : (
+        <CopyButton value={code} className='absolute top-3 right-3' />
       )}
-      <CopyButton
-        value={code}
-        className={cn({
-          'top-0!': title,
-        })}
-      />
-      <div dangerouslySetInnerHTML={{ __html: highlightedCode }} />
+      {collapsible ? <CodeCollapsibleWrapper>{codeBlock}</CodeCollapsibleWrapper> : codeBlock}
     </figure>
   );
 }
