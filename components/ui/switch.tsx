@@ -6,7 +6,8 @@ import { ComponentProps } from 'react';
 
 import { cn } from '@/lib/utils';
 
-/* UX4G toggle: track 52x32 (small 39x24). The handle grows on check. */
+/* UX4G toggle: track 52x32 (small 39x24). The handle grows on check:
+ * 16 -> 24 at the default size, 16 -> 18 at small. */
 const SWITCH_VARIANTS = cva(
   'peer relative inline-flex shrink-0 cursor-pointer rounded-full transition-[background-color,box-shadow] duration-150 ease-in-out bg-neutral-200 data-[state=checked]:bg-primary focus-visible:shadow-focus-primary focus-visible:outline-none disabled:pointer-events-none disabled:opacity-[0.38]',
   {
@@ -29,7 +30,7 @@ const SWITCH_THUMB_VARIANTS = cva(
       size: {
         default:
           'size-4 left-[calc(50%-10px)] data-[state=checked]:size-6 data-[state=checked]:left-[calc(50%+10px)]',
-        sm: 'size-3 left-[calc(50%-7.5px)] data-[state=checked]:size-[18px] data-[state=checked]:left-[calc(50%+7.5px)]',
+        sm: 'size-4 left-[calc(50%-7.5px)] data-[state=checked]:size-[18px] data-[state=checked]:left-[calc(50%+7.5px)]',
       },
     },
     defaultVariants: {

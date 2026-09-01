@@ -3078,7 +3078,7 @@ export default function Component() {
   },
   SwitchSizes: {
     name: 'SwitchSizes',
-    description: 'Default and small switch sizes',
+    description: 'Default and small switch sizes, on and off',
     type: 'registry:example',
     component: SwitchSizes,
     code: `import { Label } from '@/components/ui/label';
@@ -3089,11 +3089,19 @@ export default function Component() {
     <div className='grid gap-4'>
       <div className='flex items-center gap-3'>
         <Switch id='size-default' defaultChecked />
-        <Label htmlFor='size-default'>Default</Label>
+        <Label htmlFor='size-default'>Default, on</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Switch id='size-default-off' />
+        <Label htmlFor='size-default-off'>Default, off</Label>
       </div>
       <div className='flex items-center gap-3'>
         <Switch id='size-sm' size='sm' defaultChecked />
-        <Label htmlFor='size-sm'>Small</Label>
+        <Label htmlFor='size-sm'>Small, on</Label>
+      </div>
+      <div className='flex items-center gap-3'>
+        <Switch id='size-sm-off' size='sm' />
+        <Label htmlFor='size-sm-off'>Small, off</Label>
       </div>
     </div>
   );
