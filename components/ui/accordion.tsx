@@ -41,7 +41,10 @@ function AccordionTrigger({
     <AccordionPrimitive.Header className='flex'>
       <AccordionPrimitive.Trigger
         className={cn(
-          'text-neutral flex flex-1 items-center justify-between px-5 py-4 text-sm font-medium tracking-[0.1px] transition-all',
+          'text-neutral flex flex-1 cursor-pointer items-center justify-between px-5 py-4 text-sm font-medium tracking-[0.1px] transition-all',
+          // No Accordion page in the Figma kit, so this follows the library's own
+          // convention for a text-on-surface control rather than inventing values.
+          'hover:bg-primary/8 active:bg-primary/16 disabled:pointer-events-none disabled:opacity-50',
           'focus-visible:border-primary focus-visible:shadow-focus-primary focus-visible:z-3 focus-visible:rounded-lg focus-visible:border focus-visible:outline-none',
           '[&[data-state=open]>svg]:rotate-180',
           className,

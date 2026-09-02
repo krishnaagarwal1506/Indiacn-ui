@@ -131,7 +131,7 @@ function PaginationLink({
           PAGINATION_SIZE_CLASSES.flat[resolvedSize],
           isActive
             ? 'border-primary bg-neutral-0 text-neutral font-medium tracking-[0.1px]'
-            : 'hover:text-neutral text-neutral-600 hover:border-neutral-300',
+            : 'hover:text-neutral active:bg-neutral-200 text-neutral-600 hover:border-neutral-300',
           disabled && 'text-disabled pointer-events-none',
           className,
         )}

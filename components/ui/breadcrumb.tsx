@@ -33,7 +33,7 @@ function BreadcrumbLink({ className, children, ...props }: ComponentProps<'a'>) 
   return (
     <a
       className={cn(
-        'hover:text-neutral text-neutral-600 no-underline transition-colors',
+        'hover:text-neutral focus-visible:shadow-focus-primary text-neutral-600 rounded-sm no-underline transition-colors focus-visible:outline-none',
         className,
       )}
       {...props}

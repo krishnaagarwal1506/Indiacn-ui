@@ -102,7 +102,7 @@ function ListGroupAction({ className, theme, active, disabled, ...props }: IList
       tabIndex={disabled ? -1 : undefined}
       className={cn(
         LIST_GROUP_ITEM_VARIANTS({ theme, className }),
-        'cursor-pointer no-underline hover:bg-neutral-50 active:bg-neutral-100',
+        'focus-visible:shadow-focus-primary relative cursor-pointer no-underline hover:bg-neutral-50 focus-visible:z-10 focus-visible:outline-none active:bg-neutral-100',
         active && 'bg-primary text-primary-foreground hover:bg-primary border-primary',
         disabled && 'pointer-events-none opacity-50 select-none',
       )}
