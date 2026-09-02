@@ -1034,7 +1034,9 @@
       "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
-        "https://indiacn.in/r/typography.json"
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/dropdown.json",
+        "https://indiacn.in/r/accessibility-widget.json"
       ],
       "files": [
         {

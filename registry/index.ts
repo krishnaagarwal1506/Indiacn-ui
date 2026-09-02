@@ -4381,6 +4381,7 @@ export default function Component() {
     code: `'use client';
 
 import { Search as SearchIcon } from 'lucide-react';
+import { useCallback, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -4390,12 +4391,22 @@ import {
   NavbarLink,
   NavbarMain,
   NavbarNav,
+  NavbarLanguage,
   NavbarSeparator,
   NavbarSkipLink,
+  NavbarTextSize,
+  NavbarThemeToggle,
   NavbarToggle,
   NavbarUtilityBar,
 } from '@/components/ui/navbar';
 import { Label2, Title2 } from '@/components/ui/typography';
+
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'hi', label: 'हिन्दी' },
+  { code: 'bn', label: 'বাংলা' },
+  { code: 'ta', label: 'தமிழ்' },
+];
 
 const LINKS = [
   { label: 'About us', href: '#about' },
@@ -4404,13 +4415,20 @@ const LINKS = [
 ];
 
 export default function Component() {
+  const [language, setLanguage] = useState('en');
+  const handleLanguage = useCallback((code: string) => setLanguage(code), []);
+
   return (
     <div className='relative w-full overflow-hidden rounded-md border border-neutral-100'>
       <Navbar>
         <NavbarUtilityBar>
           <NavbarSkipLink href='#main-demo' />
           <NavbarSeparator />
-          <Label2>Accessibility</Label2>
+          <NavbarTextSize />
+          <NavbarSeparator />
+          <NavbarThemeToggle />
+          <NavbarSeparator />
+          <NavbarLanguage languages={LANGUAGES} value={language} onSelect={handleLanguage} />
         </NavbarUtilityBar>
 
         <NavbarMain className='relative'>

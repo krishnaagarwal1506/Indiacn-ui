@@ -92,7 +92,51 @@ const getServerSettings = () => DEFAULT_SETTINGS;
 /** Replaces the settings and notifies every mounted widget. */
 function writeSettings(next: IAccessibilitySettings) {
   currentSettings = next;
+  applySettings(next);
   LISTENERS.forEach(listener => listener());
+}
+
+/**
+ * Shared access to the reading settings.
+ *
+ * Exported so other components — the navbar's text-size control, for one — act
+ * on the same store instead of keeping a second copy that disagrees with the
+ * panel.
+ */
+function useAccessibilitySettings() {
+  const settings = useSyncExternalStore(subscribeSettings, getSettings, getServerSettings);
+
+  /*
+   * Applied from a mount effect rather than at module scope. Doing it at
+   * module scope tripped a bundler-level temporal dead zone
+   * ("Cannot access 'k' before initialization") even with the declarations
+   * ordered correctly, and a module side effect is not worth that fight.
+   *
+   * It lives on the hook, not on the panel, so the navbar's text-size control
+   * works with no panel mounted — which was the original bug.
+   */
+  useEffect(() => {
+    injectBehaviourStyles();
+    applySettings(currentSettings);
+  }, [settings]);
+
+  const setStep = useCallback((key: 'textStep' | 'lineStep' | 'spacingStep', value: number) => {
+    writeSettings({ ...currentSettings, [key]: Math.min(Math.max(value, 0), STEP_MAX) });
+  }, []);
+
+  /*
+   * Reads the store at call time rather than from the render closure. Two
+   * clicks in one tick both saw the same captured step and the second was
+   * lost, so three presses landed on level 2.
+   */
+  const stepBy = useCallback((key: 'textStep' | 'lineStep' | 'spacingStep', delta: number) => {
+    const next = Math.min(Math.max(currentSettings[key] + delta, 0), STEP_MAX);
+    writeSettings({ ...currentSettings, [key]: next });
+  }, []);
+
+  const reset = useCallback(() => writeSettings(DEFAULT_SETTINGS), []);
+
+  return { settings, setStep, stepBy, reset, maxStep: STEP_MAX };
 }
 
 /** Injected once. Registry consumers get the behaviour without extra CSS. */
@@ -129,35 +173,37 @@ const BEHAVIOUR_CSS = `
 `;
 
 /** Adds the behaviour stylesheet to the document a single time. */
-function useBehaviourStyles() {
-  useEffect(() => {
-    const id = 'indiacn-a11y-styles';
-    if (document.getElementById(id)) return;
-    const style = document.createElement('style');
-    style.id = id;
-    style.textContent = BEHAVIOUR_CSS;
-    document.head.appendChild(style);
-  }, []);
+function injectBehaviourStyles() {
+  const id = 'indiacn-a11y-styles';
+  if (document.getElementById(id)) return;
+  const style = document.createElement('style');
+  style.id = id;
+  style.textContent = BEHAVIOUR_CSS;
+  document.head.appendChild(style);
 }
 
-/** Applies settings to the document root and remembers them. */
-function useApplySettings(settings: IAccessibilitySettings) {
-  useEffect(() => {
-    const root = document.documentElement;
-    root.style.fontSize = settings.textStep ? `${100 + settings.textStep * 12.5}%` : '';
-    root.style.lineHeight = settings.lineStep ? String(1.5 + settings.lineStep * 0.25) : '';
-    root.style.letterSpacing = settings.spacingStep ? `${settings.spacingStep * 0.05}em` : '';
-    root.dataset.a11yHighlightLinks = String(settings.highlightLinks);
-    root.dataset.a11yDyslexia = String(settings.dyslexiaFont);
-    root.dataset.a11yHideImages = String(settings.hideImages);
-    root.dataset.a11yInvert = String(settings.invertColors);
+/**
+ * Writes settings onto the document root and remembers them.
+ *
+ * This belongs to the store, not to a component. It used to run in an effect
+ * inside the panel, which meant the navbar's text-size control did nothing
+ * unless a panel happened to be mounted somewhere on the page.
+ */
+function applySettings(settings: IAccessibilitySettings) {
+  const root = document.documentElement;
+  root.style.fontSize = settings.textStep ? `${100 + settings.textStep * 12.5}%` : '';
+  root.style.lineHeight = settings.lineStep ? String(1.5 + settings.lineStep * 0.25) : '';
+  root.style.letterSpacing = settings.spacingStep ? `${settings.spacingStep * 0.05}em` : '';
+  root.dataset.a11yHighlightLinks = String(settings.highlightLinks);
+  root.dataset.a11yDyslexia = String(settings.dyslexiaFont);
+  root.dataset.a11yHideImages = String(settings.hideImages);
+  root.dataset.a11yInvert = String(settings.invertColors);
 
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
-    } catch {
-      // Private browsing and blocked storage are fine; the settings just do not persist.
-    }
-  }, [settings]);
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+  } catch {
+    // Private browsing and blocked storage are fine; the settings just do not persist.
+  }
 }
 
 /** Horizontal reading band that follows the pointer. */
@@ -262,10 +308,7 @@ function AccessibilityWidget({
   ...props
 }: IAccessibilityWidgetProps) {
   const [open, setOpen] = useState(false);
-  const settings = useSyncExternalStore(subscribeSettings, getSettings, getServerSettings);
-
-  useBehaviourStyles();
-  useApplySettings(settings);
+  const { settings } = useAccessibilitySettings();
 
   useEffect(() => {
     if (!open) return;
@@ -400,4 +443,4 @@ function AccessibilityWidget({
 
 export type { IAccessibilitySettings };
 
-export { AccessibilityWidget };
+export { AccessibilityWidget, useAccessibilitySettings };
