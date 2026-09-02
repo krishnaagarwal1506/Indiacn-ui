@@ -61,6 +61,15 @@ const PAIRS = [
   ...SEMANTICS.map(s => [`text-${s}`, 'neutral-0', s]),
   ...[...SEMANTICS, 'light', 'dark'].map(s => [`alert ${s}`, `alert-${s}-bg`, `alert-${s}-color`]),
   ['body text', 'neutral-0', 'neutral'],
+  // Tinted surfaces: a -50 or -100 fill with text on top. The ramps mirror
+  // between themes, so the only step that holds in both directions is -800 —
+  // `text-primary` on `bg-primary-50` reads at 5.5:1 in light and 3.85:1 in
+  // dark, which is exactly the pair this list exists to catch.
+  ...SEMANTICS.flatMap(s => [
+    [`tint ${s}-50`, `${s}-50`, `${s}-800`],
+    [`tint ${s}-100`, `${s}-100`, `${s}-800`],
+    [`tint ${s}-50 body`, `${s}-50`, 'neutral'],
+  ]),
 ];
 
 const THEMES = [

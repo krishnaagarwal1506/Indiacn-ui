@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "IndiaCN UX4G theme",
-      "description": "UX4G 2.0 design tokens — 8 semantic colors with 50–900 scales, focus-shadow utilities, radius ladder, and accordion/collapsible keyframes. Required by every IndiaCN component.",
+      "description": "UX4G 2.0 design tokens \u2014 8 semantic colors with 50\u2013900 scales, focus-shadow utilities, radius ladder, and accordion/collapsible keyframes. Required by every IndiaCN component.",
       "cssVars": {
         "theme": {
           "shadow-xs": "0px 2px 3px 1px rgb(from var(--neutral) r g b / 0.12)",
@@ -473,7 +473,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Compact label for status, counts, or categories. 9 themes × 3 variants × 3 sizes × 2 shapes.",
+      "description": "Compact label for status, counts, or categories. 9 themes \u00d7 3 variants \u00d7 3 sizes \u00d7 2 shapes.",
       "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
@@ -555,7 +555,7 @@
       "name": "chip",
       "type": "registry:ui",
       "title": "Chip",
-      "description": "Tags, filters, or selections. 7 themes × 3 variants × 3 sizes; supports icons, avatars, dismiss, and selected state.",
+      "description": "Tags, filters, or selections. 7 themes \u00d7 3 variants \u00d7 3 sizes; supports icons, avatars, dismiss, and selected state.",
       "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
@@ -1058,6 +1058,115 @@
       "files": [
         {
           "path": "components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Data table with a header, selectable rows, row headers and a footer.",
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:ui",
+      "title": "Footer",
+      "description": "Government site footer with link columns, social links and a bottom bar.",
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/footer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "feedback-widget",
+      "type": "registry:ui",
+      "title": "Feedback Widget",
+      "description": "Edge tab opening a feedback form with a five-point rating.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/button.json",
+        "https://indiacn.in/r/input.json",
+        "https://indiacn.in/r/textarea.json",
+        "https://indiacn.in/r/label.json",
+        "https://indiacn.in/r/modal.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/feedback-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "Date grid with day, month and decade views and full keyboard support.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "Hour, minute and second columns driven as listboxes.",
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/time-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Date, range, time and date-time pickers behind a field or icon trigger.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json",
+        "https://indiacn.in/r/button.json",
+        "https://indiacn.in/r/popover.json",
+        "https://indiacn.in/r/calendar.json",
+        "https://indiacn.in/r/time-picker.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/date-picker.tsx",
           "type": "registry:ui"
         }
       ]

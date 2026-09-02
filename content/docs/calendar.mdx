@@ -1,0 +1,104 @@
+---
+title: Calendar
+description: A date grid with day, month and decade views.
+---
+
+## Introduction
+
+One surface, four layouts: a single month, two months side by side for ranges, the twelve months of a year, and a decade of years. The month and decade grids drill down — pick a year, then a month, then a day.
+
+Measured from the UX4G kit at 1:1: today is a 1px `primary` outline, the selected day is filled `primary`, a range fills `primary-50`, and the card carries a shadow rather than a border.
+
+Two deliberate departures. The kit's day cells are 24px on a 41px pitch; these are 36px on a 37px pitch, so the footprint is unchanged but the target clears [WCAG 2.5.8](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) comfortably. And in the two-month view the kit repeats the full arrow set under both headers — here the back arrows sit on the first month and the forward arrows on the last, because four controls that move the same window read as four different destinations to a screen reader.
+
+Most pages want [Date Picker](/docs/date-picker) instead, which puts this grid behind a trigger.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/calendar.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { Calendar } from '@/components/ui/calendar';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`const [date, setDate] = useState<Date | null>(null);
+
+return <Calendar value={date} onValueChange={setDate} showViewControls />;`}
+/>
+
+## Examples
+
+### Default
+
+The month and year selects plus the Month/Year buttons appear with `showViewControls`.
+
+<ComponentPreview name='CalendarDefault' />
+
+### Range
+
+Passing `range` switches the grid to spans. The first click sets the start, the second the end; clicking before the start begins a new span.
+
+<ComponentPreview name='CalendarRange' />
+
+### Month view
+
+<ComponentPreview name='CalendarMonthView' />
+
+### Year view
+
+The decade grid shows the year either side of the decade in grey, matching the kit.
+
+<ComponentPreview name='CalendarYearView' />
+
+### Bounded
+
+<ComponentPreview name='CalendarBounded' />
+
+## Accessibility
+
+The day grid follows the ARIA grid pattern:
+
+| Key                                       | Moves                     |
+| ----------------------------------------- | ------------------------- |
+| <kbd>←</kbd> <kbd>→</kbd>                 | One day                   |
+| <kbd>↑</kbd> <kbd>↓</kbd>                 | One week                  |
+| <kbd>Home</kbd> <kbd>End</kbd>            | Start and end of the week |
+| <kbd>PageUp</kbd> <kbd>PageDown</kbd>     | One month                 |
+| <kbd>Shift</kbd> + <kbd>PageUp/Down</kbd> | One year                  |
+
+- Only the focused cell is tabbable, so the whole grid is a single tab stop rather than forty-two.
+- Each day's accessible name is the full date — "21 October 2021" — not the bare number, which on its own could be any month.
+- Today carries `aria-current='date'` and the chosen day `aria-selected`, so neither state depends on colour.
+- Days outside the shown month are disabled rather than dimmed-and-clickable, so their grey never has to pass a contrast rule it cannot meet.
+- The arrows and the month/year selects all carry text labels; the chevrons are `aria-hidden`.
+
+## API Reference
+
+### Calendar
+
+| Prop               | Type                          | Default | Description                                             |
+| ------------------ | ----------------------------- | ------- | ------------------------------------------------------- |
+| `value`            | `Date \| null`                | `null`  | Selected day in single-select mode                      |
+| `onValueChange`    | `(date: Date) => void`        | —       | Fires when a day is chosen                              |
+| `range`            | `IDateRange`                  | —       | Selected span; providing it switches the grid to ranges |
+| `onRangeChange`    | `(range: IDateRange) => void` | —       | Fires on each end of the span                           |
+| `months`           | `1 \| 2`                      | `1`     | Months shown side by side                               |
+| `defaultView`      | `'day' \| 'month' \| 'year'`  | `'day'` | Which grid opens first                                  |
+| `showViewControls` | `boolean`                     | `false` | Shows the month and year selects and the view toggle    |
+| `fixedWeeks`       | `boolean`                     | `false` | Always render six week rows, even an all-outside one    |
+| `weekStartsOn`     | `0 \| 1`                      | `1`     | Sunday or Monday; the kit starts on Monday              |
+| `min`              | `Date`                        | —       | Earliest selectable day                                 |
+| `max`              | `Date`                        | —       | Latest selectable day                                   |
+| `referenceDate`    | `Date`                        | —       | Anchors "today" and the opening month; fix it in tests  |
+
+`IDateRange` is `{ from: Date | null; to: Date | null }`.
+
+The module also exports the date helpers it uses — `startOfDay`, `addDays`, `addMonths`, `isSameDay`, `MONTH_LABELS` and `MONTH_LABELS_LONG` — so a consumer does not have to add a date library for the same four operations.

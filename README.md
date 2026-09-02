@@ -1,6 +1,6 @@
 # 🇮🇳 IndiaCN UI — Community Design System for India
 
-IndiaCN is an **open-source design system** built for India's digital services — especially government and public-service applications. Based on the [UX4G 2.0 design system](https://www.figma.com/community/file/1471833723727926454), it ships as a **shadcn-compatible registry** with 39 production-ready components.
+IndiaCN is an **open-source design system** built for India's digital services — especially government and public-service applications. Based on the [UX4G 2.0 design system](https://www.figma.com/community/file/1471833723727926454), it ships as a **shadcn-compatible registry** with 46 production-ready components.
 
 - **Accessibility-first** — WCAG 2.1 AA text contrast, checked in CI; built on Radix UI primitives
 - **Copy-pasteable** — source lands directly in your repo; no runtime dependency, no version lock
@@ -15,8 +15,8 @@ IndiaCN is an **open-source design system** built for India's digital services �
 
 🟢 **Active development**
 
-- **39 components**, each measured against the UX4G Figma kit rather than approximated
-- **40 documentation pages** at [indiacn.in/docs](https://indiacn.in/docs)
+- **46 components**, each measured against the UX4G Figma kit rather than approximated
+- **58 documentation pages** at [indiacn.in/docs](https://indiacn.in/docs)
 - UX4G 2.0 theme: 7 semantic colour scales, mirrored light/dark ramps, focus rings
 - Installable today by registry URL. A listing in the public
   [shadcn registry directory](https://ui.shadcn.com/registry) has been submitted and is not yet accepted — the URL install works regardless.
@@ -31,6 +31,10 @@ Some of what is here exists because government services need it, and most compon
 | [Navbar](https://indiacn.in/docs/navbar)                                                  | The two-tier government header, with the Government of India mark and a skip link that actually works                                                                                |
 | [Input](https://indiacn.in/docs/input) / [Textarea](https://indiacn.in/docs/textarea)     | The four validation states UX4G defines, so each application does not invent its own                                                                                                 |
 | [Stepper](https://indiacn.in/docs/stepper) / [Progress](https://indiacn.in/docs/progress) | Multi-stage applications and status tracking                                                                                                                                         |
+| [Date Picker](https://indiacn.in/docs/date-picker)                                        | Dates spelled out as `21 Oct 2021`, because `21/10/2021` and `10/21/2021` are the same eleven characters and different days                                                          |
+| [Table](https://indiacn.in/docs/table)                                                    | A real `<table>` with row headers, so a screen reader reads "ARN-4821, District, Pune" instead of "Pune"                                                                             |
+| [Feedback Widget](https://indiacn.in/docs/feedback-widget)                                | The edge tab every state portal has, with a rating that is a radio group rather than five unlabelled faces                                                                           |
+| [Footer](https://indiacn.in/docs/footer)                                                  | Link columns, departmental attribution and the policy strip, each column its own labelled landmark                                                                                   |
 
 ---
 
