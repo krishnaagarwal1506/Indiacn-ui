@@ -1,0 +1,97 @@
+---
+title: Navbar
+description: Government website header with a utility bar, brand, navigation and actions.
+---
+
+## Introduction
+
+UX4G specifies a two-tier header for government sites: a primary utility bar carrying the Government of India mark and site-wide controls, over a white bar carrying brand, navigation and actions.
+
+The parts are slots rather than a single configured component, because a header is the piece every site changes most.
+
+## Installation
+
+<ComponentSource collapsible={false} code={`npx shadcn@latest add https://indiacn.in/r/navbar.json`} />
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Navbar,
+  NavbarUtilityBar,
+  NavbarGovBadge,
+  NavbarSkipLink,
+  NavbarSeparator,
+  NavbarMain,
+  NavbarBrand,
+  NavbarNav,
+  NavbarLink,
+  NavbarActions,
+  NavbarToggle,
+} from '@/components/ui/navbar';`}
+/>
+
+## Example
+
+The preview is far narrower than a real header, so this example carries three links rather than the six a site would. Note also that the collapse breakpoint is a **viewport** query, not a container one — inside this box the desktop layout still applies even though the box is narrow.
+
+<ComponentPreview name='NavbarDefault' />
+
+## The skip link
+
+`NavbarSkipLink` is hidden until it receives focus, then appears in the utility bar. That is the only arrangement that works: it has to be the first thing a keyboard user reaches, and invisible to everyone else.
+
+Point it at your main landmark and give that landmark the matching id:
+
+<ComponentSource
+  collapsible={false}
+  code={`<NavbarSkipLink href="#main" />
+...
+<main id="main" tabIndex={-1}>…</main>`}
+/>
+
+Without `tabIndex={-1}` on the target, some browsers move the viewport but not focus, so the next Tab returns to the header.
+
+## The tricolour
+
+`NavbarGovBadge` draws the flag from a theme token rather than shipping an image, so installing the component needs no asset file.
+
+The token is defined once and **deliberately not redefined in `.dark`** — saffron, white and green are the flag, not a palette we retint for dark mode. If you need it elsewhere, the utility is `bg-tricolour`.
+
+## Measurements
+
+| | value |
+| --- | ----- |
+| utility bar | `#613af5` (`primary`), 41px |
+| main bar | `#ffffff` (`neutral-0`), 72px |
+| content width | 1440px max |
+
+## Responsive behaviour
+
+Below `lg` the navigation collapses behind `NavbarToggle` and opens as a stacked panel beneath the header rather than an overlay, so it never traps focus and never covers the content it links to. `NavbarMain` needs `className="relative"` for the panel to anchor to it.
+
+## API Reference
+
+### NavbarUtilityBar
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `start` | `ReactNode` | `<NavbarGovBadge />` | Leading content |
+| `children` | `ReactNode` | — | Trailing controls |
+
+### NavbarGovBadge
+
+| Prop | Type | Default |
+| ---- | ---- | ------- |
+| `href` | `string` | `https://www.india.gov.in` |
+| `label` | `string` | `Government of India` |
+
+### NavbarLink
+
+| Prop | Type | Description |
+| ---- | ---- | ----------- |
+| `active` | `boolean` | Marks the current page, and sets `aria-current` |
+| `hasMenu` | `boolean` | Shows a chevron for a link that opens a menu |
+
+### Other parts
+
+`NavbarBrand`, `NavbarNav`, `NavbarActions`, `NavbarSeparator` and `NavbarSecondaryRow` are layout slots. `NavbarToggle` reads its expanded state from the navbar and controls `NavbarNav` by id.

@@ -17,6 +17,7 @@ export interface IRegistryEntry {
   meta?: Record<string, any>;
 }
 
+import { AccessibilityWidgetDefault } from '@/components/examples/accessibility-widget-demo';
 import { AccordionDefault, AccordionMultiple } from '@/components/examples/accordion-demo';
 import { AccordionBorderless } from '@/components/examples/accordion-demo';
 import {
@@ -65,6 +66,11 @@ import {
 } from '@/components/examples/button-group-demo';
 import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
 import { CardElevated } from '@/components/examples/card-demo';
+import {
+  CarouselAutoPlay,
+  CarouselDark,
+  CarouselDefault,
+} from '@/components/examples/carousel-demo';
 import {
   CheckboxDefault,
   CheckboxGroup,
@@ -121,6 +127,7 @@ import {
   ListGroupWithBadges,
 } from '@/components/examples/list-group-demo';
 import { ModalDefault, ModalScrollable, ModalSizes } from '@/components/examples/modal-demo';
+import { NavbarDefault } from '@/components/examples/navbar-demo';
 import {
   OffcanvasBodyScroll,
   OffcanvasDefault,
@@ -133,6 +140,12 @@ import {
   PaginationWithEllipsis,
 } from '@/components/examples/pagination-demo';
 import { PopoverDefault, PopoverPlacements } from '@/components/examples/popover-demo';
+import {
+  ProgressCircleDefault,
+  ProgressCircleHalf,
+  ProgressCircleSizes,
+  ProgressCircleWithLabel,
+} from '@/components/examples/progress-circle-demo';
 import {
   ProgressDefault,
   ProgressMultiple,
@@ -198,6 +211,7 @@ import {
   TypographySmall,
   TypographyTable,
 } from '@/components/examples/typography-demo';
+import { AccessibilityWidget } from '@/components/ui/accessibility-widget';
 import { Accordion } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertLink, AlertTitle } from '@/components/ui/alert';
 import { Avatar } from '@/components/ui/avatar';
@@ -206,6 +220,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
 import { Card } from '@/components/ui/card';
+import { Carousel } from '@/components/ui/carousel';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
 import { CloseButton } from '@/components/ui/close-button';
@@ -217,10 +232,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ListGroup } from '@/components/ui/list-group';
 import { Modal } from '@/components/ui/modal';
+import { Navbar } from '@/components/ui/navbar';
 import { Offcanvas } from '@/components/ui/offcanvas';
 import { Pagination } from '@/components/ui/pagination';
 import { Popover } from '@/components/ui/popover';
 import { Progress, ProgressBar } from '@/components/ui/progress';
+import { ProgressCircle } from '@/components/ui/progress-circle';
 import { RadioGroup } from '@/components/ui/radio-group';
 import { Search } from '@/components/ui/search';
 import { Separator } from '@/components/ui/separator';
@@ -4069,6 +4086,376 @@ export default function Component() {
 }`,
     files: [
       { path: 'components/examples/close-button-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  'progress-circle': {
+    name: 'progress-circle',
+    description: 'Circular and half-circular progress indicator',
+    type: 'registry:ui',
+    component: ProgressCircle,
+    files: [{ path: 'components/ui/progress-circle.tsx', type: 'registry:ui', target: '' }],
+  },
+  carousel: {
+    name: 'carousel',
+    description: 'Slideshow with indicators and accessible controls',
+    type: 'registry:ui',
+    component: Carousel,
+    files: [{ path: 'components/ui/carousel.tsx', type: 'registry:ui', target: '' }],
+  },
+  'accessibility-widget': {
+    name: 'accessibility-widget',
+    description: 'Floating panel of reading adjustments',
+    type: 'registry:ui',
+    component: AccessibilityWidget,
+    files: [{ path: 'components/ui/accessibility-widget.tsx', type: 'registry:ui', target: '' }],
+  },
+  navbar: {
+    name: 'navbar',
+    description: 'Government website header',
+    type: 'registry:ui',
+    component: Navbar,
+    files: [{ path: 'components/ui/navbar.tsx', type: 'registry:ui', target: '' }],
+  },
+  ProgressCircleDefault: {
+    name: 'ProgressCircleDefault',
+    description: 'Circular progress at 40%',
+    type: 'registry:example',
+    component: ProgressCircleDefault,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return <ProgressCircle value={40} />;
+}`,
+    files: [
+      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  ProgressCircleSizes: {
+    name: 'ProgressCircleSizes',
+    description: 'Pixel sizes for inline use',
+    type: 'registry:example',
+    component: ProgressCircleSizes,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-8'>
+      {([32, 48, 64, 96] as const).map(size => (
+        <div key={size} className='flex flex-col items-center gap-2'>
+          <ProgressCircle value={40} size={size} showValue={size >= 48} />
+          <Label3 className='text-neutral-600'>{size}px</Label3>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  ProgressCircleHalf: {
+    name: 'ProgressCircleHalf',
+    description: 'Half-circle shape',
+    type: 'registry:example',
+    component: ProgressCircleHalf,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-8'>
+      <ProgressCircle value={40} size={96} shape='half' />
+      <ProgressCircle value={72} size={140} shape='half' />
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  ProgressCircleWithLabel: {
+    name: 'ProgressCircleWithLabel',
+    description: 'Caption alongside the value',
+    type: 'registry:example',
+    component: ProgressCircleWithLabel,
+    code: `import { ProgressCircle } from '@/components/ui/progress-circle';
+import { Label3 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='flex flex-wrap items-end justify-center gap-8'>
+      <ProgressCircle value={40} label='Users' />
+      <ProgressCircle value={40} size='xs' label='Uploading' />
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CarouselDefault: {
+    name: 'CarouselDefault',
+    description: 'Carousel over light slides',
+    type: 'registry:example',
+    component: CarouselDefault,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel className='w-full max-w-[640px]' label='How it works'>
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='flex h-[280px] items-center justify-center bg-neutral-50'>
+              <Headline4 className='text-neutral-400'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CarouselDark: {
+    name: 'CarouselDark',
+    description: 'Carousel over dark slides',
+    type: 'registry:example',
+    component: CarouselDark,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel variant='dark' className='w-full max-w-[640px]' label='How it works, dark slides'>
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='bg-neutral flex h-[280px] items-center justify-center'>
+              <Headline4 className='text-neutral-0/40'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CarouselAutoPlay: {
+    name: 'CarouselAutoPlay',
+    description: 'Auto-advancing carousel with a pause control',
+    type: 'registry:example',
+    component: CarouselAutoPlay,
+    code: `import {
+  Carousel,
+  CarouselCaption,
+  CarouselContent,
+  CarouselIndicators,
+  CarouselItem,
+  CarouselNext,
+  CarouselPlayPause,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
+import { Headline4 } from '@/components/ui/typography';
+
+const SLIDES = [
+  { title: 'Apply online', body: 'Start a new application from any device.' },
+  { title: 'Track progress', body: 'Follow every stage with a reference number.' },
+  { title: 'Collect your document', body: 'Download it or pick it up at a centre.' },
+];
+
+export default function Component() {
+  return (
+    <Carousel
+      autoPlayInterval={4000}
+      className='w-full max-w-[640px]'
+      label='How it works, advancing automatically'
+    >
+      <CarouselContent>
+        {SLIDES.map(slide => (
+          <CarouselItem key={slide.title}>
+            <div className='flex h-[280px] items-center justify-center bg-neutral-50'>
+              <Headline4 className='text-neutral-400'>{slide.title}</Headline4>
+            </div>
+            <CarouselCaption title={slide.title}>{slide.body}</CarouselCaption>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPlayPause />
+      <CarouselPrevious />
+      <CarouselNext />
+      <CarouselIndicators />
+    </Carousel>
+  );
+}`,
+    files: [
+      { path: 'components/examples/carousel-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  AccessibilityWidgetDefault: {
+    name: 'AccessibilityWidgetDefault',
+    description: 'Accessibility widget over a page of content',
+    type: 'registry:example',
+    component: AccessibilityWidgetDefault,
+    code: `'use client';
+
+import { AccessibilityWidget } from '@/components/ui/accessibility-widget';
+import { Body1, Headline5 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='relative h-[420px] w-full overflow-hidden rounded-md border border-neutral-100'>
+      <div className='flex flex-col gap-3 p-6'>
+        <Headline5>Apply for a ration card</Headline5>
+        <Body1 className='max-w-[420px] text-neutral-600'>
+          Adjust text size, spacing and contrast from the button in the corner. Settings apply to
+          the whole page and are remembered.
+        </Body1>
+        <Body1>
+          Read the{' '}
+          <a href='#eligibility' className='text-primary underline'>
+            eligibility criteria
+          </a>{' '}
+          before you begin.
+        </Body1>
+      </div>
+      <AccessibilityWidget className='absolute right-4 bottom-4' />
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/accessibility-widget-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  NavbarDefault: {
+    name: 'NavbarDefault',
+    description: 'Header with utility bar, navigation and actions',
+    type: 'registry:example',
+    component: NavbarDefault,
+    code: `'use client';
+
+import { Search as SearchIcon } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import {
+  Navbar,
+  NavbarActions,
+  NavbarBrand,
+  NavbarLink,
+  NavbarMain,
+  NavbarNav,
+  NavbarSeparator,
+  NavbarSkipLink,
+  NavbarToggle,
+  NavbarUtilityBar,
+} from '@/components/ui/navbar';
+import { Label2, Title2 } from '@/components/ui/typography';
+
+const LINKS = [
+  { label: 'About us', href: '#about' },
+  { label: 'Citizen Corner', href: '#citizen', hasMenu: true },
+  { label: 'Resources', href: '#resources', hasMenu: true },
+];
+
+export default function Component() {
+  return (
+    <div className='relative w-full overflow-hidden rounded-md border border-neutral-100'>
+      <Navbar>
+        <NavbarUtilityBar>
+          <NavbarSkipLink href='#main-demo' />
+          <NavbarSeparator />
+          <Label2>Accessibility</Label2>
+        </NavbarUtilityBar>
+
+        <NavbarMain className='relative'>
+          <NavbarBrand href='#home'>
+            <Title2 className='text-primary font-semibold'>Sewa Setu</Title2>
+          </NavbarBrand>
+
+          <NavbarNav>
+            {LINKS.map(link => (
+              <NavbarLink
+                key={link.label}
+                href={link.href}
+                hasMenu={link.hasMenu}
+                active={link.label === 'About us'}
+              >
+                {link.label}
+              </NavbarLink>
+            ))}
+          </NavbarNav>
+
+          <NavbarActions>
+            <Button variant='text' iconButton aria-label='Search'>
+              <SearchIcon />
+            </Button>
+            <Button variant='outlined' size='sm' className='hidden sm:inline-flex'>
+              Login
+            </Button>
+            <Button size='sm' className='hidden sm:inline-flex'>
+              Signup
+            </Button>
+            <NavbarToggle />
+          </NavbarActions>
+        </NavbarMain>
+      </Navbar>
+
+      <div id='main-demo' className='p-6'>
+        <Label2 className='text-neutral-600'>
+          Page content starts here. Tab from the top to reach the skip link.
+        </Label2>
+      </div>
+    </div>
+  );
+}`,
+    files: [
+      { path: 'components/examples/navbar-demo.tsx', type: 'registry:example', target: '' },
     ],
   },
 };
