@@ -30,7 +30,41 @@ const actual = {
   ).size,
 };
 
+/*
+ * The README quotes the same figures in prose, which is exactly the kind of
+ * place they rot. Each pattern must capture the number in group 1.
+ */
+const README = read('README.md');
+const README_CLAIMS = [
+  {
+    label: 'README components',
+    pattern: /(\d+) production-ready components/,
+    key: 'COMPONENT_COUNT',
+  },
+  { label: 'README components', pattern: /\*\*(\d+) components\*\*/, key: 'COMPONENT_COUNT' },
+  {
+    label: 'README doc pages',
+    pattern: /\*\*(\d+) documentation pages\*\*/,
+    key: 'DOC_PAGE_COUNT',
+  },
+  { label: 'README scales', pattern: /(\d+) semantic colour scales/, key: 'SEMANTIC_SCALE_COUNT' },
+];
+
 let failed = false;
+
+for (const { label, pattern, key } of README_CLAIMS) {
+  const match = README.match(pattern);
+  if (!match) {
+    console.log(`SKIP  ${label.padEnd(22)} phrase not found — pattern may need updating`);
+    continue;
+  }
+  const stated = Number(match[1]);
+  const expected = actual[key];
+  const ok = stated === expected;
+  if (!ok) failed = true;
+  console.log(`${ok ? 'pass' : 'FAIL'}  ${label.padEnd(22)} stated ${stated}, actual ${expected}`);
+}
+
 for (const [key, expected] of Object.entries(actual)) {
   const stated = claimed[key];
   const ok = stated === expected;
@@ -39,7 +73,7 @@ for (const [key, expected] of Object.entries(actual)) {
 }
 
 if (failed) {
-  console.error('\nUpdate the counts in constants/index.ts to match.');
+  console.error('\nUpdate the counts in constants/index.ts and README.md to match.');
   process.exit(1);
 }
 console.log('\nAll quoted figures match their sources.');
