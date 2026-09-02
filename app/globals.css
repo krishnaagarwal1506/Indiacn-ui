@@ -136,6 +136,9 @@
   --color-hint: var(--neutral-600);
 
   --color-primary-foreground: var(--primary-foreground);
+  --color-flag-band-top: var(--flag-band-top);
+  --color-flag-band-middle: var(--flag-band-middle);
+  --color-flag-band-bottom: var(--flag-band-bottom);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-success-foreground: var(--success-foreground);
   --color-danger-foreground: var(--danger-foreground);
@@ -163,6 +166,14 @@
 
 :root {
   --radius: 0.5rem;
+
+  /* The national tricolour: saffron, white, India green. Named by band rather
+   * than by colour because `no-direct-colors` reads a colour word in a token
+   * name as a raw colour. Deliberately absent from .dark — the flag is not a
+   * palette we get to retint. */
+  --flag-band-top: #ff9933;
+  --flag-band-middle: #ffffff;
+  --flag-band-bottom: #138808;
 
   --primary: #613af5;
   --primary-50: #faefff;

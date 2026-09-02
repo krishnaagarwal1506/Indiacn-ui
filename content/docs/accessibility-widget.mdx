@@ -1,0 +1,79 @@
+---
+title: Accessibility Widget
+description: Floating panel of reading adjustments that apply to the whole document and persist.
+---
+
+## Introduction
+
+UX4G ships an accessibility panel because Indian public services must serve everyone, and a citizen who needs larger text should not have to know how to change a browser setting to get it.
+
+This is the component that most justifies the library existing. Every adjustment applies to the whole document, not just the components on the page, and is remembered across navigation.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/accessibility-widget.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { AccessibilityWidget } from '@/components/ui/accessibility-widget';`}
+/>
+
+## Usage
+
+Render it once, near the root of your app. It fixes itself to the bottom-right corner.
+
+<ComponentSource collapsible={false} code={`<AccessibilityWidget />`} />
+
+## Example
+
+The widget below is scoped to its container so it does not follow you around the docs. In your app it is fixed to the viewport.
+
+<ComponentPreview name='AccessibilityWidgetDefault' />
+
+## What each setting does
+
+| Setting | Effect |
+| ------- | ------ |
+| Increase text size | Root font size, in three steps of 12.5%. Everything sized in `rem` scales with it |
+| Increase line height | Root line height, up to 2.25 |
+| Increase text spacing | Letter spacing, up to 0.15em |
+| Highlight links | Underline plus a visible outline on every link |
+| Dyslexia friendly | Switches to a hyperlegible font stack and loosens tracking |
+| Hide images | Hides images, video and decorative SVG, leaving the text |
+| Invert colours | Inverts the page, re-inverting media so photographs stay readable |
+| Reading mask | A band that follows the pointer and dims the rest of the page |
+
+Steps cycle: pressing a `+` three times and once more returns it to normal, so there is always a way back without hunting for Reset.
+
+## Why there is no "Screen Reader" row
+
+UX4G's panel lists one. This does not ship it.
+
+A button labelled "Screen Reader" that reads the page with the browser's speech API is not a screen reader — it has no navigation, no landmark support, no forms mode, and no braille output. Offering one tells a sighted product owner the box is ticked while giving a blind visitor something markedly worse than the software they already use.
+
+If you have a real integration, pass it in:
+
+<ComponentSource
+  collapsible={false}
+  code={`<AccessibilityWidget extraRows={<MyScreenReaderRow />} />`}
+/>
+
+## Notes
+
+- Settings are stored under `indiacn-accessibility` in `localStorage`. Blocked storage is handled — the settings simply do not persist.
+- State lives in a module store read through `useSyncExternalStore`, so two widgets on one page cannot disagree, and the server render always starts from the defaults.
+- The panel closes on <kbd>Escape</kbd>.
+- The behaviour stylesheet is injected by the component, so installing through the registry brings the behaviour with it.
+
+## API Reference
+
+### AccessibilityWidget
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `title` | `string` | `'Accessibility options'` | Panel heading and the button's accessible name |
+| `extraRows` | `ReactNode` | — | Rows appended before the footer |
+| `className` | `string` | — | Overrides the fixed positioning |

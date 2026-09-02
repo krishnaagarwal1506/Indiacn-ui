@@ -123,6 +123,9 @@
           "color-disabled": "color-mix(in srgb, var(--neutral) 50%, transparent)",
           "color-hint": "var(--neutral-600)",
           "color-primary-foreground": "var(--primary-foreground)",
+          "color-flag-band-top": "var(--flag-band-top)",
+          "color-flag-band-middle": "var(--flag-band-middle)",
+          "color-flag-band-bottom": "var(--flag-band-bottom)",
           "color-secondary-foreground": "var(--secondary-foreground)",
           "color-success-foreground": "var(--success-foreground)",
           "color-danger-foreground": "var(--danger-foreground)",
@@ -131,6 +134,9 @@
         },
         "light": {
           "radius": "0.5rem",
+          "flag-band-top": "#ff9933",
+          "flag-band-middle": "#ffffff",
+          "flag-band-bottom": "#138808",
           "primary": "#613af5",
           "primary-50": "#faefff",
           "primary-100": "#ecd0ff",
@@ -966,6 +972,73 @@
       "files": [
         {
           "path": "components/ui/close-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress-circle",
+      "type": "registry:ui",
+      "title": "Progress Circle",
+      "description": "Circular and half-circular progress indicator with an optional caption.",
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/progress-circle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "Slideshow with bar indicators, keyboard navigation and an accessible pause control.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accessibility-widget",
+      "type": "registry:ui",
+      "title": "Accessibility Widget",
+      "description": "Floating panel of reading adjustments that apply to the whole document and persist.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accessibility-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:ui",
+      "title": "Navbar",
+      "description": "Government website header with a utility bar, brand, navigation and actions.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/navbar.tsx",
           "type": "registry:ui"
         }
       ]
