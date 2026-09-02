@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slider",
+  "title": "Slider",
+  "description": "Single or range slider with optional value labels.",
+  "dependencies": ["@radix-ui/react-slider"],
+  "registryDependencies": [
+    "https://indiacn.in/r/theme.json",
+    "https://indiacn.in/r/typography.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/slider.tsx",
+      "content": "'use client';\n\nimport * as SliderPrimitive from '@radix-ui/react-slider';\nimport { ComponentProps, useMemo } from 'react';\n\nimport { Body1 } from '@/components/ui/typography';\nimport { cn } from '@/lib/utils';\n\n/*\n * UX4G range slider: an 8px neutral-100 track, an 8px primary range, and 24px\n * white thumbs with a 1px primary border. The label variant puts each thumb's\n * value 13px beneath the track, the first left-aligned and the last\n * right-aligned so neither runs off the end.\n */\n/** Default label format. Hoisted so it is not a new reference each render. */\nconst asPercent = (value: number) => `${value}%`;\n\ninterface ISliderProps extends Omit<ComponentProps<typeof SliderPrimitive.Root>, 'children'> {\n  /** Shows each thumb's value beneath the track. */\n  showLabels?: boolean;\n  /** Formats a value for its label and for the thumb's accessible name. */\n  formatValue?: (value: number) => string;\n}\n\n/**\n * Single or range slider, built on Radix so dragging, touch and keyboard\n * behaviour are not reimplemented.\n *\n * Pass two values for a range. Every thumb gets its own accessible name\n * through `formatValue`, because \"50\" alone tells a screen-reader user\n * nothing about what is being set.\n */\nfunction Slider({\n  className,\n  showLabels = false,\n  formatValue = asPercent,\n  value,\n  defaultValue,\n  min = 0,\n  max = 100,\n  ...props\n}: ISliderProps) {\n  const values = useMemo(() => value ?? defaultValue ?? [min], [value, defaultValue, min]);\n\n  return (\n    <div className={cn('w-full', className)}>\n      <SliderPrimitive.Root\n        className='relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50'\n        value={value}\n        defaultValue={defaultValue}\n        min={min}\n        max={max}\n        {...props}\n      >\n        <SliderPrimitive.Track className='relative h-2 w-full grow overflow-hidden rounded-full bg-neutral-100'>\n          <SliderPrimitive.Range className='bg-primary absolute h-full' />\n        </SliderPrimitive.Track>\n        {values.map((_, i) => (\n          <SliderPrimitive.Thumb\n            key={i}\n            aria-label={`${formatValue(values[i])}`}\n            className='border-primary bg-neutral-0 focus-visible:shadow-focus-primary block size-6 cursor-grab rounded-full border transition-[box-shadow] focus-visible:outline-none active:cursor-grabbing'\n          />\n        ))}\n      </SliderPrimitive.Root>\n\n      {showLabels && (\n        <div className='mt-3 flex justify-between'>\n          {values.map((current, i) => (\n            <Body1 key={i} className='text-neutral'>\n              {formatValue(current)}\n            </Body1>\n          ))}\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport { Slider };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

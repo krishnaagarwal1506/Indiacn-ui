@@ -200,6 +200,12 @@ import {
 } from '@/components/examples/separator-demo';
 import { SkeletonCard, SkeletonDefault, SkeletonList } from '@/components/examples/skeleton-demo';
 import {
+  SliderDefault,
+  SliderDisabled,
+  SliderFormatted,
+  SliderRange,
+} from '@/components/examples/slider-demo';
+import {
   SpinnerDefault,
   SpinnerGrow,
   SpinnerSizes,
@@ -281,6 +287,7 @@ import { RadioGroup } from '@/components/ui/radio-group';
 import { Search } from '@/components/ui/search';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Slider } from '@/components/ui/slider';
 import { Spinner } from '@/components/ui/spinner';
 import { Stepper } from '@/components/ui/stepper';
 import { Switch } from '@/components/ui/switch';
@@ -5343,5 +5350,113 @@ export default function Component() {
     files: [
       { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
     ],
+  },
+  slider: {
+    name: 'slider',
+    description: 'Single or range slider with optional value labels',
+    type: 'registry:ui',
+    component: Slider,
+    files: [{ path: 'components/ui/slider.tsx', type: 'registry:ui', target: '' }],
+  },
+  SliderDefault: {
+    name: 'SliderDefault',
+    description: 'Single-value slider',
+    type: 'registry:example',
+    component: SliderDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+
+export default function Component() {
+  const [value, setValue] = useState([40]);
+
+  return (
+    <div className='w-full max-w-[360px]'>
+      <Label className='mb-3 block'>Household income share</Label>
+      <Slider value={value} onValueChange={setValue} showLabels />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/slider-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  SliderRange: {
+    name: 'SliderRange',
+    description: 'Two-thumb range',
+    type: 'registry:example',
+    component: SliderRange,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+
+export default function Component() {
+  const [value, setValue] = useState([25, 75]);
+
+  return (
+    <div className='w-full max-w-[360px]'>
+      <Label className='mb-3 block'>Age range</Label>
+      <Slider value={value} onValueChange={setValue} showLabels />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/slider-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  SliderFormatted: {
+    name: 'SliderFormatted',
+    description: 'Custom value formatting',
+    type: 'registry:example',
+    component: SliderFormatted,
+    code: `'use client';
+
+import { useCallback, useState } from 'react';
+
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+
+export default function Component() {
+  const [value, setValue] = useState([20000, 65000]);
+  const formatRupees = useCallback((amount: number) => \`₹\${amount.toLocaleString('en-IN')}\`, []);
+
+  return (
+    <div className='w-full max-w-[360px]'>
+      <Label className='mb-3 block'>Annual income</Label>
+      <Slider
+        value={value}
+        onValueChange={setValue}
+        min={0}
+        max={100000}
+        step={5000}
+        showLabels
+        formatValue={formatRupees}
+      />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/slider-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  SliderDisabled: {
+    name: 'SliderDisabled',
+    description: 'Disabled state',
+    type: 'registry:example',
+    component: SliderDisabled,
+    code: `'use client';
+
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
+
+export default function Component() {
+  return (
+    <div className='w-full max-w-[360px]'>
+      <Label className='mb-3 block'>Locked after submission</Label>
+      <Slider defaultValue={[30, 60]} showLabels disabled />
+    </div>
+  );
+}`,
+    files: [{ path: 'components/examples/slider-demo.tsx', type: 'registry:example', target: '' }],
   },
 };
