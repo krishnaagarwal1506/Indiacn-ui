@@ -17,6 +17,7 @@ export interface IRegistryEntry {
   meta?: Record<string, any>;
 }
 
+import { AccessibilityWidgetDefault } from '@/components/examples/accessibility-widget-demo';
 import { AccordionDefault, AccordionMultiple } from '@/components/examples/accordion-demo';
 import { AccordionBorderless } from '@/components/examples/accordion-demo';
 import {
@@ -192,6 +193,7 @@ import {
   TypographySmall,
   TypographyTable,
 } from '@/components/examples/typography-demo';
+import { AccessibilityWidget } from '@/components/ui/accessibility-widget';
 import { Accordion } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertLink, AlertTitle } from '@/components/ui/alert';
 import { Avatar } from '@/components/ui/avatar';
@@ -3974,5 +3976,51 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  'accessibility-widget': {
+    name: 'accessibility-widget',
+    description: 'Floating panel of reading adjustments',
+    type: 'registry:ui',
+    component: AccessibilityWidget,
+    files: [{ path: 'components/ui/accessibility-widget.tsx', type: 'registry:ui', target: '' }],
+  },
+  AccessibilityWidgetDefault: {
+    name: 'AccessibilityWidgetDefault',
+    description: 'Accessibility widget over a page of content',
+    type: 'registry:example',
+    component: AccessibilityWidgetDefault,
+    code: `'use client';
+
+import { AccessibilityWidget } from '@/components/ui/accessibility-widget';
+import { Body1, Headline5 } from '@/components/ui/typography';
+
+export default function Component() {
+  return (
+    <div className='relative h-[420px] w-full overflow-hidden rounded-md border border-neutral-100'>
+      <div className='flex flex-col gap-3 p-6'>
+        <Headline5>Apply for a ration card</Headline5>
+        <Body1 className='max-w-[420px] text-neutral-600'>
+          Adjust text size, spacing and contrast from the button in the corner. Settings apply to
+          the whole page and are remembered.
+        </Body1>
+        <Body1>
+          Read the{' '}
+          <a href='#eligibility' className='text-primary underline'>
+            eligibility criteria
+          </a>{' '}
+          before you begin.
+        </Body1>
+      </div>
+      <AccessibilityWidget className='absolute right-4 bottom-4' />
+    </div>
+  );
+}`,
+    files: [
+      {
+        path: 'components/examples/accessibility-widget-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
   },
 };

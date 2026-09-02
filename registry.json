@@ -950,6 +950,23 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "accessibility-widget",
+      "type": "registry:ui",
+      "title": "Accessibility Widget",
+      "description": "Floating panel of reading adjustments that apply to the whole document and persist.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/accessibility-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
