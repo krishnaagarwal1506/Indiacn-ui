@@ -1,0 +1,109 @@
+---
+title: Chart
+description: "Chart.js charts with UX4G presentation defaults and a screen-reader data table."
+---
+
+## Introduction
+
+UX4G's charts page is built on [Chart.js](https://www.chartjs.org), and specifies fifteen chart types across five breakpoints. Chart.js already draws all fifteen, so this is one component that themes them rather than fifteen that redraw them.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/chart.json`}
+/>
+
+Chart.js is a real dependency, installed with the component:
+
+<ComponentSource collapsible={false} code={`npm install chart.js`} />
+
+<ComponentSource collapsible={false} code={`import { Chart } from '@/components/ui/chart';`} />
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Chart
+  type="bar"
+  data={{
+    labels: ['Apr', 'May', 'Jun'],
+    datasets: [{ label: 'Applications', data: [420, 405, 190] }],
+  }}
+  title="Applications by month"
+  summary="Applications received between April and June."
+/>`}
+/>
+
+`type` takes any Chart.js type: `bar`, `line`, `pie`, `doughnut`, `radar`, `polarArea`, `scatter`, `bubble`.
+
+## The chart types
+
+Each type has its own page, because choosing the right one matters more than configuring it.
+
+|                                                | For                                    |
+| ---------------------------------------------- | -------------------------------------- |
+| [Bar](/docs/chart/bar)                         | Comparing magnitudes across categories |
+| [Horizontal bar](/docs/chart/horizontal-bar)   | Long labels, or a ranking              |
+| [Stacked bar](/docs/chart/stacked-bar)         | A total and its composition            |
+| [Line](/docs/chart/line)                       | A value over time, or against a target |
+| [Multi-axis line](/docs/chart/multi-axis-line) | Two series in different units          |
+| [Pie](/docs/chart/pie)                         | Rough shares of one whole              |
+| [Doughnut](/docs/chart/doughnut)               | Shares, with a total in the middle     |
+| [Polar area](/docs/chart/polar-area)           | Cyclical categories on a shared radius |
+| [Radar](/docs/chart/radar)                     | One subject across several dimensions  |
+| [Scatter](/docs/chart/scatter)                 | The relationship between two variables |
+| [Bubble](/docs/chart/bubble)                   | Two positions and a size               |
+
+UX4G's page also shows Multitype, Chart Events, Chart Ref and Gradient. Those are Chart.js techniques rather than chart types — they work through `options` and `data` on this same component, and need no separate wrapper.
+
+## A canvas tells a screen reader nothing
+
+This is the part worth reading. A `<canvas>` is a pixel buffer — it has no structure, no labels and no values. A chart that ships without an alternative is a chart that a blind citizen cannot read at all.
+
+So `Chart` requires a `title`, marks the canvas `aria-hidden`, and renders the same data as a **visually-hidden table** with proper row and column headers. Screen-reader users get the numbers; sighted users get the picture; nobody gets less.
+
+`summary` is optional and read before the table. Use it for the thing the chart is meant to show, which is rarely obvious from the values alone.
+
+If you pass your own `options`, they merge over the defaults — but the table comes from `data`, so it stays correct regardless.
+
+## What is measured, and what is ours
+
+Measured off the Figma symbols and reproduced:
+
+|               |                                                 |
+| ------------- | ----------------------------------------------- |
+| title         | centred, bold, above the legend                 |
+| legend        | above the plot, **rectangular** swatches, 40×16 |
+| grid          | both axes, no axis border                       |
+| line segments | straight — `tension: 0`                         |
+| line stroke   | 4px, with 7px ringed points                     |
+| x tick labels | rotate up to 45° when they do not fit           |
+
+**The palette is ours, deliberately.** UX4G's three sample charts use three different colour sets — the bar chart uses `primary` and `primary-100`, the line chart a pale yellow with `primary`, and the pie chart a pastel mix (`#c3f8df`, `#fcecb0`, `#fedebc`) that appears nowhere in the token set. In one of them the legend swatch does not even match the series it labels.
+
+Read together, that page specifies **presentation, not a palette**. So two-series charts land on `primary` and `primary-100`, matching the bar chart exactly, and beyond that the series walk the semantic scales. Colours are read from CSS custom properties at render time, so charts follow light and dark like everything else.
+
+## Notes
+
+- **Charts repaint when the theme changes.** A canvas is painted, not inherited: once Chart.js has drawn a legend label in the light-mode ink, switching to dark leaves it invisible. The component watches the document element and rebuilds. This was a real bug during development — the legend labels disappeared in dark mode and the measurements looked fine.
+- Animation is disabled under `prefers-reduced-motion: reduce`.
+- Datasets keep any colour you set explicitly; the palette only fills gaps.
+- `height` defaults to 320px. Chart.js needs a bounded height, so the canvas sits in a sized wrapper rather than growing without limit.
+
+## API Reference
+
+### Chart
+
+| Prop      | Type           | Default | Description                                    |
+| --------- | -------------- | ------- | ---------------------------------------------- |
+| `type`    | `ChartType`    | —       | Any Chart.js type                              |
+| `data`    | `ChartData`    | —       | Chart.js data object                           |
+| `title`   | `string`       | —       | **Required.** Heading, and the accessible name |
+| `options` | `ChartOptions` | —       | Merged over the UX4G defaults                  |
+| `summary` | `string`       | —       | One sentence, read before the data table       |
+| `height`  | `number`       | `320`   | Canvas height in pixels                        |
+
+### chartPalette()
+
+Returns the series palette as an array of resolved colour strings, for anything you draw yourself alongside a chart.

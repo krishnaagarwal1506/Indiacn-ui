@@ -1,0 +1,24 @@
+---
+title: Bubble Chart
+description: "Three variables at once: two positions and a size."
+---
+
+## Introduction
+
+A bubble chart is a scatter with a third variable encoded as radius.
+
+All chart types share one component. Installation, the palette, and the reason every chart ships with a screen-reader data table are on the [Charts](/docs/chart) page.
+
+## Example
+
+<ComponentPreview name='ChartBubble' />
+
+## When to use it
+
+Use it sparingly. Area is read even less accurately than angle, so treat bubble size as a rough weighting rather than a precise value, and never encode something the reader must read off exactly.
+
+## Usage
+
+<ComponentSource collapsible={false} code={`import { Chart } from '@/components/ui/chart';`} />
+
+See the [Charts](/docs/chart) page for the full API.
