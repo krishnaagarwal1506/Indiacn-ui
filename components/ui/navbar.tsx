@@ -231,7 +231,7 @@ function NavbarToggle({ className, ...props }: ComponentProps<'button'>) {
       aria-controls={navId}
       aria-label={open ? 'Close menu' : 'Open menu'}
       className={cn(
-        'focus-visible:shadow-focus-primary text-neutral hover:border-neutral-300 inline-flex size-10 cursor-pointer items-center justify-center rounded-md border border-neutral-100 transition-colors focus-visible:outline-none lg:hidden',
+        'focus-visible:shadow-focus-primary text-neutral inline-flex size-10 cursor-pointer items-center justify-center rounded-md border border-neutral-100 transition-colors hover:border-neutral-300 focus-visible:outline-none lg:hidden',
         className,
       )}
       {...props}

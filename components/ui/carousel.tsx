@@ -100,10 +100,7 @@ function Carousel({
 
   const goTo = useCallback((i: number) => setIndex(i), []);
   const next = useCallback(() => setIndex(i => (count ? (i + 1) % count : 0)), [count]);
-  const previous = useCallback(
-    () => setIndex(i => (count ? (i - 1 + count) % count : 0)),
-    [count],
-  );
+  const previous = useCallback(() => setIndex(i => (count ? (i - 1 + count) % count : 0)), [count]);
   const togglePlaying = useCallback(() => setPlaying(p => !p), []);
   const register = useCallback((n: number) => setCount(n), []);
 
@@ -130,7 +127,19 @@ function Carousel({
       togglePlaying,
       register,
     }),
-    [index, count, variant, baseId, playing, canAutoPlay, goTo, next, previous, togglePlaying, register],
+    [
+      index,
+      count,
+      variant,
+      baseId,
+      playing,
+      canAutoPlay,
+      goTo,
+      next,
+      previous,
+      togglePlaying,
+      register,
+    ],
   );
 
   const handleKeyDown = useCallback(
@@ -315,7 +324,7 @@ function CarouselPlayPause({ className, ...props }: ComponentProps<'button'>) {
         'focus-visible:shadow-focus-primary absolute top-3 right-3 z-10 inline-flex cursor-pointer items-center gap-1.5 rounded-md px-2.5 py-1.5 transition-opacity focus-visible:outline-none',
         variant === 'dark'
           ? 'text-neutral-0/70 hover:text-neutral-0 bg-neutral/40'
-          : 'text-neutral-600 hover:text-neutral bg-neutral-0/70',
+          : 'hover:text-neutral bg-neutral-0/70 text-neutral-600',
         className,
       )}
       {...props}

@@ -16,7 +16,8 @@ const TEXTAREA_VARIANTS = cva(
   {
     variants: {
       state: {
-        default: 'border-neutral-200 hover:border-primary focus:border-primary-500 focus:shadow-focus-primary',
+        default:
+          'border-neutral-200 hover:border-primary focus:border-primary-500 focus:shadow-focus-primary',
         error: 'border-danger-500 focus:shadow-focus-danger',
         success: 'border-success-500 focus:shadow-focus-success',
         warning: 'border-warning-500 focus:shadow-focus-warning',
@@ -66,7 +67,11 @@ function Textarea({
         {...props}
       />
       {withCount && (
-        <Body3 id={counterId} aria-live='polite' className='mt-1.5 block text-right text-neutral-600'>
+        <Body3
+          id={counterId}
+          aria-live='polite'
+          className='mt-1.5 block text-right text-neutral-600'
+        >
           {current}/{maxLength}
         </Body3>
       )}

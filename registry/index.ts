@@ -3932,7 +3932,9 @@ export default function Component() {
     </div>
   );
 }`,
-    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+    files: [
+      { path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
   TextareaWithCount: {
     name: 'TextareaWithCount',
@@ -3966,7 +3968,9 @@ export default function Component() {
     </div>
   );
 }`,
-    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+    files: [
+      { path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
   TextareaStates: {
     name: 'TextareaStates',
@@ -3997,7 +4001,9 @@ export default function Component() {
     </div>
   );
 }`,
-    files: [{ path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' }],
+    files: [
+      { path: 'components/examples/textarea-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
   'close-button': {
     name: 'close-button',
@@ -4128,7 +4134,11 @@ export default function Component() {
   return <ProgressCircle value={40} />;
 }`,
     files: [
-      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
     ],
   },
   ProgressCircleSizes: {
@@ -4152,7 +4162,11 @@ export default function Component() {
   );
 }`,
     files: [
-      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
     ],
   },
   ProgressCircleHalf: {
@@ -4172,7 +4186,11 @@ export default function Component() {
   );
 }`,
     files: [
-      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
     ],
   },
   ProgressCircleWithLabel: {
@@ -4192,7 +4210,11 @@ export default function Component() {
   );
 }`,
     files: [
-      { path: 'components/examples/progress-circle-demo.tsx', type: 'registry:example', target: '' },
+      {
+        path: 'components/examples/progress-circle-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
     ],
   },
   CarouselDefault: {
@@ -4370,7 +4392,11 @@ export default function Component() {
   );
 }`,
     files: [
-      { path: 'components/examples/accessibility-widget-demo.tsx', type: 'registry:example', target: '' },
+      {
+        path: 'components/examples/accessibility-widget-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
     ],
   },
   NavbarDefault: {
@@ -4454,8 +4480,6 @@ export default function Component() {
     </div>
   );
 }`,
-    files: [
-      { path: 'components/examples/navbar-demo.tsx', type: 'registry:example', target: '' },
-    ],
+    files: [{ path: 'components/examples/navbar-demo.tsx', type: 'registry:example', target: '' }],
   },
 };

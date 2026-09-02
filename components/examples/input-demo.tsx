@@ -73,7 +73,10 @@ export function InputStates() {
 
 export function InputWithIcons() {
   const [value, setValue] = useState('priya@example.in');
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value), []);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value),
+    [],
+  );
   const handleClear = useCallback(() => setValue(''), []);
 
   return (

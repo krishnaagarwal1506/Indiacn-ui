@@ -124,9 +124,7 @@ function Toast({ className, theme, onDismiss, status, children, ...props }: IToa
     >
       {status && <ToastStatusIcon status={status} />}
       <div className='flex-1'>{children}</div>
-      {onDismiss && (
-        <CloseButton size='sm' onClick={onDismiss} className='-mr-1 ml-2' />
-      )}
+      {onDismiss && <CloseButton size='sm' onClick={onDismiss} className='-mr-1 ml-2' />}
     </div>
   );
 }

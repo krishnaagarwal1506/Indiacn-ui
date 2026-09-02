@@ -101,7 +101,13 @@ function ProgressCircle({
             </>
           ) : (
             <>
-              <circle cx={centre} cy={centre} r={radius} className='stroke-neutral-50' {...shared} />
+              <circle
+                cx={centre}
+                cy={centre}
+                r={radius}
+                className='stroke-neutral-50'
+                {...shared}
+              />
               <circle
                 cx={centre}
                 cy={centre}
@@ -130,7 +136,9 @@ function ProgressCircle({
           {captionInside && (
             <Body2
               className={cn('text-neutral-600', !custom && LABEL_CLASSES[size])}
-              style={custom ? { fontSize: Math.round(diameter * NUMERIC_FONT_RATIO * 0.6) } : undefined}
+              style={
+                custom ? { fontSize: Math.round(diameter * NUMERIC_FONT_RATIO * 0.6) } : undefined
+              }
             >
               {label}
             </Body2>
@@ -146,9 +154,7 @@ function ProgressCircle({
         </div>
       </div>
 
-      {label && !captionInside && (
-        <Body2 className='mt-1 text-xs text-neutral-600'>{label}</Body2>
-      )}
+      {label && !captionInside && <Body2 className='mt-1 text-xs text-neutral-600'>{label}</Body2>}
     </div>
   );
 }

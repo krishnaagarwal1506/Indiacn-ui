@@ -19,7 +19,7 @@ export function CopyButton({ value, className }: { value: string; className?: st
       onClick={onCopy}
       aria-label='Copy code'
       className={cn(
-        'focus-visible:shadow-focus-primary z-10 shrink-0 cursor-pointer rounded-md bg-neutral-100 p-1.5 text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral focus-visible:outline-none',
+        'focus-visible:shadow-focus-primary hover:text-neutral z-10 shrink-0 cursor-pointer rounded-md bg-neutral-100 p-1.5 text-neutral-600 transition-colors hover:bg-neutral-200 focus-visible:outline-none',
         className,
       )}
     >

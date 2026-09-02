@@ -77,7 +77,7 @@ function Input({
       {prefixIcon}
       <input
         className={cn(
-          'placeholder:text-neutral-500 min-w-0 flex-1 bg-transparent outline-none',
+          'min-w-0 flex-1 bg-transparent outline-none placeholder:text-neutral-500',
           className,
         )}
         value={value}
@@ -88,7 +88,7 @@ function Input({
           type='button'
           onClick={onClear}
           aria-label='Clear'
-          className='text-neutral-600 hover:text-neutral shrink-0 cursor-pointer rounded-sm transition-colors focus:outline-none'
+          className='hover:text-neutral shrink-0 cursor-pointer rounded-sm text-neutral-600 transition-colors focus:outline-none'
         >
           <X className={iconSize} aria-hidden />
         </button>

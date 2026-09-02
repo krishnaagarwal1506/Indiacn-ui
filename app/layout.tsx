@@ -1,10 +1,5 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import {
-  Noto_Sans,
-  Noto_Sans_Bengali,
-  Noto_Sans_Tamil,
-  Noto_Sans_Telugu,
-} from 'next/font/google';
+import { Noto_Sans, Noto_Sans_Bengali, Noto_Sans_Tamil, Noto_Sans_Telugu } from 'next/font/google';
 import { ReactNode } from 'react';
 
 import {
