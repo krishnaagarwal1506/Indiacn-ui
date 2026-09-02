@@ -1,6 +1,17 @@
 'use client';
 
-import { ChevronDown, ExternalLink, Menu, X } from 'lucide-react';
+import {
+  AArrowDown,
+  AArrowUp,
+  ALargeSmall,
+  ChevronDown,
+  ExternalLink,
+  Globe,
+  Menu,
+  Moon,
+  Sun,
+  X,
+} from 'lucide-react';
 import {
   ComponentProps,
   ReactNode,
@@ -10,9 +21,12 @@ import {
   useId,
   useMemo,
   useState,
+  useSyncExternalStore,
 } from 'react';
 
-import { Label1, Label2 } from '@/components/ui/typography';
+import { useAccessibilitySettings } from '@/components/ui/accessibility-widget';
+import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from '@/components/ui/dropdown';
+import { Label1, Label2, Label3 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
 /*
@@ -141,6 +155,185 @@ function NavbarSeparator({ className, ...props }: ComponentProps<'div'>) {
   );
 }
 
+const UTILITY_CONTROL =
+  'focus-visible:shadow-focus-neutral inline-flex cursor-pointer items-center justify-center rounded-md transition-colors focus-visible:outline-none';
+
+/**
+ * Text-size controls, as A-minus / A / A-plus.
+ *
+ * Wired to the same store as the accessibility panel, so the two cannot
+ * disagree about how large the page currently is.
+ */
+function NavbarTextSize({ className, ...props }: ComponentProps<'div'>) {
+  const { settings, setStep, stepBy, maxStep } = useAccessibilitySettings();
+  const step = settings.textStep;
+
+  const decrease = useCallback(() => stepBy('textStep', -1), [stepBy]);
+  const reset = useCallback(() => setStep('textStep', 0), [setStep]);
+  const increase = useCallback(() => stepBy('textStep', 1), [stepBy]);
+
+  return (
+    <div
+      role='group'
+      aria-label='Text size'
+      className={cn('flex items-center gap-1', className)}
+      {...props}
+    >
+      <button
+        type='button'
+        onClick={decrease}
+        disabled={step === 0}
+        aria-label='Decrease text size'
+        className={cn(UTILITY_CONTROL, 'hover:bg-primary-foreground/15 size-8 disabled:opacity-40')}
+      >
+        <AArrowDown className='size-4' aria-hidden />
+      </button>
+      <button
+        type='button'
+        onClick={reset}
+        aria-label={`Reset text size. Currently level ${step} of ${maxStep}`}
+        className={cn(
+          UTILITY_CONTROL,
+          'size-8',
+          step === 0 ? 'hover:bg-primary-foreground/15' : 'bg-primary-foreground/20',
+        )}
+      >
+        <ALargeSmall className='size-4' aria-hidden />
+      </button>
+      <button
+        type='button'
+        onClick={increase}
+        disabled={step === maxStep}
+        aria-label='Increase text size'
+        className={cn(UTILITY_CONTROL, 'hover:bg-primary-foreground/15 size-8 disabled:opacity-40')}
+      >
+        <AArrowUp className='size-4' aria-hidden />
+      </button>
+    </div>
+  );
+}
+
+interface INavbarThemeToggleProps extends Omit<ComponentProps<'button'>, 'onToggle'> {
+  /** Controlled mode. Omit both to let the toggle manage the `dark` class. */
+  isDark?: boolean;
+  onToggle?: () => void;
+}
+
+/**
+ * Light and dark toggle.
+ *
+ * Uncontrolled it flips the `dark` class on the document element. Pass
+ * `isDark` and `onToggle` to defer to an existing theme provider instead —
+ * two things writing that class will fight.
+ */
+/** Subscribes to `dark` being added or removed on the document element. */
+function subscribeDarkClass(listener: () => void) {
+  const observer = new MutationObserver(listener);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  return () => observer.disconnect();
+}
+
+/** Whether the document is currently in dark mode. */
+const getDarkClass = () => document.documentElement.classList.contains('dark');
+/** The server cannot know the theme, so it renders light. */
+const getServerDarkClass = () => false;
+
+/**
+ * Light and dark toggle.
+ *
+ * Uncontrolled it flips the `dark` class on the document element. Pass
+ * `isDark` and `onToggle` to defer to an existing theme provider instead —
+ * two things writing that class will fight each other.
+ */
+function NavbarThemeToggle({ className, isDark, onToggle, ...props }: INavbarThemeToggleProps) {
+  // Read the class through a store rather than syncing state in an effect, so
+  // an external theme provider flipping it is picked up too.
+  const observedDark = useSyncExternalStore(subscribeDarkClass, getDarkClass, getServerDarkClass);
+  const dark = isDark ?? observedDark;
+
+  const handleClick = useCallback(() => {
+    if (onToggle) {
+      onToggle();
+      return;
+    }
+    const root = document.documentElement;
+    root.classList.toggle('dark', !root.classList.contains('dark'));
+  }, [onToggle]);
+
+  const Icon = dark ? Sun : Moon;
+
+  return (
+    <button
+      type='button'
+      onClick={handleClick}
+      aria-pressed={dark}
+      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className={cn(UTILITY_CONTROL, 'hover:bg-primary-foreground/15 size-8', className)}
+      {...props}
+    >
+      <Icon className='size-4' aria-hidden />
+    </button>
+  );
+}
+
+interface INavbarLanguageProps {
+  languages: { code: string; label: string }[];
+  value: string;
+  onSelect: (code: string) => void;
+  className?: string;
+}
+
+/** One language row. Split out so its handler is not rebuilt each render. */
+function NavbarLanguageItem({
+  language,
+  selected,
+  onSelect,
+}: {
+  language: { code: string; label: string };
+  selected: boolean;
+  onSelect: (code: string) => void;
+}) {
+  const handleSelect = useCallback(() => onSelect(language.code), [onSelect, language.code]);
+
+  return (
+    <DropdownItem onSelect={handleSelect} aria-current={selected || undefined}>
+      <Label3>{language.label}</Label3>
+    </DropdownItem>
+  );
+}
+
+/** Language selector, as the utility bar's globe and label. */
+function NavbarLanguage({ languages, value, onSelect, className }: INavbarLanguageProps) {
+  const current = languages.find(language => language.code === value) ?? languages[0];
+
+  return (
+    <Dropdown>
+      <DropdownTrigger
+        aria-label={`Language: ${current?.label}`}
+        className={cn(
+          UTILITY_CONTROL,
+          'hover:bg-primary-foreground/15 gap-1.5 px-2 py-1.5',
+          className,
+        )}
+      >
+        <Globe className='size-4 shrink-0' aria-hidden />
+        <Label2>{current?.label}</Label2>
+        <ChevronDown className='size-3 shrink-0' aria-hidden />
+      </DropdownTrigger>
+      <DropdownContent align='end'>
+        {languages.map(language => (
+          <NavbarLanguageItem
+            key={language.code}
+            language={language}
+            selected={language.code === value}
+            onSelect={onSelect}
+          />
+        ))}
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+
 /** White bar holding brand, navigation and actions. */
 function NavbarMain({ className, children, ...props }: ComponentProps<'div'>) {
   return (
@@ -231,7 +424,7 @@ function NavbarToggle({ className, ...props }: ComponentProps<'button'>) {
       aria-controls={navId}
       aria-label={open ? 'Close menu' : 'Open menu'}
       className={cn(
-        'focus-visible:shadow-focus-primary text-neutral hover:border-neutral-300 inline-flex size-10 cursor-pointer items-center justify-center rounded-md border border-neutral-100 transition-colors focus-visible:outline-none lg:hidden',
+        'focus-visible:shadow-focus-primary text-neutral inline-flex size-10 cursor-pointer items-center justify-center rounded-md border border-neutral-100 transition-colors hover:border-neutral-300 focus-visible:outline-none lg:hidden',
         className,
       )}
       {...props}
@@ -255,6 +448,9 @@ function NavbarSecondaryRow({ className, children, ...props }: ComponentProps<'d
 export {
   Navbar,
   NavbarUtilityBar,
+  NavbarTextSize,
+  NavbarThemeToggle,
+  NavbarLanguage,
   NavbarGovBadge,
   NavbarSkipLink,
   NavbarSeparator,

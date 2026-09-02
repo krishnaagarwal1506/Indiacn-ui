@@ -11,7 +11,10 @@ The parts are slots rather than a single configured component, because a header 
 
 ## Installation
 
-<ComponentSource collapsible={false} code={`npx shadcn@latest add https://indiacn.in/r/navbar.json`} />
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/navbar.json`}
+/>
 
 <ComponentSource
   collapsible={false}
@@ -36,6 +39,31 @@ The preview is far narrower than a real header, so this example carries three li
 
 <ComponentPreview name='NavbarDefault' />
 
+## The utility bar controls
+
+UX4G specifies three controls in the utility bar, and they are the substance of it — a government header without them is just a coloured strip.
+
+| Control             | Behaviour                                                                                                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NavbarTextSize`    | A−, A, A+ across three steps. **Shares its store with the [Accessibility Widget](/docs/accessibility-widget)**, so the header and the panel cannot disagree about how large the page is |
+| `NavbarThemeToggle` | Flips the `dark` class. Pass `isDark` and `onToggle` to defer to an existing theme provider — two things writing that class will fight                                                  |
+| `NavbarLanguage`    | Globe, current language, chevron. Built on [Dropdown](/docs/dropdown)                                                                                                                   |
+
+<ComponentSource
+  collapsible={false}
+  code={`<NavbarUtilityBar>
+  <NavbarSkipLink href="#main" />
+  <NavbarSeparator />
+  <NavbarTextSize />
+  <NavbarSeparator />
+  <NavbarThemeToggle />
+  <NavbarSeparator />
+  <NavbarLanguage languages={LANGUAGES} value={language} onSelect={setLanguage} />
+</NavbarUtilityBar>`}
+/>
+
+The text-size control reads the same module store as the accessibility panel, through `useAccessibilitySettings()`. Duplicating that state was the obvious shortcut and the wrong one: two controls for the same setting that disagree is worse than one.
+
 ## The skip link
 
 `NavbarSkipLink` is hidden until it receives focus, then appears in the utility bar. That is the only arrangement that works: it has to be the first thing a keyboard user reaches, and invisible to everyone else.
@@ -59,11 +87,11 @@ The token is defined once and **deliberately not redefined in `.dark`** — saff
 
 ## Measurements
 
-| | value |
-| --- | ----- |
-| utility bar | `#613af5` (`primary`), 41px |
-| main bar | `#ffffff` (`neutral-0`), 72px |
-| content width | 1440px max |
+|               | value                         |
+| ------------- | ----------------------------- |
+| utility bar   | `#613af5` (`primary`), 41px   |
+| main bar      | `#ffffff` (`neutral-0`), 72px |
+| content width | 1440px max                    |
 
 ## Responsive behaviour
 
@@ -73,24 +101,43 @@ Below `lg` the navigation collapses behind `NavbarToggle` and opens as a stacked
 
 ### NavbarUtilityBar
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `start` | `ReactNode` | `<NavbarGovBadge />` | Leading content |
-| `children` | `ReactNode` | — | Trailing controls |
+| Prop       | Type        | Default              | Description       |
+| ---------- | ----------- | -------------------- | ----------------- |
+| `start`    | `ReactNode` | `<NavbarGovBadge />` | Leading content   |
+| `children` | `ReactNode` | —                    | Trailing controls |
 
 ### NavbarGovBadge
 
-| Prop | Type | Default |
-| ---- | ---- | ------- |
-| `href` | `string` | `https://www.india.gov.in` |
-| `label` | `string` | `Government of India` |
+| Prop    | Type     | Default                    |
+| ------- | -------- | -------------------------- |
+| `href`  | `string` | `https://www.india.gov.in` |
+| `label` | `string` | `Government of India`      |
+
+### NavbarThemeToggle
+
+| Prop       | Type         | Default | Description                                                     |
+| ---------- | ------------ | ------- | --------------------------------------------------------------- |
+| `isDark`   | `boolean`    | —       | Controlled mode. Omit to let the toggle manage the `dark` class |
+| `onToggle` | `() => void` | —       | Called instead of toggling the class                            |
+
+### NavbarLanguage
+
+| Prop        | Type                     | Description       |
+| ----------- | ------------------------ | ----------------- |
+| `languages` | `{ code, label }[]`      | Options           |
+| `value`     | `string`                 | Selected code     |
+| `onSelect`  | `(code: string) => void` | Selection handler |
+
+### NavbarTextSize
+
+Takes no props — it reads and writes the shared accessibility store.
 
 ### NavbarLink
 
-| Prop | Type | Description |
-| ---- | ---- | ----------- |
-| `active` | `boolean` | Marks the current page, and sets `aria-current` |
-| `hasMenu` | `boolean` | Shows a chevron for a link that opens a menu |
+| Prop      | Type      | Description                                     |
+| --------- | --------- | ----------------------------------------------- |
+| `active`  | `boolean` | Marks the current page, and sets `aria-current` |
+| `hasMenu` | `boolean` | Shows a chevron for a link that opens a menu    |
 
 ### Other parts
 
