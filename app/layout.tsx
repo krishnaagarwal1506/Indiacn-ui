@@ -7,6 +7,7 @@ import {
 } from 'next/font/google';
 import { ReactNode } from 'react';
 
+import { AccessibilityWidget } from '@/components/ui/accessibility-widget';
 import {
   GITHUB_URL,
   SITE_DESCRIPTION,
@@ -196,6 +197,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
         <RootProvider>{children}</RootProvider>
+        {/* The library's own accessibility panel, running on the site that
+            documents it. Adjustments apply to this page too. */}
+        <AccessibilityWidget />
       </body>
     </html>
   );

@@ -27,6 +27,12 @@ Render it once, near the root of your app. It fixes itself to the bottom-right c
 
 <ComponentSource collapsible={false} code={`<AccessibilityWidget />`} />
 
+## It is running on this site
+
+Look in the bottom-right corner. That is this component, mounted in the root layout — the adjustments apply to the page you are reading, and they persist as you move around the docs.
+
+If a control here does not work for you, that is a bug worth reporting, not a demo limitation.
+
 ## Example
 
 The widget below is scoped to its container so it does not follow you around the docs. In your app it is fixed to the viewport.
@@ -35,16 +41,16 @@ The widget below is scoped to its container so it does not follow you around the
 
 ## What each setting does
 
-| Setting | Effect |
-| ------- | ------ |
-| Increase text size | Root font size, in three steps of 12.5%. Everything sized in `rem` scales with it |
-| Increase line height | Root line height, up to 2.25 |
-| Increase text spacing | Letter spacing, up to 0.15em |
-| Highlight links | Underline plus a visible outline on every link |
-| Dyslexia friendly | Switches to a hyperlegible font stack and loosens tracking |
-| Hide images | Hides images, video and decorative SVG, leaving the text |
-| Invert colours | Inverts the page, re-inverting media so photographs stay readable |
-| Reading mask | A band that follows the pointer and dims the rest of the page |
+| Setting               | Effect                                                                            |
+| --------------------- | --------------------------------------------------------------------------------- |
+| Increase text size    | Root font size, in three steps of 12.5%. Everything sized in `rem` scales with it |
+| Increase line height  | Root line height, up to 2.25                                                      |
+| Increase text spacing | Letter spacing, up to 0.15em                                                      |
+| Highlight links       | Underline plus a visible outline on every link                                    |
+| Dyslexia friendly     | Switches to a hyperlegible font stack and loosens tracking                        |
+| Hide images           | Hides images, video and decorative SVG, leaving the text                          |
+| Invert colours        | Inverts the page, re-inverting media so photographs stay readable                 |
+| Reading mask          | A band that follows the pointer and dims the rest of the page                     |
 
 Steps cycle: pressing a `+` three times and once more returns it to normal, so there is always a way back without hunting for Reset.
 
@@ -72,8 +78,8 @@ If you have a real integration, pass it in:
 
 ### AccessibilityWidget
 
-| Prop | Type | Default | Description |
-| ---- | ---- | ------- | ----------- |
-| `title` | `string` | `'Accessibility options'` | Panel heading and the button's accessible name |
-| `extraRows` | `ReactNode` | — | Rows appended before the footer |
-| `className` | `string` | — | Overrides the fixed positioning |
+| Prop        | Type        | Default                   | Description                                    |
+| ----------- | ----------- | ------------------------- | ---------------------------------------------- |
+| `title`     | `string`    | `'Accessibility options'` | Panel heading and the button's accessible name |
+| `extraRows` | `ReactNode` | —                         | Rows appended before the footer                |
+| `className` | `string`    | —                         | Overrides the fixed positioning                |
