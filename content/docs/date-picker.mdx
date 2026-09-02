@@ -1,0 +1,103 @@
+---
+title: Date Picker
+description: Date, range, time and date-time pickers behind a field or icon trigger.
+---
+
+## Introduction
+
+Four pickers over one [Calendar](/docs/calendar) and one [Time Picker](/docs/time-picker): a single date, a span across two months, a time of day, and both on one surface.
+
+UX4G gives every picker two triggers — an input-shaped field with a trailing icon, or a bare 32px icon button. Both are here as `trigger='field'` and `trigger='icon'`.
+
+The field is a button, not a text input. It looks identical to the kit's field, but a real input invites typing and then has to guess whether "03/04" is March or April. The button says what it is — `aria-haspopup='dialog'`, the chosen date as its accessible name — and the grid stays the one way in.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/date-picker.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  DatePicker,
+  DateRangePicker,
+  DateTimePicker,
+  TimePickerField,
+} from '@/components/ui/date-picker';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`const [date, setDate] = useState<Date | null>(null);
+
+return <DatePicker value={date} onValueChange={setDate} />;`}
+/>
+
+## Examples
+
+### Default
+
+Picking a day commits it and closes the surface — there is nothing left to confirm.
+
+<ComponentPreview name='DatePickerDefault' />
+
+### Triggers
+
+<ComponentPreview name='DatePickerTriggers' />
+
+### Range
+
+The surface stays open until both ends are set, because closing on the first click would make the second one impossible.
+
+<ComponentPreview name='DateRangePickerDefault' />
+
+### Time
+
+Ok commits the draft, so scrolling past a value costs nothing.
+
+<ComponentPreview name='TimePickerFieldDefault' />
+
+### Date and time
+
+<ComponentPreview name='DateTimePickerDefault' />
+
+## Accessibility
+
+- The trigger's accessible name carries the current value — "Choose date: 21 Oct 2021" — so it is never just "Choose date" with the answer only visible.
+- Dates are formatted as `21 Oct 2021`, with the month spelled out. `21/10/2021` and `10/21/2021` are the same eleven characters and different days.
+- The surface is a popover: <kbd>Esc</kbd> closes it and focus returns to the trigger.
+- Inside, the calendar keeps its full [grid keyboard model](/docs/calendar#accessibility) and each time column its listbox model.
+- The pickers that hold a draft — time and date-time — commit only on Ok, so a keyboard user passing through values does not fire a change per keystroke.
+
+## API Reference
+
+### DatePicker
+
+| Prop               | Type                     | Default         | Description                               |
+| ------------------ | ------------------------ | --------------- | ----------------------------------------- |
+| `value`            | `Date \| null`           | —               | Current date                              |
+| `onValueChange`    | `(date: Date) => void`   | —               | Fires when a day is chosen                |
+| `trigger`          | `'field' \| 'icon'`      | `'field'`       | Which trigger to render                   |
+| `placeholder`      | `string`                 | `'Select Date'` | Field text while empty                    |
+| `format`           | `(date: Date) => string` | `21 Oct 2021`   | Overrides the trigger text                |
+| `showViewControls` | `boolean`                | `true`          | Month and year selects inside the surface |
+| `min` / `max`      | `Date`                   | —               | Selectable bounds                         |
+| `disabled`         | `boolean`                | `false`         | Disables the trigger                      |
+
+### DateRangePicker
+
+Takes `value: IDateRange` and `onValueChange: (range: IDateRange) => void`, plus `trigger`, `placeholder`, `min`, `max` and `disabled`.
+
+### TimePickerField
+
+Takes `value: ITimeValue | null` and `onValueChange: (value: ITimeValue) => void`, plus `trigger`, `placeholder`, `showSeconds` and `disabled`.
+
+### DateTimePicker
+
+Takes `value: Date | null` and `onValueChange: (date: Date) => void`, plus `trigger`, `placeholder`, `showSeconds`, `min`, `max` and `disabled`. Ok commits the day and the time together.
+
+The module also exports `formatDate(date)` and `formatRange(range)`.

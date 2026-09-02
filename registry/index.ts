@@ -64,8 +64,15 @@ import {
   ButtonGroupToolbar,
   ButtonGroupVertical,
 } from '@/components/examples/button-group-demo';
-import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
+import {
+  CalendarBounded,
+  CalendarDefault,
+  CalendarMonthView,
+  CalendarRange,
+  CalendarYearView,
+} from '@/components/examples/calendar-demo';
 import { CardElevated } from '@/components/examples/card-demo';
+import { CardDefault, CardGrid, CardSimple, CardWithImage } from '@/components/examples/card-demo';
 import {
   CarouselAutoPlay,
   CarouselDark,
@@ -107,6 +114,13 @@ import {
 } from '@/components/examples/close-button-demo';
 import { CollapseDefault } from '@/components/examples/collapse-demo';
 import {
+  DatePickerDefault,
+  DatePickerTriggers,
+  DateRangePickerDefault,
+  DateTimePickerDefault,
+  TimePickerFieldDefault,
+} from '@/components/examples/date-picker-demo';
+import {
   DropdownDark,
   DropdownDefault,
   DropdownDisabledItems,
@@ -118,6 +132,11 @@ import {
   EmptyStateWithAction,
   EmptyStateWithDescription,
 } from '@/components/examples/empty-state-demo';
+import {
+  FeedbackRatingDefault,
+  FeedbackWidgetDefault,
+} from '@/components/examples/feedback-widget-demo';
+import { FooterDefault } from '@/components/examples/footer-demo';
 import {
   IndicatorAttached,
   IndicatorCounts,
@@ -192,6 +211,7 @@ import {
   StepperWarning,
 } from '@/components/examples/stepper-demo';
 import { SwitchDefault, SwitchDisabled, SwitchSizes } from '@/components/examples/switch-demo';
+import { TableDefault, TableRichCells, TableSelectable } from '@/components/examples/table-demo';
 import {
   TabsDefault,
   TabsDisabled,
@@ -203,6 +223,7 @@ import {
   TextareaStates,
   TextareaWithCount,
 } from '@/components/examples/textarea-demo';
+import { TimePickerDefault, TimePickerNoSeconds } from '@/components/examples/time-picker-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
 import { ToastStatuses } from '@/components/examples/toast-demo';
 import {
@@ -232,6 +253,7 @@ import { Badge } from '@/components/ui/badge';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { ButtonGroup } from '@/components/ui/button-group';
+import { Calendar } from '@/components/ui/calendar';
 import { Card } from '@/components/ui/card';
 import { Carousel } from '@/components/ui/carousel';
 import { Chart } from '@/components/ui/chart';
@@ -239,8 +261,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Chip } from '@/components/ui/chip';
 import { CloseButton } from '@/components/ui/close-button';
 import { Collapse } from '@/components/ui/collapse';
+import { DatePicker } from '@/components/ui/date-picker';
 import { Dropdown } from '@/components/ui/dropdown';
 import { EmptyState } from '@/components/ui/empty-state';
+import { FeedbackWidget } from '@/components/ui/feedback-widget';
+import { Footer } from '@/components/ui/footer';
 import { Indicator } from '@/components/ui/indicator';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -259,8 +284,10 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Spinner } from '@/components/ui/spinner';
 import { Stepper } from '@/components/ui/stepper';
 import { Switch } from '@/components/ui/switch';
+import { Table } from '@/components/ui/table';
 import { Tabs } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
+import { TimePicker } from '@/components/ui/time-picker';
 import { Toast } from '@/components/ui/toast';
 import { Tooltip } from '@/components/ui/tooltip';
 import {
@@ -4966,5 +4993,355 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/chart-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  table: {
+    name: 'table',
+    description: 'Data table with header, selectable rows, row headers and a footer',
+    type: 'registry:ui',
+    component: Table,
+    files: [{ path: 'components/ui/table.tsx', type: 'registry:ui', target: '' }],
+  },
+  TableDefault: {
+    name: 'TableDefault',
+    description: 'Table with a caption and row headers',
+    type: 'registry:example',
+    component: TableDefault,
+    code: `import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableRowHeader,
+} from '@/components/ui/table';
+
+const APPLICATIONS = [
+  { id: 'ARN-4821', name: 'Aarav Sharma', scheme: 'Ration card', district: 'Pune' },
+  { id: 'ARN-4822', name: 'Priya Nair', scheme: 'Scholarship', district: 'Nashik' },
+  { id: 'ARN-4823', name: 'Rohan Gupta', scheme: 'Pension', district: 'Nagpur' },
+];
+
+export default function Component() {
+  return (
+    <Table>
+      <TableCaption>Recent applications by district.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Reference</TableHead>
+          <TableHead>Applicant</TableHead>
+          <TableHead>Scheme</TableHead>
+          <TableHead>District</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {APPLICATIONS.map(row => (
+          <TableRow key={row.id}>
+            <TableRowHeader>{row.id}</TableRowHeader>
+            <TableCell>{row.name}</TableCell>
+            <TableCell>{row.scheme}</TableCell>
+            <TableCell>{row.district}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  );
+}`,
+    files: [{ path: 'components/examples/table-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TableSelectable: {
+    name: 'TableSelectable',
+    description: 'Rows that can be checked, with the selected row highlighted',
+    type: 'registry:example',
+    component: TableSelectable,
+    files: [{ path: 'components/examples/table-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TableRichCells: {
+    name: 'TableRichCells',
+    description: 'Avatars, ratings and actions inside cells, with a summary footer',
+    type: 'registry:example',
+    component: TableRichCells,
+    files: [{ path: 'components/examples/table-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  footer: {
+    name: 'footer',
+    description: 'Government site footer with link columns, socials and a bottom bar',
+    type: 'registry:ui',
+    component: Footer,
+    files: [{ path: 'components/ui/footer.tsx', type: 'registry:ui', target: '' }],
+  },
+  FooterDefault: {
+    name: 'FooterDefault',
+    description: 'Full footer with brand, four link columns and attribution',
+    type: 'registry:example',
+    component: FooterDefault,
+    files: [{ path: 'components/examples/footer-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  'feedback-widget': {
+    name: 'feedback-widget',
+    description: 'Edge tab opening a feedback form with a five-point rating',
+    type: 'registry:ui',
+    component: FeedbackWidget,
+    files: [{ path: 'components/ui/feedback-widget.tsx', type: 'registry:ui', target: '' }],
+  },
+  FeedbackWidgetDefault: {
+    name: 'FeedbackWidgetDefault',
+    description: 'The tab and its form, pinned inside the example',
+    type: 'registry:example',
+    component: FeedbackWidgetDefault,
+    code: `'use client';
+
+import { useCallback } from 'react';
+
+import { FeedbackWidget, IFeedbackValue } from '@/components/ui/feedback-widget';
+
+export default function Component() {
+  const handleSubmit = useCallback((value: IFeedbackValue) => {
+    console.info(value);
+  }, []);
+
+  return <FeedbackWidget onSubmit={handleSubmit} footer='Powered by UX4G' />;
+}`,
+    files: [
+      {
+        path: 'components/examples/feedback-widget-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+  },
+  FeedbackRatingDefault: {
+    name: 'FeedbackRatingDefault',
+    description: 'The five-point rating scale on its own',
+    type: 'registry:example',
+    component: FeedbackRatingDefault,
+    code: `'use client';
+
+import { useCallback, useState } from 'react';
+
+import { FeedbackRating } from '@/components/ui/feedback-widget';
+
+export default function Component() {
+  const [rating, setRating] = useState<number | null>(4);
+  const handleChange = useCallback((value: number) => setRating(value), []);
+
+  return <FeedbackRating value={rating} onChange={handleChange} />;
+}`,
+    files: [
+      {
+        path: 'components/examples/feedback-widget-demo.tsx',
+        type: 'registry:example',
+        target: '',
+      },
+    ],
+  },
+  calendar: {
+    name: 'calendar',
+    description: 'Date grid with day, month and decade views and full keyboard support',
+    type: 'registry:ui',
+    component: Calendar,
+    files: [{ path: 'components/ui/calendar.tsx', type: 'registry:ui', target: '' }],
+  },
+  CalendarDefault: {
+    name: 'CalendarDefault',
+    description: 'One month with the month, year and view controls',
+    type: 'registry:example',
+    component: CalendarDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { Calendar } from '@/components/ui/calendar';
+
+export default function Component() {
+  const [date, setDate] = useState<Date | null>(null);
+
+  return <Calendar value={date} onValueChange={setDate} showViewControls />;
+}`,
+    files: [
+      { path: 'components/examples/calendar-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CalendarRange: {
+    name: 'CalendarRange',
+    description: 'Two months side by side for choosing a span',
+    type: 'registry:example',
+    component: CalendarRange,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { Calendar, IDateRange } from '@/components/ui/calendar';
+
+export default function Component() {
+  const [range, setRange] = useState<IDateRange>({ from: null, to: null });
+
+  return <Calendar months={2} range={range} onRangeChange={setRange} />;
+}`,
+    files: [
+      { path: 'components/examples/calendar-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CalendarMonthView: {
+    name: 'CalendarMonthView',
+    description: 'Opens on the twelve months of a year',
+    type: 'registry:example',
+    component: CalendarMonthView,
+    files: [
+      { path: 'components/examples/calendar-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CalendarYearView: {
+    name: 'CalendarYearView',
+    description: 'Opens on a decade of years',
+    type: 'registry:example',
+    component: CalendarYearView,
+    files: [
+      { path: 'components/examples/calendar-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  CalendarBounded: {
+    name: 'CalendarBounded',
+    description: 'Days outside min and max are disabled',
+    type: 'registry:example',
+    component: CalendarBounded,
+    files: [
+      { path: 'components/examples/calendar-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  'time-picker': {
+    name: 'time-picker',
+    description: 'Hour, minute and second columns driven as listboxes',
+    type: 'registry:ui',
+    component: TimePicker,
+    files: [{ path: 'components/ui/time-picker.tsx', type: 'registry:ui', target: '' }],
+  },
+  TimePickerDefault: {
+    name: 'TimePickerDefault',
+    description: 'Three columns with the value echoed above them',
+    type: 'registry:example',
+    component: TimePickerDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { ITimeValue, TimePicker } from '@/components/ui/time-picker';
+
+export default function Component() {
+  const [time, setTime] = useState<ITimeValue>({ hours: 9, minutes: 30, seconds: 0 });
+
+  return <TimePicker value={time} onValueChange={setTime} showHeader />;
+}`,
+    files: [
+      { path: 'components/examples/time-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  TimePickerNoSeconds: {
+    name: 'TimePickerNoSeconds',
+    description: 'Hours and minutes only',
+    type: 'registry:example',
+    component: TimePickerNoSeconds,
+    files: [
+      { path: 'components/examples/time-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  'date-picker': {
+    name: 'date-picker',
+    description: 'Date, range, time and date-time pickers behind a field or icon trigger',
+    type: 'registry:ui',
+    component: DatePicker,
+    files: [{ path: 'components/ui/date-picker.tsx', type: 'registry:ui', target: '' }],
+  },
+  DatePickerDefault: {
+    name: 'DatePickerDefault',
+    description: 'Single date behind the field trigger',
+    type: 'registry:example',
+    component: DatePickerDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { DatePicker } from '@/components/ui/date-picker';
+
+export default function Component() {
+  const [date, setDate] = useState<Date | null>(null);
+
+  return <DatePicker value={date} onValueChange={setDate} />;
+}`,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  DatePickerTriggers: {
+    name: 'DatePickerTriggers',
+    description: 'The field trigger next to the icon-button trigger',
+    type: 'registry:example',
+    component: DatePickerTriggers,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  DateRangePickerDefault: {
+    name: 'DateRangePickerDefault',
+    description: 'Two-month span picker that stays open until both ends are set',
+    type: 'registry:example',
+    component: DateRangePickerDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { IDateRange } from '@/components/ui/calendar';
+import { DateRangePicker } from '@/components/ui/date-picker';
+
+export default function Component() {
+  const [range, setRange] = useState<IDateRange>({ from: null, to: null });
+
+  return <DateRangePicker value={range} onValueChange={setRange} />;
+}`,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  TimePickerFieldDefault: {
+    name: 'TimePickerFieldDefault',
+    description: 'Time of day behind a field trigger, committed with Ok',
+    type: 'registry:example',
+    component: TimePickerFieldDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { TimePickerField } from '@/components/ui/date-picker';
+import { ITimeValue } from '@/components/ui/time-picker';
+
+export default function Component() {
+  const [time, setTime] = useState<ITimeValue | null>(null);
+
+  return <TimePickerField value={time} onValueChange={setTime} />;
+}`,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  DateTimePickerDefault: {
+    name: 'DateTimePickerDefault',
+    description: 'Calendar and clock on one surface, committed together',
+    type: 'registry:example',
+    component: DateTimePickerDefault,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { DateTimePicker } from '@/components/ui/date-picker';
+
+export default function Component() {
+  const [value, setValue] = useState<Date | null>(null);
+
+  return <DateTimePicker value={value} onValueChange={setValue} showSeconds={false} />;
+}`,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };

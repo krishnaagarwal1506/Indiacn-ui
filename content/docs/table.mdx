@@ -1,0 +1,97 @@
+---
+title: Table
+description: Tabular data with a header, optional selection and a summary footer.
+---
+
+## Introduction
+
+A semantic `<table>` in a horizontally scrolling container, so a wide table never widens the page. The header sits on `neutral-50`, rows are divided by a `primary-100` rule, and a selected row fills `primary-50` — all measured from the UX4G kit at 1:1.
+
+Two things this component does that a `<div>` grid cannot: screen readers announce "row 3, column 2, District" as you move through it, and browser find-in-page works across the whole table.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/table.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableRowHeader,
+} from '@/components/ui/table';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Reference</TableHead>
+      <TableHead>Applicant</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableRowHeader>ARN-4821</TableRowHeader>
+      <TableCell>Aarav Sharma</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='TableDefault' />
+
+### Selectable rows
+
+`selected` fills the row and sets `aria-selected`, so the highlight is not the only signal.
+
+<ComponentPreview name='TableSelectable' />
+
+### Rich cells
+
+Cells take any content — avatars, badges, ratings, actions. The rating below carries an `aria-label`, because five icons on their own say nothing.
+
+<ComponentPreview name='TableRichCells' />
+
+## Accessibility
+
+- `TableHead` defaults to `scope='col'`. Use `TableRowHeader` for the cell that names the row — it renders `<th scope='row'>`, which lets a screen reader read "ARN-4821, District, Pune" instead of "Pune".
+- Give the table a `TableCaption` whenever the surrounding heading does not already name it. The caption is read before the data.
+- Selection is announced through `aria-selected`; do not rely on the fill alone.
+- The scroll container is focusable, so a table wider than the viewport can be scrolled with the keyboard.
+
+## API Reference
+
+### Table
+
+Renders `<table>` inside a scrolling `<div>`. Accepts every `<table>` prop.
+
+### TableRow
+
+| Prop       | Type      | Default | Description                                              |
+| ---------- | --------- | ------- | -------------------------------------------------------- |
+| `selected` | `boolean` | `false` | Fills the row with `primary-50` and sets `aria-selected` |
+
+### TableHead
+
+| Prop    | Type             | Default | Description                    |
+| ------- | ---------------- | ------- | ------------------------------ |
+| `scope` | `'col' \| 'row'` | `'col'` | Which cells this header labels |
+
+`TableHeader`, `TableBody`, `TableFooter`, `TableCell`, `TableRowHeader` and `TableCaption` accept the props of the element they render (`thead`, `tbody`, `tfoot`, `td`, `th`, `caption`).

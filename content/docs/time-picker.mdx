@@ -1,0 +1,74 @@
+---
+title: Time Picker
+description: Hour, minute and second columns.
+---
+
+## Introduction
+
+Three scrolling columns. Hover fills `primary-50` and the current value fills `primary-100`, with a `neutral-100` rule between the columns — measured from the UX4G kit.
+
+Each column is a listbox where selection follows focus, so <kbd>↑</kbd> and <kbd>↓</kbd> change the value directly. That is the right pattern for a spinner, and it keeps each column to one tab stop rather than sixty.
+
+For a time behind a trigger, use `TimePickerField` from [Date Picker](/docs/date-picker).
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/time-picker.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { TimeColumns, TimePicker } from '@/components/ui/time-picker';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`const [time, setTime] = useState<ITimeValue>({ hours: 9, minutes: 30, seconds: 0 });
+
+return <TimePicker value={time} onValueChange={setTime} showHeader />;`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='TimePickerDefault' />
+
+### Without seconds
+
+<ComponentPreview name='TimePickerNoSeconds' />
+
+## Accessibility
+
+| Key                                   | Moves                |
+| ------------------------------------- | -------------------- |
+| <kbd>↑</kbd> <kbd>↓</kbd>             | One step, wrapping   |
+| <kbd>PageUp</kbd> <kbd>PageDown</kbd> | Ten steps            |
+| <kbd>Home</kbd> <kbd>End</kbd>        | First and last value |
+
+- Each column is a `listbox` labelled Hour, Minute or Second, and every option carries `aria-selected`.
+- Only the current value is tabbable, so three columns are three tab stops.
+- The selected fill is `primary-100` with `neutral` text, which holds well past 4.5:1 in both themes.
+- Values are zero-padded and rendered with `tabular-nums`, so the columns do not jitter as they scroll.
+
+## API Reference
+
+### TimePicker
+
+| Prop            | Type                          | Default | Description                               |
+| --------------- | ----------------------------- | ------- | ----------------------------------------- |
+| `value`         | `ITimeValue`                  | —       | Current time                              |
+| `onValueChange` | `(value: ITimeValue) => void` | —       | Fires on every change                     |
+| `showSeconds`   | `boolean`                     | `true`  | Renders the third column                  |
+| `showHeader`    | `boolean`                     | `false` | Echoes the value above the columns        |
+| `onConfirm`     | `() => void`                  | —       | Omit it and the Ok button is not rendered |
+
+### TimeColumns
+
+The three columns with no card, header or footer, for composing into a larger surface. Takes `value`, `onValueChange` and `showSeconds`.
+
+`ITimeValue` is `{ hours: number; minutes: number; seconds: number }`. The module also exports `formatTime(value, showSeconds)` and `toTimeValue(date)`.

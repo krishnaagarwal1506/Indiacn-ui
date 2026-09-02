@@ -1,0 +1,94 @@
+---
+title: Footer
+description: Site footer with link columns, social links and a bottom bar.
+---
+
+## Introduction
+
+The footer UX4G specifies for government sites: a brand block with a tagline and social links, up to four columns of links, a departmental attribution, and a `primary` strip along the bottom for the copyright and policy links.
+
+Measured from the kit: the body is 312px tall at 1440px wide, the bottom strip is 52px, and each social button is a 28px circle with a `neutral-200` border.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/footer.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import {
+  Footer,
+  FooterAttribution,
+  FooterBody,
+  FooterBottom,
+  FooterBottomLink,
+  FooterBrand,
+  FooterColumn,
+  FooterColumns,
+  FooterLink,
+  FooterSocial,
+  FooterSocialLink,
+} from '@/components/ui/footer';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<Footer>
+  <FooterBody>
+    <FooterBrand tagline='A citizen services platform.'>
+      <Title2 className='text-primary'>Sewa Setu</Title2>
+    </FooterBrand>
+    <FooterColumns>
+      <FooterColumn title='Services'>
+        <FooterLink href='/ration-card'>Ration card</FooterLink>
+      </FooterColumn>
+    </FooterColumns>
+  </FooterBody>
+  <FooterBottom>© 2026 Sewa Setu. All rights reserved.</FooterBottom>
+</Footer>`}
+/>
+
+## Examples
+
+### Default
+
+<ComponentPreview name='FooterDefault' />
+
+## Accessibility
+
+- `Footer` renders a `<footer>` landmark, so it is reachable from a screen reader's landmark list.
+- Each `FooterColumn` is a `<nav>` labelled by its own title — without the label, five navigation landmarks in one footer are indistinguishable.
+- `FooterSocialLink` requires a `label`. The icon is decorative, so the label is the only accessible name the link has.
+- The bottom strip is `primary-foreground` on `primary`, which the contrast check holds at 4.5:1 or better in both themes.
+
+## API Reference
+
+### FooterBrand
+
+| Prop      | Type        | Default | Description                               |
+| --------- | ----------- | ------- | ----------------------------------------- |
+| `tagline` | `ReactNode` | —       | One line under the brand, capped at 280px |
+
+### FooterSocialLink
+
+| Prop    | Type     | Default | Description                                |
+| ------- | -------- | ------- | ------------------------------------------ |
+| `label` | `string` | —       | Required accessible name, e.g. `"Twitter"` |
+
+### FooterColumn
+
+| Prop    | Type     | Default | Description                                     |
+| ------- | -------- | ------- | ----------------------------------------------- |
+| `title` | `string` | —       | Column heading, also the `<nav>`'s `aria-label` |
+
+### FooterBottom
+
+| Prop      | Type        | Default | Description                              |
+| --------- | ----------- | ------- | ---------------------------------------- |
+| `actions` | `ReactNode` | —       | Links pushed to the far end of the strip |
+
+`Footer`, `FooterBody`, `FooterSocial`, `FooterColumns`, `FooterAttribution`, `FooterLink` and `FooterBottomLink` accept the props of the element they render.

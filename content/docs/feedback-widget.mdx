@@ -1,0 +1,74 @@
+---
+title: Feedback Widget
+description: An edge tab that opens a short feedback form.
+---
+
+## Introduction
+
+A tab pinned to the right edge of the viewport. It opens a modal asking for a name, an email, a five-point rating and a message, with a character counter on the message.
+
+The rating is exported on its own as `FeedbackRating`, so a survey page can use the same scale without the tab.
+
+Two departures from the kit. The kit draws the five points as illustrated yellow emoji; those would be image assets a registry component cannot ship, and they cannot follow the theme, so this uses the matching line faces. And the kit's Cancel button is outlined in red — red on the button that discards nothing is a warning about the wrong thing, so Cancel is neutral here and Submit carries the emphasis.
+
+## Installation
+
+<ComponentSource
+  collapsible={false}
+  code={`npx shadcn@latest add https://indiacn.in/r/feedback-widget.json`}
+/>
+
+<ComponentSource
+  collapsible={false}
+  code={`import { FeedbackRating, FeedbackWidget } from '@/components/ui/feedback-widget';`}
+/>
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`<FeedbackWidget onSubmit={handleSubmit} footer='Powered by UX4G' />`}
+/>
+
+Mount it once, near the root of the layout. It positions itself.
+
+## Examples
+
+### Default
+
+The tab below is pinned to the example rather than the viewport, so the form stays inside the page.
+
+<ComponentPreview name='FeedbackWidgetDefault' />
+
+### Rating on its own
+
+<ComponentPreview name='FeedbackRatingDefault' />
+
+## Accessibility
+
+- The rating is a `radiogroup`, so the arrow keys move between the five points and a screen reader announces the group once instead of five unrelated buttons. Each face carries a word — "Very dissatisfied" through "Very satisfied" — because a face alone is not a value.
+- Rating and message are required. The form does not disable Submit; it says which field is missing, since a disabled button gives no reason.
+- Focus moves into the dialog on open and returns to the tab on close, and <kbd>Esc</kbd> closes it.
+- The tab's accessible name includes what it does, not just the word on it.
+
+## API Reference
+
+### FeedbackWidget
+
+| Prop           | Type                                         | Default                                       | Description                       |
+| -------------- | -------------------------------------------- | --------------------------------------------- | --------------------------------- |
+| `onSubmit`     | `(value: IFeedbackValue) => void \| Promise` | —                                             | Called with the completed form    |
+| `title`        | `string`                                     | `'We value your feedback'`                    | Dialog heading                    |
+| `description`  | `string`                                     | `'Share your thoughts to help us improve...'` | Line under the heading            |
+| `maxLength`    | `number`                                     | `200`                                         | Message limit, shown as a counter |
+| `triggerLabel` | `string`                                     | `'Feedback'`                                  | Text on the tab                   |
+| `footer`       | `ReactNode`                                  | —                                             | Small line under the buttons      |
+
+`IFeedbackValue` is `{ name: string; email: string; rating: number | null; message: string }`.
+
+### FeedbackRating
+
+| Prop       | Type                      | Default | Description                 |
+| ---------- | ------------------------- | ------- | --------------------------- |
+| `value`    | `number \| null`          | —       | Chosen point, 1 through 5   |
+| `onChange` | `(value: number) => void` | —       | Fires on click or arrow key |
