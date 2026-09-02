@@ -428,9 +428,7 @@
       "type": "registry:ui",
       "title": "Typography",
       "description": "21 typography components: 6 Display, 6 Headline, 3 Title, 3 Label, 3 Body. Required by every other IndiaCN component.",
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/typography.tsx",
@@ -443,11 +441,7 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Versatile button with filled/outlined/tonal/text variants, primary/success/destructive themes, sm/md/lg sizes, icon support, and loading state.",
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -480,9 +474,7 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Compact label for status, counts, or categories. 9 themes × 3 variants × 3 sizes × 2 shapes.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -499,10 +491,7 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Contextual feedback message. 8 themes (primary, secondary, success, danger, warning, info, light, dark) with optional dismiss button.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -519,13 +508,8 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "Vertically-stacked collapsible sections. Built on Radix Accordion primitive.",
-      "dependencies": [
-        "@radix-ui/react-accordion",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/accordion.tsx",
@@ -538,9 +522,7 @@
       "type": "registry:ui",
       "title": "Breadcrumb",
       "description": "Navigation trail showing the current page's hierarchy.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -557,9 +539,7 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Composable container with header, content, footer, image, title, and description sub-parts.",
-      "dependencies": [
-        "next"
-      ],
+      "dependencies": ["next"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -576,10 +556,7 @@
       "type": "registry:ui",
       "title": "Chip",
       "description": "Tags, filters, or selections. 7 themes × 3 variants × 3 sizes; supports icons, avatars, dismiss, and selected state.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -596,12 +573,8 @@
       "type": "registry:ui",
       "title": "Collapse",
       "description": "Single collapsible region powered by Radix Collapsible.",
-      "dependencies": [
-        "@radix-ui/react-collapsible"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-collapsible"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/collapse.tsx",
@@ -614,10 +587,7 @@
       "type": "registry:ui",
       "title": "Dropdown",
       "description": "Dropdown menu with items, checkbox/radio items, sub-menus, separators, and shortcuts.",
-      "dependencies": [
-        "@radix-ui/react-dropdown-menu",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -634,12 +604,8 @@
       "type": "registry:ui",
       "title": "List Group",
       "description": "Vertical list with optional flush, horizontal, and contextual-color variants.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/list-group.tsx",
@@ -652,10 +618,7 @@
       "type": "registry:ui",
       "title": "Modal",
       "description": "Dialog with sm/md/lg/xl/fullscreen sizes and optional scrollable body.",
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json",
@@ -673,10 +636,7 @@
       "type": "registry:ui",
       "title": "Offcanvas",
       "description": "Slide-in panel from any side with optional body-scroll mode.",
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json",
@@ -694,9 +654,7 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "Page navigation with default and flat variants in 3 sizes.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -713,12 +671,8 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Anchored floating panel powered by Radix Popover.",
-      "dependencies": [
-        "@radix-ui/react-popover"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-popover"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/popover.tsx",
@@ -731,12 +685,8 @@
       "type": "registry:ui",
       "title": "Progress",
       "description": "Linear progress bar with theme colors, sizes, striped + animated stripes.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/progress.tsx",
@@ -749,13 +699,8 @@
       "type": "registry:ui",
       "title": "Search",
       "description": "Search input with icon, sizes, and optional clear button.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/search.tsx",
@@ -768,12 +713,8 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Horizontal or vertical divider built on Radix Separator.",
-      "dependencies": [
-        "@radix-ui/react-separator"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/separator.tsx",
@@ -786,12 +727,8 @@
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "Loading placeholder with rect/circle/pill/text shapes and pulse/wave animations.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/skeleton.tsx",
@@ -804,9 +741,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "Loading indicator with border/grow variants, theme colors, and sm/md/lg sizes.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -823,9 +758,7 @@
       "type": "registry:ui",
       "title": "Stepper",
       "description": "Step indicator for multi-step flows with horizontal/vertical orientation and completed/active/warning/pending states.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -842,12 +775,8 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "Tab list with tabs, pills, and underline variants. Built on Radix Tabs.",
-      "dependencies": [
-        "@radix-ui/react-tabs"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/tabs.tsx",
@@ -860,10 +789,7 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Notification toast with provider, hook, container, and theme variants.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/close-button.json"
@@ -880,13 +806,8 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Hover/focus tooltip with 8 theme variants. Built on Radix Tooltip.",
-      "dependencies": [
-        "@radix-ui/react-tooltip",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-tooltip", "class-variance-authority"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/tooltip.tsx",
@@ -899,12 +820,8 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Accessible caption for a form control. Built on Radix Label.",
-      "dependencies": [
-        "@radix-ui/react-label"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-label"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/label.tsx",
@@ -917,10 +834,7 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Tri-state checkbox with checked, indeterminate, and unchecked types across five states. Built on Radix Checkbox.",
-      "dependencies": [
-        "@radix-ui/react-checkbox",
-        "lucide-react"
-      ],
+      "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/label.json"
@@ -937,9 +851,7 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "Mutually exclusive options with a 40px state layer and AA focus ring. Built on Radix Radio Group.",
-      "dependencies": [
-        "@radix-ui/react-radio-group"
-      ],
+      "dependencies": ["@radix-ui/react-radio-group"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/label.json"
@@ -956,10 +868,7 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "On/off toggle in default and small sizes; the handle grows on check per UX4G. Built on Radix Switch.",
-      "dependencies": [
-        "@radix-ui/react-switch",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/label.json"
@@ -976,9 +885,7 @@
       "type": "registry:ui",
       "title": "Indicator",
       "description": "Notification dot, count, or short status label. UX4G's Badge component.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -995,13 +902,8 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "Person or entity avatar with picture, initials, or icon fallback. Four sizes, circular or rectangular.",
-      "dependencies": [
-        "@radix-ui/react-avatar",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-avatar", "class-variance-authority"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/avatar.tsx",
@@ -1031,10 +933,7 @@
       "type": "registry:ui",
       "title": "Input",
       "description": "Text field with sizes, validation states, leading icon and clear button.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -1051,9 +950,7 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "Multi-line text field with validation states and a character counter.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
+      "dependencies": ["class-variance-authority"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -1070,13 +967,8 @@
       "type": "registry:ui",
       "title": "Close Button",
       "description": "Dismiss control for modals, toasts and panels, with a guaranteed accessible name.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "https://indiacn.in/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": ["https://indiacn.in/r/theme.json"],
       "files": [
         {
           "path": "components/ui/close-button.tsx",
@@ -1105,10 +997,7 @@
       "type": "registry:ui",
       "title": "Carousel",
       "description": "Slideshow with bar indicators, keyboard navigation and an accessible pause control.",
-      "dependencies": [
-        "class-variance-authority",
-        "lucide-react"
-      ],
+      "dependencies": ["class-variance-authority", "lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -1125,9 +1014,7 @@
       "type": "registry:ui",
       "title": "Accessibility Widget",
       "description": "Floating panel of reading adjustments that apply to the whole document and persist.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
@@ -1144,9 +1031,7 @@
       "type": "registry:ui",
       "title": "Navbar",
       "description": "Government website header with a utility bar, brand, navigation and actions.",
-      "dependencies": [
-        "lucide-react"
-      ],
+      "dependencies": ["lucide-react"],
       "registryDependencies": [
         "https://indiacn.in/r/theme.json",
         "https://indiacn.in/r/typography.json"
