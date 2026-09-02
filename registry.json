@@ -1042,6 +1042,23 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "description": "Chart.js charts with UX4G presentation defaults and a screen-reader data table.",
+      "dependencies": ["chart.js"],
+      "registryDependencies": [
+        "https://indiacn.in/r/theme.json",
+        "https://indiacn.in/r/typography.json"
+      ],
+      "files": [
+        {
+          "path": "components/ui/chart.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
