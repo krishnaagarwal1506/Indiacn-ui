@@ -14,11 +14,20 @@ const claimed = Object.fromEntries(
   ]),
 );
 
+/* Docs nest — chart types live under content/docs/chart — so this has to
+ * recurse. A flat readdir silently undercounted by twelve. */
+function countPages(dir) {
+  return readdirSync(dir, { withFileTypes: true }).reduce((total, entry) => {
+    if (entry.isDirectory()) return total + countPages(resolve(dir, entry.name));
+    return total + (entry.name.endsWith('.mdx') ? 1 : 0);
+  }, 0);
+}
+
 const registry = JSON.parse(read('registry.json'));
 
 const actual = {
   COMPONENT_COUNT: registry.items.filter(i => i.type === 'registry:ui').length,
-  DOC_PAGE_COUNT: readdirSync(resolve(ROOT, 'content/docs')).filter(f => f.endsWith('.mdx')).length,
+  DOC_PAGE_COUNT: countPages(resolve(ROOT, 'content/docs')),
   TYPE_STYLE_COUNT: [
     ...read('components/ui/typography.tsx').matchAll(
       /^const (Display|Headline|Title|Body|Label)\d+:/gm,
