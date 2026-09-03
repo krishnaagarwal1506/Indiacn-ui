@@ -42,6 +42,14 @@ return <TimePicker value={time} onValueChange={setTime} showHeader />;`}
 
 <ComponentPreview name='TimePickerNoSeconds' />
 
+### Twelve-hour clock
+
+UX4G asks for an AM/PM option and for the format to follow regional preference. `hourCycle={12}` shows hours as 12, 1, 2 … and adds a fourth column.
+
+The value never changes shape: `hours` is always 0–23. A component that hands back `7` without saying which seven is worse than useless, so only the display switches.
+
+<ComponentPreview name='TimePicker12Hour' />
+
 ## Accessibility
 
 | Key                                   | Moves                |
@@ -69,6 +77,6 @@ return <TimePicker value={time} onValueChange={setTime} showHeader />;`}
 
 ### TimeColumns
 
-The three columns with no card, header or footer, for composing into a larger surface. Takes `value`, `onValueChange` and `showSeconds`.
+The columns with no card, header or footer, for composing into a larger surface. Takes `value`, `onValueChange`, `showSeconds` and `hourCycle`.
 
-`ITimeValue` is `{ hours: number; minutes: number; seconds: number }`. The module also exports `formatTime(value, showSeconds)` and `toTimeValue(date)`.
+`ITimeValue` is `{ hours: number; minutes: number; seconds: number }`, with `hours` always 0–23. The module also exports `formatTime(value, showSeconds, hourCycle)`, `toTimeValue(date)`, `toClockHour(hours)` and `fromClockHour(clockHour, isAfternoon)`.

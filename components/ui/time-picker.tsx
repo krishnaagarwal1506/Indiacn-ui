@@ -15,26 +15,52 @@ import { cn } from '@/lib/utils';
  * change the value directly instead of needing a second confirm keystroke.
  * That is the right pattern for a spinner and it keeps each column to one tab
  * stop rather than sixty.
+ *
+ * The kit's guidance asks twice for a 12-hour option — "include an option for
+ * AM/PM where applicable" and "allow users to customize the format based on
+ * regional preferences" — so `hourCycle` adds a fourth column. The value stays
+ * 24-hour throughout: only the display changes, because a component that hands
+ * back "7" without saying which seven is worse than useless.
  */
 const HOURS_IN_DAY = 24;
 const MINUTES_IN_HOUR = 60;
 
+const MERIDIEM_OPTIONS = [
+  { value: 0, label: 'AM' },
+  { value: 1, label: 'PM' },
+];
+
 interface ITimeValue {
+  /** Always 0-23. `hourCycle` changes the display, never the value. */
   hours: number;
   minutes: number;
   seconds: number;
 }
+
+type THourCycle = 12 | 24;
 
 /** Zero-padded two-digit label, the only form the kit shows. */
 function pad(value: number) {
   return String(value).padStart(2, '0');
 }
 
-/** "14:05:00", or "14:05" when seconds are hidden. */
-function formatTime(value: ITimeValue, showSeconds: boolean) {
-  const base = `${pad(value.hours)}:${pad(value.minutes)}`;
+/** "14:05:00", "14:05", or "02:05 PM" on a 12-hour clock. */
+function formatTime(value: ITimeValue, showSeconds: boolean, hourCycle: THourCycle = 24) {
+  const hours = hourCycle === 12 ? toClockHour(value.hours) : value.hours;
+  const base = `${pad(hours)}:${pad(value.minutes)}`;
+  const withSeconds = showSeconds ? `${base}:${pad(value.seconds)}` : base;
 
-  return showSeconds ? `${base}:${pad(value.seconds)}` : base;
+  return hourCycle === 12 ? `${withSeconds} ${value.hours < 12 ? 'AM' : 'PM'}` : withSeconds;
+}
+
+/** The face a 24-hour value shows on a 12-hour clock: 0 and 12 both read 12. */
+function toClockHour(hours: number) {
+  return hours % 12 === 0 ? 12 : hours % 12;
+}
+
+/** Rebuilds a 24-hour value from a clock face and a meridiem. */
+function fromClockHour(clockHour: number, isAfternoon: boolean) {
+  return (clockHour % 12) + (isAfternoon ? 12 : 0);
 }
 
 /** Wall-clock time from a Date, with seconds. */
@@ -44,13 +70,14 @@ function toTimeValue(date: Date): ITimeValue {
 
 interface ITimeOptionProps {
   option: number;
+  label: string;
   selected: boolean;
   onSelect: (value: number) => void;
   registerRef: (option: number, node: HTMLButtonElement | null) => void;
 }
 
-/** One number in a column. Split out so its callbacks stay stable. */
-function TimeOption({ option, selected, onSelect, registerRef }: ITimeOptionProps) {
+/** One entry in a column. Split out so its callbacks stay stable. */
+function TimeOption({ option, label, selected, onSelect, registerRef }: ITimeOptionProps) {
   const handleClick = useCallback(() => onSelect(option), [onSelect, option]);
   const handleRef = useCallback(
     (node: HTMLButtonElement | null) => registerRef(option, node),
@@ -70,21 +97,31 @@ function TimeOption({ option, selected, onSelect, registerRef }: ITimeOptionProp
         selected && 'bg-primary-100 font-medium',
       )}
     >
-      {pad(option)}
+      {label}
     </button>
   );
 }
 
+interface ITimeOption {
+  value: number;
+  label: string;
+}
+
 interface ITimeColumnProps {
   label: string;
-  count: number;
+  options: ITimeOption[];
   value: number;
   onValueChange: (value: number) => void;
 }
 
-/** One scrolling column of numbers, keyboard-driven as a listbox. */
-function TimeColumn({ label, count, value, onValueChange }: ITimeColumnProps) {
-  const options = useMemo(() => Array.from({ length: count }, (_, index) => index), [count]);
+/**
+ * One scrolling column, keyboard-driven as a listbox.
+ *
+ * Takes an options list rather than a count so the hour column can show 12, 1,
+ * 2 … while still reporting 0-23, and so AM/PM is the same component.
+ */
+function TimeColumn({ label, options, value, onValueChange }: ITimeColumnProps) {
+  const count = options.length;
   const nodes = useRef(new Map<number, HTMLButtonElement>());
   const list = useRef<HTMLDivElement>(null);
 
@@ -111,22 +148,25 @@ function TimeColumn({ label, count, value, onValueChange }: ITimeColumnProps) {
         PageUp: -10,
         PageDown: 10,
       };
+      const current = options.findIndex(option => option.value === value);
+      const move = (index: number) => {
+        const next = options[((index % count) + count) % count];
+        onValueChange(next.value);
+        nodes.current.get(next.value)?.focus();
+      };
+
       if (event.key in steps) {
         event.preventDefault();
-        const next = (value + steps[event.key] + count) % count;
-        onValueChange(next);
-        nodes.current.get(next)?.focus();
+        move(current + steps[event.key]);
 
         return;
       }
       if (event.key === 'Home' || event.key === 'End') {
         event.preventDefault();
-        const next = event.key === 'Home' ? 0 : count - 1;
-        onValueChange(next);
-        nodes.current.get(next)?.focus();
+        move(event.key === 'Home' ? 0 : count - 1);
       }
     },
-    [value, count, onValueChange],
+    [value, count, options, onValueChange],
   );
 
   return (
@@ -139,9 +179,10 @@ function TimeColumn({ label, count, value, onValueChange }: ITimeColumnProps) {
     >
       {options.map(option => (
         <TimeOption
-          key={option}
-          option={option}
-          selected={option === value}
+          key={option.value}
+          option={option.value}
+          label={option.label}
+          selected={option.value === value}
           onSelect={onValueChange}
           registerRef={registerRef}
         />
@@ -154,6 +195,8 @@ interface ITimeColumnsProps {
   value: ITimeValue;
   onValueChange: (value: ITimeValue) => void;
   showSeconds?: boolean;
+  /** 12 adds an AM/PM column and shows hours as 12, 1, 2 … */
+  hourCycle?: THourCycle;
   className?: string;
 }
 
@@ -163,9 +206,27 @@ interface ITimeColumnsProps {
  * DateTimePicker uses this beside a Calendar; TimePicker wraps it in the card
  * with the header and footer.
  */
-function TimeColumns({ value, onValueChange, showSeconds = true, className }: ITimeColumnsProps) {
+function TimeColumns({
+  value,
+  onValueChange,
+  showSeconds = true,
+  hourCycle = 24,
+  className,
+}: ITimeColumnsProps) {
+  const isAfternoon = value.hours >= 12;
+
   const setHours = useCallback(
     (hours: number) => onValueChange({ ...value, hours }),
+    [onValueChange, value],
+  );
+  const setClockHour = useCallback(
+    (clockHour: number) =>
+      onValueChange({ ...value, hours: fromClockHour(clockHour, value.hours >= 12) }),
+    [onValueChange, value],
+  );
+  const setMeridiem = useCallback(
+    (afternoon: number) =>
+      onValueChange({ ...value, hours: fromClockHour(toClockHour(value.hours), afternoon === 1) }),
     [onValueChange, value],
   );
   const setMinutes = useCallback(
@@ -177,21 +238,50 @@ function TimeColumns({ value, onValueChange, showSeconds = true, className }: IT
     [onValueChange, value],
   );
 
+  const hourOptions = useMemo(
+    () =>
+      hourCycle === 12
+        ? // 12 first, matching every analogue clock face
+          [12, ...Array.from({ length: 11 }, (_, index) => index + 1)].map(hour => ({
+            value: hour,
+            label: pad(hour),
+          }))
+        : Array.from({ length: HOURS_IN_DAY }, (_, hour) => ({ value: hour, label: pad(hour) })),
+    [hourCycle],
+  );
+  const minuteOptions = useMemo(
+    () => Array.from({ length: MINUTES_IN_HOUR }, (_, unit) => ({ value: unit, label: pad(unit) })),
+    [],
+  );
+
   return (
     <div className={cn('flex divide-x divide-neutral-100', className)}>
-      <TimeColumn label='Hour' count={HOURS_IN_DAY} value={value.hours} onValueChange={setHours} />
+      <TimeColumn
+        label='Hour'
+        options={hourOptions}
+        value={hourCycle === 12 ? toClockHour(value.hours) : value.hours}
+        onValueChange={hourCycle === 12 ? setClockHour : setHours}
+      />
       <TimeColumn
         label='Minute'
-        count={MINUTES_IN_HOUR}
+        options={minuteOptions}
         value={value.minutes}
         onValueChange={setMinutes}
       />
       {showSeconds && (
         <TimeColumn
           label='Second'
-          count={MINUTES_IN_HOUR}
+          options={minuteOptions}
           value={value.seconds}
           onValueChange={setSeconds}
+        />
+      )}
+      {hourCycle === 12 && (
+        <TimeColumn
+          label='AM or PM'
+          options={MERIDIEM_OPTIONS}
+          value={isAfternoon ? 1 : 0}
+          onValueChange={setMeridiem}
         />
       )}
     </div>
@@ -202,6 +292,8 @@ interface ITimePickerProps {
   value: ITimeValue;
   onValueChange: (value: ITimeValue) => void;
   showSeconds?: boolean;
+  /** 12 adds an AM/PM column and shows hours as 12, 1, 2 … */
+  hourCycle?: THourCycle;
   /** Shows the header echoing the current value. */
   showHeader?: boolean;
   /** Called by the Ok button. Omit it and the button is not rendered. */
@@ -214,6 +306,7 @@ function TimePicker({
   value,
   onValueChange,
   showSeconds = true,
+  hourCycle = 24,
   showHeader = false,
   onConfirm,
   className,
@@ -229,13 +322,14 @@ function TimePicker({
     >
       {showHeader && (
         <Label1 className='text-neutral px-4 py-2.5 text-center tabular-nums'>
-          {formatTime(value, showSeconds)}
+          {formatTime(value, showSeconds, hourCycle)}
         </Label1>
       )}
       <TimeColumns
         value={value}
         onValueChange={onValueChange}
         showSeconds={showSeconds}
+        hourCycle={hourCycle}
         className='py-2'
       />
       <div className='flex items-center justify-between gap-3 p-2.5'>
@@ -252,6 +346,6 @@ function TimePicker({
   );
 }
 
-export type { ITimeValue };
+export type { ITimeValue, THourCycle };
 
-export { TimePicker, TimeColumns, formatTime, toTimeValue };
+export { TimePicker, TimeColumns, formatTime, toTimeValue, toClockHour, fromClockHour };

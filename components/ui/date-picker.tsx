@@ -6,7 +6,13 @@ import { ReactNode, useCallback, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Calendar, IDateRange, MONTH_LABELS, startOfDay } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { ITimeValue, TimeColumns, formatTime, toTimeValue } from '@/components/ui/time-picker';
+import {
+  ITimeValue,
+  THourCycle,
+  TimeColumns,
+  formatTime,
+  toTimeValue,
+} from '@/components/ui/time-picker';
 import { Label1 } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 
@@ -26,6 +32,14 @@ const TRIGGER_ICON =
   'border-neutral-200 bg-neutral-0 hover:border-primary hover:text-primary focus-visible:shadow-focus-primary flex size-8 cursor-pointer items-center justify-center rounded-md border text-neutral-600 transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&>svg]:size-[18px]';
 
 const PANEL = 'w-auto border-0 bg-transparent p-0 shadow-none';
+
+/*
+ * `modal` on every picker. Radix popovers are non-modal by default, and Tab
+ * from the last day cell closed the surface and dropped focus on a bare span.
+ * The kit asks that focus stay in the picker until the choice is confirmed or
+ * cancelled, and a calendar with 42 cells is a place you can get lost.
+ */
+const MODAL = true;
 
 type TPickerTrigger = 'field' | 'icon';
 
@@ -127,7 +141,7 @@ function DatePicker({
   );
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal={MODAL}>
       <PickerTrigger
         trigger={trigger}
         text={value ? format(value) : ''}
@@ -188,7 +202,7 @@ function DateRangePicker({
   );
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={setOpen} modal={MODAL}>
       <PickerTrigger
         trigger={trigger}
         text={formatRange(value)}
@@ -218,6 +232,8 @@ interface ITimePickerFieldProps {
   trigger?: TPickerTrigger;
   placeholder?: string;
   showSeconds?: boolean;
+  /** 12 adds an AM/PM column and shows hours as 12, 1, 2 … */
+  hourCycle?: THourCycle;
   disabled?: boolean;
   className?: string;
 }
@@ -229,6 +245,7 @@ function TimePickerField({
   trigger = 'field',
   placeholder = 'Select Time',
   showSeconds = true,
+  hourCycle = 24,
   disabled,
   className,
 }: ITimePickerFieldProps) {
@@ -250,10 +267,10 @@ function TimePickerField({
   }, [onValueChange, draft]);
 
   return (
-    <Popover open={open} onOpenChange={handleOpenChange}>
+    <Popover open={open} onOpenChange={handleOpenChange} modal={MODAL}>
       <PickerTrigger
         trigger={trigger}
-        text={value ? formatTime(value, showSeconds) : ''}
+        text={value ? formatTime(value, showSeconds, hourCycle) : ''}
         placeholder={placeholder}
         icon={<Clock aria-hidden />}
         triggerLabel='Choose time'
@@ -266,6 +283,7 @@ function TimePickerField({
             value={draft}
             onValueChange={setDraft}
             showSeconds={showSeconds}
+            hourCycle={hourCycle}
             className='py-2'
           />
           <PickerFooter onReset={handleNow} resetLabel='Now' onConfirm={handleConfirm} />
@@ -281,6 +299,8 @@ interface IDateTimePickerProps {
   trigger?: TPickerTrigger;
   placeholder?: string;
   showSeconds?: boolean;
+  /** 12 adds an AM/PM column and shows hours as 12, 1, 2 … */
+  hourCycle?: THourCycle;
   min?: Date;
   max?: Date;
   disabled?: boolean;
@@ -294,6 +314,7 @@ function DateTimePicker({
   trigger = 'field',
   placeholder = 'Select Date & Time',
   showSeconds = true,
+  hourCycle = 24,
   min,
   max,
   disabled,
@@ -332,10 +353,12 @@ function DateTimePicker({
     setOpen(false);
   }, [draftDate, draftTime, onValueChange]);
 
-  const text = value ? `${formatDate(value)} ${formatTime(toTimeValue(value), showSeconds)}` : '';
+  const text = value
+    ? `${formatDate(value)} ${formatTime(toTimeValue(value), showSeconds, hourCycle)}`
+    : '';
 
   return (
-    <Popover open={open} onOpenChange={handleOpenChange}>
+    <Popover open={open} onOpenChange={handleOpenChange} modal={MODAL}>
       <PickerTrigger
         trigger={trigger}
         text={text}
@@ -347,7 +370,7 @@ function DateTimePicker({
       />
       <PopoverContent align='start' className={PANEL}>
         <div className='bg-neutral-0 inline-flex flex-col divide-y divide-neutral-100 rounded-lg shadow-md'>
-          <div className='flex divide-x divide-neutral-100'>
+          <div className='flex flex-col divide-y divide-neutral-100 sm:flex-row sm:divide-x sm:divide-y-0'>
             <Calendar
               value={draftDate}
               onValueChange={setDraftDate}
@@ -357,12 +380,13 @@ function DateTimePicker({
             />
             <div className='flex flex-col'>
               <Label1 className='text-neutral border-b border-neutral-100 px-4 py-2.5 text-center tabular-nums'>
-                {formatTime(draftTime, showSeconds)}
+                {formatTime(draftTime, showSeconds, hourCycle)}
               </Label1>
               <TimeColumns
                 value={draftTime}
                 onValueChange={setDraftTime}
                 showSeconds={showSeconds}
+                hourCycle={hourCycle}
                 className='py-2'
               />
             </div>
