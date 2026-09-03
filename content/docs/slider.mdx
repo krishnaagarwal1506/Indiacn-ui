@@ -1,0 +1,79 @@
+---
+title: Slider
+description: Single or range slider with optional value labels.
+---
+
+## Introduction
+
+UX4G specifies a two-thumb range slider with an optional value label under each thumb. The same component handles a single value — pass one value instead of two.
+
+## Installation
+
+<ComponentSource collapsible={false} code={`npx shadcn@latest add https://indiacn.in/r/slider.json`} />
+
+<ComponentSource collapsible={false} code={`import { Slider } from '@/components/ui/slider';`} />
+
+## Usage
+
+<ComponentSource
+  collapsible={false}
+  code={`const [value, setValue] = useState([25, 75]);
+
+<Slider value={value} onValueChange={setValue} showLabels />`}
+/>
+
+## Examples
+
+### Single value
+
+<ComponentPreview name='SliderDefault' />
+
+### Range
+
+<ComponentPreview name='SliderRange' />
+
+### Formatted values
+
+`formatValue` controls both the visible label and each thumb's accessible name, so they cannot drift apart.
+
+<ComponentPreview name='SliderFormatted' />
+
+### Disabled
+
+<ComponentPreview name='SliderDisabled' />
+
+## Accessibility
+
+Built on Radix Slider, so dragging, touch and keyboard behaviour are not reimplemented — arrow keys step, <kbd>Home</kbd> and <kbd>End</kbd> jump to the bounds, and each thumb is a separate focus stop.
+
+Every thumb takes its accessible name from `formatValue`. A screen-reader user hearing "50" learns nothing; hearing "₹50,000" they know what they are setting. That is why the formatter feeds both.
+
+## Measurements
+
+Read off the Figma symbols:
+
+| | |
+| --- | --- |
+| track | 8px, `neutral-100` (`#dddddd`) |
+| selected range | 8px, `primary` (`#613af5`) |
+| thumb | 24px, `neutral-0` fill, 1px `primary` border |
+| label offset | 13px below the track |
+
+The labels sit at the ends rather than following the thumbs. UX4G's symbols show them tracking each thumb's position, but a label pinned under a thumb collides with its neighbour as the two values converge — and at 0%/100% it would hang off the ends. Ends are the honest compromise; pass `showLabels={false}` and render your own if you need them to follow.
+
+## API Reference
+
+### Slider
+
+| Prop | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `value` | `number[]` | — | Controlled. One entry per thumb |
+| `defaultValue` | `number[]` | — | Uncontrolled starting value |
+| `onValueChange` | `(value: number[]) => void` | — | Fires while dragging |
+| `min` / `max` | `number` | `0` / `100` | Bounds |
+| `step` | `number` | `1` | Increment |
+| `showLabels` | `boolean` | `false` | Renders each value beneath the track |
+| `formatValue` | `(value: number) => string` | appends `%` | Label text and accessible name |
+| `disabled` | `boolean` | `false` | Dims and disables |
+
+Any other Radix Slider prop is forwarded.

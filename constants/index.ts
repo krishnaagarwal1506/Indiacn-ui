@@ -33,7 +33,7 @@ export const SITE_KEYWORDS = [
  * against its real source, so a component added without updating the copy
  * fails the build rather than quietly making the page wrong.
  */
-export const COMPONENT_COUNT = 46;
-export const DOC_PAGE_COUNT = 58;
+export const COMPONENT_COUNT = 47;
+export const DOC_PAGE_COUNT = 59;
 export const TYPE_STYLE_COUNT = 21;
 export const SEMANTIC_SCALE_COUNT = 7;
