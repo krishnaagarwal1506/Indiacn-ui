@@ -65,6 +65,10 @@ Ok commits the draft, so scrolling past a value costs nothing.
 
 <ComponentPreview name='DateTimePickerDefault' />
 
+### Twelve-hour clock
+
+<ComponentPreview name='DateTimePicker12Hour' />
+
 ## Accessibility
 
 - The trigger's accessible name carries the current value — "Choose date: 21 Oct 2021" — so it is never just "Choose date" with the answer only visible.
@@ -72,6 +76,8 @@ Ok commits the draft, so scrolling past a value costs nothing.
 - The surface is a popover: <kbd>Esc</kbd> closes it and focus returns to the trigger.
 - Inside, the calendar keeps its full [grid keyboard model](/docs/calendar#accessibility) and each time column its listbox model.
 - The pickers that hold a draft — time and date-time — commit only on Ok, so a keyboard user passing through values does not fire a change per keystroke.
+- Focus stays inside the surface until the choice is confirmed or cancelled. Before this was enforced, <kbd>Tab</kbd> from the last day cell closed the picker and dropped focus on a bare `span` — nowhere the eye could follow.
+- The trigger carries `aria-haspopup='dialog'` and `aria-expanded`, and the surface is a `dialog`.
 
 ## API Reference
 
@@ -94,10 +100,12 @@ Takes `value: IDateRange` and `onValueChange: (range: IDateRange) => void`, plus
 
 ### TimePickerField
 
-Takes `value: ITimeValue | null` and `onValueChange: (value: ITimeValue) => void`, plus `trigger`, `placeholder`, `showSeconds` and `disabled`.
+Takes `value: ITimeValue | null` and `onValueChange: (value: ITimeValue) => void`, plus `trigger`, `placeholder`, `showSeconds`, `hourCycle` and `disabled`.
 
 ### DateTimePicker
 
-Takes `value: Date | null` and `onValueChange: (date: Date) => void`, plus `trigger`, `placeholder`, `showSeconds`, `min`, `max` and `disabled`. Ok commits the day and the time together.
+Takes `value: Date | null` and `onValueChange: (date: Date) => void`, plus `trigger`, `placeholder`, `showSeconds`, `hourCycle`, `min`, `max` and `disabled`. Ok commits the day and the time together.
+
+Below the `sm` breakpoint the calendar and the clock stack instead of sitting side by side, so the surface fits a phone.
 
 The module also exports `formatDate(date)` and `formatRange(range)`.
