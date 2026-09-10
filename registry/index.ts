@@ -117,6 +117,7 @@ import {
   DatePickerDefault,
   DatePickerTriggers,
   DateRangePickerDefault,
+  DateTimePicker12Hour,
   DateTimePickerDefault,
   TimePickerFieldDefault,
 } from '@/components/examples/date-picker-demo';
@@ -229,7 +230,11 @@ import {
   TextareaStates,
   TextareaWithCount,
 } from '@/components/examples/textarea-demo';
-import { TimePickerDefault, TimePickerNoSeconds } from '@/components/examples/time-picker-demo';
+import {
+  TimePicker12Hour,
+  TimePickerDefault,
+  TimePickerNoSeconds,
+} from '@/components/examples/time-picker-demo';
 import { ToastDefault, ToastSimple, ToastThemes } from '@/components/examples/toast-demo';
 import { ToastStatuses } from '@/components/examples/toast-demo';
 import {
@@ -5458,5 +5463,55 @@ export default function Component() {
   );
 }`,
     files: [{ path: 'components/examples/slider-demo.tsx', type: 'registry:example', target: '' }],
+  },
+  TimePicker12Hour: {
+    name: 'TimePicker12Hour',
+    description: 'Twelve-hour clock with an AM/PM column',
+    type: 'registry:example',
+    component: TimePicker12Hour,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { ITimeValue, TimePicker } from '@/components/ui/time-picker';
+
+export default function Component() {
+  const [time, setTime] = useState<ITimeValue>({ hours: 14, minutes: 30, seconds: 0 });
+
+  return (
+    <TimePicker
+      value={time}
+      onValueChange={setTime}
+      hourCycle={12}
+      showSeconds={false}
+      showHeader
+    />
+  );
+}`,
+    files: [
+      { path: 'components/examples/time-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
+  },
+  DateTimePicker12Hour: {
+    name: 'DateTimePicker12Hour',
+    description: 'Combined picker on a twelve-hour clock',
+    type: 'registry:example',
+    component: DateTimePicker12Hour,
+    code: `'use client';
+
+import { useState } from 'react';
+
+import { DateTimePicker } from '@/components/ui/date-picker';
+
+export default function Component() {
+  const [value, setValue] = useState<Date | null>(null);
+
+  return (
+    <DateTimePicker value={value} onValueChange={setValue} hourCycle={12} showSeconds={false} />
+  );
+}`,
+    files: [
+      { path: 'components/examples/date-picker-demo.tsx', type: 'registry:example', target: '' },
+    ],
   },
 };

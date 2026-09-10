@@ -155,9 +155,15 @@ function CalendarNav({
   showBack = true,
   showForward = true,
 }: ICalendarNavProps) {
+  /*
+   * Both arrow groups reserve the same width whether or not they render
+   * anything. Without it the two-month view, which shows the back arrows only
+   * on the first month, pushed each month's label 30px off the centre of its
+   * own grid.
+   */
   return (
-    <div className='flex h-8 items-center justify-between gap-2'>
-      <div className='flex items-center gap-1'>
+    <div className='flex h-8 items-center gap-2'>
+      <div className='flex w-15 items-center justify-start gap-1'>
         {showBack && (
           <CalendarNavButton onClick={onJumpBack} label={jumpBackLabel}>
             <ChevronsLeft aria-hidden />
@@ -170,7 +176,7 @@ function CalendarNav({
         )}
       </div>
       <Label1 className='text-neutral flex-1 text-center'>{label}</Label1>
-      <div className='flex items-center gap-1'>
+      <div className='flex w-15 items-center justify-end gap-1'>
         {showForward && showStep && (
           <CalendarNavButton onClick={onStepForward} label={stepForwardLabel}>
             <ChevronRight aria-hidden />
@@ -311,7 +317,7 @@ function CalendarMonth({
 
   return (
     <div className='flex flex-col gap-1'>
-      <div role='row' className='grid grid-cols-7'>
+      <div role='row' className='grid w-full grid-cols-7 justify-items-center'>
         {labels.map(label => (
           <Label2
             key={label}
@@ -322,7 +328,7 @@ function CalendarMonth({
           </Label2>
         ))}
       </div>
-      <div className='grid grid-cols-7 gap-y-1'>
+      <div className='grid w-full grid-cols-7 justify-items-center gap-y-1'>
         {days.map(day => {
           const outside = !isSameMonth(day, month);
           const beforeMin = !!min && day < startOfDay(min);
@@ -374,7 +380,9 @@ function CalendarChoice({
       aria-pressed={selected}
       className={cn(
         CELL_BASE,
-        'h-10 w-full',
+        // Figma's selected pill measures 60x24 in a 300px card; 72x36 keeps the
+        // proportion while clearing the minimum target size.
+        'h-9 w-18',
         muted ? 'text-neutral-400' : 'text-neutral hover:bg-primary-50 hover:text-primary-800',
         selected &&
           'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground',
@@ -561,21 +569,29 @@ function Calendar({
 
   return (
     <div
-      className={cn('bg-neutral-0 inline-flex flex-col gap-4 rounded-lg p-5 shadow-md', className)}
+      className={cn(
+        'bg-neutral-0 inline-flex flex-col gap-4 rounded-lg p-5 shadow-md',
+        // Every view holds the same width, so drilling from days to months to
+        // years does not resize the card under the pointer. 252px is seven
+        // 36px day columns; the select header needs 280.
+        showViewControls ? 'min-w-[320px]' : 'min-w-[292px]',
+        className,
+      )}
     >
       {view === 'day' && showViewControls && (
         <div className='flex items-center gap-2'>
-          <CalendarSelect
-            value={viewMonth.getMonth()}
-            onChange={handleMonthSelect}
-            label='Month'
-            options={MONTH_LABELS.map((label, index) => ({ value: index, label }))}
-          />
+          {/* Year first, then month, as the kit orders them. */}
           <CalendarSelect
             value={viewMonth.getFullYear()}
             onChange={handleYearSelect}
             label='Year'
             options={years.map(year => ({ value: year, label: String(year) }))}
+          />
+          <CalendarSelect
+            value={viewMonth.getMonth()}
+            onChange={handleMonthSelect}
+            label='Month'
+            options={MONTH_LABELS.map((label, index) => ({ value: index, label }))}
           />
           <div className='ml-auto flex overflow-hidden rounded-md border border-neutral-200 [&>*+*]:border-l [&>*+*]:border-neutral-200'>
             <CalendarViewToggle label='Month' onClick={openMonthView} />
@@ -589,23 +605,27 @@ function Calendar({
           role='grid'
           aria-label='Calendar'
           onKeyDown={handleKeyDown}
-          className='flex flex-wrap gap-6'
+          className='flex w-full flex-wrap gap-6'
         >
           {shownMonths.map((month, index) => (
-            <div key={month.toISOString()} className='flex flex-col gap-2'>
-              <CalendarNav
-                label={`${MONTH_LABELS[month.getMonth()]} ${month.getFullYear()}`}
-                onStepBack={stepBack}
-                onStepForward={stepForward}
-                onJumpBack={jumpBack}
-                onJumpForward={jumpForward}
-                stepBackLabel='Previous month'
-                stepForwardLabel='Next month'
-                jumpBackLabel='Previous year'
-                jumpForwardLabel='Next year'
-                showBack={index === 0}
-                showForward={index === shownMonths.length - 1}
-              />
+            <div key={month.toISOString()} className='flex flex-1 flex-col gap-2'>
+              {/* The kit's one-month card navigates by select, not by arrow.
+                  Showing both stacks two ways to do the same thing. */}
+              {!showViewControls && (
+                <CalendarNav
+                  label={`${MONTH_LABELS[month.getMonth()]} ${month.getFullYear()}`}
+                  onStepBack={stepBack}
+                  onStepForward={stepForward}
+                  onJumpBack={jumpBack}
+                  onJumpForward={jumpForward}
+                  stepBackLabel='Previous month'
+                  stepForwardLabel='Next month'
+                  jumpBackLabel='Previous year'
+                  jumpForwardLabel='Next year'
+                  showBack={index === 0}
+                  showForward={index === shownMonths.length - 1}
+                />
+              )}
               <CalendarMonth
                 month={month}
                 weekStartsOn={weekStartsOn}
@@ -625,7 +645,7 @@ function Calendar({
       )}
 
       {view === 'month' && (
-        <div className='flex w-[260px] flex-col gap-3'>
+        <div className='flex w-full flex-col gap-3'>
           <CalendarNav
             label={String(viewMonth.getFullYear())}
             onStepBack={stepBack}
@@ -638,7 +658,7 @@ function Calendar({
             jumpForwardLabel='Next year'
             showStep={false}
           />
-          <div className='grid grid-cols-3 gap-2'>
+          <div className='grid grid-cols-3 justify-items-center gap-y-2'>
             {MONTH_LABELS.map((label, index) => (
               <CalendarChoice
                 key={label}
@@ -654,7 +674,7 @@ function Calendar({
       )}
 
       {view === 'year' && (
-        <div className='flex w-[260px] flex-col gap-3'>
+        <div className='flex w-full flex-col gap-3'>
           <CalendarNav
             label={`${decadeStart}-${decadeStart + 9}`}
             onStepBack={stepBack}
@@ -667,7 +687,7 @@ function Calendar({
             jumpForwardLabel='Next decade'
             showStep={false}
           />
-          <div className='grid grid-cols-3 gap-2'>
+          <div className='grid grid-cols-3 justify-items-center gap-y-2'>
             {Array.from({ length: 12 }, (_, index) => decadeStart - 1 + index).map(year => (
               <CalendarChoice
                 key={year}

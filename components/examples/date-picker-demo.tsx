@@ -66,3 +66,13 @@ export function DateTimePickerDefault() {
     </div>
   );
 }
+
+export function DateTimePicker12Hour() {
+  const [value, setValue] = useState<Date | null>(null);
+
+  return (
+    <div className='w-full max-w-[360px]'>
+      <DateTimePicker value={value} onValueChange={setValue} hourCycle={12} showSeconds={false} />
+    </div>
+  );
+}
