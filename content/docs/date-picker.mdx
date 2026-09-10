@@ -106,6 +106,8 @@ Takes `value: ITimeValue | null` and `onValueChange: (value: ITimeValue) => void
 
 Takes `value: Date | null` and `onValueChange: (date: Date) => void`, plus `trigger`, `placeholder`, `showSeconds`, `hourCycle`, `min`, `max` and `disabled`. Ok commits the day and the time together.
 
-Below the `sm` breakpoint the calendar and the clock stack instead of sitting side by side, so the surface fits a phone.
+Below the `sm` breakpoint the calendar and the clock stack instead of sitting side by side, so the surface fits a phone, and Today and Ok share one row.
+
+Stacked, the surface is taller than a phone viewport, so every picker caps itself at the height Radix reports as available and scrolls inside that. Without the cap the combined picker came to 703px in an 844px viewport and hung 307px above the top edge, where it could not be reached.
 
 The module also exports `formatDate(date)` and `formatRange(range)`.

@@ -175,7 +175,9 @@ function TimeColumn({ label, options, value, onValueChange }: ITimeColumnProps) 
       role='listbox'
       aria-label={label}
       onKeyDown={handleKeyDown}
-      className='relative flex h-56 flex-col gap-0.5 overflow-y-auto px-1.5'
+      // h-56 is exactly eight 28px rows. With a gap the eighth row was sliced
+      // through the middle of its digits, which reads as a rendering fault.
+      className='relative flex h-56 flex-col overflow-y-auto px-1.5'
     >
       {options.map(option => (
         <TimeOption

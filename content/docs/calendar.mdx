@@ -38,7 +38,9 @@ return <Calendar value={date} onValueChange={setDate} showViewControls />;`}
 
 ### Default
 
-The month and year selects plus the Month/Year buttons appear with `showViewControls`.
+The year and month selects plus the Month/Year buttons appear with `showViewControls`. When they are shown the arrow row is hidden — the kit's one-month card navigates by select, and offering both stacks two ways to do the same thing.
+
+Every view holds the same width, so drilling from days to months to years does not resize the card under the pointer.
 
 <ComponentPreview name='CalendarDefault' />
 

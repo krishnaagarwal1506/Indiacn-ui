@@ -31,7 +31,13 @@ const TRIGGER_FIELD =
 const TRIGGER_ICON =
   'border-neutral-200 bg-neutral-0 hover:border-primary hover:text-primary focus-visible:shadow-focus-primary flex size-8 cursor-pointer items-center justify-center rounded-md border text-neutral-600 transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&>svg]:size-[18px]';
 
-const PANEL = 'w-auto border-0 bg-transparent p-0 shadow-none';
+/*
+ * Radix reports how much room it has below the trigger. Without the cap the
+ * stacked date-time surface came to 703px in an 844px viewport and hung 307px
+ * above the top edge, where it could not be reached.
+ */
+const PANEL =
+  'w-auto max-h-[var(--radix-popover-content-available-height)] overflow-y-auto border-0 bg-transparent p-0 shadow-none';
 
 /*
  * `modal` on every picker. Radix popovers are non-modal by default, and Tab
@@ -369,17 +375,24 @@ function DateTimePicker({
         className={className}
       />
       <PopoverContent align='start' className={PANEL}>
-        <div className='bg-neutral-0 inline-flex flex-col divide-y divide-neutral-100 rounded-lg shadow-md'>
-          <div className='flex flex-col divide-y divide-neutral-100 sm:flex-row sm:divide-x sm:divide-y-0'>
+        <div className='bg-neutral-0 inline-flex flex-col overflow-hidden rounded-lg shadow-md'>
+          {/*
+            One grid for the body and the footer, so Today sits under the middle
+            of the calendar and Ok under the clock. With the footer as its own
+            row, Today centred on the whole card and landed 38px off.
+          */}
+          <div className='grid grid-cols-2 sm:grid-cols-[auto_auto]'>
             <Calendar
               value={draftDate}
               onValueChange={setDraftDate}
               min={min}
               max={max}
-              className='rounded-none bg-transparent p-4 shadow-none'
+              className='col-span-2 rounded-none bg-transparent p-4 shadow-none sm:col-span-1'
             />
-            <div className='flex flex-col'>
-              <Label1 className='text-neutral border-b border-neutral-100 px-4 py-2.5 text-center tabular-nums'>
+            {/* pt-4 + h-8 puts the clock readout on the same band as the
+                calendar's month label, which sits under the same 16px pad. */}
+            <div className='col-span-2 flex flex-col border-t border-neutral-100 pt-4 sm:col-span-1 sm:border-t-0 sm:border-l'>
+              <Label1 className='text-neutral flex h-8 items-center justify-center border-b border-neutral-100 px-4 text-center tabular-nums'>
                 {formatTime(draftTime, showSeconds, hourCycle)}
               </Label1>
               <TimeColumns
@@ -390,8 +403,17 @@ function DateTimePicker({
                 className='py-2'
               />
             </div>
+            <div className='flex items-center justify-center border-t border-neutral-100 p-2.5'>
+              <Button variant='text' size='sm' onClick={handleToday}>
+                Today
+              </Button>
+            </div>
+            <div className='flex items-center justify-end border-t border-neutral-100 p-2.5 sm:border-l'>
+              <Button size='sm' onClick={handleConfirm}>
+                Ok
+              </Button>
+            </div>
           </div>
-          <PickerFooter onReset={handleToday} resetLabel='Today' onConfirm={handleConfirm} />
         </div>
       </PopoverContent>
     </Popover>
